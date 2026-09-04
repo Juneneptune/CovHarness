@@ -1,9 +1,6 @@
 [design_v4_demo_plan.md](https://github.com/user-attachments/files/31852884/design_v4_demo_plan.md)
 # Covariance Benchmark — Consolidated Design (v4)
 
-**This file supersedes and replaces `week1_plan.md`, `design_draft_v2.md`, and
-`design_draft_v3.md`.** Delete those — everything in them is here, nothing was dropped.
-
 Companion: `project_ledger.md` (paper status + saved concepts). You will write
 `PREREGISTRATION.md` on Day 2 from Part 1 below.
 
