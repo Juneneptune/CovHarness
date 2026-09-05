@@ -1,8 +1,42 @@
 [design_v4_demo_plan.md](https://github.com/user-attachments/files/31852884/design_v4_demo_plan.md)
 # Covariance Benchmark — Consolidated Design (v4)
 
-Companion: `project_ledger.md` (paper status + saved concepts). You will write
+Companion: `docs/project_ledger.md` (paper status + saved concepts). You will write
 `PREREGISTRATION.md` on Day 2 from Part 1 below.
+
+## Repository layout
+
+```
+covharness/
+├── AGENTS.md
+├── README.md
+├── pyproject.toml
+├── .gitignore
+├── configs/
+├── docs/
+│   ├── PROJECT_STATE.md     # persistent working memory
+│   └── project_ledger.md
+├── data/                    # raw / processed data (not committed)
+├── src/
+│   └── covharness/
+│       ├── data/            # loaders, universe, cleaning
+│       ├── realized/        # RCov estimators, synchronization
+│       ├── models/          # one class per model, common fit/predict
+│       ├── features/        # leak-free feature construction
+│       ├── losses/          # Stein, Frobenius, DRD, GMV
+│       ├── inference/       # DM, MCS, GW, MZ, bootstrap
+│       ├── portfolio/       # GMV weights, turnover, costs
+│       ├── protocol/        # splits, confirm lock, rolling driver
+│       ├── diagnostics/     # Epps, PD logs, cumulative d_t
+│       ├── simulation/      # known-Sigma DGPs
+│       └── utils/
+├── scripts/
+├── tests/
+├── experiments/
+├── results/
+├── notebooks/
+└── paper/
+```
 
 ---
 
@@ -667,20 +701,10 @@ it. They are also how you find out your HAC and MCS wiring is wrong before real 
 
 # PART 5 — REPO AND README
 
-```
-covbench/
-  PREREGISTRATION.md        <- committed Day 2, never edited
-  data/                     <- hashed rcov arrays + build script
-  covbench/
-    data/       loaders, synchronization, rcov estimators
-    models/     one class per model, common fit/predict interface
-    losses.py   stein, frobenius, drd decomposition, gmv
-    inference/  dm.py, mcs.py, gw.py, bootstrap.py
-    protocol.py splits, confirm-lock, rolling estimation driver
-  tests/                    <- the synthetic-truth tests from Days 2-3
-  results/
-  notebooks/                <- diagnostics, stylized-fact validation, Epps curve
-```
+See **Repository layout** at the top of this file. `PREREGISTRATION.md` will
+live at the repo root (committed Day 2, never edited). Hashed RCov arrays and
+the build script live under `data/`; synthetic-truth tests from Days 2–3 live
+under `tests/`.
 
 **README framing — this is what a quant reader actually evaluates.** Lead with the protocol, not
 the models:

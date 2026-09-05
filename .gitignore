@@ -1,0 +1,105 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+ENV/
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Tests, coverage, linters
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Raw / licensed market data and large intermediates
+data/raw/
+data/vendor/
+data/cache/
+data/interim/
+data/**/*.csv
+data/**/*.parquet
+data/**/*.feather
+data/**/*.h5
+data/**/*.hdf5
+data/**/*.pkl
+data/**/*.pickle
+data/**/*.npy
+data/**/*.npz
+data/**/*.zip
+data/**/*.tar
+data/**/*.gz
+
+# Keep data scripts and metadata
+!data/.gitkeep
+!data/**/*.py
+!data/**/*.md
+!data/**/*.json
+!data/**/*.yaml
+!data/**/*.yml
+!data/**/*.toml
+
+# Model checkpoints, weights, and experiment logs
+*.ckpt
+*.pt
+*.pth
+*.onnx
+checkpoints/
+lightning_logs/
+wandb/
+runs/
+mlruns/
+*.log
+
+# Results: drop run debris; keep published tables/figures
+results/**/*.ckpt
+results/**/*.pt
+results/**/*.pth
+results/**/*.pkl
+results/**/*.npy
+results/**/*.npz
+results/**/checkpoints/
+results/**/runs/
+results/**/wandb/
+results/**/lightning_logs/
+
+# LaTeX build debris
+paper/**/*.aux
+paper/**/*.bbl
+paper/**/*.blg
+paper/**/*.dvi
+paper/**/*.fdb_latexmk
+paper/**/*.fls
+paper/**/*.log
+paper/**/*.nav
+paper/**/*.out
+paper/**/*.snm
+paper/**/*.synctex.gz
+paper/**/*.toc
+paper/**/*.vrb
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+*~
