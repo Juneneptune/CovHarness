@@ -20,10 +20,12 @@ def realized_covariance(intraday_returns: ArrayLike) -> NDArray[np.floating]:
     annualization, no shrinkage, and no eigenvalue repair.
     """
     returns = np.asarray(intraday_returns, dtype=float)
+    # Require a complete (M, N) return matrix.
     if returns.ndim != 2:
         raise ValueError(
             f"intraday_returns must have shape (M, N); got ndim={returns.ndim}"
         )
     if not np.isfinite(returns).all():
         raise ValueError("intraday_returns must be finite (NaN and inf are rejected)")
+    # Unscaled Gram matrix R'R.
     return returns.T @ returns

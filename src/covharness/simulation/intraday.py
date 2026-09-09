@@ -51,6 +51,7 @@ def simulate_synchronized_gaussian_returns(
         raise TypeError("rng must be a numpy.random.Generator")
 
     n_assets = sigma.shape[0]
+    # Interval covariance so that the day's Gram matrix has expectation Sigma.
     interval_cov = sigma / n_intervals
     try:
         chol = np.linalg.cholesky(interval_cov)
@@ -59,6 +60,6 @@ def simulate_synchronized_gaussian_returns(
             "sigma_daily / n_intervals must be positive definite for Cholesky"
         ) from exc
 
-    # z ~ N(0, I); (z @ L') has covariance L L' = interval_cov.
+    # z ~ N(0, I). Then z @ L' has covariance L L' = interval_cov.
     noise = rng.standard_normal((n_days, n_intervals, n_assets))
     return noise @ chol.T

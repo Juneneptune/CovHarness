@@ -31,6 +31,7 @@ def synchronized_log_returns(prices: pd.DataFrame) -> pd.DataFrame:
     if not isinstance(prices, pd.DataFrame):
         raise TypeError("prices must be a pandas DataFrame")
 
+    # Reject inf and non-positive prices. Missing stays missing.
     values = prices.to_numpy(dtype=float, na_value=np.nan, copy=False)
     if np.isinf(values).any():
         raise ValueError("prices must be finite (inf is rejected)")
@@ -38,4 +39,5 @@ def synchronized_log_returns(prices: pd.DataFrame) -> pd.DataFrame:
     if np.any(values[finite] <= 0):
         raise ValueError("prices must be strictly positive")
 
+    # Log-price difference on consecutive grid times. Drop the first NaN row.
     return np.log(prices).diff().iloc[1:]

@@ -36,11 +36,13 @@ def daily_realized_covariance(synchronized_prices: pd.DataFrame) -> NDArray[np.f
     """
     if not isinstance(synchronized_prices, pd.DataFrame):
         raise TypeError("synchronized_prices must be a pandas DataFrame")
+    # Require a unique, time-ordered price index.
     if not synchronized_prices.index.is_monotonic_increasing:
         raise ValueError("synchronized_prices index must be ordered (monotonic increasing)")
     if synchronized_prices.index.has_duplicates:
         raise ValueError("synchronized_prices index must have unique timestamps")
 
+    # Log returns, then reject any missing cell (no pairwise deletion).
     returns = synchronized_log_returns(synchronized_prices)
     values = returns.to_numpy(dtype=float, na_value=np.nan)
     if values.shape[0] < 1:

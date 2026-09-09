@@ -42,21 +42,25 @@ def previous_tick_sync(
     if not isinstance(data, pd.DataFrame):
         raise TypeError("data must be a pandas DataFrame")
 
+    # Require timestamp, asset, and price.
     required = (timestamp_col, asset_col, price_col)
     missing = [col for col in required if col not in data.columns]
     if missing:
         raise ValueError(f"data missing required columns: {missing}")
 
+    # Copy ticks and parse timestamp and price.
     frame = data.loc[:, list(required)].copy()
     frame[timestamp_col] = pd.to_datetime(frame[timestamp_col], errors="raise")
     frame[price_col] = pd.to_numeric(frame[price_col], errors="raise")
 
+    # Reject nonfinite or non-positive prices.
     prices = frame[price_col].to_numpy(dtype=float, na_value=np.nan)
     if not np.isfinite(prices).all():
         raise ValueError("prices must be finite (NaN and inf are rejected)")
     if np.any(prices <= 0):
         raise ValueError("prices must be strictly positive")
 
+    # Reject duplicate (timestamp, asset) rows. Resolve them before this step.
     duplicate = frame.duplicated(subset=[timestamp_col, asset_col], keep=False)
     if duplicate.any():
         raise ValueError(
@@ -64,6 +68,7 @@ def previous_tick_sync(
             "resolve them before synchronization"
         )
 
+    # Sort the sampling grid. Duplicates are not allowed.
     grid_index = pd.DatetimeIndex(grid)
     if grid_index.has_duplicates:
         raise ValueError("grid timestamps must be unique")
@@ -74,10 +79,7 @@ def previous_tick_sync(
     if frame.empty:
         return pd.DataFrame(index=grid_index)
 
-    # Pivot to one column per asset, then carry each asset's last trade forward
-    # in calendar time (ffill). Restricting to the grid after ffill is
-    # previous-tick: the value at g is the last observation with t <= g.
-    # Never bfill — that would pull in timestamp > g.
+    # Wide panel, then ffill in calendar time and restrict to the grid (no bfill).
     wide = (
         frame.pivot(index=timestamp_col, columns=asset_col, values=price_col)
         .sort_index(axis=0)
