@@ -1,0 +1,186 @@
+{
+  "sample": {
+    "date": "2009-02-13",
+    "asset": "JPM",
+    "quote_table": "taqmsamp_all.cqm_20090213",
+    "nbbo_table": "taqmsamp_all.nbbom_20090213",
+    "trade_table": "taqmsamp_all.ctm_20090213"
+  },
+  "p3": {
+    "nyse_exchange_code": "N",
+    "code_source": "NYSE Daily TAQ Client Specification, Exchange field on the Daily Quotes file. N denotes New York Stock Exchange. WRDS ``cqm_*.ex`` is that same TAQ field.",
+    "observed_ex_codes_in_jpm_cqm": [
+      "B",
+      "C",
+      "D",
+      "I",
+      "M",
+      "N",
+      "P",
+      "T",
+      "W",
+      "Z"
+    ],
+    "n_cqm_session": 2227423,
+    "n_after_p3_nyse": 224071,
+    "p3_retention_fraction": 0.10059651893690601
+  },
+  "cqm_quote_condition": {
+    "R": 2227296,
+    "F": 63,
+    "U": 26,
+    "E": 25,
+    "O": 13
+  },
+  "cqm_quote_cancel": {
+    "<NA>": 2195910,
+    "A": 31513
+  },
+  "nyse_quote_condition": {
+    "R": 223944,
+    "F": 63,
+    "U": 26,
+    "E": 25,
+    "O": 13
+  },
+  "nyse_quote_cancel": {
+    "<NA>": 218747,
+    "A": 5324
+  },
+  "cleaning_B_nbbo_q1q4": {
+    "n_input": 420346,
+    "n_after_p1": 420346,
+    "n_after_p2": 420346,
+    "n_after_q1": 348717,
+    "n_after_q2": 347830,
+    "n_after_q3": 340237,
+    "n_after_q4": 337534,
+    "n_removed_p1": 0,
+    "n_removed_p2": 0,
+    "n_removed_q1": 71629,
+    "n_removed_q2": 887,
+    "n_removed_q3": 7593,
+    "n_removed_q4": 2703,
+    "removal_fraction": 0.1970091305733848
+  },
+  "cleaning_C_nyse_p3_q1q4": {
+    "n_input": 224071,
+    "n_after_p1": 224071,
+    "n_after_p2": 224071,
+    "n_after_q1": 147475,
+    "n_after_q2": 147475,
+    "n_after_q3": 146362,
+    "n_after_q4": 143666,
+    "n_removed_p1": 0,
+    "n_removed_p2": 0,
+    "n_removed_q1": 76596,
+    "n_removed_q2": 0,
+    "n_removed_q3": 1113,
+    "n_removed_q4": 2696,
+    "removal_fraction": 0.35883715429484403
+  },
+  "n_cleaned_midquotes_below_23": {
+    "B_nbbo": 3913,
+    "C_nyse": 1054
+  },
+  "displaced_nbbo_venues": {
+    "n_mid_below_23": 14334,
+    "best_bidex": {
+      "N": 8476,
+      "P": 2605,
+      "T": 1670,
+      "Z": 921,
+      "I": 546,
+      "D": 116
+    },
+    "best_askex": {
+      "N": 5285,
+      "Z": 3029,
+      "T": 2274,
+      "I": 1814,
+      "P": 1583,
+      "D": 340,
+      "C": 9
+    }
+  },
+  "five_minute_jpm": {
+    "A_naive_nbbo": {
+      "09:40": 25.055,
+      "09:45": 22.585,
+      "09:50": 25.185000000000002,
+      "10:00": 25.255000000000003,
+      "10:05": 22.619999999999997,
+      "10:10": 25.395,
+      "10:40": 22.84
+    },
+    "B_cleaned_nbbo": {
+      "09:40": 25.055,
+      "09:45": 22.585,
+      "09:50": 25.185000000000002,
+      "10:00": 25.255000000000003,
+      "10:05": 25.244999999999997,
+      "10:10": 25.395,
+      "10:40": 22.84
+    },
+    "C_paper_nyse": {
+      "09:40": 25.05,
+      "09:45": 24.96,
+      "09:50": 25.189999999999998,
+      "10:00": 25.245,
+      "10:05": 25.244999999999997,
+      "10:10": 25.4,
+      "10:40": 25.505000000000003
+    }
+  },
+  "max_abs_5min_return": {
+    "A_naive_nbbo": {
+      "n_returns": 77,
+      "max_abs_return": 0.34805506496717253,
+      "timestamp": "2009-02-13T12:15:00",
+      "n_abs_gt_2pct": 9,
+      "n_abs_gt_5pct": 9,
+      "n_abs_gt_10pct": 8
+    },
+    "B_cleaned_nbbo": {
+      "n_returns": 77,
+      "max_abs_return": 0.11271084374415308,
+      "timestamp": "2009-02-13T10:40:00",
+      "n_abs_gt_2pct": 4,
+      "n_abs_gt_5pct": 4,
+      "n_abs_gt_10pct": 4
+    },
+    "C_paper_nyse": {
+      "n_returns": 77,
+      "max_abs_return": 0.014072177514821593,
+      "timestamp": "2009-02-13T09:40:00",
+      "n_abs_gt_2pct": 0,
+      "n_abs_gt_5pct": 0,
+      "n_abs_gt_10pct": 0
+    }
+  },
+  "trades_around_windows": {
+    "09:45": {
+      "n": 249,
+      "min": 24.92,
+      "median": 24.95,
+      "max": 24.99,
+      "mean": 24.948645783132527
+    },
+    "10:05": {
+      "n": 383,
+      "min": 22.03,
+      "median": 25.2689,
+      "max": 25.3,
+      "mean": 25.256714621409923
+    },
+    "10:40": {
+      "n": 136,
+      "min": 20.5,
+      "median": 25.51,
+      "max": 25.5677,
+      "mean": 25.35333382352941
+    }
+  },
+  "cleaner_unchanged": "covharness.data.quotes.clean_nbbo_quotes",
+  "caveat": "P3 was applied as a pre-filter on exchange-level quotes. Q1-Q4 were the existing production functions. No new outlier threshold was introduced."
+}

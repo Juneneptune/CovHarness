@@ -1,0 +1,268 @@
+{
+  "sample": {
+    "date": "2009-02-13",
+    "asset": "JPM",
+    "quote_table": "taqmsamp_all.cqm_20090213",
+    "historical_predicate": "sym_root = 'JPM' AND ex IN ('N') AND session hours. No suffix restriction.",
+    "corrected_predicate": "same venue and hours, ordinary/common suffix only (SQL NULL or blank)."
+  },
+  "row_counts": {
+    "root_only_after_sql": 224071,
+    "corrected_after_identity": 218784,
+    "root_only_nonblank_suffix": 5287,
+    "corrected_after_q4": 142740,
+    "root_only_after_q4": 143666
+  },
+  "same_production_functions": {
+    "previous_tick_sync": "covharness.data.synchronization.previous_tick_sync",
+    "drop_incomplete_open": "covharness.diagnostics.epps.drop_incomplete_open",
+    "daily_realized_covariance": "covharness.realized.daily.daily_realized_covariance",
+    "cleaner": "covharness.data.exchange_quotes.clean_single_exchange_quotes",
+    "second_defect": false,
+    "note": "Stream B is reconstructed by omitting sym_suffix so production P3 cannot apply the repaired identity filter. Production fetch is not reverted."
+  },
+  "by_frequency": [
+    {
+      "interval_minutes": 1,
+      "corrected": {
+        "interval_minutes": 1,
+        "n_grid_prices": 391,
+        "n_synchronized_prices": 390,
+        "n_returns": 389,
+        "realized_variance": 0.002340574971905207,
+        "max_abs_return": 0.017958055362468972,
+        "max_abs_return_timestamp": "2009-02-13T09:33:00"
+      },
+      "root_only": {
+        "interval_minutes": 1,
+        "n_grid_prices": 391,
+        "n_synchronized_prices": 390,
+        "n_returns": 389,
+        "realized_variance": 0.7233511018008268,
+        "max_abs_return": 0.3511164741443187,
+        "max_abs_return_timestamp": "2009-02-13T10:05:00",
+        "n_noncommon_suffix_hits": 8,
+        "n_missing_source_suffix_lookup": 0,
+        "noncommon_suffix_hits": [
+          {
+            "grid_time": "2009-02-13T10:04:00",
+            "source_timestamp": "2009-02-13T10:03:59.987000",
+            "suffixes": [
+              "PRK"
+            ],
+            "n_q1_input_rows": 1
+          },
+          {
+            "grid_time": "2009-02-13T11:01:00",
+            "source_timestamp": "2009-02-13T11:00:59.085000",
+            "suffixes": [
+              "PRW"
+            ],
+            "n_q1_input_rows": 1
+          },
+          {
+            "grid_time": "2009-02-13T11:03:00",
+            "source_timestamp": "2009-02-13T11:02:59.553000",
+            "suffixes": [
+              "PRI"
+            ],
+            "n_q1_input_rows": 1
+          },
+          {
+            "grid_time": "2009-02-13T12:59:00",
+            "source_timestamp": "2009-02-13T12:58:46.069000",
+            "suffixes": [
+              "PRW"
+            ],
+            "n_q1_input_rows": 1
+          },
+          {
+            "grid_time": "2009-02-13T13:02:00",
+            "source_timestamp": "2009-02-13T13:01:59.979000",
+            "suffixes": [
+              "PRI"
+            ],
+            "n_q1_input_rows": 1
+          },
+          {
+            "grid_time": "2009-02-13T14:17:00",
+            "source_timestamp": "2009-02-13T14:16:58.205000",
+            "suffixes": [
+              "PRI"
+            ],
+            "n_q1_input_rows": 1
+          },
+          {
+            "grid_time": "2009-02-13T15:17:00",
+            "source_timestamp": "2009-02-13T15:16:59.841000",
+            "suffixes": [
+              "PRJ"
+            ],
+            "n_q1_input_rows": 1
+          },
+          {
+            "grid_time": "2009-02-13T15:24:00",
+            "source_timestamp": "2009-02-13T15:23:59.330000",
+            "suffixes": [
+              "PRW"
+            ],
+            "n_q1_input_rows": 1
+          }
+        ]
+      }
+    },
+    {
+      "interval_minutes": 2,
+      "corrected": {
+        "interval_minutes": 2,
+        "n_grid_prices": 196,
+        "n_synchronized_prices": 195,
+        "n_returns": 194,
+        "realized_variance": 0.0018640229260014447,
+        "max_abs_return": 0.014685717396714093,
+        "max_abs_return_timestamp": "2009-02-13T09:38:00"
+      },
+      "root_only": {
+        "interval_minutes": 2,
+        "n_grid_prices": 196,
+        "n_synchronized_prices": 195,
+        "n_returns": 194,
+        "realized_variance": 0.374508369637402,
+        "max_abs_return": 0.3552670878706321,
+        "max_abs_return_timestamp": "2009-02-13T10:06:00",
+        "n_noncommon_suffix_hits": 3,
+        "n_missing_source_suffix_lookup": 0,
+        "noncommon_suffix_hits": [
+          {
+            "grid_time": "2009-02-13T10:04:00",
+            "source_timestamp": "2009-02-13T10:03:59.987000",
+            "suffixes": [
+              "PRK"
+            ],
+            "n_q1_input_rows": 1
+          },
+          {
+            "grid_time": "2009-02-13T13:02:00",
+            "source_timestamp": "2009-02-13T13:01:59.979000",
+            "suffixes": [
+              "PRI"
+            ],
+            "n_q1_input_rows": 1
+          },
+          {
+            "grid_time": "2009-02-13T15:24:00",
+            "source_timestamp": "2009-02-13T15:23:59.330000",
+            "suffixes": [
+              "PRW"
+            ],
+            "n_q1_input_rows": 1
+          }
+        ]
+      }
+    },
+    {
+      "interval_minutes": 5,
+      "corrected": {
+        "interval_minutes": 5,
+        "n_grid_prices": 79,
+        "n_synchronized_prices": 78,
+        "n_returns": 77,
+        "realized_variance": 0.0013815594347769155,
+        "max_abs_return": 0.014072177514821593,
+        "max_abs_return_timestamp": "2009-02-13T09:40:00"
+      },
+      "root_only": {
+        "interval_minutes": 5,
+        "n_grid_prices": 79,
+        "n_synchronized_prices": 78,
+        "n_returns": 77,
+        "realized_variance": 0.0013815594347769155,
+        "max_abs_return": 0.014072177514821593,
+        "max_abs_return_timestamp": "2009-02-13T09:40:00",
+        "n_noncommon_suffix_hits": 0,
+        "n_missing_source_suffix_lookup": 0,
+        "noncommon_suffix_hits": []
+      }
+    },
+    {
+      "interval_minutes": 10,
+      "corrected": {
+        "interval_minutes": 10,
+        "n_grid_prices": 40,
+        "n_synchronized_prices": 39,
+        "n_returns": 38,
+        "realized_variance": 0.0011545599358678792,
+        "max_abs_return": 0.01982245302799779,
+        "max_abs_return_timestamp": "2009-02-13T16:00:00"
+      },
+      "root_only": {
+        "interval_minutes": 10,
+        "n_grid_prices": 40,
+        "n_synchronized_prices": 39,
+        "n_returns": 38,
+        "realized_variance": 0.0011545599358678792,
+        "max_abs_return": 0.01982245302799779,
+        "max_abs_return_timestamp": "2009-02-13T16:00:00",
+        "n_noncommon_suffix_hits": 0,
+        "n_missing_source_suffix_lookup": 0,
+        "noncommon_suffix_hits": []
+      }
+    },
+    {
+      "interval_minutes": 15,
+      "corrected": {
+        "interval_minutes": 15,
+        "n_grid_prices": 27,
+        "n_synchronized_prices": 26,
+        "n_returns": 25,
+        "realized_variance": 0.0011332580470399482,
+        "max_abs_return": 0.018632212855743013,
+        "max_abs_return_timestamp": "2009-02-13T16:00:00"
+      },
+      "root_only": {
+        "interval_minutes": 15,
+        "n_grid_prices": 27,
+        "n_synchronized_prices": 26,
+        "n_returns": 25,
+        "realized_variance": 0.0011332580470399482,
+        "max_abs_return": 0.018632212855743013,
+        "max_abs_return_timestamp": "2009-02-13T16:00:00",
+        "n_noncommon_suffix_hits": 0,
+        "n_missing_source_suffix_lookup": 0,
+        "noncommon_suffix_hits": []
+      }
+    },
+    {
+      "interval_minutes": 30,
+      "corrected": {
+        "interval_minutes": 30,
+        "n_grid_prices": 14,
+        "n_synchronized_prices": 13,
+        "n_returns": 12,
+        "realized_variance": 0.001158541541042724,
+        "max_abs_return": 0.01942586369105248,
+        "max_abs_return_timestamp": "2009-02-13T16:00:00"
+      },
+      "root_only": {
+        "interval_minutes": 30,
+        "n_grid_prices": 14,
+        "n_synchronized_prices": 13,
+        "n_returns": 12,
+        "realized_variance": 0.001158541541042724,
+        "max_abs_return": 0.01942586369105248,
+        "max_abs_return_timestamp": "2009-02-13T16:00:00",
+        "n_noncommon_suffix_hits": 0,
+        "n_missing_source_suffix_lookup": 0,
+        "noncommon_suffix_hits": []
+      }
+    }
+  ],
+  "five_minute_reconciliation": {
+    "rv_equal": true,
+    "price_series_equal": true,
+    "n_noncommon_suffix_hits": 0,
+    "second_defect": false,
+    "explanation": "The historical root-only 5-minute previous-tick grid selects zero noncommon suffixes. Every complete 5-minute grid price is sourced from an ordinary-share cleaned quote. That fully explains why the 5-minute realized variance was unchanged by the identity fix."
+  },
+  "caveat": "Previous-tick contamination is not the raw preferred-quote fraction. A preferred quote contaminates a grid time only while it remains the most recent cleaned quote."
+}

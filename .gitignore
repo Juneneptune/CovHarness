@@ -33,6 +33,19 @@ htmlcov/
 
 # Jupyter
 .ipynb_checkpoints/
+notebooks/Untitled.ipynb
+notebooks/Untitled*.ipynb
+notebooks/misc.ipynb
+
+# Local editor / agent state
+.cursor/
+.vscode/
+*.code-workspace
+
+# Credentials that must never be committed
+.pgpass
+**/.pgpass
+wrds_config.py
 
 # Raw / licensed market data and large intermediates
 data/raw/

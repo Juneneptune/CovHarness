@@ -1,0 +1,439 @@
+{
+  "question": "After ordinary-share TAQ identity, do any |r|>2% one-minute JPM returns remain in the common-stock stream?",
+  "suffix_audit": {
+    "n_after_identity": 218784,
+    "n_ordinary_suffix": 218784,
+    "n_nonblank_suffix": 0
+  },
+  "sample": {
+    "date": "2009-02-13",
+    "ticks_cache": "data/cache/taq_five_stock_single_exchange_cleaned_20090213.pkl",
+    "ticks_cache_used": true,
+    "displaced_mid_cutoff": 23.0,
+    "cutoff_note": "Diagnostic band only. Midquotes strictly below 23 match the earlier NBBO 22.x cluster. This cutoff is not a filter."
+  },
+  "one_minute_grid": {
+    "n_grid_prices": 391,
+    "n_complete_prices": 389,
+    "n_returns": 388,
+    "first_complete_timestamp": "2009-02-13T09:32:00",
+    "jpm_max_abs_return": 0.017958055362468972,
+    "jpm_max_abs_return_timestamp": "2009-02-13T09:33:00",
+    "jpm_mid_at_max_event_before": 25.11,
+    "jpm_mid_at_max_event_after": 25.564999999999998,
+    "n_abs_gt_2pct": 0,
+    "n_abs_gt_5pct": 0,
+    "n_abs_gt_10pct": 0
+  },
+  "events_abs_gt_2pct": [],
+  "cleaned_jpm_displaced_band": {
+    "n_cleaned_quotes": 142740,
+    "n_cleaned_mids_below_23": 0,
+    "min_cleaned_mid": 24.665,
+    "max_cleaned_mid": 25.84,
+    "n_one_minute_previous_ticks_below_23": 0
+  },
+  "realized_variance_by_frequency": {
+    "1": {
+      "interval_minutes": 1,
+      "n_returns": 388,
+      "by_asset": {
+        "IBM": {
+          "realized_variance": 0.0003141689836513073,
+          "max_abs_return": 0.003557116649218095,
+          "max_abs_return_timestamp": "2009-02-13T09:40:00"
+        },
+        "AAPL": {
+          "realized_variance": 0.0003959512327052422,
+          "max_abs_return": 0.004738628617951157,
+          "max_abs_return_timestamp": "2009-02-13T09:37:00"
+        },
+        "MSFT": {
+          "realized_variance": 0.0004636167108066822,
+          "max_abs_return": 0.006469164752913148,
+          "max_abs_return_timestamp": "2009-02-13T09:33:00"
+        },
+        "JPM": {
+          "realized_variance": 0.0022344602413651863,
+          "max_abs_return": 0.017958055362468972,
+          "max_abs_return_timestamp": "2009-02-13T09:33:00"
+        },
+        "XOM": {
+          "realized_variance": 0.0002807502728828737,
+          "max_abs_return": 0.004489871841453663,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        }
+      }
+    },
+    "2": {
+      "interval_minutes": 2,
+      "n_returns": 194,
+      "by_asset": {
+        "IBM": {
+          "realized_variance": 0.0003135192451831813,
+          "max_abs_return": 0.0058333940673289675,
+          "max_abs_return_timestamp": "2009-02-13T09:40:00"
+        },
+        "AAPL": {
+          "realized_variance": 0.00032542867657902924,
+          "max_abs_return": 0.0074203414604552265,
+          "max_abs_return_timestamp": "2009-02-13T09:38:00"
+        },
+        "MSFT": {
+          "realized_variance": 0.00040866480750781034,
+          "max_abs_return": 0.005953168869431202,
+          "max_abs_return_timestamp": "2009-02-13T09:34:00"
+        },
+        "JPM": {
+          "realized_variance": 0.0018640229260014447,
+          "max_abs_return": 0.014685717396714093,
+          "max_abs_return_timestamp": "2009-02-13T09:38:00"
+        },
+        "XOM": {
+          "realized_variance": 0.00025230219353589975,
+          "max_abs_return": 0.004423006808497831,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        }
+      }
+    },
+    "5": {
+      "interval_minutes": 5,
+      "n_returns": 77,
+      "by_asset": {
+        "IBM": {
+          "realized_variance": 0.00034562633467829184,
+          "max_abs_return": 0.007596116310468304,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        },
+        "AAPL": {
+          "realized_variance": 0.0003077480650050708,
+          "max_abs_return": 0.005833266062929887,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        },
+        "MSFT": {
+          "realized_variance": 0.00042496406375899174,
+          "max_abs_return": 0.008078219825939037,
+          "max_abs_return_timestamp": "2009-02-13T09:55:00"
+        },
+        "JPM": {
+          "realized_variance": 0.0013815594347769155,
+          "max_abs_return": 0.014072177514821593,
+          "max_abs_return_timestamp": "2009-02-13T09:40:00"
+        },
+        "XOM": {
+          "realized_variance": 0.0002725977238653499,
+          "max_abs_return": 0.0065604733894453204,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        }
+      }
+    },
+    "10": {
+      "interval_minutes": 10,
+      "n_returns": 38,
+      "by_asset": {
+        "IBM": {
+          "realized_variance": 0.00027996537747990917,
+          "max_abs_return": 0.007754859068163533,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        },
+        "AAPL": {
+          "realized_variance": 0.0002679115438504731,
+          "max_abs_return": 0.006279137503439891,
+          "max_abs_return_timestamp": "2009-02-13T10:30:00"
+        },
+        "MSFT": {
+          "realized_variance": 0.00032955890367630623,
+          "max_abs_return": 0.008348600538516049,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        },
+        "JPM": {
+          "realized_variance": 0.0011545599358678792,
+          "max_abs_return": 0.01982245302799779,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        },
+        "XOM": {
+          "realized_variance": 0.0002865289066157305,
+          "max_abs_return": 0.008227195999361392,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        }
+      }
+    },
+    "15": {
+      "interval_minutes": 15,
+      "n_returns": 25,
+      "by_asset": {
+        "IBM": {
+          "realized_variance": 0.0002526974731014596,
+          "max_abs_return": 0.0075468045258340055,
+          "max_abs_return_timestamp": "2009-02-13T15:15:00"
+        },
+        "AAPL": {
+          "realized_variance": 0.00017087132783634044,
+          "max_abs_return": 0.005558658003827155,
+          "max_abs_return_timestamp": "2009-02-13T13:30:00"
+        },
+        "MSFT": {
+          "realized_variance": 0.0003189787724460633,
+          "max_abs_return": 0.008348600538516049,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        },
+        "JPM": {
+          "realized_variance": 0.0011332580470399482,
+          "max_abs_return": 0.018632212855743013,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        },
+        "XOM": {
+          "realized_variance": 0.0002412660195678942,
+          "max_abs_return": 0.009225897770176239,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        }
+      }
+    },
+    "30": {
+      "interval_minutes": 30,
+      "n_returns": 12,
+      "by_asset": {
+        "IBM": {
+          "realized_variance": 0.0002151145706702152,
+          "max_abs_return": 0.007766106074237555,
+          "max_abs_return_timestamp": "2009-02-13T11:30:00"
+        },
+        "AAPL": {
+          "realized_variance": 0.00014572053289085672,
+          "max_abs_return": 0.005605933723638046,
+          "max_abs_return_timestamp": "2009-02-13T13:00:00"
+        },
+        "MSFT": {
+          "realized_variance": 0.0001937643992260218,
+          "max_abs_return": 0.006788537819613971,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        },
+        "JPM": {
+          "realized_variance": 0.0011585415410427238,
+          "max_abs_return": 0.01942586369105248,
+          "max_abs_return_timestamp": "2009-02-13T16:00:00"
+        },
+        "XOM": {
+          "realized_variance": 0.00018730684028648388,
+          "max_abs_return": 0.006880224863108353,
+          "max_abs_return_timestamp": "2009-02-13T13:30:00"
+        }
+      }
+    }
+  },
+  "epps_official_all_ten_pairs": [
+    {
+      "interval_minutes": 1,
+      "n_returns": 388,
+      "mean_all_ten_pairs": 0.6294134702544067,
+      "median_all_ten_pairs": 0.6242006462542159,
+      "min_all_ten_pairs": 0.5501353606612291,
+      "max_all_ten_pairs": 0.6876244943762727,
+      "pairwise": {
+        "IBM-AAPL": 0.6747715645547787,
+        "IBM-MSFT": 0.6290907907874729,
+        "IBM-JPM": 0.5501353606612291,
+        "IBM-XOM": 0.6577658810265593,
+        "AAPL-MSFT": 0.6876244943762727,
+        "AAPL-JPM": 0.6762701851455418,
+        "AAPL-XOM": 0.6193105017209589,
+        "MSFT-JPM": 0.6009751553196881,
+        "MSFT-XOM": 0.6101048268243119,
+        "JPM-XOM": 0.5880859421272551
+      }
+    },
+    {
+      "interval_minutes": 2,
+      "n_returns": 194,
+      "mean_all_ten_pairs": 0.5867388736880604,
+      "median_all_ten_pairs": 0.6112539851813098,
+      "min_all_ten_pairs": 0.4491771634627992,
+      "max_all_ten_pairs": 0.6578389479049069,
+      "pairwise": {
+        "IBM-AAPL": 0.6578389479049069,
+        "IBM-MSFT": 0.5518069416572655,
+        "IBM-JPM": 0.4491771634627992,
+        "IBM-XOM": 0.6016609442888683,
+        "AAPL-MSFT": 0.6210928897689861,
+        "AAPL-JPM": 0.6231307255900368,
+        "AAPL-XOM": 0.6208470260737513,
+        "MSFT-JPM": 0.5428347762491597,
+        "MSFT-XOM": 0.6304091480290474,
+        "JPM-XOM": 0.5685901738557831
+      }
+    },
+    {
+      "interval_minutes": 5,
+      "n_returns": 77,
+      "mean_all_ten_pairs": 0.6607239153259727,
+      "median_all_ten_pairs": 0.6546180078660104,
+      "min_all_ten_pairs": 0.5076592586542014,
+      "max_all_ten_pairs": 0.8232692039570545,
+      "pairwise": {
+        "IBM-AAPL": 0.8232692039570545,
+        "IBM-MSFT": 0.6687898386648825,
+        "IBM-JPM": 0.6270882259863908,
+        "IBM-XOM": 0.6404461770671382,
+        "AAPL-MSFT": 0.7576960814285649,
+        "AAPL-JPM": 0.6197312050469823,
+        "AAPL-XOM": 0.6733288264035591,
+        "MSFT-JPM": 0.5076592586542014,
+        "MSFT-XOM": 0.7186943717677136,
+        "JPM-XOM": 0.5705359642832393
+      }
+    },
+    {
+      "interval_minutes": 10,
+      "n_returns": 38,
+      "mean_all_ten_pairs": 0.6683071450753847,
+      "median_all_ten_pairs": 0.6598123341604409,
+      "min_all_ten_pairs": 0.5445747864271148,
+      "max_all_ten_pairs": 0.8115555185834711,
+      "pairwise": {
+        "IBM-AAPL": 0.8115555185834711,
+        "IBM-MSFT": 0.7178337919089733,
+        "IBM-JPM": 0.6841727982901852,
+        "IBM-XOM": 0.5445747864271148,
+        "AAPL-MSFT": 0.7297676015826202,
+        "AAPL-JPM": 0.5949675972474826,
+        "AAPL-XOM": 0.5822163084076732,
+        "MSFT-JPM": 0.618707103240183,
+        "MSFT-XOM": 0.7638240750354467,
+        "JPM-XOM": 0.6354518700306966
+      }
+    },
+    {
+      "interval_minutes": 15,
+      "n_returns": 25,
+      "mean_all_ten_pairs": 0.6763902779328825,
+      "median_all_ten_pairs": 0.7035947055227936,
+      "min_all_ten_pairs": 0.4797871131083685,
+      "max_all_ten_pairs": 0.7609898136737727,
+      "pairwise": {
+        "IBM-AAPL": 0.7609898136737727,
+        "IBM-MSFT": 0.7591646399121175,
+        "IBM-JPM": 0.672721589227678,
+        "IBM-XOM": 0.7140303967543673,
+        "AAPL-MSFT": 0.7157869579788988,
+        "AAPL-JPM": 0.6840428393802828,
+        "AAPL-XOM": 0.6931590142912197,
+        "MSFT-JPM": 0.5238325351858314,
+        "MSFT-XOM": 0.7603878798162889,
+        "JPM-XOM": 0.4797871131083685
+      }
+    },
+    {
+      "interval_minutes": 30,
+      "n_returns": 12,
+      "mean_all_ten_pairs": 0.7523996692360582,
+      "median_all_ten_pairs": 0.8156614034712734,
+      "min_all_ten_pairs": 0.5549178953206987,
+      "max_all_ten_pairs": 0.8901052793236455,
+      "pairwise": {
+        "IBM-AAPL": 0.8294202078513588,
+        "IBM-MSFT": 0.879316922481921,
+        "IBM-JPM": 0.6908317269617447,
+        "IBM-XOM": 0.8081327781228115,
+        "AAPL-MSFT": 0.8901052793236455,
+        "AAPL-JPM": 0.5642719023139521,
+        "AAPL-XOM": 0.8391549201397799,
+        "MSFT-JPM": 0.6446550310249339,
+        "MSFT-XOM": 0.8231900288197352,
+        "JPM-XOM": 0.5549178953206987
+      }
+    }
+  ],
+  "epps_diagnostic_six_pairs_excluding_jpm": [
+    {
+      "interval_minutes": 1,
+      "n_pairs": 6,
+      "mean": 0.6464446765483924,
+      "median": 0.6434283359070161,
+      "minimum": 0.6101048268243119,
+      "maximum": 0.6876244943762727,
+      "jpm_pairs": {
+        "n_pairs": 4,
+        "mean": 0.6038666608134287,
+        "median": 0.5945305487234716,
+        "minimum": 0.5501353606612291,
+        "maximum": 0.6762701851455418
+      }
+    },
+    {
+      "interval_minutes": 2,
+      "n_pairs": 6,
+      "mean": 0.6139426496204708,
+      "median": 0.6209699579213688,
+      "minimum": 0.5518069416572655,
+      "maximum": 0.6578389479049069,
+      "jpm_pairs": {
+        "n_pairs": 4,
+        "mean": 0.5459332097894447,
+        "median": 0.5557124750524713,
+        "minimum": 0.4491771634627992,
+        "maximum": 0.6231307255900368
+      }
+    },
+    {
+      "interval_minutes": 5,
+      "n_pairs": 6,
+      "mean": 0.7137040832148188,
+      "median": 0.6960115990856364,
+      "minimum": 0.6404461770671382,
+      "maximum": 0.8232692039570545,
+      "jpm_pairs": {
+        "n_pairs": 4,
+        "mean": 0.5812536634927035,
+        "median": 0.5951335846651108,
+        "minimum": 0.5076592586542014,
+        "maximum": 0.6270882259863908
+      }
+    },
+    {
+      "interval_minutes": 10,
+      "n_pairs": 6,
+      "mean": 0.6916286803242166,
+      "median": 0.7238006967457968,
+      "minimum": 0.5445747864271148,
+      "maximum": 0.8115555185834711,
+      "jpm_pairs": {
+        "n_pairs": 4,
+        "mean": 0.6333248422021369,
+        "median": 0.6270794866354398,
+        "minimum": 0.5949675972474826,
+        "maximum": 0.6841727982901852
+      }
+    },
+    {
+      "interval_minutes": 15,
+      "n_pairs": 6,
+      "mean": 0.7339197837377776,
+      "median": 0.7374757989455081,
+      "minimum": 0.6931590142912197,
+      "maximum": 0.7609898136737727,
+      "jpm_pairs": {
+        "n_pairs": 4,
+        "mean": 0.5900960192255401,
+        "median": 0.5982770622067547,
+        "minimum": 0.4797871131083685,
+        "maximum": 0.6840428393802828
+      }
+    },
+    {
+      "interval_minutes": 30,
+      "n_pairs": 6,
+      "mean": 0.844886689456542,
+      "median": 0.8342875639955694,
+      "minimum": 0.8081327781228115,
+      "maximum": 0.8901052793236455,
+      "jpm_pairs": {
+        "n_pairs": 4,
+        "mean": 0.6136691389053324,
+        "median": 0.6044634666694431,
+        "minimum": 0.5549178953206987,
+        "maximum": 0.6908317269617447
+      }
+    }
+  ],
+  "caveat": "The six-pair summary is diagnostic only. The official universe remains IBM, AAPL, MSFT, JPM, XOM. Large returns are reported, not deleted."
+}

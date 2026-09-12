@@ -1,0 +1,956 @@
+{
+  "path": "paper_style_single_exchange",
+  "sample": {
+    "date": "2009-02-13",
+    "quote_table": "taqmsamp_all.cqm_20090213",
+    "symbols": [
+      "IBM",
+      "AAPL",
+      "MSFT",
+      "JPM",
+      "XOM"
+    ],
+    "cache_used": false
+  },
+  "selected_venues": {
+    "AAPL": {
+      "crsp_exchcd": 3,
+      "crsp_exchange_name": "NASDAQ",
+      "taq_ex_codes": [
+        "T",
+        "Q"
+      ],
+      "taq_sym_suffix": null,
+      "source": "CRSP stocknames.exchcd. 1 is NYSE. 3 is NASDAQ (CRSP US Stock documentation). NYSE Daily TAQ Client Specification, Daily Quotes Exchange field. N is New York Stock Exchange. T/Q is NASDAQ Stock Exchange. NYSE Daily TAQ Client Specification Appendix B. A blank or NULL suffix is the ordinary/common share. Preferred series use PR plus a letter."
+    },
+    "IBM": {
+      "crsp_exchcd": 1,
+      "crsp_exchange_name": "NYSE",
+      "taq_ex_codes": [
+        "N"
+      ],
+      "taq_sym_suffix": null,
+      "source": "CRSP stocknames.exchcd. 1 is NYSE. 3 is NASDAQ (CRSP US Stock documentation). NYSE Daily TAQ Client Specification, Daily Quotes Exchange field. N is New York Stock Exchange. T/Q is NASDAQ Stock Exchange. NYSE Daily TAQ Client Specification Appendix B. A blank or NULL suffix is the ordinary/common share. Preferred series use PR plus a letter."
+    },
+    "JPM": {
+      "crsp_exchcd": 1,
+      "crsp_exchange_name": "NYSE",
+      "taq_ex_codes": [
+        "N"
+      ],
+      "taq_sym_suffix": null,
+      "source": "CRSP stocknames.exchcd. 1 is NYSE. 3 is NASDAQ (CRSP US Stock documentation). NYSE Daily TAQ Client Specification, Daily Quotes Exchange field. N is New York Stock Exchange. T/Q is NASDAQ Stock Exchange. NYSE Daily TAQ Client Specification Appendix B. A blank or NULL suffix is the ordinary/common share. Preferred series use PR plus a letter."
+    },
+    "MSFT": {
+      "crsp_exchcd": 3,
+      "crsp_exchange_name": "NASDAQ",
+      "taq_ex_codes": [
+        "T",
+        "Q"
+      ],
+      "taq_sym_suffix": null,
+      "source": "CRSP stocknames.exchcd. 1 is NYSE. 3 is NASDAQ (CRSP US Stock documentation). NYSE Daily TAQ Client Specification, Daily Quotes Exchange field. N is New York Stock Exchange. T/Q is NASDAQ Stock Exchange. NYSE Daily TAQ Client Specification Appendix B. A blank or NULL suffix is the ordinary/common share. Preferred series use PR plus a letter."
+    },
+    "XOM": {
+      "crsp_exchcd": 1,
+      "crsp_exchange_name": "NYSE",
+      "taq_ex_codes": [
+        "N"
+      ],
+      "taq_sym_suffix": null,
+      "source": "CRSP stocknames.exchcd. 1 is NYSE. 3 is NASDAQ (CRSP US Stock documentation). NYSE Daily TAQ Client Specification, Daily Quotes Exchange field. N is New York Stock Exchange. T/Q is NASDAQ Stock Exchange. NYSE Daily TAQ Client Specification Appendix B. A blank or NULL suffix is the ordinary/common share. Preferred series use PR plus a letter."
+    }
+  },
+  "p3": {
+    "n_before_p3": 1862504,
+    "n_after_p3": 1862504,
+    "n_removed_p3": 0
+  },
+  "q1q4": {
+    "n_input": 1862504,
+    "n_after_p1": 1862504,
+    "n_after_p2": 1862504,
+    "n_after_q1": 697855,
+    "n_after_q2": 697855,
+    "n_after_q3": 697810,
+    "n_after_q4": 697588,
+    "n_removed_p1": 0,
+    "n_removed_p2": 0,
+    "n_removed_q1": 1164649,
+    "n_removed_q2": 0,
+    "n_removed_q3": 45,
+    "n_removed_q4": 222,
+    "removal_fraction": 0.6254569117703909
+  },
+  "cleaning_by_stock": {
+    "IBM": {
+      "n_before_p3": 57623,
+      "n_after_p3": 57623,
+      "n_removed_p3": 0,
+      "n_input": 57623,
+      "n_after_p1": 57623,
+      "n_after_p2": 57623,
+      "n_after_q1": 49451,
+      "n_after_q2": 49451,
+      "n_after_q3": 49451,
+      "n_after_q4": 49451,
+      "n_removed_p1": 0,
+      "n_removed_p2": 0,
+      "n_removed_q1": 8172,
+      "n_removed_q2": 0,
+      "n_removed_q3": 0,
+      "n_removed_q4": 0,
+      "removal_fraction": 0.14181837113652535
+    },
+    "AAPL": {
+      "n_before_p3": 878289,
+      "n_after_p3": 878289,
+      "n_removed_p3": 0,
+      "n_input": 878289,
+      "n_after_p1": 878289,
+      "n_after_p2": 878289,
+      "n_after_q1": 232668,
+      "n_after_q2": 232668,
+      "n_after_q3": 232626,
+      "n_after_q4": 232484,
+      "n_removed_p1": 0,
+      "n_removed_p2": 0,
+      "n_removed_q1": 645621,
+      "n_removed_q2": 0,
+      "n_removed_q3": 42,
+      "n_removed_q4": 142,
+      "removal_fraction": 0.7352989733447647
+    },
+    "MSFT": {
+      "n_before_p3": 620494,
+      "n_after_p3": 620494,
+      "n_removed_p3": 0,
+      "n_input": 620494,
+      "n_after_p1": 620494,
+      "n_after_p2": 620494,
+      "n_after_q1": 199650,
+      "n_after_q2": 199650,
+      "n_after_q3": 199650,
+      "n_after_q4": 199598,
+      "n_removed_p1": 0,
+      "n_removed_p2": 0,
+      "n_removed_q1": 420844,
+      "n_removed_q2": 0,
+      "n_removed_q3": 0,
+      "n_removed_q4": 52,
+      "removal_fraction": 0.6783240450350849
+    },
+    "JPM": {
+      "n_before_p3": 218784,
+      "n_after_p3": 218784,
+      "n_removed_p3": 0,
+      "n_input": 218784,
+      "n_after_p1": 218784,
+      "n_after_p2": 218784,
+      "n_after_q1": 142764,
+      "n_after_q2": 142764,
+      "n_after_q3": 142761,
+      "n_after_q4": 142740,
+      "n_removed_p1": 0,
+      "n_removed_p2": 0,
+      "n_removed_q1": 76020,
+      "n_removed_q2": 0,
+      "n_removed_q3": 3,
+      "n_removed_q4": 21,
+      "removal_fraction": 0.34757569109258446
+    },
+    "XOM": {
+      "n_before_p3": 87314,
+      "n_after_p3": 87314,
+      "n_removed_p3": 0,
+      "n_input": 87314,
+      "n_after_p1": 87314,
+      "n_after_p2": 87314,
+      "n_after_q1": 73322,
+      "n_after_q2": 73322,
+      "n_after_q3": 73322,
+      "n_after_q4": 73315,
+      "n_removed_p1": 0,
+      "n_removed_p2": 0,
+      "n_removed_q1": 13992,
+      "n_removed_q2": 0,
+      "n_removed_q3": 0,
+      "n_removed_q4": 7,
+      "removal_fraction": 0.16032938589458734
+    }
+  },
+  "rows_by_stock": {
+    "after_sql_p3": {
+      "IBM": 57623,
+      "AAPL": 878289,
+      "MSFT": 620494,
+      "JPM": 218784,
+      "XOM": 87314
+    },
+    "after_q4": {
+      "IBM": 49451,
+      "AAPL": 232484,
+      "MSFT": 199598,
+      "JPM": 142740,
+      "XOM": 73315
+    }
+  },
+  "suffix_audit": {
+    "IBM": {
+      "n_rows": 57623,
+      "n_ordinary_suffix": 57623,
+      "n_nonblank_suffix": 0
+    },
+    "AAPL": {
+      "n_rows": 878289,
+      "n_ordinary_suffix": 878289,
+      "n_nonblank_suffix": 0
+    },
+    "MSFT": {
+      "n_rows": 620494,
+      "n_ordinary_suffix": 620494,
+      "n_nonblank_suffix": 0
+    },
+    "JPM": {
+      "n_rows": 218784,
+      "n_ordinary_suffix": 218784,
+      "n_nonblank_suffix": 0
+    },
+    "XOM": {
+      "n_rows": 87314,
+      "n_ordinary_suffix": 87314,
+      "n_nonblank_suffix": 0
+    }
+  },
+  "open_convention": "09:30 remains missing if no regular-session quote is available at or before that grid time. Incomplete opening rows are dropped. They are not filled from pre-market quotes.",
+  "frequencies_minutes": [
+    1,
+    2,
+    5,
+    10,
+    15,
+    30
+  ],
+  "mean_off_diagonal_correlation": [
+    0.6294134702544067,
+    0.5867388736880604,
+    0.6607239153259727,
+    0.6683071450753847,
+    0.6763902779328825,
+    0.7523996692360582
+  ],
+  "median_off_diagonal_correlation": [
+    0.6242006462542159,
+    0.6112539851813098,
+    0.6546180078660104,
+    0.6598123341604409,
+    0.7035947055227936,
+    0.8156614034712734
+  ],
+  "by_frequency": [
+    {
+      "interval_minutes": 1,
+      "n_grid_prices": 391,
+      "n_complete_prices": 389,
+      "n_returns": 388,
+      "assets": [
+        "IBM",
+        "AAPL",
+        "MSFT",
+        "JPM",
+        "XOM"
+      ],
+      "rcov": [
+        [
+          0.0003141689836513073,
+          0.0002379903107054542,
+          0.0002400902489329798,
+          0.0004609327111974155,
+          0.0001953498533387254
+        ],
+        [
+          0.0002379903107054542,
+          0.0003959512327052422,
+          0.0002946128796378479,
+          0.0006361029452954127,
+          0.0002064854182259
+        ],
+        [
+          0.0002400902489329798,
+          0.0002946128796378479,
+          0.0004636167108066819,
+          0.0006116773157681117,
+          0.000220112190184193
+        ],
+        [
+          0.0004609327111974155,
+          0.0006361029452954127,
+          0.0006116773157681117,
+          0.0022344602413651854,
+          0.00046578683259423665
+        ],
+        [
+          0.0001953498533387254,
+          0.0002064854182259,
+          0.000220112190184193,
+          0.00046578683259423665,
+          0.00028075027288287376
+        ]
+      ],
+      "correlation": [
+        [
+          1.0,
+          0.6747715645547787,
+          0.6290907907874729,
+          0.5501353606612291,
+          0.6577658810265593
+        ],
+        [
+          0.6747715645547787,
+          1.0,
+          0.6876244943762727,
+          0.6762701851455418,
+          0.6193105017209589
+        ],
+        [
+          0.6290907907874729,
+          0.6876244943762727,
+          1.0,
+          0.6009751553196881,
+          0.6101048268243119
+        ],
+        [
+          0.5501353606612291,
+          0.6762701851455418,
+          0.6009751553196881,
+          0.9999999999999998,
+          0.5880859421272551
+        ],
+        [
+          0.6577658810265593,
+          0.6193105017209589,
+          0.6101048268243119,
+          0.5880859421272551,
+          0.9999999999999998
+        ]
+      ],
+      "pairwise_correlations": {
+        "IBM-AAPL": 0.6747715645547787,
+        "IBM-MSFT": 0.6290907907874729,
+        "IBM-JPM": 0.5501353606612291,
+        "IBM-XOM": 0.6577658810265593,
+        "AAPL-MSFT": 0.6876244943762727,
+        "AAPL-JPM": 0.6762701851455418,
+        "AAPL-XOM": 0.6193105017209589,
+        "MSFT-JPM": 0.6009751553196881,
+        "MSFT-XOM": 0.6101048268243119,
+        "JPM-XOM": 0.5880859421272551
+      },
+      "mean_off_diagonal_correlation": 0.6294134702544067,
+      "median_off_diagonal_correlation": 0.6242006462542159,
+      "min_off_diagonal_correlation": 0.5501353606612291,
+      "max_off_diagonal_correlation": 0.6876244943762727,
+      "n_off_diagonal_pairs": 10,
+      "n_finite_off_diagonal_pairs": 10,
+      "eigenvalues": [
+        9.580968297404348e-05,
+        0.00012293167504475987,
+        0.00015278113930931037,
+        0.0004200027591900856,
+        0.0028974221848930897
+      ],
+      "numerical_rank": 5,
+      "min_eigenvalue": 9.580968297404348e-05,
+      "psd": true,
+      "condition_number": 30.241433798273313,
+      "symmetry_error": 0.0
+    },
+    {
+      "interval_minutes": 2,
+      "n_grid_prices": 196,
+      "n_complete_prices": 195,
+      "n_returns": 194,
+      "assets": [
+        "IBM",
+        "AAPL",
+        "MSFT",
+        "JPM",
+        "XOM"
+      ],
+      "rcov": [
+        [
+          0.0003135192451831813,
+          0.00021012590413453463,
+          0.0001975162728565007,
+          0.00034338031561139873,
+          0.00016921717349924637
+        ],
+        [
+          0.00021012590413453463,
+          0.0003254286765790293,
+          0.00022649993795441722,
+          0.0004853250421680096,
+          0.00017789880398682613
+        ],
+        [
+          0.0001975162728565007,
+          0.00022649993795441722,
+          0.0004086648075078101,
+          0.00047378020029530766,
+          0.00020242616141260246
+        ],
+        [
+          0.00034338031561139873,
+          0.0004853250421680096,
+          0.00047378020029530766,
+          0.0018640229260014456,
+          0.0003899289569787809
+        ],
+        [
+          0.00016921717349924637,
+          0.00017789880398682613,
+          0.00020242616141260246,
+          0.0003899289569787809,
+          0.0002523021935358997
+        ]
+      ],
+      "correlation": [
+        [
+          1.0,
+          0.6578389479049069,
+          0.5518069416572655,
+          0.4491771634627992,
+          0.6016609442888683
+        ],
+        [
+          0.6578389479049069,
+          1.0,
+          0.6210928897689861,
+          0.6231307255900368,
+          0.6208470260737513
+        ],
+        [
+          0.5518069416572655,
+          0.6210928897689861,
+          1.0000000000000002,
+          0.5428347762491597,
+          0.6304091480290474
+        ],
+        [
+          0.4491771634627992,
+          0.6231307255900368,
+          0.5428347762491597,
+          1.0,
+          0.5685901738557831
+        ],
+        [
+          0.6016609442888683,
+          0.6208470260737513,
+          0.6304091480290474,
+          0.5685901738557831,
+          0.9999999999999998
+        ]
+      ],
+      "pairwise_correlations": {
+        "IBM-AAPL": 0.6578389479049069,
+        "IBM-MSFT": 0.5518069416572655,
+        "IBM-JPM": 0.4491771634627992,
+        "IBM-XOM": 0.6016609442888683,
+        "AAPL-MSFT": 0.6210928897689861,
+        "AAPL-JPM": 0.6231307255900368,
+        "AAPL-XOM": 0.6208470260737513,
+        "MSFT-JPM": 0.5428347762491597,
+        "MSFT-XOM": 0.6304091480290474,
+        "JPM-XOM": 0.5685901738557831
+      },
+      "mean_off_diagonal_correlation": 0.5867388736880604,
+      "median_off_diagonal_correlation": 0.6112539851813098,
+      "min_off_diagonal_correlation": 0.4491771634627992,
+      "max_off_diagonal_correlation": 0.6578389479049069,
+      "n_off_diagonal_pairs": 10,
+      "n_finite_off_diagonal_pairs": 10,
+      "eigenvalues": [
+        9.506574733438013e-05,
+        0.00010494619349478109,
+        0.00016567675250741962,
+        0.0004300470893860328,
+        0.002368202066084752
+      ],
+      "numerical_rank": 5,
+      "min_eigenvalue": 9.506574733438013e-05,
+      "psd": true,
+      "condition_number": 24.911202325638286,
+      "symmetry_error": 0.0
+    },
+    {
+      "interval_minutes": 5,
+      "n_grid_prices": 79,
+      "n_complete_prices": 78,
+      "n_returns": 77,
+      "assets": [
+        "IBM",
+        "AAPL",
+        "MSFT",
+        "JPM",
+        "XOM"
+      ],
+      "rcov": [
+        [
+          0.0003456263346782918,
+          0.00026849917053946824,
+          0.0002563121431706932,
+          0.00043332809345610063,
+          0.00019658354529491316
+        ],
+        [
+          0.00026849917053946824,
+          0.0003077480650050708,
+          0.00027401151245508857,
+          0.0004040971770246975,
+          0.00019502306873261908
+        ],
+        [
+          0.0002563121431706932,
+          0.00027401151245508857,
+          0.00042496406375899174,
+          0.0003889853103398235,
+          0.0002446140846143317
+        ],
+        [
+          0.00043332809345610063,
+          0.0004040971770246975,
+          0.0003889853103398235,
+          0.001381559434776916,
+          0.0003501296784425969
+        ],
+        [
+          0.00019658354529491316,
+          0.00019502306873261908,
+          0.0002446140846143317,
+          0.0003501296784425969,
+          0.00027259772386535
+        ]
+      ],
+      "correlation": [
+        [
+          1.0000000000000002,
+          0.8232692039570545,
+          0.6687898386648825,
+          0.6270882259863908,
+          0.6404461770671382
+        ],
+        [
+          0.8232692039570545,
+          1.0,
+          0.7576960814285649,
+          0.6197312050469823,
+          0.6733288264035591
+        ],
+        [
+          0.6687898386648825,
+          0.7576960814285649,
+          0.9999999999999999,
+          0.5076592586542014,
+          0.7186943717677136
+        ],
+        [
+          0.6270882259863908,
+          0.6197312050469823,
+          0.5076592586542014,
+          1.0,
+          0.5705359642832393
+        ],
+        [
+          0.6404461770671382,
+          0.6733288264035591,
+          0.7186943717677136,
+          0.5705359642832393,
+          0.9999999999999998
+        ]
+      ],
+      "pairwise_correlations": {
+        "IBM-AAPL": 0.8232692039570545,
+        "IBM-MSFT": 0.6687898386648825,
+        "IBM-JPM": 0.6270882259863908,
+        "IBM-XOM": 0.6404461770671382,
+        "AAPL-MSFT": 0.7576960814285649,
+        "AAPL-JPM": 0.6197312050469823,
+        "AAPL-XOM": 0.6733288264035591,
+        "MSFT-JPM": 0.5076592586542014,
+        "MSFT-XOM": 0.7186943717677136,
+        "JPM-XOM": 0.5705359642832393
+      },
+      "mean_off_diagonal_correlation": 0.6607239153259727,
+      "median_off_diagonal_correlation": 0.6546180078660104,
+      "min_off_diagonal_correlation": 0.5076592586542014,
+      "max_off_diagonal_correlation": 0.8232692039570545,
+      "n_off_diagonal_pairs": 10,
+      "n_finite_off_diagonal_pairs": 10,
+      "eigenvalues": [
+        5.151857718607515e-05,
+        9.017779084188685e-05,
+        0.00013355553596990788,
+        0.00042898542710142064,
+        0.0020282582909853307
+      ],
+      "numerical_rank": 5,
+      "min_eigenvalue": 5.151857718607515e-05,
+      "psd": true,
+      "condition_number": 39.36945470484663,
+      "symmetry_error": 0.0
+    },
+    {
+      "interval_minutes": 10,
+      "n_grid_prices": 40,
+      "n_complete_prices": 39,
+      "n_returns": 38,
+      "assets": [
+        "IBM",
+        "AAPL",
+        "MSFT",
+        "JPM",
+        "XOM"
+      ],
+      "rcov": [
+        [
+          0.0002799653774799092,
+          0.00022226245762237511,
+          0.00021804321997754493,
+          0.00038897904717758895,
+          0.0001542388982859619
+        ],
+        [
+          0.00022226245762237511,
+          0.00026791154385047303,
+          0.0002168437039575978,
+          0.00033090038247226585,
+          0.00016131111794729397
+        ],
+        [
+          0.00021804321997754493,
+          0.0002168437039575978,
+          0.00032955890367630623,
+          0.00038164525603855804,
+          0.00023471675308926943
+        ],
+        [
+          0.00038897904717758895,
+          0.00033090038247226585,
+          0.00038164525603855804,
+          0.0011545599358678792,
+          0.00036548968522338713
+        ],
+        [
+          0.0001542388982859619,
+          0.00016131111794729397,
+          0.00023471675308926943,
+          0.00036548968522338713,
+          0.0002865289066157305
+        ]
+      ],
+      "correlation": [
+        [
+          1.0000000000000002,
+          0.8115555185834711,
+          0.7178337919089733,
+          0.6841727982901852,
+          0.5445747864271148
+        ],
+        [
+          0.8115555185834711,
+          1.0000000000000002,
+          0.7297676015826202,
+          0.5949675972474826,
+          0.5822163084076732
+        ],
+        [
+          0.7178337919089733,
+          0.7297676015826202,
+          1.0,
+          0.618707103240183,
+          0.7638240750354467
+        ],
+        [
+          0.6841727982901852,
+          0.5949675972474826,
+          0.618707103240183,
+          0.9999999999999998,
+          0.6354518700306966
+        ],
+        [
+          0.5445747864271148,
+          0.5822163084076732,
+          0.7638240750354467,
+          0.6354518700306966,
+          0.9999999999999998
+        ]
+      ],
+      "pairwise_correlations": {
+        "IBM-AAPL": 0.8115555185834711,
+        "IBM-MSFT": 0.7178337919089733,
+        "IBM-JPM": 0.6841727982901852,
+        "IBM-XOM": 0.5445747864271148,
+        "AAPL-MSFT": 0.7297676015826202,
+        "AAPL-JPM": 0.5949675972474826,
+        "AAPL-XOM": 0.5822163084076732,
+        "MSFT-JPM": 0.618707103240183,
+        "MSFT-XOM": 0.7638240750354467,
+        "JPM-XOM": 0.6354518700306966
+      },
+      "mean_off_diagonal_correlation": 0.6683071450753847,
+      "median_off_diagonal_correlation": 0.6598123341604409,
+      "min_off_diagonal_correlation": 0.5445747864271148,
+      "max_off_diagonal_correlation": 0.8115555185834711,
+      "n_off_diagonal_pairs": 10,
+      "n_finite_off_diagonal_pairs": 10,
+      "eigenvalues": [
+        4.567733441183772e-05,
+        5.867124921816497e-05,
+        0.00015383849859374515,
+        0.0002885525176859002,
+        0.0017717850675806497
+      ],
+      "numerical_rank": 5,
+      "min_eigenvalue": 4.567733441183772e-05,
+      "psd": true,
+      "condition_number": 38.78915200273759,
+      "symmetry_error": 0.0
+    },
+    {
+      "interval_minutes": 15,
+      "n_grid_prices": 27,
+      "n_complete_prices": 26,
+      "n_returns": 25,
+      "assets": [
+        "IBM",
+        "AAPL",
+        "MSFT",
+        "JPM",
+        "XOM"
+      ],
+      "rcov": [
+        [
+          0.00025269747310145967,
+          0.00015812986138495768,
+          0.0002155347560256111,
+          0.0003599981100686849,
+          0.00017630524378468577
+        ],
+        [
+          0.00015812986138495768,
+          0.0001708713278363404,
+          0.00016710878031106063,
+          0.00030101095664701637,
+          0.0001407393536692445
+        ],
+        [
+          0.0002155347560256111,
+          0.00016710878031106063,
+          0.0003189787724460633,
+          0.00031494721032138996,
+          0.00021094253295679218
+        ],
+        [
+          0.0003599981100686849,
+          0.00030101095664701637,
+          0.00031494721032138996,
+          0.0011332580470399482,
+          0.0002508771250637577
+        ],
+        [
+          0.00017630524378468577,
+          0.0001407393536692445,
+          0.00021094253295679218,
+          0.0002508771250637577,
+          0.00024126601956789417
+        ]
+      ],
+      "correlation": [
+        [
+          1.0,
+          0.7609898136737727,
+          0.7591646399121175,
+          0.672721589227678,
+          0.7140303967543673
+        ],
+        [
+          0.7609898136737727,
+          1.0,
+          0.7157869579788988,
+          0.6840428393802828,
+          0.6931590142912197
+        ],
+        [
+          0.7591646399121175,
+          0.7157869579788988,
+          1.0,
+          0.5238325351858314,
+          0.7603878798162889
+        ],
+        [
+          0.672721589227678,
+          0.6840428393802828,
+          0.5238325351858314,
+          0.9999999999999998,
+          0.4797871131083685
+        ],
+        [
+          0.7140303967543673,
+          0.6931590142912197,
+          0.7603878798162889,
+          0.4797871131083685,
+          1.0
+        ]
+      ],
+      "pairwise_correlations": {
+        "IBM-AAPL": 0.7609898136737727,
+        "IBM-MSFT": 0.7591646399121175,
+        "IBM-JPM": 0.672721589227678,
+        "IBM-XOM": 0.7140303967543673,
+        "AAPL-MSFT": 0.7157869579788988,
+        "AAPL-JPM": 0.6840428393802828,
+        "AAPL-XOM": 0.6931590142912197,
+        "MSFT-JPM": 0.5238325351858314,
+        "MSFT-XOM": 0.7603878798162889,
+        "JPM-XOM": 0.4797871131083685
+      },
+      "mean_off_diagonal_correlation": 0.6763902779328825,
+      "median_off_diagonal_correlation": 0.7035947055227936,
+      "min_off_diagonal_correlation": 0.4797871131083685,
+      "max_off_diagonal_correlation": 0.7609898136737727,
+      "n_off_diagonal_pairs": 10,
+      "n_finite_off_diagonal_pairs": 10,
+      "eigenvalues": [
+        4.626473473629553e-05,
+        6.0332330339997155e-05,
+        6.591849709622959e-05,
+        0.00034349733942316645,
+        0.0016010587383960178
+      ],
+      "numerical_rank": 5,
+      "min_eigenvalue": 4.626473473629553e-05,
+      "psd": true,
+      "condition_number": 34.60646100149274,
+      "symmetry_error": 0.0
+    },
+    {
+      "interval_minutes": 30,
+      "n_grid_prices": 14,
+      "n_complete_prices": 13,
+      "n_returns": 12,
+      "assets": [
+        "IBM",
+        "AAPL",
+        "MSFT",
+        "JPM",
+        "XOM"
+      ],
+      "rcov": [
+        [
+          0.00021511457067021524,
+          0.0001468486308311191,
+          0.00017952185962683402,
+          0.00034487601686166813,
+          0.0001622162864868993
+        ],
+        [
+          0.0001468486308311191,
+          0.0001457205328908567,
+          0.00014956802030801519,
+          0.00023184866843625775,
+          0.00013863705986013637
+        ],
+        [
+          0.00017952185962683402,
+          0.00014956802030801519,
+          0.0001937643992260218,
+          0.0003054359656498144,
+          0.00015682450058166947
+        ],
+        [
+          0.00034487601686166813,
+          0.00023184866843625775,
+          0.0003054359656498144,
+          0.0011585415410427238,
+          0.0002585004804399219
+        ],
+        [
+          0.0001622162864868993,
+          0.00013863705986013637,
+          0.00015682450058166947,
+          0.0002585004804399219,
+          0.00018730684028648393
+        ]
+      ],
+      "correlation": [
+        [
+          0.9999999999999999,
+          0.8294202078513588,
+          0.879316922481921,
+          0.6908317269617447,
+          0.8081327781228115
+        ],
+        [
+          0.8294202078513588,
+          1.0,
+          0.8901052793236455,
+          0.5642719023139521,
+          0.8391549201397799
+        ],
+        [
+          0.879316922481921,
+          0.8901052793236455,
+          1.0,
+          0.6446550310249339,
+          0.8231900288197352
+        ],
+        [
+          0.6908317269617447,
+          0.5642719023139521,
+          0.6446550310249339,
+          0.9999999999999998,
+          0.5549178953206987
+        ],
+        [
+          0.8081327781228115,
+          0.8391549201397799,
+          0.8231900288197352,
+          0.5549178953206987,
+          1.0000000000000002
+        ]
+      ],
+      "pairwise_correlations": {
+        "IBM-AAPL": 0.8294202078513588,
+        "IBM-MSFT": 0.879316922481921,
+        "IBM-JPM": 0.6908317269617447,
+        "IBM-XOM": 0.8081327781228115,
+        "AAPL-MSFT": 0.8901052793236455,
+        "AAPL-JPM": 0.5642719023139521,
+        "AAPL-XOM": 0.8391549201397799,
+        "MSFT-JPM": 0.6446550310249339,
+        "MSFT-XOM": 0.8231900288197352,
+        "JPM-XOM": 0.5549178953206987
+      },
+      "mean_off_diagonal_correlation": 0.7523996692360582,
+      "median_off_diagonal_correlation": 0.8156614034712734,
+      "min_off_diagonal_correlation": 0.5549178953206987,
+      "max_off_diagonal_correlation": 0.8901052793236455,
+      "n_off_diagonal_pairs": 10,
+      "n_finite_off_diagonal_pairs": 10,
+      "eigenvalues": [
+        1.640949871481514e-05,
+        2.8433466547533676e-05,
+        3.7472751425877335e-05,
+        0.0002824608232718484,
+        0.0015356713441562271
+      ],
+      "numerical_rank": 5,
+      "min_eigenvalue": 1.640949871481514e-05,
+      "psd": true,
+      "condition_number": 93.58429351469236,
+      "symmetry_error": 0.0
+    }
+  ],
+  "figure": "results/taq_five_stock_epps_20090213.png",
+  "caveat": "This is a one-day demonstration on five names. It is not an estimate of the magnitude of the Epps effect in U.S. equities. No sampling frequency is treated as the true covariance."
+}

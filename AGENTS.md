@@ -32,7 +32,7 @@ Before substantial work, read these repository documents in this order.
 
 1. `docs/PROJECT_STATE.md` for the current checkpoint, exact tests, unresolved issues, and next task.
 2. `README.md` for the adopted methodological design and how implemented components are defined.
-3. `DEMO_IMPLEMENTATION_PLAN.md` for broader planned scope. That file is the v4 design plan also referred to as `design_v4_demo_plan.md`.
+3. `BENCHMARK_IMPLEMENTATION_PLAN.md` for broader planned scope.
 4. The existing implementation and tests for any component being changed.
 
 Do not silently alter methodological choices. If implementation requirements conflict with the design, explain the conflict before changing the methodology.
@@ -43,7 +43,7 @@ ChatGPT continuation handoffs and chat-log lists are for other assistants. They 
 
 ## Document roles
 
-`AGENTS.md` tells coding agents how to work. `README.md` is the public methodological specification. `docs/PROJECT_STATE.md` is the detailed internal checkpoint. The design plan is future scope.
+`AGENTS.md` tells coding agents how to work. `README.md` is the public methodological specification. `docs/PROJECT_STATE.md` is the detailed internal checkpoint. `BENCHMARK_IMPLEMENTATION_PLAN.md` is future scope.
 
 Do not treat planned evaluation capabilities as implemented. Do not turn discussed or planned work into completed work.
 

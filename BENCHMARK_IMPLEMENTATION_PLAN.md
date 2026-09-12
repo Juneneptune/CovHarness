@@ -1,4 +1,4 @@
-[design_v4_demo_plan.md](https://github.com/user-attachments/files/31852884/design_v4_demo_plan.md)
+[BENCHMARK_IMPLEMENTATION_PLAN.md](https://github.com/user-attachments/files/31852884/design_v4_demo_plan.md)
 # Covariance Benchmark — Consolidated Design (v4)
 
 Companion: `docs/project_ledger.md` (paper status + saved concepts). You will write
@@ -198,15 +198,39 @@ covariance models are re-initialized at the boundary.
 
 ## 0.4 The dimension constraint nobody writes down
 
-RCov built from M intraday returns has rank at most min(M, N). Stein loss needs
-`logdet(Sigma_proxy)`, so you need **M > N**, and for a decently conditioned estimate you want
-**M / N >= 3**.
+RCov built from M synchronized intraday returns has rank at most min(M, N).
+That rank bound is a proxy-quality fact. It is not a mathematical gate on the
+primary ranking losses.
+
+**Reduced QLIKE does not require a full-rank proxy.** The implemented primary
+ranking loss is
+
+```
+L_Q(S, H) = logdet(H) + tr(H^{-1} S)
+```
+
+`S` may be singular PSD. `H` must be strictly PD. A 5-minute RCov with rank
+at most 78 can therefore still serve as `S` when `N > 78`. Squared Frobenius
+also does not require full rank.
+
+**Full Stein does require SPD `S`**, because it uses `logdet(S)`:
+
+```
+L_S(S, H) = L_Q(S, H) - logdet(S) - N
+```
+
+Rank deficiency can increase measurement noise and reduce inferential power.
+`M / N` remains an important proxy-quality diagnostic. It is not required to
+be larger than one merely to make reduced QLIKE or squared Frobenius defined.
+
+Realized kernels may still be valuable as alternative, noise-robust proxies.
+They are not required merely to make the primary loss mathematically defined.
 
 | Sampling | M per day | Max N at M/N >= 3 | Note |
 |---|---|---|---|
-| 5-min | 78 | **26** | Microstructure-safe; the standard choice |
+| 5-min | 78 | **26** | Microstructure-safe; the standard choice; M/N is a quality diagnostic |
 | 1-min | 390 | **130** | Noise-contaminated; needs subsampling or kernels |
-| 1-min subsampled / realized kernel | effective ~200-390 | 60-130 | The route to larger N |
+| 1-min subsampled / realized kernel | effective ~200-390 | 60-130 | A route to larger N and a quieter proxy |
 
 **Decision:** N = 30 headline with 5-min (M/N = 2.6, marginal but comparable to the literature),
 plus N = 50 secondary using 1-min subsampled and kernel proxies (M/N ~ 7). State the M/N ratio in
@@ -266,7 +290,7 @@ contaminate it badly. Use a jump-robust variant (tri-power quarticity) as a robu
 
 | Decision | Value | Why |
 |---|---|---|
-| Universe | N = 30 large-cap US equities, continuously listed over sample | RCov rank ≤ 78 with 5-min returns; N < 78 needed for PD proxy (Stein loss needs log det) |
+| Universe | N = 30 large-cap US equities, continuously listed over sample | 5-min RCov has rank ≤ 78. Reduced QLIKE remains defined for singular PSD S when H is PD. Full Stein still needs SPD S. M/N is a proxy-quality diagnostic. |
 | Frequency | Daily forecasts of next-day covariance | Matches HAR/DCC literature |
 | Sampling | 5-min primary; 1-min subsampled; 15-min | Three proxies for rank-stability check |
 | Rolling window | **m = 250 days, fixed, identical for every model** | (a) GW validity requires fixed finite m; (b) c = N/T = 0.12 gives nonlinear shrinkage something to do |
@@ -539,16 +563,24 @@ its designed regime. **This is the most important honesty statement in your mode
 
 ## 3.1 Losses and tuning budget — ranking
 
-**Primary — multivariate QLIKE / Stein:**
+**Primary ranking loss, implemented — reduced multivariate QLIKE:**
 ```
-L_Q = tr(Sigma_hat^-1 @ Sigma_proxy) - logdet(Sigma_hat^-1 @ Sigma_proxy) - N
+L_Q = logdet(H) + tr(H^{-1} S)
 ```
-**Secondary — Frobenius:**
+`S` may be singular PSD. `H` must be strictly PD. Full Stein
+`L_S = L_Q - logdet(S) - N` is available when `S` is SPD. For a common SPD
+target the two losses differ by a target-only term, so rankings and pairwise
+differentials agree.
+
+**Secondary — squared Frobenius:**
 ```
 L_F = ||Sigma_proxy - Sigma_hat||_F^2
 ```
 **Decomposition (report always):** split into a variance block and a correlation block via DRD.
-Frobenius overweights large variances; a model that wins only on mega-cap variances is making a
+These are descriptive localization diagnostics. They are not an additive identity of
+squared Frobenius or QLIKE, and they do not inherit the same proxy-ranking
+guarantee. Correlation normalization is nonlinear. Frobenius overweights large
+variances; a model that wins only on mega-cap variances is making a
 different claim from one that improves dependence structure. No paper in your list separates these.
 
 **Rule, pre-committed:** a conclusion counts only if it holds under **both losses across all three

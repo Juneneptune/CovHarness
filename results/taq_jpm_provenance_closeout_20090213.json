@@ -1,0 +1,653 @@
+{
+  "production_extraction": {
+    "function": "experiments.taq_five_stock_single_exchange_pilot.fetch_cqm_selected_venues",
+    "table": "taqmsamp_all.cqm_20090213",
+    "jpm_predicate": "sym_root = 'JPM' AND ex IN ('N') AND time_m >= 34200 AND time_m <= 57600",
+    "sql": "SELECT date, time_m, ex, sym_root, bid, ask\nFROM taqmsamp_all.cqm_20090213\nWHERE time_m >= 34200\n  AND time_m <= 57600\n  AND (sym_root = 'JPM' AND ex IN ('N'))\nORDER BY sym_root, time_m",
+    "note": "sym_root is restricted to JPM and ex to NYSE N. sym_suffix is not in SELECT and is not in WHERE.",
+    "quote_table_columns": [
+      "date",
+      "time_m",
+      "ex",
+      "sym_root",
+      "sym_suffix",
+      "bid",
+      "bidsiz",
+      "ask",
+      "asksiz",
+      "qu_cond",
+      "bidex",
+      "askex",
+      "qu_seqnum",
+      "natbbo_ind",
+      "nasdbbo_ind",
+      "qu_cancel",
+      "qu_source"
+    ]
+  },
+  "suffix_counts_production_predicate": [
+    {
+      "sym_root": "JPM",
+      "sym_suffix": null,
+      "sym_suffix_repr": "<NA>",
+      "n_rows": 218784
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRI",
+      "sym_suffix_repr": "PRI",
+      "n_rows": 824
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRJ",
+      "sym_suffix_repr": "PRJ",
+      "n_rows": 683
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRP",
+      "sym_suffix_repr": "PRP",
+      "n_rows": 578
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRW",
+      "sym_suffix_repr": "PRW",
+      "n_rows": 547
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRZ",
+      "sym_suffix_repr": "PRZ",
+      "n_rows": 516
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRY",
+      "sym_suffix_repr": "PRY",
+      "n_rows": 510
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRS",
+      "sym_suffix_repr": "PRS",
+      "n_rows": 480
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRX",
+      "sym_suffix_repr": "PRX",
+      "n_rows": 451
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRK",
+      "sym_suffix_repr": "PRK",
+      "n_rows": 430
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRG",
+      "sym_suffix_repr": "PRG",
+      "n_rows": 223
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRF",
+      "sym_suffix_repr": "PRF",
+      "n_rows": 30
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRE",
+      "sym_suffix_repr": "PRE",
+      "n_rows": 15
+    }
+  ],
+  "suffix_counts_jpm_all_exchanges_session": [
+    {
+      "sym_root": "JPM",
+      "sym_suffix": null,
+      "sym_suffix_repr": "<NA>",
+      "n_rows": 2199129
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRI",
+      "sym_suffix_repr": "PRI",
+      "n_rows": 6958
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRZ",
+      "sym_suffix_repr": "PRZ",
+      "n_rows": 5396
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRJ",
+      "sym_suffix_repr": "PRJ",
+      "n_rows": 3863
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRY",
+      "sym_suffix_repr": "PRY",
+      "n_rows": 3097
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRW",
+      "sym_suffix_repr": "PRW",
+      "n_rows": 1825
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRS",
+      "sym_suffix_repr": "PRS",
+      "n_rows": 1766
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRP",
+      "sym_suffix_repr": "PRP",
+      "n_rows": 1643
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRX",
+      "sym_suffix_repr": "PRX",
+      "n_rows": 1506
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRK",
+      "sym_suffix_repr": "PRK",
+      "n_rows": 1452
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRG",
+      "sym_suffix_repr": "PRG",
+      "n_rows": 433
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRF",
+      "sym_suffix_repr": "PRF",
+      "n_rows": 250
+    },
+    {
+      "sym_root": "JPM",
+      "sym_suffix": "PRE",
+      "sym_suffix_repr": "PRE",
+      "n_rows": 105
+    }
+  ],
+  "crsp_stocknames_jpm_on_date": [
+    {
+      "ticker": "JPM",
+      "permno": 47896,
+      "permco": 20436,
+      "comnam": "JPMORGAN CHASE & CO",
+      "shrcls": null,
+      "exchcd": 1,
+      "ncusip": "46625H10",
+      "namedt": "2004-07-28",
+      "nameenddt": "2009-09-16"
+    }
+  ],
+  "taq_master": {
+    "available": false,
+    "tables_tried": [
+      "taqmsamp_all.mastm_20090213",
+      "taqmsamp_all.master_20090213",
+      "taqmsec.mastm_20090213"
+    ],
+    "last_error": "TypeError: sqlalchemy.cyextension.immutabledict.immutabledict is not a sequence"
+  },
+  "identity_rule": "Daily TAQ Client Specification Appendix B. A blank suffix is the ordinary/common share. Preferred, warrant, right, unit, and class shares carry an explicit suffix (PR, WS, RT, U, A, ...). Master-file security type A is Common Stock. Identity is not inferred from the quote price.",
+  "lineage": {
+    "production_sync": "covharness.data.synchronization.previous_tick_sync",
+    "anomalous_grid_times": [
+      "2009-02-13T10:04:00",
+      "2009-02-13T11:01:00",
+      "2009-02-13T11:03:00",
+      "2009-02-13T12:59:00",
+      "2009-02-13T13:02:00",
+      "2009-02-13T14:17:00",
+      "2009-02-13T15:17:00",
+      "2009-02-13T15:24:00"
+    ],
+    "events": [
+      {
+        "grid_time": "2009-02-13T10:04:00",
+        "production_synced_price": 17.77,
+        "source_tick_timestamp": "2009-02-13T10:03:59.987000",
+        "source_tick_price": 17.77,
+        "matches_production_sync": true,
+        "raw_rows_at_source_timestamp": [
+          {
+            "date": "2009-02-13",
+            "time_m": 36239.987,
+            "ex": "N",
+            "sym_root": "JPM",
+            "sym_suffix": "PRK",
+            "bid": 17.73,
+            "ask": 17.81,
+            "bidsiz": 1.0,
+            "asksiz": 1.0,
+            "qu_cond": "R",
+            "qu_seqnum": 6578220.0,
+            "qu_cancel": "A",
+            "natbbo_ind": "1",
+            "nasdbbo_ind": "0",
+            "qu_source": "C",
+            "sym_suffix_repr": "PRK",
+            "midquote": 17.77
+          }
+        ],
+        "distinct_suffixes_at_source_timestamp": [
+          "PRK"
+        ],
+        "all_raw_rows_blank_or_null_suffix": false
+      },
+      {
+        "grid_time": "2009-02-13T11:01:00",
+        "production_synced_price": 19.81,
+        "source_tick_timestamp": "2009-02-13T11:00:59.085000",
+        "source_tick_price": 19.81,
+        "matches_production_sync": true,
+        "raw_rows_at_source_timestamp": [
+          {
+            "date": "2009-02-13",
+            "time_m": 39659.085,
+            "ex": "N",
+            "sym_root": "JPM",
+            "sym_suffix": "PRW",
+            "bid": 19.72,
+            "ask": 19.9,
+            "bidsiz": 3.0,
+            "asksiz": 2.0,
+            "qu_cond": "R",
+            "qu_seqnum": 16440059.0,
+            "qu_cancel": "A",
+            "natbbo_ind": "0",
+            "nasdbbo_ind": "0",
+            "qu_source": "C",
+            "sym_suffix_repr": "PRW",
+            "midquote": 19.81
+          }
+        ],
+        "distinct_suffixes_at_source_timestamp": [
+          "PRW"
+        ],
+        "all_raw_rows_blank_or_null_suffix": false
+      },
+      {
+        "grid_time": "2009-02-13T11:03:00",
+        "production_synced_price": 22.65,
+        "source_tick_timestamp": "2009-02-13T11:02:59.553000",
+        "source_tick_price": 22.65,
+        "matches_production_sync": true,
+        "raw_rows_at_source_timestamp": [
+          {
+            "date": "2009-02-13",
+            "time_m": 39779.553,
+            "ex": "N",
+            "sym_root": "JPM",
+            "sym_suffix": "PRI",
+            "bid": 22.6,
+            "ask": 22.7,
+            "bidsiz": 3.0,
+            "asksiz": 6.0,
+            "qu_cond": "R",
+            "qu_seqnum": 16760839.0,
+            "qu_cancel": "A",
+            "natbbo_ind": "6",
+            "nasdbbo_ind": "0",
+            "qu_source": "C",
+            "sym_suffix_repr": "PRI",
+            "midquote": 22.65
+          }
+        ],
+        "distinct_suffixes_at_source_timestamp": [
+          "PRI"
+        ],
+        "all_raw_rows_blank_or_null_suffix": false
+      },
+      {
+        "grid_time": "2009-02-13T12:59:00",
+        "production_synced_price": 19.67,
+        "source_tick_timestamp": "2009-02-13T12:58:46.069000",
+        "source_tick_price": 19.67,
+        "matches_production_sync": true,
+        "raw_rows_at_source_timestamp": [
+          {
+            "date": "2009-02-13",
+            "time_m": 46726.069,
+            "ex": "N",
+            "sym_root": "JPM",
+            "sym_suffix": "PRW",
+            "bid": 19.64,
+            "ask": 19.7,
+            "bidsiz": 1.0,
+            "asksiz": 15.0,
+            "qu_cond": "R",
+            "qu_seqnum": 32765082.0,
+            "qu_cancel": "A",
+            "natbbo_ind": "0",
+            "nasdbbo_ind": "0",
+            "qu_source": "C",
+            "sym_suffix_repr": "PRW",
+            "midquote": 19.67
+          }
+        ],
+        "distinct_suffixes_at_source_timestamp": [
+          "PRW"
+        ],
+        "all_raw_rows_blank_or_null_suffix": false
+      },
+      {
+        "grid_time": "2009-02-13T13:02:00",
+        "production_synced_price": 22.665,
+        "source_tick_timestamp": "2009-02-13T13:01:59.979000",
+        "source_tick_price": 22.665,
+        "matches_production_sync": true,
+        "raw_rows_at_source_timestamp": [
+          {
+            "date": "2009-02-13",
+            "time_m": 46919.979,
+            "ex": "N",
+            "sym_root": "JPM",
+            "sym_suffix": "PRI",
+            "bid": 22.63,
+            "ask": 22.7,
+            "bidsiz": 2.0,
+            "asksiz": 3.0,
+            "qu_cond": "R",
+            "qu_seqnum": 33131738.0,
+            "qu_cancel": "A",
+            "natbbo_ind": "6",
+            "nasdbbo_ind": "0",
+            "qu_source": "C",
+            "sym_suffix_repr": "PRI",
+            "midquote": 22.665
+          }
+        ],
+        "distinct_suffixes_at_source_timestamp": [
+          "PRI"
+        ],
+        "all_raw_rows_blank_or_null_suffix": false
+      },
+      {
+        "grid_time": "2009-02-13T14:17:00",
+        "production_synced_price": 22.68,
+        "source_tick_timestamp": "2009-02-13T14:16:58.205000",
+        "source_tick_price": 22.68,
+        "matches_production_sync": true,
+        "raw_rows_at_source_timestamp": [
+          {
+            "date": "2009-02-13",
+            "time_m": 51418.205,
+            "ex": "N",
+            "sym_root": "JPM",
+            "sym_suffix": "PRI",
+            "bid": 22.64,
+            "ask": 22.72,
+            "bidsiz": 6.0,
+            "asksiz": 1.0,
+            "qu_cond": "R",
+            "qu_seqnum": 44938767.0,
+            "qu_cancel": "A",
+            "natbbo_ind": "0",
+            "nasdbbo_ind": "0",
+            "qu_source": "C",
+            "sym_suffix_repr": "PRI",
+            "midquote": 22.68
+          }
+        ],
+        "distinct_suffixes_at_source_timestamp": [
+          "PRI"
+        ],
+        "all_raw_rows_blank_or_null_suffix": false
+      },
+      {
+        "grid_time": "2009-02-13T15:17:00",
+        "production_synced_price": 20.560000000000002,
+        "source_tick_timestamp": "2009-02-13T15:16:59.841000",
+        "source_tick_price": 20.560000000000002,
+        "matches_production_sync": true,
+        "raw_rows_at_source_timestamp": [
+          {
+            "date": "2009-02-13",
+            "time_m": 55019.841,
+            "ex": "N",
+            "sym_root": "JPM",
+            "sym_suffix": "PRJ",
+            "bid": 20.52,
+            "ask": 20.6,
+            "bidsiz": 1.0,
+            "asksiz": 1.0,
+            "qu_cond": "R",
+            "qu_seqnum": 57080217.0,
+            "qu_cancel": "A",
+            "natbbo_ind": "1",
+            "nasdbbo_ind": "0",
+            "qu_source": "C",
+            "sym_suffix_repr": "PRJ",
+            "midquote": 20.560000000000002
+          }
+        ],
+        "distinct_suffixes_at_source_timestamp": [
+          "PRJ"
+        ],
+        "all_raw_rows_blank_or_null_suffix": false
+      },
+      {
+        "grid_time": "2009-02-13T15:24:00",
+        "production_synced_price": 19.93,
+        "source_tick_timestamp": "2009-02-13T15:23:59.330000",
+        "source_tick_price": 19.93,
+        "matches_production_sync": true,
+        "raw_rows_at_source_timestamp": [
+          {
+            "date": "2009-02-13",
+            "time_m": 55439.33,
+            "ex": "N",
+            "sym_root": "JPM",
+            "sym_suffix": "PRW",
+            "bid": 19.84,
+            "ask": 20.02,
+            "bidsiz": 3.0,
+            "asksiz": 6.0,
+            "qu_cond": "R",
+            "qu_seqnum": 58739030.0,
+            "qu_cancel": "A",
+            "natbbo_ind": "6",
+            "nasdbbo_ind": "0",
+            "qu_source": "C",
+            "sym_suffix_repr": "PRW",
+            "midquote": 19.93
+          }
+        ],
+        "distinct_suffixes_at_source_timestamp": [
+          "PRW"
+        ],
+        "all_raw_rows_blank_or_null_suffix": false
+      }
+    ]
+  },
+  "coverage": [
+    {
+      "interval_minutes": 1,
+      "nominal_first_grid_time": "2009-02-13T09:30:00",
+      "nominal_last_grid_time": "2009-02-13T16:00:00",
+      "n_nominal_grid_times": 391,
+      "n_incomplete_grid_times": 2,
+      "incomplete_grid_times": [
+        "2009-02-13T09:30:00",
+        "2009-02-13T09:31:00"
+      ],
+      "first_complete_price_time": "2009-02-13T09:32:00",
+      "last_complete_price_time": "2009-02-13T16:00:00",
+      "n_complete_prices": 389,
+      "first_return_interval_end": "2009-02-13T09:33:00",
+      "last_return_interval_end": "2009-02-13T16:00:00",
+      "n_returns": 388,
+      "internal_missing_timestamps": [],
+      "n_internal_missing": 0
+    },
+    {
+      "interval_minutes": 2,
+      "nominal_first_grid_time": "2009-02-13T09:30:00",
+      "nominal_last_grid_time": "2009-02-13T16:00:00",
+      "n_nominal_grid_times": 196,
+      "n_incomplete_grid_times": 1,
+      "incomplete_grid_times": [
+        "2009-02-13T09:30:00"
+      ],
+      "first_complete_price_time": "2009-02-13T09:32:00",
+      "last_complete_price_time": "2009-02-13T16:00:00",
+      "n_complete_prices": 195,
+      "first_return_interval_end": "2009-02-13T09:34:00",
+      "last_return_interval_end": "2009-02-13T16:00:00",
+      "n_returns": 194,
+      "internal_missing_timestamps": [],
+      "n_internal_missing": 0
+    },
+    {
+      "interval_minutes": 5,
+      "nominal_first_grid_time": "2009-02-13T09:30:00",
+      "nominal_last_grid_time": "2009-02-13T16:00:00",
+      "n_nominal_grid_times": 79,
+      "n_incomplete_grid_times": 1,
+      "incomplete_grid_times": [
+        "2009-02-13T09:30:00"
+      ],
+      "first_complete_price_time": "2009-02-13T09:35:00",
+      "last_complete_price_time": "2009-02-13T16:00:00",
+      "n_complete_prices": 78,
+      "first_return_interval_end": "2009-02-13T09:40:00",
+      "last_return_interval_end": "2009-02-13T16:00:00",
+      "n_returns": 77,
+      "internal_missing_timestamps": [],
+      "n_internal_missing": 0
+    },
+    {
+      "interval_minutes": 10,
+      "nominal_first_grid_time": "2009-02-13T09:30:00",
+      "nominal_last_grid_time": "2009-02-13T16:00:00",
+      "n_nominal_grid_times": 40,
+      "n_incomplete_grid_times": 1,
+      "incomplete_grid_times": [
+        "2009-02-13T09:30:00"
+      ],
+      "first_complete_price_time": "2009-02-13T09:40:00",
+      "last_complete_price_time": "2009-02-13T16:00:00",
+      "n_complete_prices": 39,
+      "first_return_interval_end": "2009-02-13T09:50:00",
+      "last_return_interval_end": "2009-02-13T16:00:00",
+      "n_returns": 38,
+      "internal_missing_timestamps": [],
+      "n_internal_missing": 0
+    },
+    {
+      "interval_minutes": 15,
+      "nominal_first_grid_time": "2009-02-13T09:30:00",
+      "nominal_last_grid_time": "2009-02-13T16:00:00",
+      "n_nominal_grid_times": 27,
+      "n_incomplete_grid_times": 1,
+      "incomplete_grid_times": [
+        "2009-02-13T09:30:00"
+      ],
+      "first_complete_price_time": "2009-02-13T09:45:00",
+      "last_complete_price_time": "2009-02-13T16:00:00",
+      "n_complete_prices": 26,
+      "first_return_interval_end": "2009-02-13T10:00:00",
+      "last_return_interval_end": "2009-02-13T16:00:00",
+      "n_returns": 25,
+      "internal_missing_timestamps": [],
+      "n_internal_missing": 0
+    },
+    {
+      "interval_minutes": 30,
+      "nominal_first_grid_time": "2009-02-13T09:30:00",
+      "nominal_last_grid_time": "2009-02-13T16:00:00",
+      "n_nominal_grid_times": 14,
+      "n_incomplete_grid_times": 1,
+      "incomplete_grid_times": [
+        "2009-02-13T09:30:00"
+      ],
+      "first_complete_price_time": "2009-02-13T10:00:00",
+      "last_complete_price_time": "2009-02-13T16:00:00",
+      "n_complete_prices": 13,
+      "first_return_interval_end": "2009-02-13T10:30:00",
+      "last_return_interval_end": "2009-02-13T16:00:00",
+      "n_returns": 12,
+      "internal_missing_timestamps": [],
+      "n_internal_missing": 0
+    }
+  ],
+  "existing_epps_matrix_diagnostics": [
+    {
+      "interval_minutes": 1,
+      "n_returns": 388,
+      "numerical_rank": 5,
+      "min_eigenvalue": 9.767136287995431e-05,
+      "psd": true,
+      "condition_number": 7405.016746013267,
+      "source": "results/taq_five_stock_epps_20090213.json, populated by covharness.diagnostics.epps.matrix_eigen_diagnostics"
+    },
+    {
+      "interval_minutes": 2,
+      "n_returns": 194,
+      "numerical_rank": 5,
+      "min_eigenvalue": 9.511537623007105e-05,
+      "psd": true,
+      "condition_number": 3937.5538038953155,
+      "source": "results/taq_five_stock_epps_20090213.json, populated by covharness.diagnostics.epps.matrix_eigen_diagnostics"
+    },
+    {
+      "interval_minutes": 5,
+      "n_returns": 77,
+      "numerical_rank": 5,
+      "min_eigenvalue": 5.151857718607515e-05,
+      "psd": true,
+      "condition_number": 39.36945470484663,
+      "source": "results/taq_five_stock_epps_20090213.json, populated by covharness.diagnostics.epps.matrix_eigen_diagnostics"
+    },
+    {
+      "interval_minutes": 10,
+      "n_returns": 38,
+      "numerical_rank": 5,
+      "min_eigenvalue": 4.567733441183772e-05,
+      "psd": true,
+      "condition_number": 38.78915200273759,
+      "source": "results/taq_five_stock_epps_20090213.json, populated by covharness.diagnostics.epps.matrix_eigen_diagnostics"
+    },
+    {
+      "interval_minutes": 15,
+      "n_returns": 25,
+      "numerical_rank": 5,
+      "min_eigenvalue": 4.626473473629553e-05,
+      "psd": true,
+      "condition_number": 34.60646100149274,
+      "source": "results/taq_five_stock_epps_20090213.json, populated by covharness.diagnostics.epps.matrix_eigen_diagnostics"
+    },
+    {
+      "interval_minutes": 30,
+      "n_returns": 12,
+      "numerical_rank": 5,
+      "min_eigenvalue": 1.640949871481514e-05,
+      "psd": true,
+      "condition_number": 93.58429351469236,
+      "source": "results/taq_five_stock_epps_20090213.json, populated by covharness.diagnostics.epps.matrix_eigen_diagnostics"
+    }
+  ],
+  "repository_checks": {
+    "benchmark_plan_exists": true,
+    "old_demo_plan_exists": false
+  }
+}

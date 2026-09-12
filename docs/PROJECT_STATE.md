@@ -1,71 +1,98 @@
 # Project state
 
-Last updated: 2026-09-09.
+Last updated 2026-09-12.
 
 Project conda environment is `covharness` (Python 3.11). Recreate with `conda env create -f environment.yml` from the repository root.
 
 ## Current milestone
 
-Literature-grounded high-frequency NBBO quote cleaning, placed before previous-tick synchronization. Realized-kernel estimation is not implemented. The long historical extract is not solved.
+Block 2A. Covariance-space losses and the proxy-robustness demonstration. Block 1 is fully closed. The JPM identity reconciliation confirmed that the historical root-only 5-minute grid selected zero noncommon suffixes, which is why 5-minute RV was unchanged. No further TAQ or JPM work is in this block.
 
 ## Completed
 
-- Previous-tick synchronization of irregular ticks onto a caller-supplied grid.
-- Synchronized log returns $r_j = \log(P_j/P_{j-1})$.
-- Unscaled daily realized covariance $\mathrm{RCov} = R^{\top} R$ from a complete synchronized return matrix.
-- Subsampled proxy $\mathrm{RCov}^{SS} = (1/5)\sum_{s=0}^{4} \mathrm{RCov}^{(s)}$, where each offset $s$ takes every fifth synchronized one-minute price beginning at $s$, then reuses the existing log-return and Gram-matrix functions.
-- High-frequency NBBO quote-cleaning layer adapted from Barndorff-Nielsen, Hansen, Lunde, and Shephard (2011), Section 5.1, following the 2009 trade-and-quote cleaning paper. Stages P1, P2, Q1, Q2, Q3, and Q4, with per-stage diagnostics. P3 single-exchange retention is not applied because the input is consolidated NBBO.
-- Integration of cleaning before previous-tick synchronization. Midquotes are formed after the quote filters. A synthetic JPM-style fixture confirms that raw previous-tick sampling can capture an isolated 22.6-style quote while cleaned previous-tick sampling does not.
+Block 1 measurement, identity repair, and root-only reconciliation are closed.
 
-The forced 09:30 and 16:00 endpoint convention discussed for shifted grids is **not** implemented. Offsets are regular `iloc[s::5]` slices of the supplied panel.
+Losses implemented in `covharness.losses`.
+
+Squared Frobenius.
+
+```math
+L_F(S,H)=\|S-H\|_F^2=\operatorname{tr}((S-H)^{\top}(S-H))=\sum_{ij}(S_{ij}-H_{ij})^2
+```
+
+Equal square dimensions, finite entries, symmetry within `SYMMETRY_ATOL=1e-10`. PSD is not required to compute it. No scaling or annualization. Scalar float. Inputs are not mutated.
+
+Reduced multivariate QLIKE, the primary ranking loss.
+
+```math
+L_Q(S,H)=\log\det(H)+\operatorname{tr}(H^{-1}S)
+```
+
+`S` is square, finite, symmetric, and PSD, and it may be singular. `H` is strictly PD. Cholesky `H=LL^{\top}` supplies both `logdet(H)=2\sum\log\operatorname{diag}(L)` and the triangular solves for `tr(H^{-1}S)`. `inv(H)` is not formed. A failed Cholesky is the PD failure. No jitter, diagonal loading, clipping, or silent fallback.
+
+Full Stein, when both arguments are SPD.
+
+```math
+L_S(S,H)=L_Q(S,H)-\log\det(S)-N
+```
+
+Reduced QLIKE and full Stein are not numerically equal. For a common SPD target they differ by a target-only term, so rankings and pairwise differentials agree. Singular `S` is rejected by full Stein.
+
+No matrix repair inside evaluation. A non-PD forecast raises `ForecastNotPositiveDefiniteError`.
+
+Descriptive localization. `variance_squared_error` is $\sum_i(S_{ii}-H_{ii})^2$. `correlation_frobenius_squared` is $\|R(S)-R(H)\|_F^2$ with $R(A)=D(A)^{-1}AD(A)^{-1}$. These are not additive pieces of the ranking losses and do not inherit Patton / LRV ranking consistency. Nonpositive diagonals are rejected.
+
+Singular-proxy contract. Rank-1 `S=[[1,1],[1,1]]` with SPD `H` yields finite squared Frobenius and finite reduced QLIKE. Full Stein fails clearly. Rank deficiency does not by itself prevent evaluation. It can still increase proxy noise and reduce power.
+
+Proxy-robustness demonstration. `S=u\Sigma` with `u\sim\mathrm{Exp}(1)`, so $\mathrm{E}[S]=\Sigma$. `H_A=\Sigma`. `H_B=\log(2)\Sigma`. Analytic expected squared Frobenius is 2.18 versus 2.385. Analytic expected reduced QLIKE is 1.906 versus 2.058. Unsquared Frobenius is 1.086 versus 1.023, so the non-robust criterion ranks `H_B` first. Monte Carlo, seed 20260212, 25,000 draws. Mean squared Frobenius 2.227 versus 2.431. Mean reduced QLIKE 1.903 versus 2.055. Mean full Stein 1.185 versus 1.336. Mean unsquared Frobenius 1.098 versus 1.031. Single-draw flip rates. squared Frobenius 0.576, reduced QLIKE 0.568, full Stein 0.568, unsquared Frobenius 0.576. For this scale family the per-draw Frobenius ranking coincides while expected rankings differ.
+
+`M/N` is reported by `matrix_eigen_diagnostics` when `n_returns` is supplied, and as `FrequencyEppsResult.m_over_n`. The TAQ measurement investigation was not rerun.
+
+`BENCHMARK_IMPLEMENTATION_PLAN.md` no longer states that `M>N` is required for QLIKE evaluation. Kernels remain in the broader plan as alternative proxies.
 
 ## Files that own the implementation
 
-- `src/covharness/data/quotes.py`
-- `src/covharness/data/synchronization.py`
-- `src/covharness/data/returns.py`
-- `src/covharness/realized/rcov.py`
-- `src/covharness/realized/daily.py`
-- `src/covharness/realized/subsampled.py`
-- `src/covharness/simulation/intraday.py`
-- `tests/unit/test_quote_cleaning.py`
-- `tests/unit/test_synchronization.py`
-- `tests/unit/test_rcov.py`
-- `tests/unit/test_daily_rcov.py`
-- `tests/unit/test_subsampled_rcov.py`
-- `notebooks/data_cleaning_example.ipynb` (empirical JPM case study, not production code)
+- `src/covharness/losses/contracts.py`
+- `src/covharness/losses/frobenius.py`
+- `src/covharness/losses/qlike.py`
+- `src/covharness/losses/localization.py`
+- `src/covharness/losses/robustness.py`
+- `src/covharness/losses/__init__.py`
+- `src/covharness/diagnostics/epps.py` (`m_over_n` added)
+- `tests/unit/test_losses.py`
+- `tests/unit/test_loss_robustness.py`
+- `tests/unit/test_epps.py`
+- `notebooks/proxy_robust_losses.ipynb`
+- `results/proxy_robust_losses.png`
+- `README.md`
+- `docs/PROJECT_STATE.md`
+- `BENCHMARK_IMPLEMENTATION_PLAN.md`
 
 ## Tests run
 
-Command `pytest -q` on 2026-09-09.
+Command `pytest -q` on 2026-09-12 after Block 2A.
 
-**48 passed** in 0.56s.
-
-`tests/unit/test_quote_cleaning.py` was also run verbosely. **13 passed**, covering Q1 median collapse, Q2 negative-spread removal, locked-quote retention, Q3 wide-spread removal, Q4 isolated-midpoint removal, Q4 retention of a stable midpoint, Q4 zero local dispersion, stock-day neighborhood isolation, chronological ordering, cleaning-before-synchronization integration, a JPM-style previous-tick regression fixture, P1 regular-hours filtering, and P2 positive bid/ask filtering.
+```
+........................................................................ [ 77%]
+.....................                                                    [100%]
+93 passed in 13.93s
+```
 
 ## Methodological decisions already in code
 
-- RCov is the unscaled Gram matrix of synchronized log returns.
-- Missing returns abort the day. Pairwise deletion is rejected.
-- Subsampling averages five daily Gram matrices. It does not average returns and does not divide by $M$. Overlapping grids are not treated as independent.
-- Quote cleaning is an adaptation of BN-HLS (2011) for consolidated NBBO. The paper's P3 single-exchange rule is not reproduced.
-- Q2 removes crossed quotes only. Locked (zero-spread) quotes are retained.
-- Q4 uses mean absolute deviation from a centered local median of 50 neighbors, not the median-absolute-deviation statistic. Incomplete edge windows are retained by default.
-- Q4 is an ex-post measurement filter. Neighborhoods do not cross stock or day boundaries and are not used as forecasting features.
+- Reduced QLIKE is the primary ranking loss. Full Stein is the SPD-proxy form.
+- Squared Frobenius is the complementary robust loss. Ordinary unsquared Frobenius is a labeled non-robust contrast only.
+- Localization diagnostics are descriptive. They are not ranking losses.
+- Forecasts that fail PD are exposed, not repaired.
+- `M/N` is a proxy-quality diagnostic, not a gate on reduced QLIKE.
 
 ## Known problems or limitations
 
 - Opening and overnight treatment remain unresolved.
-- No regular NYSE calendar grid builder. The caller supplies the 1-minute panel.
-- No Epps curve. No per-day eigenvalue or condition-number log across a dataset.
-- No sale-condition cleaning of the trade tape. No production rerun of the five-asset TAQ pilot through `clean_nbbo_quotes` has been recorded in this checkpoint.
-- Early-close calendars are not encoded in P1. The implemented window is 09:30–16:00 inclusive on the timestamps supplied by the caller.
-- WRDS access is a user-reported fact from 2026-09-08. Account permissions, subscribed libraries, and table schemas have **not** been verified here as a completed extract.
-- Shifted-grid coverage of a common 09:30–16:00 open-to-close window is a proposed implementation choice, not current code.
-- Realized kernels are not implemented. The long historical data problem is not solved.
+- Realized kernels are not implemented. The long historical extract is not solved.
+- The leak-proof temporal protocol is not implemented.
+- Forecasting models, inference tests, and portfolio evaluation are not implemented.
 
 ## Next recommended task
 
-Rerun the five-asset real-data pilot through the production cleaning code. Verify synchronized returns and matrix diagnostics. Then compute the first cleaned real-data realized covariance.
-
-Do not start HAR, DCC, shrinkage, losses, inference, portfolios, LSTM-BEKK, or realized-kernel estimation while that cleaned real-data proxy remains uncomputed.
+Block 2B — leak-proof temporal protocol

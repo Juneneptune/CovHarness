@@ -1,0 +1,300 @@
+{
+  "path": "paper_style_single_exchange",
+  "sample": {
+    "date": "2009-02-13",
+    "quote_table": "taqmsamp_all.cqm_20090213",
+    "symbols": [
+      "IBM",
+      "AAPL",
+      "MSFT",
+      "JPM",
+      "XOM"
+    ]
+  },
+  "selected_venues": {
+    "AAPL": {
+      "crsp_exchcd": 3,
+      "crsp_exchange_name": "NASDAQ",
+      "taq_ex_codes": [
+        "T",
+        "Q"
+      ],
+      "taq_sym_suffix": null,
+      "source": "CRSP stocknames.exchcd. 1 is NYSE. 3 is NASDAQ (CRSP US Stock documentation). NYSE Daily TAQ Client Specification, Daily Quotes Exchange field. N is New York Stock Exchange. T/Q is NASDAQ Stock Exchange. NYSE Daily TAQ Client Specification Appendix B. A blank or NULL suffix is the ordinary/common share. Preferred series use PR plus a letter."
+    },
+    "IBM": {
+      "crsp_exchcd": 1,
+      "crsp_exchange_name": "NYSE",
+      "taq_ex_codes": [
+        "N"
+      ],
+      "taq_sym_suffix": null,
+      "source": "CRSP stocknames.exchcd. 1 is NYSE. 3 is NASDAQ (CRSP US Stock documentation). NYSE Daily TAQ Client Specification, Daily Quotes Exchange field. N is New York Stock Exchange. T/Q is NASDAQ Stock Exchange. NYSE Daily TAQ Client Specification Appendix B. A blank or NULL suffix is the ordinary/common share. Preferred series use PR plus a letter."
+    },
+    "JPM": {
+      "crsp_exchcd": 1,
+      "crsp_exchange_name": "NYSE",
+      "taq_ex_codes": [
+        "N"
+      ],
+      "taq_sym_suffix": null,
+      "source": "CRSP stocknames.exchcd. 1 is NYSE. 3 is NASDAQ (CRSP US Stock documentation). NYSE Daily TAQ Client Specification, Daily Quotes Exchange field. N is New York Stock Exchange. T/Q is NASDAQ Stock Exchange. NYSE Daily TAQ Client Specification Appendix B. A blank or NULL suffix is the ordinary/common share. Preferred series use PR plus a letter."
+    },
+    "MSFT": {
+      "crsp_exchcd": 3,
+      "crsp_exchange_name": "NASDAQ",
+      "taq_ex_codes": [
+        "T",
+        "Q"
+      ],
+      "taq_sym_suffix": null,
+      "source": "CRSP stocknames.exchcd. 1 is NYSE. 3 is NASDAQ (CRSP US Stock documentation). NYSE Daily TAQ Client Specification, Daily Quotes Exchange field. N is New York Stock Exchange. T/Q is NASDAQ Stock Exchange. NYSE Daily TAQ Client Specification Appendix B. A blank or NULL suffix is the ordinary/common share. Preferred series use PR plus a letter."
+    },
+    "XOM": {
+      "crsp_exchcd": 1,
+      "crsp_exchange_name": "NYSE",
+      "taq_ex_codes": [
+        "N"
+      ],
+      "taq_sym_suffix": null,
+      "source": "CRSP stocknames.exchcd. 1 is NYSE. 3 is NASDAQ (CRSP US Stock documentation). NYSE Daily TAQ Client Specification, Daily Quotes Exchange field. N is New York Stock Exchange. T/Q is NASDAQ Stock Exchange. NYSE Daily TAQ Client Specification Appendix B. A blank or NULL suffix is the ordinary/common share. Preferred series use PR plus a letter."
+    }
+  },
+  "p3": {
+    "n_before_p3": 1862504,
+    "n_after_p3": 1862504,
+    "n_removed_p3": 0
+  },
+  "q1q4": {
+    "n_input": 1862504,
+    "n_after_p1": 1862504,
+    "n_after_p2": 1862504,
+    "n_after_q1": 697855,
+    "n_after_q2": 697855,
+    "n_after_q3": 697810,
+    "n_after_q4": 697588,
+    "n_removed_p1": 0,
+    "n_removed_p2": 0,
+    "n_removed_q1": 1164649,
+    "n_removed_q2": 0,
+    "n_removed_q3": 45,
+    "n_removed_q4": 222,
+    "removal_fraction": 0.6254569117703909
+  },
+  "rows_by_stock": {
+    "after_sql_p3": {
+      "IBM": 57623,
+      "AAPL": 878289,
+      "MSFT": 620494,
+      "JPM": 218784,
+      "XOM": 87314
+    },
+    "after_q4": {
+      "IBM": 49451,
+      "AAPL": 232484,
+      "MSFT": 199598,
+      "JPM": 142740,
+      "XOM": 73315
+    }
+  },
+  "suffix_audit": {
+    "IBM": {
+      "n_rows": 57623,
+      "n_ordinary_suffix": 57623,
+      "n_nonblank_suffix": 0
+    },
+    "AAPL": {
+      "n_rows": 878289,
+      "n_ordinary_suffix": 878289,
+      "n_nonblank_suffix": 0
+    },
+    "MSFT": {
+      "n_rows": 620494,
+      "n_ordinary_suffix": 620494,
+      "n_nonblank_suffix": 0
+    },
+    "JPM": {
+      "n_rows": 218784,
+      "n_ordinary_suffix": 218784,
+      "n_nonblank_suffix": 0
+    },
+    "XOM": {
+      "n_rows": 87314,
+      "n_ordinary_suffix": 87314,
+      "n_nonblank_suffix": 0
+    }
+  },
+  "missing_prices": {
+    "IBM": 1,
+    "AAPL": 1,
+    "MSFT": 1,
+    "JPM": 1,
+    "XOM": 1
+  },
+  "n_complete_grid_rows": 78,
+  "n_returns": 77,
+  "return_sanity": {
+    "counts_all_entries": {
+      "n_abs_gt_2pct": 0,
+      "n_abs_gt_5pct": 0,
+      "n_abs_gt_10pct": 0
+    },
+    "by_stock": {
+      "IBM": {
+        "max_abs_return": 0.007596116310468304,
+        "timestamp": "2009-02-13T16:00:00",
+        "n_abs_gt_2pct": 0,
+        "n_abs_gt_5pct": 0,
+        "n_abs_gt_10pct": 0
+      },
+      "AAPL": {
+        "max_abs_return": 0.005833266062929887,
+        "timestamp": "2009-02-13T16:00:00",
+        "n_abs_gt_2pct": 0,
+        "n_abs_gt_5pct": 0,
+        "n_abs_gt_10pct": 0
+      },
+      "MSFT": {
+        "max_abs_return": 0.008078219825939037,
+        "timestamp": "2009-02-13T09:55:00",
+        "n_abs_gt_2pct": 0,
+        "n_abs_gt_5pct": 0,
+        "n_abs_gt_10pct": 0
+      },
+      "JPM": {
+        "max_abs_return": 0.014072177514821593,
+        "timestamp": "2009-02-13T09:40:00",
+        "n_abs_gt_2pct": 0,
+        "n_abs_gt_5pct": 0,
+        "n_abs_gt_10pct": 0
+      },
+      "XOM": {
+        "max_abs_return": 0.0065604733894453204,
+        "timestamp": "2009-02-13T16:00:00",
+        "n_abs_gt_2pct": 0,
+        "n_abs_gt_5pct": 0,
+        "n_abs_gt_10pct": 0
+      }
+    }
+  },
+  "rcov": {
+    "assets": [
+      "IBM",
+      "AAPL",
+      "MSFT",
+      "JPM",
+      "XOM"
+    ],
+    "rcov": [
+      [
+        0.0003456263346782918,
+        0.00026849917053946824,
+        0.0002563121431706932,
+        0.00043332809345610063,
+        0.00019658354529491316
+      ],
+      [
+        0.00026849917053946824,
+        0.0003077480650050708,
+        0.00027401151245508857,
+        0.0004040971770246975,
+        0.00019502306873261908
+      ],
+      [
+        0.0002563121431706932,
+        0.00027401151245508857,
+        0.00042496406375899174,
+        0.0003889853103398235,
+        0.0002446140846143317
+      ],
+      [
+        0.00043332809345610063,
+        0.0004040971770246975,
+        0.0003889853103398235,
+        0.001381559434776916,
+        0.0003501296784425969
+      ],
+      [
+        0.00019658354529491316,
+        0.00019502306873261908,
+        0.0002446140846143317,
+        0.0003501296784425969,
+        0.00027259772386535
+      ]
+    ],
+    "realized_variance": {
+      "IBM": 0.0003456263346782918,
+      "AAPL": 0.0003077480650050708,
+      "MSFT": 0.00042496406375899174,
+      "JPM": 0.001381559434776916,
+      "XOM": 0.00027259772386535
+    },
+    "symmetry_error": 0.0,
+    "eigenvalues": [
+      5.151857718607515e-05,
+      9.017779084188685e-05,
+      0.00013355553596990788,
+      0.00042898542710142064,
+      0.0020282582909853307
+    ],
+    "min_eigenvalue": 5.151857718607515e-05,
+    "numerical_rank": 5,
+    "psd": true,
+    "condition_number": 39.36945470484663,
+    "realized_correlation": [
+      [
+        1.0000000000000002,
+        0.8232692039570545,
+        0.6687898386648825,
+        0.6270882259863908,
+        0.6404461770671382
+      ],
+      [
+        0.8232692039570545,
+        1.0,
+        0.7576960814285649,
+        0.6197312050469823,
+        0.6733288264035591
+      ],
+      [
+        0.6687898386648825,
+        0.7576960814285649,
+        0.9999999999999999,
+        0.5076592586542014,
+        0.7186943717677136
+      ],
+      [
+        0.6270882259863908,
+        0.6197312050469823,
+        0.5076592586542014,
+        1.0,
+        0.5705359642832393
+      ],
+      [
+        0.6404461770671382,
+        0.6733288264035591,
+        0.7186943717677136,
+        0.5705359642832393,
+        0.9999999999999998
+      ]
+    ]
+  },
+  "open_convention": "09:30 remains missing if no regular-session quote is available at or before that grid time. Incomplete opening rows are dropped.",
+  "alternative_path": "consolidated NBBO via clean_nbbo_quotes remains available. See results/taq_five_stock_pilot_20090213.json.",
+  "caveat": "The single-exchange matrix is a realized-covariance proxy, not ground truth and not a realized-kernel estimator.",
+  "nbbo_alternative": {
+    "label": "consolidated_nbbo_q1q4",
+    "table": "nbbom_20090213",
+    "jpm_five_minute_midquotes": {
+      "09:40": 25.055,
+      "09:45": 22.585,
+      "09:50": 25.185000000000002,
+      "10:00": 25.255000000000003,
+      "10:05": 25.244999999999997,
+      "10:10": 25.395
+    },
+    "jpm_realized_variance": 0.04774724132105918,
+    "jpm_max_abs_return": 0.11271084374415308,
+    "rcov_condition_number": 930.6240791857045
+  }
+}
