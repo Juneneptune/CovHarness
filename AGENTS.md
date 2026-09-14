@@ -74,6 +74,7 @@ Never introduce look-ahead bias.
 - never inspect confirmatory-test results during model development
 - never silently remove failed models or configurations
 - never choose losses or proxies after seeing which favours a model
+- never choose crisis windows, fluctuation windows, thresholds, or state definitions after seeing which favours a model
 - use explicit seeds where randomness is involved
 - tune conventional models with the same budget and cadence as newer models
 - report the full seed distribution, not the best seed
@@ -96,7 +97,7 @@ Keep the training objective, the statistical evaluation loss, and the economic e
 
 Tier-1 models include random-walk realized covariance, EWMA, HAR-DRD, HARQ-DRD, Ledoit–Wolf linear shrinkage, Ledoit–Wolf nonlinear shrinkage, DCC, DCC-NL, and Ridge-DRD. Later models enter the same interface.
 
-Primary evaluation includes multivariate QLIKE / Stein loss, Frobenius loss, variance and correlation decomposition, global-minimum-variance portfolio evaluation, Diebold–Mariano tests with HAC standard errors, the Model Confidence Set, Giacomini–White tests, and Mincer–Zarnowitz diagnostics.
+Primary evaluation includes multivariate QLIKE / Stein loss, Frobenius loss, variance and correlation decomposition, global-minimum-variance portfolio evaluation, Diebold–Mariano tests with HAC standard errors, SPA, the Model Confidence Set, Giacomini–White tests, standard and state-augmented Mincer–Zarnowitz diagnostics, covariance-aware MZ-GLS, and Giacomini–Rossi fluctuation analysis. State-dependent threshold forecast evaluation is an optional robustness extension that requires a separately specified implementation and valid inference for threshold search.
 
 Do not replace these with easier approximations without discussing it first.
 

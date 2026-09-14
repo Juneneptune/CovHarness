@@ -54,5 +54,5 @@ def test_monte_carlo_preserves_robust_ranking_and_flips_unsquared_frobenius() ->
         rtol=0.03,
     )
     # Single-draw majority ranking need not match expected-loss ranking.
-    assert result.flip_rate_unsquared_frobenius > 0.5
+    assert result.single_draw_hb_win_rate_unsquared_frobenius > 0.5
     assert result.n_draws == ROBUSTNESS_N_DRAWS

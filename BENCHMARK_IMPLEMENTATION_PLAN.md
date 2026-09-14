@@ -1,8 +1,10 @@
 [BENCHMARK_IMPLEMENTATION_PLAN.md](https://github.com/user-attachments/files/31852884/design_v4_demo_plan.md)
 # Covariance Benchmark — Consolidated Design (v4)
 
-Companion: `docs/project_ledger.md` (paper status + saved concepts). You will write
-`PREREGISTRATION.md` on Day 2 from Part 1 below.
+Companion: `docs/project_ledger.md` (paper status + saved concepts). Protocol
+decisions currently live in `PREREGISTRATION_DRAFT.md`. Final
+`PREREGISTRATION.md` is created once, after the graph-neural specification and
+empirical dataset are frozen, and is never edited.
 
 ## Repository layout
 
@@ -10,6 +12,7 @@ Companion: `docs/project_ledger.md` (paper status + saved concepts). You will wr
 covharness/
 ├── AGENTS.md
 ├── README.md
+├── PREREGISTRATION_DRAFT.md
 ├── pyproject.toml
 ├── .gitignore
 ├── configs/
@@ -45,6 +48,12 @@ covharness/
 The rest of this document describes the **full** project. Not all of it fits in a week. This part
 splits it into what ships, what is a stretch, and what is weeks 2-4.
 
+**Revised Block 3 scope.** The week-tier labels below remain scheduling context. The final Block 3
+scope additionally requires covariance-aware MZ-GLS and Giacomini–Rossi fluctuation analysis.
+State-dependent threshold forecast evaluation is a named optional robustness extension, not a
+mandatory demo blocker. These additions do not authorize implementing later inference before the
+existing Block 3A review is closed.
+
 ## The discipline that makes the week work
 
 **By end of Day 5 you must have a complete, shippable artifact.** Not "mostly done" — runnable
@@ -62,7 +71,7 @@ end up half-finished. Sequence them instead.
 | Validation | Stylized-fact unit tests + **Epps curve** |
 | Losses | Stein/multivariate-QLIKE, Frobenius, DRD decomposition, GMV (gross) |
 | Protocol | Rolling driver, m = 250, monthly cadence, time-ordered splits, **confirm lock** |
-| Inference | DM + HAC, MCS, GW (3 instruments), standard MZ |
+| Inference | DM + HAC, MCS, two pre-specified GW specifications, standard MZ |
 | Econometric models (8) | `RW`, `EWMA`, `HAR-DRD`, `HARQ-DRD`, `LW-linear`, `LW-NL`, `DCC`, `DCC-NL` |
 | ML model (1) | `Ridge-DRD` |
 | Figures | Epps curve; eigenvalue shrinkage (sample vs linear vs NL vs true); **the three synthetic demos**; cumulative `d_t` |
@@ -78,14 +87,25 @@ In priority order:
 1. **`LSTM-BEKK`** (faithful, daily returns) — the headline DL competitor. 1.5-2 days honestly.
 2. `XGBoost-DRD` — 31 fits, few hours once features exist.
 3. SPA (benchmark = `HAR-DRD`) — the "does anything beat the workhorse?" headline.
-4. Augmented MZ-GLS — regime miscalibration testing.
+4. State-augmented MZ / covariance-aware MZ-GLS — required final Block 3C calibration work; schedule here if time permits.
 5. Third proxy (`RCov_refresh_kernel`).
 
 ## TIER 3 — WEEKS 2-4 (this is the paper, not the artifact)
 
-`LSTM-BEKK-RC` (information parity — the most valuable number in the paper); `GHAR`; universe
-variant (C), the 20-draw robustness run; N = 50 with kernel proxies; `GPVar`; correlation-change
-diagnostics; multi-horizon forecasts; net-of-cost GMV; and the learned-shrinkage agenda in Part 6.
+`LSTM-BEKK-RC` (information parity — the most valuable number in the paper);
+universe variant (C), the 20-draw robustness run; N = 50 with kernel proxies;
+`GPVar`; correlation-change diagnostics; multi-horizon forecasts; net-of-cost
+GMV; and the learned-shrinkage agenda in Part 6.
+
+The revised inference finish line is separate from these model extensions. Giacomini–Rossi
+fluctuation analysis is required before Block 3 is closed if it was not completed earlier.
+Odendahl–Rossi–Sekhposyan state-dependent threshold evaluation remains optional and requires a
+separate applicability and implementation decision.
+
+**Block 4 structured graph / econometric baseline (not DL).** `GHAR` is a
+Block-4 structured graph covariance baseline. It is not a deep-learning model.
+The exact graph-neural architecture remains unresolved and must be frozen
+before final `PREREGISTRATION.md`. `iTransformer` is optional and not committed.
 
 ## Why Tier 1 alone is resume-worthy — including without a deep model
 
@@ -123,9 +143,10 @@ days. Oxford-Man Realized Library is discontinued. Options in order of preferenc
 - **Polygon.io** free/starter tier — minute aggregates.
 - **Databento** — paid but cheap for a one-off pull; highest quality.
 - **Fallback:** if intraday acquisition stalls past Day 1 noon, build the entire harness on
-  **simulated data from a known DCC-NL process** (you can generate this — see Day 2). The harness
-  is testable without real data, and simulated data has a *known* true Sigma, which is strictly
-  better for validating losses and tests. Swap in real data when it arrives.
+  **simulated data from a known DCC-NL process** (you can generate this — see Day 2). Simulation
+  is required to validate estimators, losses, and inference against known truth before relying on
+  market data. Simulation never substitutes for the project's final empirical finding. Swap in
+  real data when it arrives.
 
 **Risk B: reading gap.** Read **Liu, Patton & Sheppard (2015)** (`H14`) before writing the RCov
 pipeline. It tells you which realized measure actually wins and why 5-min is the default. Two hours.
@@ -150,9 +171,27 @@ Ranked options:
 N=50 tickers over 10 years and move on. Do not burn three days on free-data archaeology.
 
 **Fallback that keeps the week alive:** build and validate the entire harness on **simulated data
-from a known DCC-NL process**. Simulation gives you a *known true Sigma*, which is strictly better
-for testing losses and inference than real data. Swap in real data when it lands. Nothing on
+from a known DCC-NL process**. Simulation is required to validate estimators, losses, and
+inference against known truth before relying on market data. Simulation never substitutes for
+the project's final empirical finding. Swap in real data when it lands. Nothing on
 Days 2-3 requires real data.
+
+## DATA GATE
+
+Block 2 and Block 3 may be built and validated on synthetic known-truth data.
+
+Block 4 MUST NOT begin until the empirical panel source is committed and verified for
+
+- chronology
+- usable history length
+- cross-sectional dimension
+- security identity and universe construction
+- access and legal feasibility
+- ability to create the required forecasting and evaluation dates
+
+Do not choose a dataset in order to start Block 4 early. The unresolved long historical
+dataset remains explicit until that verification exists. A one-day TAQ demonstration panel
+does not satisfy this gate.
 
 ## 0.3 Universe selection — why "random" needs restructuring, and how to make it a strength
 
@@ -257,7 +296,9 @@ RCov from intraday returns is **open-to-close**. Portfolios hold overnight. Thre
   variance.
 
 **Pre-commit to (b) for the GMV channel and (a) for the statistical channel**, and report the
-other as a robustness check. This asymmetry is defensible and explicit; silence is not.
+other as a robustness check. This convention is now recorded in protocol metadata. GMV portfolios
+and overnight RCov construction are not implemented in Block 2B. This asymmetry is defensible
+and explicit; silence is not.
 
 ## 0.7 Proxy set (three, pre-declared)
 
@@ -324,8 +365,10 @@ results reopens the data-snooping problem the SPA/MCS stage exists to close.
 - **CONFIRM** — locked. Touched exactly once, at the end of Day 7. Enforce this in code: a
   `LOCKED = True` flag that raises unless an explicit `--unlock-confirm` argument is passed.
 
-Target sizes: validation >= 250 days, screen >= 500 days, confirm >= 500 days. If the sample cannot
-support this, shorten validation first, never confirm.
+VALIDATION has a target of 250 days. SCREEN and CONFIRM have committed minima of
+500 days. If the sample cannot support this, shorten validation first and report the
+shortfall. A zero-length VALIDATION block makes data-driven tuning unavailable.
+Never shorten confirm.
 
 **Preprocessing (standardization, feature scaling, any winsorization) is fit on the estimation
 window only and applied forward.** Global standardization is the most common silent leak in this
@@ -356,8 +399,10 @@ cheap, and it is the first thing a hostile referee checks.
 ## 1.5 Inference sequence
 
 Specified in full in **Part 3.5**. Summary: SPA (benchmark = `HAR-DRD`) then MCS on the screening
-block; median-rank finalist rule; DM and GW on the locked confirmation block; MZ / augmented MZ-GLS
-for calibration; GMV for economic value.
+block; median-rank finalist rule; DM and the two pre-specified GW specifications on the locked
+confirmation block; standard and state-augmented MZ plus covariance-aware MZ-GLS for calibration;
+Giacomini–Rossi fluctuation analysis for time-local instability; GMV for economic value. The
+state-dependent threshold extension remains optional.
 
 ## 1.6 Economic channel
 
@@ -499,10 +544,13 @@ targeting matrix.
 Ladder: `HAR-DRD → Ridge-DRD → XGBoost-DRD` isolates regularization then nonlinearity with
 information fixed; `LSTM-BEKK → LSTM-BEKK-RC` isolates information with architecture fixed.
 
-**Deferred to week 2-3:** `GHAR` (linear, ~1 day, belongs in `M_Econ`), `GPVar` (GluonTS, but the
+**Deferred to Block 4 as a structured graph / econometric baseline, not as DL.** `GHAR`
+(linear graph HAR). The exact graph-neural model remains unresolved. Also deferred.
+`GPVar` (GluonTS, but the
 MXNet backend is deprecated — budget a day for environment archaeology alone), `SpotV2Net`
 (no confirmed public code), `ReSPDNet` (Riemannian, highest bar). Do not half-replicate a
-competitor — that is precisely what you are criticizing others for.
+competitor — that is precisely what you are criticizing others for. `iTransformer` is
+optional and not committed.
 
 ## 2.5 The re-estimation cadence decision (this is what makes the week feasible)
 
@@ -616,10 +664,15 @@ with `z_{t-1}` the regime variables. Rejecting `c = 0` says: *known state inform
 model's forecast errors* — i.e. the model is miscalibrated conditional on regime. Run it with a
 calm/turbulent indicator specifically, since that is your hypothesis.
 
-**MZ-GLS:** the error variance scales strongly with the volatility level (heteroskedasticity is
-severe, not incidental), so OLS MZ has inefficient estimates and misleading standard errors. Use
-GLS weighting by an estimate of the conditional error variance, and report **HAC standard errors**
-in both cases. Report the SEs explicitly — they are what licenses the calibration claims.
+**Covariance-aware MZ-GLS (required final Block 3C extension):** the error variance scales strongly
+with the volatility level (heteroskedasticity is severe, not incidental), so OLS MZ can be inefficient.
+Use a GLS or weighted specification only when the conditional residual / proxy-error variance model is
+stated and justified. If the weights are approximate, label the procedure approximate GLS or weighted
+least squares rather than exact GLS. Apply the transformation consistently to the dependent variable and
+all regressors, and report **HAC standard errors** where required by the adopted specification. Standard
+versus state-augmented calibration and OLS versus GLS weighting are separate design axes; do not search
+over arbitrary combinations and report whichever is most favorable. Report the SEs explicitly — they are
+what licenses the calibration claims.
 
 **Caveat to carry:** MZ has a known weakness under noisy proxies — the LHS noise inflates residual
 variance and reduces power, and non-robust MZ variants (e.g. MZ on log-variances) inherit the
@@ -672,25 +725,51 @@ M_0 (11 models)
   --MCS(screen)-->                     superior set
   --pre-specified rule-->              1 DL finalist + 1 Econ finalist
   --DM(confirm)-->                     average superiority
-  --GW(confirm)-->                     state-dependent superiority
-  --MZ / augmented MZ-GLS-->           calibration, overall and by regime
+  --GW(confirm, 2 specifications)-->   state-dependent superiority
+  --MZ / augmented MZ / MZ-GLS-->      calibration, overall and by regime
+  --Giacomini-Rossi fluctuation-->     when local superiority appears or disappears
+  --optional state-threshold test-->   nonlinear state dependence, if separately authorized
   --GMV + turnover + costs-->          economic value, same DM/GW structure
 ```
 
 Screen and confirm blocks are chronologically separated; confirm is locked in code.
 
-**GW instruments — three, pre-specified:**
+**GW specifications — two pre-specified three-instrument tests:**
 ```
 z_{t-1} = [ 1 , log(average realized variance)_{t-1} , average realized correlation_{t-1} ]
 ```
 A second, separately pre-registered GW test with `[1, log RQ_{t-1}, jump indicator_{t-1}]` targets
-the measurement-quality channel, with Bonferroni across the two tests. Do not stack six collinear
-instruments into one chi-square — the degrees of freedom cost exceeds the information gained.
+the measurement-quality channel, with Bonferroni across the two tests. The multivariate aggregation
+used for `RQ` and the exact jump statistic must be frozen before implementation, and every instrument
+must be observable at the forecast origin. Do not use target-day information or full-CONFIRM quantiles
+to define a supposedly lagged state. Do not stack six collinear instruments into one chi-square — the
+degrees of freedom cost exceeds the information gained.
 
 **GW validity:** requires a fixed finite estimation window. `m` and the re-estimation cadence must
 be **identical across every model**, including GPVar. If GPVar cannot be refit on a 250-day rolling
 window at acceptable cost, either accept a coarser common cadence for everyone or drop the GW claim
 for that model and report a descriptive fluctuation analysis instead.
+
+**DM dependence / calibration decision before confirmatory use.** Retain the implemented Bartlett /
+Newey–West DM as the baseline unless an explicit reviewed change is adopted. The reported persistent
+AR(1) null size result is a limitation to investigate, not a reason to tune the procedure after seeing
+empirical winners. Reproduce the current size experiment, report Monte Carlo uncertainty, and pre-specify
+a bounded sensitivity analysis over persistence, sample length, and bandwidth. Review modern strong-
+dependence / small-sample alternatives before selecting any additional robustness procedure; this plan
+does not silently select a new default.
+
+**Giacomini–Rossi fluctuation analysis (required final Block 3C extension).** Use a formal fluctuation
+procedure to study when relative forecast performance changes through calendar time. Freeze the window
+length or window fraction, admissible endpoints, direction, and reference critical values before the
+locked analysis. A rolling sequence of ordinary DM tests with pointwise 1.96 cutoffs is not a substitute
+for scan-adjusted fluctuation inference. The cumulative `d_t` plot remains a descriptive diagnostic and
+is reported alongside, not replaced by, the fluctuation test.
+
+**Optional state-dependent threshold extension.** Odendahl–Rossi–Sekhposyan-style state-dependent
+forecast evaluation is a bounded robustness extension, not a mandatory demo blocker. If authorized,
+pre-specify the state variable, timing, hard/smooth threshold family, search range, trimming / minimum
+state occupancy, and inference that accounts for searching over an unknown threshold. Do not select the
+most favorable crisis threshold and attach an ordinary unadjusted p-value.
 
 ## 3.6 Mandatory diagnostics
 
@@ -698,6 +777,8 @@ for that model and report a descriptive fluctuation analysis instead.
 - ACF of `d_t` and the HAC inflation factor kappa, with `T_eff = T / kappa`.
 - Per-asset and per-universe (variant C) distributions of loss ratios.
 - Seed distributions for stochastic models, never a best seed.
+- Giacomini–Rossi fluctuation results for headline finalist comparisons once Block 3C is implemented;
+  these provide formal time-local inference and do not turn the cumulative `d_t` plot into a test.
 
 ---
 
@@ -713,7 +794,11 @@ for that model and report a descriptive fluctuation analysis instead.
 | **3** | Rolling driver; DM+HAC, MCS, GW, standard MZ | **Naive t over-rejects ~25% vs HAC ~5%; GW catches regime dependence DM misses** |
 | **4** | `RW`, `EWMA`, `HAR-DRD`, `HARQ-DRD`, `Ridge-DRD` end-to-end | Full results table on the screening block |
 | **5** | `LW-linear`, `LW-NL`, `DCC`, `DCC-NL`; eigenvalue figure; **unlock confirm once**; README + PREREGISTRATION | **TIER 1 SHIPPED — repo is public-ready** |
-| **6-7** | Tier 2, in priority order: `LSTM-BEKK`, then `XGBoost-DRD`, SPA, augmented MZ-GLS | Whatever finishes, finishes |
+| **6-7** | Tier 2, in priority order: `LSTM-BEKK`, then `XGBoost-DRD`, SPA, state-augmented MZ / covariance-aware MZ-GLS | Whatever finishes, finishes |
+
+The week schedule is not the final inference finish line. Covariance-aware MZ-GLS and Giacomini–Rossi
+fluctuation analysis remain required before Block 3 is finally closed even if they slip beyond this
+original week schedule. The state-dependent threshold extension remains optional.
 
 ## Slippage rules (decide now, not at 2am on Day 4)
 
@@ -733,8 +818,9 @@ it. They are also how you find out your HAC and MCS wiring is wrong before real 
 
 # PART 5 — REPO AND README
 
-See **Repository layout** at the top of this file. `PREREGISTRATION.md` will
-live at the repo root (committed Day 2, never edited). Hashed RCov arrays and
+See **Repository layout** at the top of this file. `PREREGISTRATION_DRAFT.md` records
+protocol decisions frozen so far. Final `PREREGISTRATION.md` is created once after the
+graph-neural specification and empirical dataset are frozen, and is never edited. Hashed RCov arrays and
 the build script live under `data/`; synthetic-truth tests from Days 2–3 live
 under `tests/`.
 
@@ -809,7 +895,9 @@ under the protocol.
 6. `DCC-NL` (ship `LW-NL` and `DCC` separately, compose in week 2).
 
 **Never cut:** the confirm lock, `PREREGISTRATION.md`, the Epps check, SPA/MCS, the
-cumulative-`d_t` diagnostic, or the both-losses requirement.
+cumulative-`d_t` diagnostic, the both-losses requirement, covariance-aware MZ-GLS from the final
+Block 3 calibration scope, or Giacomini–Rossi fluctuation analysis. The state-dependent threshold
+extension remains optional.
 
 ---
 
@@ -818,7 +906,9 @@ cumulative-`d_t` diagnostic, or the both-losses requirement.
 - N = 30, 1-day horizon. **DCC-NL is under-powered at this dimension** — its advantage grows with
   N, and ELW demonstrate at N = 1000. This is the most important honesty statement in the paper.
 - `LSTM-BEKK` re-estimated on a rolling schedule, deviating from the paper's fixed 70/15/15 split.
-- No `GHAR`, `SpotV2Net`, `GPVar`, or `ReSPDNet` yet.
+- `GHAR` is a Block-4 structured graph / econometric baseline, not a deep-learning model.
+  No graph-neural DL specification is frozen yet. `SpotV2Net`, `GPVar`, and `ReSPDNet` are
+  not committed.
 - Composite likelihood omitted (unnecessary at N=30-50, required at N=1000).
 - Single market, single sample period; regime coverage limited to what the sample contains.
 

@@ -4,7 +4,7 @@
 
 The benchmark is designed so that a new forecasting method does not receive a different target, a richer information set, a larger tuning budget, or a more favorable evaluation criterion simply because it belongs to a different modeling tradition. Conventional models are therefore treated as serious competitors rather than default baselines. The planned comparison assigns common validation periods, tuning budgets, re-estimation schedules, and confirmatory procedures across model classes. Stochastic methods will be evaluated over pre-specified seed sets rather than selected ex post from favorable individual runs.
 
-> **Current status.** The primary TAQ measurement path is exchange-level quotes, P1/P2, listing-venue P3, Q1–Q4, midquote, and previous-tick synchronization. Consolidated NBBO plus Q1–Q4 remains a labeled alternative. An Epps-effect frequency scan is implemented on the five-stock 13 February 2009 panel. Block 1 measurement work is closed. Covariance-space losses are implemented. Reduced QLIKE is the primary ranking loss. Squared Frobenius is the complementary robust criterion. Realized-kernel estimation is not implemented. The long historical extract is not solved.
+> **Current status.** The primary TAQ measurement path is exchange-level quotes, P1/P2, listing-venue P3, Q1–Q4, midquote, and previous-tick synchronization. Consolidated NBBO plus Q1–Q4 remains a labeled alternative. An Epps-effect frequency scan is implemented on the five-stock 13 February 2009 panel. Block 1 measurement work is closed. Covariance-space losses are implemented. Reduced QLIKE is the primary ranking loss. Squared Frobenius is the complementary robust criterion. The leak-proof temporal protocol is implemented, with CONFIRM locked by default. Pairwise Diebold-Mariano tests with Bartlett HAC standard errors are implemented. Hansen (2005) SPA and Hansen–Lunde–Nason (2011) MCS are implemented for one loss/proxy channel at a time. Realized-kernel estimation is not implemented. The long historical extract is not solved. Protocol decisions are recorded in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). That draft is not the final preregistration.
 
 Detailed implementation status is maintained in [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md).
 
@@ -127,7 +127,7 @@ The averaging occurs across the five covariance estimates. Individual realized-c
 
 **Epps-effect diagnostics.** Realized covariance and implied correlation are recomputed on previous-tick grids of 1, 2, 5, 10, 15, and 30 minutes from the same cleaned quotes. This is a diagnostic of the covariance proxy and synchronization procedure. It does not change the one-day-ahead forecast horizon, and no frequency is treated as the true covariance.
 
-Opening, closing, early-close, and overnight conventions will be documented explicitly rather than embedded implicitly in the estimator.
+Statistical covariance evaluation uses the open-to-close realized-covariance proxy defined above. When global-minimum-variance evaluation is implemented later, the primary economic risk measure will include the overnight return outer product so that realized risk corresponds to a portfolio held across the overnight period. An open-to-close-only economic version will be retained as a robustness channel. Overnight realized covariance and GMV portfolios are not implemented here. The distinction is frozen before results exist.
 
 ---
 
@@ -205,26 +205,77 @@ Reduced QLIKE and full Stein are not numerically equal. For a common SPD target 
 
 **Variance-versus-correlation localization.** A separate diagnostic reports $\sum_i(S_{ii}-H_{ii})^2$ and $\|R(S)-R(H)\|_F^2$, where $R(A)=D(A)^{-1}AD(A)^{-1}$ and $D(A)=\mathrm{diag}(\sqrt{A_{ii}})$. These are descriptive. Correlation normalization is nonlinear, so an unbiased covariance proxy does not imply an unbiased correlation proxy. The diagnostics do not inherit the ranking-consistency guarantee of covariance-space Frobenius and QLIKE. A nonpositive diagonal is rejected rather than repaired.
 
-The proxy-robustness construction $S=u\Sigma$ with $u\sim\mathrm{Exp}(1)$ is in `covharness.losses.robustness` and [`notebooks/proxy_robust_losses.ipynb`](notebooks/proxy_robust_losses.ipynb). $H_A=\Sigma$ ranks above the median-matched $H_B=\log(2)\Sigma$ in expected squared Frobenius, reduced QLIKE, and full Stein. Ordinary unsquared Frobenius ranks $H_B$ first. The figure is [`results/proxy_robust_losses.png`](results/proxy_robust_losses.png).
+The proxy-robustness construction $S=u\Sigma$ with $u\sim\mathrm{Exp}(1)$ is in `covharness.losses.robustness` and [`notebooks/proxy_robust_losses.ipynb`](notebooks/proxy_robust_losses.ipynb). $H_A=\Sigma$ ranks above the median-matched $H_B=\log(2)\Sigma$ in expected squared Frobenius, reduced QLIKE, and full Stein. Ordinary unsquared Frobenius ranks $H_B$ first. Single-draw $H_B$ win rates need not match those expected-loss rankings. The figure is [`results/proxy_robust_losses.png`](results/proxy_robust_losses.png).
 
 ![Expected losses under a noisy unbiased proxy](results/proxy_robust_losses.png)
 
 ---
 
-## Planned inference and confirmation
+## Temporal protocol
 
-Differences in average out-of-sample loss are not treated as sufficient evidence of forecast superiority. Loss differentials can be serially dependent, and the comparison of many forecasting methods introduces a multiple-comparison problem.
+Forecast comparison uses four chronological regions on a strictly increasing trading-date index. HISTORY (rolling burn-in), VALIDATION, SCREEN, and CONFIRM. The ordering is HISTORY < VALIDATION < SCREEN < CONFIRM. There is no shuffling, and the three evaluation blocks do not share target dates.
 
-The planned inferential layer includes
+Intervals are half-open, $[start, end)$, on that index. Evaluation blocks are sets of forecast targets. At origin $t$ the model may use information through $t$. The target is the next trading day $t+1$, which does not enter fitting, scaling, features, or graph construction. The common method is a rolling window of $m=250$ trading days with a 21-trading-day refit cadence.
 
-- Diebold-Mariano tests with HAC standard errors for pairwise forecast comparisons
-- the Model Confidence Set for comparisons across the full model universe
+VALIDATION has a target length of 250 trading days. SCREEN and CONFIRM have committed minima of 500 days. If a calendar cannot support the preferred 250/500/500 evaluation allocation, VALIDATION is shortened first and that fact is reported. A zero-length VALIDATION block makes data-driven tuning unavailable. SCREEN and CONFIRM are not silently reduced. An infeasible confirmatory design fails rather than fitting the sample.
+
+VALIDATION is the only block used for tuning and configuration choice. SCREEN compares frozen candidates. CONFIRM is the locked confirmatory comparison. Retrieving CONFIRM dates raises `ConfirmLockedError` unless `unlock_confirm=True` is passed. The default is locked.
+
+Scalers are fit on the estimation window through $t$ only. Stochastic methods use the pre-specified seeds $(0,1,2,3,4)$ and report the full seed distribution. Each model family has an auditable configuration cap of 20. The protocol records these constraints. It does not yet run forecasting models or a tuning engine.
+
+---
+
+## Pairwise predictive inference
+
+A lower average loss is not enough to establish superiority. Loss differentials can be serially dependent, so a long streak of wins is not independent evidence. The implemented pairwise test is Diebold-Mariano with Bartlett / Newey-West HAC standard errors. It asks whether the mean loss differential is zero. It is a forecast-comparison statement, not a proof that one population model is the true model.
+
+For forecasts A and B the loss differential is
+
+```math
+d_t = L_{A,t} - L_{B,t}.
+```
+
+Then $d_t<0$ means A has lower loss on date $t$, and $d_t>0$ means B has lower loss. The null is $\mathrm{E}[d_t]=0$. The statistic is
+
+```math
+\mathrm{DM}=\frac{\bar d}{\widehat{\mathrm{se}}_{\mathrm{HAC}}(\bar d)}.
+```
+
+The HAC estimator uses the Bartlett kernel and the Newey-West (1994) lag $L=\lfloor 4(T/100)^{2/9}\rfloor$, with an optional explicit lag. $L=0$ is the heteroskedasticity-only case. If every supplied differential observation is exactly equal, HAC and Diebold-Mariano are undefined and `DegenerateLossDifferentialError` is raised before demeaning. Constancy is not inferred from a variance floor. A genuinely nonconstant series with small variance remains valid. A non-finite HAC long-run variance is rejected rather than stored. No jitter is added. p-values use the asymptotic $N(0,1)$ reference. The Harvey-Leybourne-Newbold small-sample correction is not applied because the design has not committed to it.
+
+Nested comparisons require separate care. Clark-West is implemented only for scalar squared-error forecasts, and only when the caller declares `nested=True`. It is not applied to reduced QLIKE or squared Frobenius. A later nested covariance comparison may need a loss-specific justified procedure.
+
+Diagnostics for a headline pair are the cumulative sum $C_t=\sum_{s\le t}d_s$, the sample ACF of $d_t$, the HAC inflation $\kappa=\hat\omega/\hat\gamma_0$, and $T_{\mathrm{eff}}=T/\kappa$ when those ratios are defined. $T_{\mathrm{eff}}$ is not clipped into $[1,T]$.
+
+---
+
+## Multiple-model screening
+
+Pairwise Diebold-Mariano does not control search over a universe. SPA and the Model Confidence Set are implemented on a finite loss matrix $L_{t,m}$ of shape $(T,M)$. Each column is one frozen forecasting method. Each row is one evaluation date of a single loss/proxy channel. Lower loss is better. Inputs are copied and must be finite. SPA and MCS are run separately for every pre-specified channel. Reduced QLIKE and squared Frobenius are never averaged. Distinct covariance proxies are never pooled into one matrix.
+
+Resampling is the joint Politis–Romano stationary bootstrap. Time indices are shared across model columns. The expected block length is $\ell=\max(2,\lfloor T^{1/3}\rfloor)$ with restart probability $q=1/\ell$. This rule is a function of $T$ only. It does not inspect loss autocorrelations or model rankings. The cube-root choice is the bandwidth that satisfies Hansen's conditions $q_T\to 0$ and $T q_T^2\to\infty$. A $\sqrt{T}$ length would violate the second condition. Production defaults are $B=5000$ resamples and seed $20260913$. MCS draws one index matrix and reuses it at every elimination step.
+
+Hansen SPA tests whether any alternative beats a supplied benchmark. The project benchmark will later be HAR-DRD. The SPA differential is $d_{k,t}=L_{0,t}-L_{k,t}$, so a positive value means alternative $k$ has lower loss than the benchmark. The null is $\mathrm{E}[d_k]\le 0$ for every $k$. The studentized statistic is
+
+```math
+T_n^{\mathrm{SPA}}
+=\max\Bigl(0,\ \max_k n^{1/2}\bar d_k/\hat\omega_k\Bigr).
+```
+
+$\hat\omega_k^2$ is Hansen's stationary-bootstrap population long-run variance with geometric kernel $\kappa(n,i)$. It is not the Block 3A Bartlett / Newey-West HAC estimator. The same $\hat\omega_k$ is used for the observed statistic and every bootstrap replicate. Three recenterings are computed from Hansen's $g_l$, $g_c$, and $g_u$, including the consistent LIL threshold $-\sqrt{2\log\log n}$. Bootstrap p-values use the strict rule $\mathrm{mean}(T^\ast>T)$. The primary p-value is the consistent recentering. Lower, consistent, and upper p-values are all returned and satisfy $\hat p^l\le\hat p^c\le\hat p^u$. The headline SPA level is $0.05$. An exact-constant benchmark-versus-alternative differential raises `DegenerateLossDifferentialError`. No jitter is added.
+
+The Model Confidence Set asks which models cannot be distinguished from the best. Pairwise differentials are $d_{ij,t}=L_{i,t}-L_{j,t}$, so a positive value means $i$ is worse than $j$. Both coherent Hansen–Lunde–Nason pairs are implemented. The primary SCREEN procedure is $(T_R,e_R)$ with $T_R=\max|t_{ij}|$ and $e_R=\arg\max_i\sup_j t_{ij}$. The companion is $(T_{\max},e_{\max})$. The two pairs are never crossed. Studentization uses standard errors. MCS bootstrap p-values use $\mathrm{mean}(T^\ast\ge T)$. Model p-values are the running maximum along the elimination path, so membership at any $\alpha$ is $\hat p_i\ge\alpha$ without rerunning the bootstrap. The last surviving model has p-value 1. The frozen SCREEN membership level is $\alpha=0.10$. Ties in elimination are broken by original column index. Identical loss columns are treated as ties with $t_{ij}=0$. A pairwise differential that is constant and nonzero raises `DegenerateMCSDifferentialError`.
+
+The remaining planned inferential layer includes
+
 - Giacomini-White tests for conditional and state-dependent differences in predictive ability
 - Mincer-Zarnowitz diagnostics for forecast calibration
 
-Synthetic experiments will be used before market-data inference to verify that the implementation behaves correctly in settings where the data-generating process is known. These experiments are intended to distinguish several evaluation failures that can otherwise be conflated, including serial dependence in loss differentials, multiple testing, and regime-dependent forecast performance.
+Simulation is required to validate estimators, losses, and inference against known truth before relying on market data. Simulation never substitutes for the project's final empirical finding. A fixed-seed demonstration of naive $t$-test over-rejection versus HAC DM is in [`notebooks/dm_hac_size.ipynb`](notebooks/dm_hac_size.ipynb) and [`results/dm_hac_size.png`](results/dm_hac_size.png).
 
-Development and confirmation are separated chronologically. Model specifications, hyperparameters, information sets, and evaluation criteria are to be frozen before the locked confirmatory block is examined.
+![Naive t-test versus HAC Diebold-Mariano](results/dm_hac_size.png)
+
+Development and confirmation are separated chronologically by the implemented protocol. Model specifications, hyperparameters, information sets, and evaluation criteria are frozen before the locked confirmatory block is examined.
 
 ---
 
@@ -238,7 +289,7 @@ w_t
 {\mathbf{1}^{\top}\widehat{\Sigma}_t^{-1}\mathbf{1}}.
 ```
 
-The planned analysis will compare realized portfolio variance and, in later stages, turnover and transaction costs. This channel is deliberately separate from covariance-space forecast loss because portfolio construction depends on the precision matrix $\widehat{\Sigma}_t^{-1}$. A method can improve a covariance estimate under one matrix loss while degrading the stability or economic usefulness of its inverse.
+The planned analysis will compare realized portfolio variance and, in later stages, turnover and transaction costs. Primary economic risk will include the overnight outer product. Open-to-close-only GMV remains a robustness channel. This channel is deliberately separate from covariance-space forecast loss because portfolio construction depends on the precision matrix $\widehat{\Sigma}_t^{-1}$. A method can improve a covariance estimate under one matrix loss while degrading the stability or economic usefulness of its inverse.
 
 ---
 
@@ -256,7 +307,7 @@ The initial benchmark is designed to span naive, realized-measure, shrinkage, dy
 - DCC-NL
 - Ridge-DRD
 
-Later extensions include LSTM-BEKK, XGBoost-DRD, GHAR, and other covariance-specific or general multivariate forecasting architectures.
+Later extensions include LSTM-BEKK, LSTM-BEKK-RC, and XGBoost-DRD. GHAR is a Block-4 structured graph / econometric covariance baseline. It is not classified as a deep-learning model. One graph-neural architecture remains unresolved and must be frozen before final preregistration. iTransformer is optional and is not committed.
 
 The comparison is intended to equalize opportunity rather than model complexity. Conventional models will receive the same validation period, configuration budget, and re-estimation cadence as newer methods. If a model is evaluated with a different information set, that distinction will be made explicit and analyzed rather than hidden within the implementation.
 
@@ -278,6 +329,7 @@ covharness/
 ├── AGENTS.md
 ├── README.md
 ├── BENCHMARK_IMPLEMENTATION_PLAN.md
+├── PREREGISTRATION_DRAFT.md
 ├── pyproject.toml
 ├── environment.yml
 ├── docs/
@@ -289,9 +341,9 @@ covharness/
 │   ├── simulation/
 │   ├── models/
 │   ├── losses/        # squared Frobenius, reduced QLIKE, full Stein
-│   ├── inference/
+│   ├── inference/     # Diebold-Mariano, Bartlett HAC, SPA, MCS, scalar Clark-West
 │   ├── portfolio/
-│   ├── protocol/
+│   ├── protocol/      # splits, confirm lock, rolling schedule, train-only scaler
 │   ├── diagnostics/
 │   └── utils/
 ├── tests/unit/
@@ -323,10 +375,20 @@ The following components are implemented and unit-tested
 - full Stein loss when the proxy is SPD
 - descriptive variance-versus-correlation localization diagnostics
 - a fixed-seed proxy-robustness demonstration
+- chronological VALIDATION / SCREEN / CONFIRM splits with a code-enforced CONFIRM lock
+- rolling $m=250$ windows and 21-day refit scheduling
+- a train-only scaler contract that rejects full-sample leakage
+- Diebold-Mariano tests with Bartlett / Newey-West HAC standard errors
+- loss-differential diagnostics (cumulative sum, ACF, $\kappa$, $T_{\mathrm{eff}}$)
+- Clark-West for explicitly nested scalar squared-error comparisons only
+- a fixed-seed demonstration that a naive $t$-test over-rejects under serial correlation
+- joint Politis–Romano stationary bootstrap with block length $\max(2,\lfloor T^{1/3}\rfloor)$
+- Hansen (2005) SPA with consistent, lower, and upper p-values
+- Hansen–Lunde–Nason (2011) MCS for the range and max procedures
 
 A five-stock panel on 13 February 2009 has been constructed on the single-exchange path. The same day remains available on the NBBO path. The Epps diagnostic has been run on the identity-corrected single-exchange panel. Block 1 measurement work is closed. Realized kernels are not implemented.
 
-Forecasting models, the leak-proof temporal protocol, confirmatory inference, and portfolio evaluation remain planned work.
+Forecasting models, Giacomini-White tests, Mincer-Zarnowitz diagnostics, and portfolio evaluation remain planned work. Protocol decisions currently live in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). Final `PREREGISTRATION.md` is written once, after the graph-neural specification and empirical dataset are frozen, and is never edited.
 
 See [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md) for the exact implementation checkpoint and test history.
 
@@ -336,7 +398,7 @@ See [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md) for the exact implementatio
 
 The benchmark is governed by the following rules
 
-- preserve chronological training, validation, and confirmation ordering
+- preserve chronological training, validation, screening, and confirmation ordering
 - fit preprocessing and scaling parameters only on information available at the time of estimation
 - exclude future observations from feature construction
 - apply comparable tuning budgets and re-estimation schedules across model classes
@@ -347,6 +409,8 @@ The benchmark is governed by the following rules
 - fix evaluation proxies and losses before confirmation
 - base confirmatory claims on the pre-specified inferential procedures rather than on rankings of average loss alone
 
+Simulation is required to validate estimators, losses, and inference against known truth before relying on market data. Simulation never substitutes for the project's final empirical finding.
+
 ---
 
 ## References
@@ -356,10 +420,14 @@ The benchmark is governed by the following rules
 - Barndorff-Nielsen, O. E., Hansen, P. R., Lunde, A., & Shephard, N. (2009). *Realised kernels in practice: trades and quotes.* The Econometrics Journal, 12(3), C1–C32.
 - Barndorff-Nielsen, O. E., Hansen, P. R., Lunde, A., & Shephard, N. (2011). *Multivariate realised kernels: consistent positive semi-definite estimators of the covariation of equity prices with noise and non-synchronous trading.* Journal of Econometrics, 162(2), 149–169.
 - Diebold, F. X., & Mariano, R. S. (1995). *Comparing Predictive Accuracy.* Journal of Business & Economic Statistics.
+- Hansen, P. R. (2005). *A Test for Superior Predictive Ability.* Journal of Business & Economic Statistics.
+- Hansen, P. R., Lunde, A., & Nason, J. M. (2011). *The Model Confidence Set.* Econometrica.
+- Newey, W. K., & West, K. D. (1987). *A Simple, Positive Semi-Definite, Heteroskedasticity and Autocorrelation Consistent Covariance Matrix.* Econometrica.
+- Newey, W. K., & West, K. D. (1994). *Automatic Lag Selection in Covariance Matrix Estimation.* The Review of Economic Studies.
+- Clark, T. E., & West, K. D. (2007). *Approximately Normal Tests for Equal Predictive Accuracy in Nested Models.* Journal of Econometrics.
 - Engle, R. F., & Colacito, R. (2006). *Testing and Valuing Dynamic Correlations for Asset Allocation.* Journal of Business & Economic Statistics.
 - Engle, R. F., Ledoit, O., & Wolf, M. (2019). *Large Dynamic Covariance Matrices.* Journal of Business & Economic Statistics.
 - Giacomini, R., & White, H. (2006). *Tests of Conditional Predictive Ability.* Econometrica.
-- Hansen, P. R., Lunde, A., & Nason, J. M. (2011). *The Model Confidence Set.* Econometrica.
 - Laurent, S., Rombouts, J. V. K., & Violante, F. (2013). *On Loss Functions and Ranking Forecasting Performances of Multivariate Volatility Models.* Journal of Applied Econometrics.
 - Patton, A. J. (2011). *Volatility Forecast Comparison Using Imperfect Volatility Proxies.* Journal of Econometrics.
 

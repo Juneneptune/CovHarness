@@ -50,7 +50,7 @@ class AnalyticExpectedLosses:
 
 @dataclass(frozen=True)
 class RobustnessMonteCarloResult:
-    """Fixed-seed expected-loss ranking and single-draw flip rates."""
+    """Fixed-seed expected-loss ranking and single-draw H_B win rates."""
 
     n_draws: int
     seed: int
@@ -62,10 +62,10 @@ class RobustnessMonteCarloResult:
     mean_full_stein_median: float
     mean_unsquared_frobenius_true: float
     mean_unsquared_frobenius_median: float
-    flip_rate_squared_frobenius: float
-    flip_rate_reduced_qlike: float
-    flip_rate_full_stein: float
-    flip_rate_unsquared_frobenius: float
+    single_draw_hb_win_rate_squared_frobenius: float
+    single_draw_hb_win_rate_reduced_qlike: float
+    single_draw_hb_win_rate_full_stein: float
+    single_draw_hb_win_rate_unsquared_frobenius: float
 
 
 def true_forecast(sigma: NDArray[np.floating] = TRUE_SIGMA) -> NDArray[np.floating]:
@@ -132,9 +132,11 @@ def monte_carlo_proxy_ranking(
     seed: int = ROBUSTNESS_SEED,
     sigma: NDArray[np.floating] = TRUE_SIGMA,
 ) -> RobustnessMonteCarloResult:
-    """Fixed-seed Monte Carlo of expected ranking and single-draw flip rates.
+    """Fixed-seed Monte Carlo of expected ranking and single-draw H_B win rates.
 
-    A flip is a draw where the inferior forecast receives the smaller loss.
+    A single-draw H_B win is a noisy proxy realization on which the inferior
+    forecast receives the smaller loss. Proxy robustness concerns expected
+    loss rankings, not pointwise rankings on every draw.
     Robust losses preserve expected ranking. Unsquared Frobenius need not.
     For this scale family the per-draw ranking of squared and unsquared
     Frobenius coincides, while their expected rankings differ.
@@ -162,7 +164,9 @@ def monte_carlo_proxy_ranking(
         uns_true[i] = unsquared_frobenius_loss(proxy, h_true)
         uns_med[i] = unsquared_frobenius_loss(proxy, h_median)
 
-    def flip_rate(loss_true: NDArray[np.floating], loss_med: NDArray[np.floating]) -> float:
+    def single_draw_hb_win_rate(
+        loss_true: NDArray[np.floating], loss_med: NDArray[np.floating]
+    ) -> float:
         return float(np.mean(loss_true > loss_med))
 
     return RobustnessMonteCarloResult(
@@ -176,10 +180,10 @@ def monte_carlo_proxy_ranking(
         mean_full_stein_median=float(stein_med.mean()),
         mean_unsquared_frobenius_true=float(uns_true.mean()),
         mean_unsquared_frobenius_median=float(uns_med.mean()),
-        flip_rate_squared_frobenius=flip_rate(sq_true, sq_med),
-        flip_rate_reduced_qlike=flip_rate(q_true, q_med),
-        flip_rate_full_stein=flip_rate(stein_true, stein_med),
-        flip_rate_unsquared_frobenius=flip_rate(uns_true, uns_med),
+        single_draw_hb_win_rate_squared_frobenius=single_draw_hb_win_rate(sq_true, sq_med),
+        single_draw_hb_win_rate_reduced_qlike=single_draw_hb_win_rate(q_true, q_med),
+        single_draw_hb_win_rate_full_stein=single_draw_hb_win_rate(stein_true, stein_med),
+        single_draw_hb_win_rate_unsquared_frobenius=single_draw_hb_win_rate(uns_true, uns_med),
     )
 
 
