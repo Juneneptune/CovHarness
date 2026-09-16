@@ -1,0 +1,3806 @@
+{
+  "probe_utc": "2026-09-14T23:05:07Z",
+  "operation": "metadata_and_bounded_permission_probe",
+  "credentials_recorded": false,
+  "connection": {
+    "success": true,
+    "wrds_username": "lim316",
+    "database": "wrds",
+    "method": "wrds.Connection() using the repository's existing WRDS postgres authentication; username taken from current_user only"
+  },
+  "libraries": [
+    {
+      "schema": "contrib_liquidity_taq",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "contrib_liquidity_taq_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "crsp_a_ccm",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "crsp_a_ccm_old",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "crsp_a_indexes",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_a_indexes_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_a_indexes_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_a_stock",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "crsp_a_stock10",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_a_stock62",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_a_stock62_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_a_stock62_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_a_stock_new",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "crsp_a_stock_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_a_treasuries",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_a_treasuries_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_a_ziman",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_a_ziman_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_ccm",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_ccm_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_indexes",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_indexes_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_indexes_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_stock",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_stock62",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_stock62_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_stock62_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_stock_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_stock_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_treasuries",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_treasuries_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_ziman",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_m_ziman_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_ccm",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_ccm_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_indexes",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_indexes_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_indexes_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_indexhist",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "crsp_q_indexhist_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_mi_hist",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_mi_hist_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_mutualfunds",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "crsp_q_mutualfunds_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_stock",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_stock62",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_stock62_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_stock62_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_stock_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_stock_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_treasuries",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_treasuries_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_ziman",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crsp_q_ziman_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crspa",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "crspm",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "crspq",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "crspsamp",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "crspsamp_all",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "crspsamp_all_new",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "crspsamp_all_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "crspsamp_mf",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "taq",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "taq_common",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "taq_common_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2003",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2004",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2005",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2006",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2007",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2008",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2009",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2010",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2011",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2011_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2012",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2013",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2014",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2015",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2016",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2017",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2018",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2019",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2020",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2021",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2022",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2023",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2023_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2024",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2025",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2026",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2026_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqm_2026_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "taqmsamp",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "taqmsamp_all",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "taqmsec",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "taqsamp",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "taqsamp_all",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "taqsamp_all_new",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_bond",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_bond_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_comp_bdx",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_comp_bdx_old",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_factset",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_factset_old",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_ibes",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_ibes_old",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_optionm",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_optionm_old",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_true_but_not_in_wrds_list_libraries"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_taq",
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "status": "visible_in_catalog_and_wrds_library_list"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_taqm",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    },
+    {
+      "schema": "wrdsapps_link_crsp_taqm_old",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "status": "visible_in_catalog_usage_denied"
+    }
+  ],
+  "quote_sources": [
+    {
+      "library": "taqmsamp",
+      "table_pattern": "cqm_YYYYMMDD",
+      "provider_role_if_documented": "sample_or_training_by_schema_name",
+      "table_type_summary": {
+        "VIEW": 58
+      },
+      "n_tables_in_information_schema": 58,
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "earliest_date": "2009-02-13",
+      "latest_date": "2009-02-13",
+      "distinct_date_table_count": 1,
+      "documented_missing_trading_dates": [],
+      "related_non_cqm_date_tables_sample": [
+        "arca_idf_x100_20211004",
+        "arca_idf_x100_20211005",
+        "arca_idf_x101_20211004",
+        "arca_idf_x101_20211005",
+        "arca_idf_x102_20211004",
+        "arca_idf_x102_20211005",
+        "arca_idf_x103_20211004",
+        "arca_idf_x103_20211005",
+        "arca_idf_x104_20211004",
+        "arca_idf_x104_20211005",
+        "arca_idf_x105_20211004",
+        "arca_idf_x105_20211005"
+      ],
+      "permission_checks": [
+        {
+          "date_or_table": "taqmsamp.cqm_20090213",
+          "query_kind": "constant_only",
+          "success": true,
+          "error": null,
+          "has_table_privilege_select": true,
+          "constant_result": 1,
+          "n_rows_returned": 1
+        }
+      ]
+    },
+    {
+      "library": "taqmsamp_all",
+      "table_pattern": "cqm_YYYYMMDD",
+      "provider_role_if_documented": "sample_or_training_by_schema_name",
+      "table_type_summary": {
+        "BASE TABLE": 58
+      },
+      "n_tables_in_information_schema": 58,
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": true,
+      "earliest_date": "2009-02-13",
+      "latest_date": "2009-02-13",
+      "distinct_date_table_count": 1,
+      "documented_missing_trading_dates": [],
+      "related_non_cqm_date_tables_sample": [
+        "arca_idf_x100_20211004",
+        "arca_idf_x100_20211005",
+        "arca_idf_x101_20211004",
+        "arca_idf_x101_20211005",
+        "arca_idf_x102_20211004",
+        "arca_idf_x102_20211005",
+        "arca_idf_x103_20211004",
+        "arca_idf_x103_20211005",
+        "arca_idf_x104_20211004",
+        "arca_idf_x104_20211005",
+        "arca_idf_x105_20211004",
+        "arca_idf_x105_20211005"
+      ],
+      "permission_checks": [
+        {
+          "date_or_table": "taqmsamp_all.cqm_20090213",
+          "query_kind": "constant_only",
+          "success": true,
+          "error": null,
+          "has_table_privilege_select": true,
+          "constant_result": 1,
+          "n_rows_returned": 1
+        }
+      ]
+    },
+    {
+      "library": "taqmsec",
+      "table_pattern": "cqm_YYYYMMDD",
+      "provider_role_if_documented": "Appears to be the Daily TAQ millisecond product by schema name (taqmsec; information_schema table_type=VIEW). Not in wrds.list_libraries() for this account.",
+      "table_type_summary": {
+        "VIEW": 37498
+      },
+      "n_tables_in_information_schema": 37498,
+      "catalog_visible": true,
+      "has_schema_usage": true,
+      "in_wrds_list_libraries": false,
+      "wrds_list_tables_error": "You do not have permission to access the taqmsec library",
+      "earliest_date": "2003-09-10",
+      "latest_date": "2026-08-19",
+      "distinct_date_table_count": 5772,
+      "documented_missing_trading_dates": [
+        {
+          "after_table_date": "2004-01-16",
+          "before_table_date": "2004-01-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-02-13",
+          "before_table_date": "2004-02-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-04-08",
+          "before_table_date": "2004-04-12",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-05-28",
+          "before_table_date": "2004-06-01",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-06-10",
+          "before_table_date": "2004-06-14",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-07-02",
+          "before_table_date": "2004-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-09-03",
+          "before_table_date": "2004-09-07",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-12-23",
+          "before_table_date": "2004-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-01-14",
+          "before_table_date": "2005-01-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-02-18",
+          "before_table_date": "2005-02-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-03-24",
+          "before_table_date": "2005-03-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-05-27",
+          "before_table_date": "2005-05-31",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-07-01",
+          "before_table_date": "2005-07-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-09-02",
+          "before_table_date": "2005-09-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-12-23",
+          "before_table_date": "2005-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-12-30",
+          "before_table_date": "2006-01-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-01-13",
+          "before_table_date": "2006-01-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-02-17",
+          "before_table_date": "2006-02-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-04-13",
+          "before_table_date": "2006-04-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-05-26",
+          "before_table_date": "2006-05-30",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-09-01",
+          "before_table_date": "2006-09-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-12-22",
+          "before_table_date": "2006-12-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-12-29",
+          "before_table_date": "2007-01-03",
+          "calendar_days_between": 5,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2007-01-12",
+          "before_table_date": "2007-01-16",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2007-02-16",
+          "before_table_date": "2007-02-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2007-04-05",
+          "before_table_date": "2007-04-09",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2007-05-25",
+          "before_table_date": "2007-05-29",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2007-08-31",
+          "before_table_date": "2007-09-04",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2008-01-18",
+          "before_table_date": "2008-01-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2008-02-15",
+          "before_table_date": "2008-02-19",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2008-03-20",
+          "before_table_date": "2008-03-24",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2008-05-23",
+          "before_table_date": "2008-05-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2008-07-03",
+          "before_table_date": "2008-07-07",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2008-08-29",
+          "before_table_date": "2008-09-02",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-01-16",
+          "before_table_date": "2009-01-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-02-13",
+          "before_table_date": "2009-02-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-04-09",
+          "before_table_date": "2009-04-13",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-05-22",
+          "before_table_date": "2009-05-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-07-02",
+          "before_table_date": "2009-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-09-04",
+          "before_table_date": "2009-09-08",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-12-24",
+          "before_table_date": "2009-12-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-12-31",
+          "before_table_date": "2010-01-04",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-01-15",
+          "before_table_date": "2010-01-19",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-02-12",
+          "before_table_date": "2010-02-16",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-04-01",
+          "before_table_date": "2010-04-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-05-28",
+          "before_table_date": "2010-06-01",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-07-02",
+          "before_table_date": "2010-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-09-03",
+          "before_table_date": "2010-09-07",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-12-23",
+          "before_table_date": "2010-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-01-14",
+          "before_table_date": "2011-01-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-02-18",
+          "before_table_date": "2011-02-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-04-21",
+          "before_table_date": "2011-04-25",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-05-27",
+          "before_table_date": "2011-05-31",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-07-01",
+          "before_table_date": "2011-07-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-09-02",
+          "before_table_date": "2011-09-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-12-23",
+          "before_table_date": "2011-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-12-30",
+          "before_table_date": "2012-01-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2012-01-13",
+          "before_table_date": "2012-01-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2012-02-17",
+          "before_table_date": "2012-02-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2012-04-05",
+          "before_table_date": "2012-04-09",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2012-05-25",
+          "before_table_date": "2012-05-29",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2012-08-31",
+          "before_table_date": "2012-09-04",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2012-10-26",
+          "before_table_date": "2012-10-31",
+          "calendar_days_between": 5,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2013-01-18",
+          "before_table_date": "2013-01-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2013-02-15",
+          "before_table_date": "2013-02-19",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2013-03-28",
+          "before_table_date": "2013-04-01",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2013-05-24",
+          "before_table_date": "2013-05-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2013-08-30",
+          "before_table_date": "2013-09-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2014-01-17",
+          "before_table_date": "2014-01-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2014-02-14",
+          "before_table_date": "2014-02-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2014-04-17",
+          "before_table_date": "2014-04-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2014-05-23",
+          "before_table_date": "2014-05-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2014-07-03",
+          "before_table_date": "2014-07-07",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2014-08-29",
+          "before_table_date": "2014-09-02",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-01-16",
+          "before_table_date": "2015-01-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-02-13",
+          "before_table_date": "2015-02-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-04-02",
+          "before_table_date": "2015-04-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-05-22",
+          "before_table_date": "2015-05-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-07-02",
+          "before_table_date": "2015-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-09-04",
+          "before_table_date": "2015-09-08",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-12-24",
+          "before_table_date": "2015-12-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-12-31",
+          "before_table_date": "2016-01-04",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-01-15",
+          "before_table_date": "2016-01-19",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-02-12",
+          "before_table_date": "2016-02-16",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-03-24",
+          "before_table_date": "2016-03-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-05-27",
+          "before_table_date": "2016-05-31",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-07-01",
+          "before_table_date": "2016-07-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-09-02",
+          "before_table_date": "2016-09-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-12-23",
+          "before_table_date": "2016-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-12-30",
+          "before_table_date": "2017-01-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-01-13",
+          "before_table_date": "2017-01-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-02-17",
+          "before_table_date": "2017-02-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-04-13",
+          "before_table_date": "2017-04-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-05-26",
+          "before_table_date": "2017-05-30",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-09-01",
+          "before_table_date": "2017-09-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-12-22",
+          "before_table_date": "2017-12-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-12-29",
+          "before_table_date": "2018-01-02",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2018-01-12",
+          "before_table_date": "2018-01-16",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2018-02-16",
+          "before_table_date": "2018-02-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2018-03-29",
+          "before_table_date": "2018-04-02",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2018-05-25",
+          "before_table_date": "2018-05-29",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2018-08-31",
+          "before_table_date": "2018-09-04",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2019-01-18",
+          "before_table_date": "2019-01-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2019-02-15",
+          "before_table_date": "2019-02-19",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2019-04-18",
+          "before_table_date": "2019-04-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2019-05-24",
+          "before_table_date": "2019-05-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2019-08-30",
+          "before_table_date": "2019-09-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-01-17",
+          "before_table_date": "2020-01-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-02-14",
+          "before_table_date": "2020-02-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-04-09",
+          "before_table_date": "2020-04-13",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-05-22",
+          "before_table_date": "2020-05-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-07-02",
+          "before_table_date": "2020-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-09-04",
+          "before_table_date": "2020-09-08",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-12-24",
+          "before_table_date": "2020-12-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-12-31",
+          "before_table_date": "2021-01-04",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-01-15",
+          "before_table_date": "2021-01-19",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-02-12",
+          "before_table_date": "2021-02-16",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-04-01",
+          "before_table_date": "2021-04-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-05-28",
+          "before_table_date": "2021-06-01",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-07-02",
+          "before_table_date": "2021-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-09-03",
+          "before_table_date": "2021-09-07",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-12-23",
+          "before_table_date": "2021-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-01-14",
+          "before_table_date": "2022-01-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-02-18",
+          "before_table_date": "2022-02-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-04-14",
+          "before_table_date": "2022-04-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-05-27",
+          "before_table_date": "2022-05-31",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-06-17",
+          "before_table_date": "2022-06-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-07-01",
+          "before_table_date": "2022-07-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-09-02",
+          "before_table_date": "2022-09-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-12-23",
+          "before_table_date": "2022-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-12-30",
+          "before_table_date": "2023-01-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-01-13",
+          "before_table_date": "2023-01-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-02-17",
+          "before_table_date": "2023-02-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-04-06",
+          "before_table_date": "2023-04-10",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-05-26",
+          "before_table_date": "2023-05-30",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-06-16",
+          "before_table_date": "2023-06-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-09-01",
+          "before_table_date": "2023-09-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-12-22",
+          "before_table_date": "2023-12-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-12-29",
+          "before_table_date": "2024-01-02",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2024-01-12",
+          "before_table_date": "2024-01-16",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2024-02-16",
+          "before_table_date": "2024-02-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2024-03-28",
+          "before_table_date": "2024-04-01",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2024-05-24",
+          "before_table_date": "2024-05-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2024-08-30",
+          "before_table_date": "2024-09-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2025-01-17",
+          "before_table_date": "2025-01-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2025-02-14",
+          "before_table_date": "2025-02-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2025-04-17",
+          "before_table_date": "2025-04-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2025-05-23",
+          "before_table_date": "2025-05-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2025-07-03",
+          "before_table_date": "2025-07-07",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2025-08-29",
+          "before_table_date": "2025-09-02",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-01-16",
+          "before_table_date": "2026-01-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-02-13",
+          "before_table_date": "2026-02-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-04-02",
+          "before_table_date": "2026-04-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-05-22",
+          "before_table_date": "2026-05-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-06-18",
+          "before_table_date": "2026-06-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-07-02",
+          "before_table_date": "2026-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        }
+      ],
+      "permission_checks": [
+        {
+          "date_or_table": "taqmsec.cqm_20030910",
+          "query_kind": "constant_only",
+          "success": false,
+          "error": "(psycopg2.errors.InsufficientPrivilege) permission denied for schema taqm_2003\n\n[SQL: SELECT 1 FROM \"taqmsec\".\"cqm_20030910\" LIMIT 1]\n(Background on this error at: https://sqlalche.me/e/20/f405)",
+          "has_table_privilege_select": true,
+          "probe_slot": "early"
+        },
+        {
+          "date_or_table": "taqmsec.cqm_20150227",
+          "query_kind": "constant_only",
+          "success": false,
+          "error": "(psycopg2.errors.InsufficientPrivilege) permission denied for schema taqm_2015\n\n[SQL: SELECT 1 FROM \"taqmsec\".\"cqm_20150227\" LIMIT 1]\n(Background on this error at: https://sqlalche.me/e/20/f405)",
+          "has_table_privilege_select": true,
+          "probe_slot": "interior"
+        },
+        {
+          "date_or_table": "taqmsec.cqm_20260819",
+          "query_kind": "constant_only",
+          "success": false,
+          "error": "(psycopg2.errors.InsufficientPrivilege) permission denied for schema taqm_2026\n\n[SQL: SELECT 1 FROM \"taqmsec\".\"cqm_20260819\" LIMIT 1]\n(Background on this error at: https://sqlalche.me/e/20/f405)",
+          "has_table_privilege_select": true,
+          "probe_slot": "recent"
+        }
+      ]
+    },
+    {
+      "library": "taqm_YYYY",
+      "table_pattern": "taqm_YYYY.cqm_YYYYMMDD",
+      "provider_role_if_documented": "Appears to be year-partitioned Daily TAQ millisecond base tables by schema name (taqm_YYYY; information_schema table_type=BASE TABLE). pg_namespace has_schema_privilege USAGE=false for this account.",
+      "catalog_visible": true,
+      "has_schema_usage": false,
+      "in_wrds_list_libraries": false,
+      "year_schemas": [
+        {
+          "library": "taqm_2003",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 79,
+          "earliest_date": "2003-09-10",
+          "latest_date": "2003-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 401
+          }
+        },
+        {
+          "library": "taqm_2004",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 252,
+          "earliest_date": "2004-01-02",
+          "latest_date": "2004-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 1266
+          }
+        },
+        {
+          "library": "taqm_2005",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 252,
+          "earliest_date": "2005-01-03",
+          "latest_date": "2005-12-30",
+          "table_type_summary": {
+            "BASE TABLE": 1266
+          }
+        },
+        {
+          "library": "taqm_2006",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 251,
+          "earliest_date": "2006-01-03",
+          "latest_date": "2006-12-29",
+          "table_type_summary": {
+            "BASE TABLE": 1261
+          }
+        },
+        {
+          "library": "taqm_2007",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 251,
+          "earliest_date": "2007-01-03",
+          "latest_date": "2007-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 1261
+          }
+        },
+        {
+          "library": "taqm_2008",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 253,
+          "earliest_date": "2008-01-02",
+          "latest_date": "2008-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 1271
+          }
+        },
+        {
+          "library": "taqm_2009",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 252,
+          "earliest_date": "2009-01-02",
+          "latest_date": "2009-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 1341
+          }
+        },
+        {
+          "library": "taqm_2010",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 252,
+          "earliest_date": "2010-01-04",
+          "latest_date": "2010-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 1381
+          }
+        },
+        {
+          "library": "taqm_2011",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 252,
+          "earliest_date": "2011-01-03",
+          "latest_date": "2011-12-30",
+          "table_type_summary": {
+            "BASE TABLE": 1519
+          }
+        },
+        {
+          "library": "taqm_2012",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 250,
+          "earliest_date": "2012-01-03",
+          "latest_date": "2012-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 1510
+          }
+        },
+        {
+          "library": "taqm_2013",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 252,
+          "earliest_date": "2013-01-02",
+          "latest_date": "2013-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 1520
+          }
+        },
+        {
+          "library": "taqm_2014",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 252,
+          "earliest_date": "2014-01-02",
+          "latest_date": "2014-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 1520
+          }
+        },
+        {
+          "library": "taqm_2015",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 252,
+          "earliest_date": "2015-01-02",
+          "latest_date": "2015-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 1519
+          }
+        },
+        {
+          "library": "taqm_2016",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 252,
+          "earliest_date": "2016-01-04",
+          "latest_date": "2016-12-30",
+          "table_type_summary": {
+            "BASE TABLE": 1519
+          }
+        },
+        {
+          "library": "taqm_2017",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 251,
+          "earliest_date": "2017-01-03",
+          "latest_date": "2017-12-29",
+          "table_type_summary": {
+            "BASE TABLE": 1513
+          }
+        },
+        {
+          "library": "taqm_2018",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 251,
+          "earliest_date": "2018-01-02",
+          "latest_date": "2018-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 2015
+          }
+        },
+        {
+          "library": "taqm_2019",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 252,
+          "earliest_date": "2019-01-02",
+          "latest_date": "2019-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 2025
+          }
+        },
+        {
+          "library": "taqm_2020",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 253,
+          "earliest_date": "2020-01-02",
+          "latest_date": "2020-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 2033
+          }
+        },
+        {
+          "library": "taqm_2021",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 252,
+          "earliest_date": "2021-01-04",
+          "latest_date": "2021-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 2025
+          }
+        },
+        {
+          "library": "taqm_2022",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 251,
+          "earliest_date": "2022-01-03",
+          "latest_date": "2022-12-30",
+          "table_type_summary": {
+            "BASE TABLE": 2017
+          }
+        },
+        {
+          "library": "taqm_2023",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 250,
+          "earliest_date": "2023-01-03",
+          "latest_date": "2023-12-29",
+          "table_type_summary": {
+            "BASE TABLE": 2009
+          }
+        },
+        {
+          "library": "taqm_2024",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 252,
+          "earliest_date": "2024-01-02",
+          "latest_date": "2024-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 2025
+          }
+        },
+        {
+          "library": "taqm_2025",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 250,
+          "earliest_date": "2025-01-02",
+          "latest_date": "2025-12-31",
+          "table_type_summary": {
+            "BASE TABLE": 2009
+          }
+        },
+        {
+          "library": "taqm_2026",
+          "catalog_visible": true,
+          "has_schema_usage": false,
+          "in_wrds_list_libraries": false,
+          "n_cqm_date_tables": 174,
+          "earliest_date": "2026-01-02",
+          "latest_date": "2026-09-11",
+          "table_type_summary": {
+            "BASE TABLE": 1400
+          }
+        }
+      ],
+      "earliest_date": "2003-09-10",
+      "latest_date": "2026-09-11",
+      "distinct_date_table_count": 5788,
+      "documented_missing_trading_dates": [
+        {
+          "after_table_date": "2004-01-16",
+          "before_table_date": "2004-01-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-02-13",
+          "before_table_date": "2004-02-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-04-08",
+          "before_table_date": "2004-04-12",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-05-28",
+          "before_table_date": "2004-06-01",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-06-10",
+          "before_table_date": "2004-06-14",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-07-02",
+          "before_table_date": "2004-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-09-03",
+          "before_table_date": "2004-09-07",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2004-12-23",
+          "before_table_date": "2004-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-01-14",
+          "before_table_date": "2005-01-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-02-18",
+          "before_table_date": "2005-02-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-03-24",
+          "before_table_date": "2005-03-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-05-27",
+          "before_table_date": "2005-05-31",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-07-01",
+          "before_table_date": "2005-07-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-09-02",
+          "before_table_date": "2005-09-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-12-23",
+          "before_table_date": "2005-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2005-12-30",
+          "before_table_date": "2006-01-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-01-13",
+          "before_table_date": "2006-01-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-02-17",
+          "before_table_date": "2006-02-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-04-13",
+          "before_table_date": "2006-04-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-05-26",
+          "before_table_date": "2006-05-30",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-09-01",
+          "before_table_date": "2006-09-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-12-22",
+          "before_table_date": "2006-12-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2006-12-29",
+          "before_table_date": "2007-01-03",
+          "calendar_days_between": 5,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2007-01-12",
+          "before_table_date": "2007-01-16",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2007-02-16",
+          "before_table_date": "2007-02-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2007-04-05",
+          "before_table_date": "2007-04-09",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2007-05-25",
+          "before_table_date": "2007-05-29",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2007-08-31",
+          "before_table_date": "2007-09-04",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2008-01-18",
+          "before_table_date": "2008-01-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2008-02-15",
+          "before_table_date": "2008-02-19",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2008-03-20",
+          "before_table_date": "2008-03-24",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2008-05-23",
+          "before_table_date": "2008-05-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2008-07-03",
+          "before_table_date": "2008-07-07",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2008-08-29",
+          "before_table_date": "2008-09-02",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-01-16",
+          "before_table_date": "2009-01-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-02-13",
+          "before_table_date": "2009-02-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-04-09",
+          "before_table_date": "2009-04-13",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-05-22",
+          "before_table_date": "2009-05-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-07-02",
+          "before_table_date": "2009-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-09-04",
+          "before_table_date": "2009-09-08",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-12-24",
+          "before_table_date": "2009-12-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2009-12-31",
+          "before_table_date": "2010-01-04",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-01-15",
+          "before_table_date": "2010-01-19",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-02-12",
+          "before_table_date": "2010-02-16",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-04-01",
+          "before_table_date": "2010-04-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-05-28",
+          "before_table_date": "2010-06-01",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-07-02",
+          "before_table_date": "2010-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-09-03",
+          "before_table_date": "2010-09-07",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2010-12-23",
+          "before_table_date": "2010-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-01-14",
+          "before_table_date": "2011-01-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-02-18",
+          "before_table_date": "2011-02-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-04-21",
+          "before_table_date": "2011-04-25",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-05-27",
+          "before_table_date": "2011-05-31",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-07-01",
+          "before_table_date": "2011-07-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-09-02",
+          "before_table_date": "2011-09-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-12-23",
+          "before_table_date": "2011-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2011-12-30",
+          "before_table_date": "2012-01-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2012-01-13",
+          "before_table_date": "2012-01-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2012-02-17",
+          "before_table_date": "2012-02-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2012-04-05",
+          "before_table_date": "2012-04-09",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2012-05-25",
+          "before_table_date": "2012-05-29",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2012-08-31",
+          "before_table_date": "2012-09-04",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2012-10-26",
+          "before_table_date": "2012-10-31",
+          "calendar_days_between": 5,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2013-01-18",
+          "before_table_date": "2013-01-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2013-02-15",
+          "before_table_date": "2013-02-19",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2013-03-28",
+          "before_table_date": "2013-04-01",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2013-05-24",
+          "before_table_date": "2013-05-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2013-08-30",
+          "before_table_date": "2013-09-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2014-01-17",
+          "before_table_date": "2014-01-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2014-02-14",
+          "before_table_date": "2014-02-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2014-04-17",
+          "before_table_date": "2014-04-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2014-05-23",
+          "before_table_date": "2014-05-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2014-07-03",
+          "before_table_date": "2014-07-07",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2014-08-29",
+          "before_table_date": "2014-09-02",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-01-16",
+          "before_table_date": "2015-01-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-02-13",
+          "before_table_date": "2015-02-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-04-02",
+          "before_table_date": "2015-04-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-05-22",
+          "before_table_date": "2015-05-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-07-02",
+          "before_table_date": "2015-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-09-04",
+          "before_table_date": "2015-09-08",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-12-24",
+          "before_table_date": "2015-12-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2015-12-31",
+          "before_table_date": "2016-01-04",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-01-15",
+          "before_table_date": "2016-01-19",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-02-12",
+          "before_table_date": "2016-02-16",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-03-24",
+          "before_table_date": "2016-03-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-05-27",
+          "before_table_date": "2016-05-31",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-07-01",
+          "before_table_date": "2016-07-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-09-02",
+          "before_table_date": "2016-09-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-12-23",
+          "before_table_date": "2016-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2016-12-30",
+          "before_table_date": "2017-01-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-01-13",
+          "before_table_date": "2017-01-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-02-17",
+          "before_table_date": "2017-02-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-04-13",
+          "before_table_date": "2017-04-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-05-26",
+          "before_table_date": "2017-05-30",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-09-01",
+          "before_table_date": "2017-09-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-12-22",
+          "before_table_date": "2017-12-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2017-12-29",
+          "before_table_date": "2018-01-02",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2018-01-12",
+          "before_table_date": "2018-01-16",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2018-02-16",
+          "before_table_date": "2018-02-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2018-03-29",
+          "before_table_date": "2018-04-02",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2018-05-25",
+          "before_table_date": "2018-05-29",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2018-08-31",
+          "before_table_date": "2018-09-04",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2019-01-18",
+          "before_table_date": "2019-01-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2019-02-15",
+          "before_table_date": "2019-02-19",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2019-04-18",
+          "before_table_date": "2019-04-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2019-05-24",
+          "before_table_date": "2019-05-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2019-08-30",
+          "before_table_date": "2019-09-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-01-17",
+          "before_table_date": "2020-01-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-02-14",
+          "before_table_date": "2020-02-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-04-09",
+          "before_table_date": "2020-04-13",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-05-22",
+          "before_table_date": "2020-05-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-07-02",
+          "before_table_date": "2020-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-09-04",
+          "before_table_date": "2020-09-08",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-12-24",
+          "before_table_date": "2020-12-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2020-12-31",
+          "before_table_date": "2021-01-04",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-01-15",
+          "before_table_date": "2021-01-19",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-02-12",
+          "before_table_date": "2021-02-16",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-04-01",
+          "before_table_date": "2021-04-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-05-28",
+          "before_table_date": "2021-06-01",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-07-02",
+          "before_table_date": "2021-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-09-03",
+          "before_table_date": "2021-09-07",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2021-12-23",
+          "before_table_date": "2021-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-01-14",
+          "before_table_date": "2022-01-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-02-18",
+          "before_table_date": "2022-02-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-04-14",
+          "before_table_date": "2022-04-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-05-27",
+          "before_table_date": "2022-05-31",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-06-17",
+          "before_table_date": "2022-06-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-07-01",
+          "before_table_date": "2022-07-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-09-02",
+          "before_table_date": "2022-09-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-12-23",
+          "before_table_date": "2022-12-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2022-12-30",
+          "before_table_date": "2023-01-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-01-13",
+          "before_table_date": "2023-01-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-02-17",
+          "before_table_date": "2023-02-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-04-06",
+          "before_table_date": "2023-04-10",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-05-26",
+          "before_table_date": "2023-05-30",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-06-16",
+          "before_table_date": "2023-06-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-09-01",
+          "before_table_date": "2023-09-05",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-12-22",
+          "before_table_date": "2023-12-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2023-12-29",
+          "before_table_date": "2024-01-02",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2024-01-12",
+          "before_table_date": "2024-01-16",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2024-02-16",
+          "before_table_date": "2024-02-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2024-03-28",
+          "before_table_date": "2024-04-01",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2024-05-24",
+          "before_table_date": "2024-05-28",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2024-08-30",
+          "before_table_date": "2024-09-03",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2025-01-17",
+          "before_table_date": "2025-01-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2025-02-14",
+          "before_table_date": "2025-02-18",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2025-04-17",
+          "before_table_date": "2025-04-21",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2025-05-23",
+          "before_table_date": "2025-05-27",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2025-07-03",
+          "before_table_date": "2025-07-07",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2025-08-29",
+          "before_table_date": "2025-09-02",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-01-16",
+          "before_table_date": "2026-01-20",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-02-13",
+          "before_table_date": "2026-02-17",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-04-02",
+          "before_table_date": "2026-04-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-05-22",
+          "before_table_date": "2026-05-26",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-06-18",
+          "before_table_date": "2026-06-22",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-07-02",
+          "before_table_date": "2026-07-06",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        },
+        {
+          "after_table_date": "2026-09-04",
+          "before_table_date": "2026-09-08",
+          "calendar_days_between": 4,
+          "note": "Gap between consecutive cqm_YYYYMMDD table identifiers. No NYSE trading calendar was available in the environment; holiday closures may appear here."
+        }
+      ],
+      "permission_checks": [
+        {
+          "date_or_table": "taqm_2003.cqm_20030910",
+          "query_kind": "constant_only",
+          "success": false,
+          "error": "(psycopg2.errors.InsufficientPrivilege) permission denied for schema taqm_2003\nLINE 1: SELECT 1 FROM \"taqm_2003\".\"cqm_20030910\" LIMIT 1\n                      ^\n\n[SQL: SELECT 1 FROM \"taqm_2003\".\"cqm_20030910\" LIMIT 1]\n(Background on this error at: https://sqlalche.me/e/20/f405)",
+          "has_table_privilege_select": null,
+          "has_table_privilege_select_error": "(psycopg2.errors.InsufficientPrivilege) permission denied for schema taqm_2003\n\n[SQL: SELECT has_table_privilege('taqm_2003.cqm_20030910', 'SELECT') AS ok]\n(Background on this error at: https://sqlalche.me/e/20/f405)",
+          "probe_slot": "early"
+        },
+        {
+          "date_or_table": "taqm_2015.cqm_20150311",
+          "query_kind": "constant_only",
+          "success": false,
+          "error": "(psycopg2.errors.InsufficientPrivilege) permission denied for schema taqm_2015\nLINE 1: SELECT 1 FROM \"taqm_2015\".\"cqm_20150311\" LIMIT 1\n                      ^\n\n[SQL: SELECT 1 FROM \"taqm_2015\".\"cqm_20150311\" LIMIT 1]\n(Background on this error at: https://sqlalche.me/e/20/f405)",
+          "has_table_privilege_select": null,
+          "has_table_privilege_select_error": "(psycopg2.errors.InsufficientPrivilege) permission denied for schema taqm_2015\n\n[SQL: SELECT has_table_privilege('taqm_2015.cqm_20150311', 'SELECT') AS ok]\n(Background on this error at: https://sqlalche.me/e/20/f405)",
+          "probe_slot": "interior"
+        },
+        {
+          "date_or_table": "taqm_2026.cqm_20260911",
+          "query_kind": "constant_only",
+          "success": false,
+          "error": "(psycopg2.errors.InsufficientPrivilege) permission denied for schema taqm_2026\nLINE 1: SELECT 1 FROM \"taqm_2026\".\"cqm_20260911\" LIMIT 1\n                      ^\n\n[SQL: SELECT 1 FROM \"taqm_2026\".\"cqm_20260911\" LIMIT 1]\n(Background on this error at: https://sqlalche.me/e/20/f405)",
+          "has_table_privilege_select": null,
+          "has_table_privilege_select_error": "(psycopg2.errors.InsufficientPrivilege) permission denied for schema taqm_2026\n\n[SQL: SELECT has_table_privilege('taqm_2026.cqm_20260911', 'SELECT') AS ok]\n(Background on this error at: https://sqlalche.me/e/20/f405)",
+          "probe_slot": "recent"
+        }
+      ]
+    },
+    {
+      "library": "taqsamp",
+      "table_pattern": "cq_YYYYMMDD or monthly TAQ cq_* (discovered)",
+      "provider_role_if_documented": "sample_or_training_by_schema_name",
+      "catalog_visible": true,
+      "in_wrds_list_libraries": true,
+      "n_tables_in_information_schema": 64,
+      "table_type_summary": {
+        "VIEW": 64
+      },
+      "discovered_cq_like_tables": [
+        "cq0002",
+        "cq_20080107",
+        "cq_20080108",
+        "cq_20080109",
+        "cq_20080110",
+        "cq_20080111"
+      ],
+      "earliest_date": "2008-01-07",
+      "latest_date": "2008-01-11",
+      "distinct_date_table_count": 5,
+      "documented_missing_trading_dates": [],
+      "permission_checks": [],
+      "has_schema_usage": true
+    },
+    {
+      "library": "taqsamp_all",
+      "table_pattern": "cq_YYYYMMDD or monthly TAQ cq_* (discovered)",
+      "provider_role_if_documented": "sample_or_training_by_schema_name",
+      "catalog_visible": true,
+      "in_wrds_list_libraries": true,
+      "n_tables_in_information_schema": 14,
+      "table_type_summary": {
+        "BASE TABLE": 14
+      },
+      "discovered_cq_like_tables": [
+        "cq0002",
+        "cq_20080107",
+        "cq_20080108",
+        "cq_20080109",
+        "cq_20080110",
+        "cq_20080111"
+      ],
+      "earliest_date": "2008-01-07",
+      "latest_date": "2008-01-11",
+      "distinct_date_table_count": 5,
+      "documented_missing_trading_dates": [],
+      "permission_checks": [],
+      "has_schema_usage": true
+    },
+    {
+      "library": "taq",
+      "table_pattern": "cq_YYYYMMDD or monthly TAQ cq_* (discovered)",
+      "provider_role_if_documented": "monthly_TAQ_schema_by_name_if_populated",
+      "catalog_visible": true,
+      "in_wrds_list_libraries": false,
+      "n_tables_in_information_schema": 0,
+      "table_type_summary": {},
+      "discovered_cq_like_tables": [],
+      "earliest_date": null,
+      "latest_date": null,
+      "distinct_date_table_count": 0,
+      "documented_missing_trading_dates": [],
+      "permission_checks": [],
+      "wrds_list_tables_error": "You do not have permission to access the taq library",
+      "has_schema_usage": true
+    },
+    {
+      "library": "taq_common",
+      "table_pattern": "cq_YYYYMMDD or monthly TAQ cq_* (discovered)",
+      "provider_role_if_documented": "TAQ_common_schema_by_name_if_populated",
+      "catalog_visible": true,
+      "in_wrds_list_libraries": false,
+      "n_tables_in_information_schema": 0,
+      "table_type_summary": {},
+      "discovered_cq_like_tables": [],
+      "earliest_date": null,
+      "latest_date": null,
+      "distinct_date_table_count": 0,
+      "documented_missing_trading_dates": [],
+      "permission_checks": [],
+      "has_schema_usage": true
+    }
+  ],
+  "crsp_identity_source": {
+    "library": "crsp",
+    "table": "stocknames",
+    "qualified_name": "crsp.stocknames",
+    "catalog_visible": true,
+    "in_wrds_list_libraries": true,
+    "columns": [
+      {
+        "name": "permno",
+        "data_type": "integer"
+      },
+      {
+        "name": "namedt",
+        "data_type": "date"
+      },
+      {
+        "name": "nameenddt",
+        "data_type": "date"
+      },
+      {
+        "name": "shrcd",
+        "data_type": "smallint"
+      },
+      {
+        "name": "exchcd",
+        "data_type": "smallint"
+      },
+      {
+        "name": "siccd",
+        "data_type": "integer"
+      },
+      {
+        "name": "ncusip",
+        "data_type": "character varying"
+      },
+      {
+        "name": "ticker",
+        "data_type": "character varying"
+      },
+      {
+        "name": "comnam",
+        "data_type": "character varying"
+      },
+      {
+        "name": "shrcls",
+        "data_type": "character varying"
+      },
+      {
+        "name": "permco",
+        "data_type": "integer"
+      },
+      {
+        "name": "hexcd",
+        "data_type": "smallint"
+      },
+      {
+        "name": "cusip",
+        "data_type": "character varying"
+      },
+      {
+        "name": "st_date",
+        "data_type": "date"
+      },
+      {
+        "name": "end_date",
+        "data_type": "date"
+      },
+      {
+        "name": "namedum",
+        "data_type": "double precision"
+      }
+    ],
+    "select_permission": {
+      "date_or_table": "crsp.stocknames",
+      "query_kind": "constant_only",
+      "success": true,
+      "error": null,
+      "has_table_privilege_select": true,
+      "constant_result": 1,
+      "n_rows_returned": 1
+    },
+    "date_range": {
+      "min_namedt": "1925-12-31",
+      "min_nameenddt": "1926-02-24",
+      "min_st_date": "1925-12-31",
+      "min_end_date": "1926-02-24",
+      "max_namedt": "2024-12-31",
+      "max_nameenddt": "2024-12-31",
+      "max_st_date": "2024-12-31",
+      "max_end_date": "2024-12-31"
+    }
+  },
+  "crsp_daily_return_source": {
+    "library": "crsp",
+    "table": "dsf",
+    "qualified_name": "crsp.dsf",
+    "catalog_visible": true,
+    "in_wrds_list_libraries": true,
+    "columns": [
+      {
+        "name": "cusip",
+        "data_type": "character varying"
+      },
+      {
+        "name": "permno",
+        "data_type": "integer"
+      },
+      {
+        "name": "permco",
+        "data_type": "integer"
+      },
+      {
+        "name": "issuno",
+        "data_type": "integer"
+      },
+      {
+        "name": "hexcd",
+        "data_type": "smallint"
+      },
+      {
+        "name": "hsiccd",
+        "data_type": "integer"
+      },
+      {
+        "name": "date",
+        "data_type": "date"
+      },
+      {
+        "name": "bidlo",
+        "data_type": "numeric"
+      },
+      {
+        "name": "askhi",
+        "data_type": "numeric"
+      },
+      {
+        "name": "prc",
+        "data_type": "numeric"
+      },
+      {
+        "name": "vol",
+        "data_type": "numeric"
+      },
+      {
+        "name": "ret",
+        "data_type": "numeric"
+      },
+      {
+        "name": "bid",
+        "data_type": "numeric"
+      },
+      {
+        "name": "ask",
+        "data_type": "numeric"
+      },
+      {
+        "name": "shrout",
+        "data_type": "double precision"
+      },
+      {
+        "name": "cfacpr",
+        "data_type": "double precision"
+      },
+      {
+        "name": "cfacshr",
+        "data_type": "double precision"
+      },
+      {
+        "name": "openprc",
+        "data_type": "numeric"
+      },
+      {
+        "name": "numtrd",
+        "data_type": "integer"
+      },
+      {
+        "name": "retx",
+        "data_type": "numeric"
+      }
+    ],
+    "select_permission": {
+      "date_or_table": "crsp.dsf",
+      "query_kind": "constant_only",
+      "success": true,
+      "error": null,
+      "has_table_privilege_select": true,
+      "constant_result": 1,
+      "n_rows_returned": 1
+    },
+    "date_range": {
+      "min_date": "1925-12-31",
+      "max_date": "2024-12-31"
+    }
+  },
+  "crsp_dsfhdr_if_needed": null,
+  "crsp_identity_candidates": [
+    {
+      "library": "crsp",
+      "table": "msenames",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp",
+      "table": "stocknames",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp",
+      "table": "stocknames62",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp",
+      "table": "stocknames62_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp",
+      "table": "stocknames_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp_a_stock",
+      "table": "msenames",
+      "table_type": "BASE TABLE",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp_a_stock",
+      "table": "stocknames",
+      "table_type": "BASE TABLE",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp_a_stock",
+      "table": "stocknames_v2",
+      "table_type": "BASE TABLE",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crspa",
+      "table": "msenames",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspa",
+      "table": "stocknames",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspa",
+      "table": "stocknames62",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspm",
+      "table": "msenames",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspm",
+      "table": "stocknames",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspm",
+      "table": "stocknames62",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspm",
+      "table": "stocknames62_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspm",
+      "table": "stocknames_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspq",
+      "table": "msenames",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspq",
+      "table": "stocknames",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspq",
+      "table": "stocknames62",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspq",
+      "table": "stocknames62_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspq",
+      "table": "stocknames_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspsamp",
+      "table": "stocknames_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crspsamp_all",
+      "table": "stocknames_v2",
+      "table_type": "BASE TABLE",
+      "in_wrds_list_libraries": true
+    }
+  ],
+  "crsp_return_table_candidates": [
+    {
+      "library": "crsp",
+      "table": "dsedelist",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp",
+      "table": "dsf",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp",
+      "table": "dsf62",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp",
+      "table": "dsf62_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp",
+      "table": "dsf_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp",
+      "table": "dsfhdr",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp",
+      "table": "dsfhdr62",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp_a_stock",
+      "table": "dsedelist",
+      "table_type": "BASE TABLE",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp_a_stock",
+      "table": "dsf",
+      "table_type": "BASE TABLE",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp_a_stock",
+      "table": "dsf_v2",
+      "table_type": "BASE TABLE",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crsp_a_stock",
+      "table": "dsfhdr",
+      "table_type": "BASE TABLE",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crspa",
+      "table": "dsedelist",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspa",
+      "table": "dsf",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspa",
+      "table": "dsf62",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspa",
+      "table": "dsfhdr",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspa",
+      "table": "dsfhdr62",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspm",
+      "table": "dsedelist",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspm",
+      "table": "dsf",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspm",
+      "table": "dsf62",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspm",
+      "table": "dsf62_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspm",
+      "table": "dsf_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspm",
+      "table": "dsfhdr",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspm",
+      "table": "dsfhdr62",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspq",
+      "table": "dsedelist",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspq",
+      "table": "dsf",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspq",
+      "table": "dsf62",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspq",
+      "table": "dsf62_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspq",
+      "table": "dsf_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspq",
+      "table": "dsfhdr",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspq",
+      "table": "dsfhdr62",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": false
+    },
+    {
+      "library": "crspsamp",
+      "table": "dsf_v2",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crspsamp",
+      "table": "dsftrial",
+      "table_type": "VIEW",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crspsamp_all",
+      "table": "dsf_v2",
+      "table_type": "BASE TABLE",
+      "in_wrds_list_libraries": true
+    },
+    {
+      "library": "crspsamp_all",
+      "table": "dsftrial",
+      "table_type": "BASE TABLE",
+      "in_wrds_list_libraries": true
+    }
+  ],
+  "calendar_implication": {
+    "bare_1250_source_dates_possible": true,
+    "preferred_1500_source_dates_possible": true,
+    "catalog_max_production_cqm_date_tables": 5788,
+    "select_verified_production_cqm_date_tables": 0,
+    "production_select_summary": [
+      {
+        "library": "taqmsec",
+        "all_three": false,
+        "any": false,
+        "n": 5772
+      },
+      {
+        "library": "taqm_YYYY",
+        "all_three": false,
+        "any": false,
+        "n": 5788
+      }
+    ],
+    "usable_panel_not_yet_proven": true,
+    "additional_prehistory_year_if_pit_eligibility": {
+      "rule_not_frozen": true,
+      "catalog_span_could_leave_room_if_select_existed": true,
+      "select_verified_span_could_leave_room": false,
+      "note": "252 is not inferred as the actual trading-day count of a year; it is only a conservative extra-year allowance for this implication check."
+    },
+    "coverage_basis": "Flags reflect distinct discovered production cqm_YYYYMMDD table identifiers (taqmsec n=5772, taqm_YYYY n=5788), not verified SELECT access and not a usable synchronized panel.",
+    "production_select_access_verified": false
+  },
+  "limitations": [
+    "No NYSE trading calendar package was installed. Gaps are identifier gaps of more than 3 calendar days between consecutive cqm_YYYYMMDD tables, which can include holiday closures.",
+    "Catalog visibility of taqm_YYYY / taqmsec table names is not proof of SELECT entitlement.",
+    "Three bounded SELECT 1 LIMIT 1 checks do not prove row completeness, quote quality, or a synchronized N-asset panel.",
+    "Sample libraries are identified by schema names containing 'samp'.",
+    "COUNT(*) was not run on daily TAQ quote tables.",
+    "No quote, trade, bid, ask, size, symbol, or timestamp fields were selected.",
+    "pandas/sqlalchemy TypeError can occur when WRDS raw_sql uses default chunksize or when SQL contains unescaped % placeholders; catalog queries used exec_driver_sql without percent-wildcards.",
+    "Usable synchronized panel dates after cleaning, universe eligibility, and origin-state inputs are not established here.",
+    "Production Daily TAQ views in taqmsec report has_table_privilege SELECT=true, but SELECT 1 LIMIT 1 fails with permission denied for the underlying taqm_YYYY schema. Privilege on the view is not the same as ability to read rows."
+  ]
+}

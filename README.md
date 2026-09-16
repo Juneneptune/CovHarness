@@ -4,7 +4,7 @@
 
 The benchmark is designed so that a new forecasting method does not receive a different target, a richer information set, a larger tuning budget, or a more favorable evaluation criterion simply because it belongs to a different modeling tradition. Conventional models are therefore treated as serious competitors rather than default baselines. The planned comparison assigns common validation periods, tuning budgets, re-estimation schedules, and confirmatory procedures across model classes. Stochastic methods will be evaluated over pre-specified seed sets rather than selected ex post from favorable individual runs.
 
-> **Current status.** The primary TAQ measurement path is exchange-level quotes, P1/P2, listing-venue P3, Q1–Q4, midquote, and previous-tick synchronization. Consolidated NBBO plus Q1–Q4 remains a labeled alternative. An Epps-effect frequency scan is implemented on the five-stock 13 February 2009 panel. Block 1 measurement work is closed. Covariance-space losses are implemented. Reduced QLIKE is the primary ranking loss. Squared Frobenius is the complementary robust criterion. The leak-proof temporal protocol is implemented, with CONFIRM locked by default. Pairwise Diebold-Mariano tests with Bartlett HAC standard errors are implemented. Hansen (2005) SPA and Hansen–Lunde–Nason (2011) MCS are implemented for one loss/proxy channel at a time. Realized-kernel estimation is not implemented. The long historical extract is not solved. Protocol decisions are recorded in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). That draft is not the final preregistration.
+> **Current status.** The primary TAQ measurement path is exchange-level quotes, P1/P2, listing-venue P3, Q1–Q4, midquote, and previous-tick synchronization. Consolidated NBBO plus Q1–Q4 remains a labeled alternative. An Epps-effect frequency scan is implemented on the five-stock 13 February 2009 panel. Blocks 1, 2A, 2B, 3A, 3B, and 3C are closed. Covariance-space losses are implemented. Reduced QLIKE is the primary ranking loss. Squared Frobenius is the complementary robust criterion. The leak-proof temporal protocol is implemented, with CONFIRM locked by default. Pairwise Diebold-Mariano tests with Bartlett HAC standard errors are implemented. Hansen (2005) SPA and Hansen–Lunde–Nason (2011) MCS are implemented for one loss/proxy channel at a time. The generic Block 3C inference engine is implemented. Origin-day aggregate realized quarticity and the BNS equal-weight market jump indicator are implemented for the second Giacomini-White specification. Random-walk and EWMA realized-covariance baselines are implemented and synthetic/unit validated. They have not been fit on market data. Realized-kernel estimation is not implemented. The long historical extract is not solved. The DATA GATE remains closed. Protocol decisions are recorded in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). That draft is not the final preregistration.
 
 Detailed implementation status is maintained in [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md).
 
@@ -266,14 +266,101 @@ $\hat\omega_k^2$ is Hansen's stationary-bootstrap population long-run variance w
 
 The Model Confidence Set asks which models cannot be distinguished from the best. Pairwise differentials are $d_{ij,t}=L_{i,t}-L_{j,t}$, so a positive value means $i$ is worse than $j$. Both coherent Hansen–Lunde–Nason pairs are implemented. The primary SCREEN procedure is $(T_R,e_R)$ with $T_R=\max|t_{ij}|$ and $e_R=\arg\max_i\sup_j t_{ij}$. The companion is $(T_{\max},e_{\max})$. The two pairs are never crossed. Studentization uses standard errors. MCS bootstrap p-values use $\mathrm{mean}(T^\ast\ge T)$. Model p-values are the running maximum along the elimination path, so membership at any $\alpha$ is $\hat p_i\ge\alpha$ without rerunning the bootstrap. The last surviving model has p-value 1. The frozen SCREEN membership level is $\alpha=0.10$. Ties in elimination are broken by original column index. Identical loss columns are treated as ties with $t_{ij}=0$. A pairwise differential that is constant and nonzero raises `DegenerateMCSDifferentialError`.
 
-The remaining planned inferential layer includes
-
-- Giacomini-White tests for conditional and state-dependent differences in predictive ability
-- Mincer-Zarnowitz diagnostics for forecast calibration
-
 Simulation is required to validate estimators, losses, and inference against known truth before relying on market data. Simulation never substitutes for the project's final empirical finding. A fixed-seed demonstration of naive $t$-test over-rejection versus HAC DM is in [`notebooks/dm_hac_size.ipynb`](notebooks/dm_hac_size.ipynb) and [`results/dm_hac_size.png`](results/dm_hac_size.png).
 
 ![Naive t-test versus HAC Diebold-Mariano](results/dm_hac_size.png)
+
+---
+
+## Conditional predictive ability
+
+Unconditional Diebold-Mariano tests whether mean loss differs. Giacomini-White tests whether the loss differential is unpredictable given origin-measurable instruments. For methods A and B the project differential remains $d_t=L_{A,t}-L_{B,t}$. Instruments $h_t$ are known at the forecast origin. The one-step moments are $Z_t=h_t d_t$, with $\bar Z=T^{-1}\sum_t Z_t$ and
+
+```math
+\widehat{\Omega}
+= T^{-1}\sum_{t=1}^{T} Z_t Z_t^{\top}.
+```
+
+$Z_t$ is not demeaned. The default one-step covariance is this outer product. Bartlett / Newey-West HAC is not used in the default GW statistic. The Wald statistic is $GW=T\bar Z^{\top}\widehat{\Omega}^{-1}\bar Z$, referred to $\chi^2_q$ with $q$ equal to the number of instruments. The frozen level is $\alpha=0.05$.
+
+A nonzero constant differential is a valid GW test when the instruments have full column rank. That case is not copied from the Block 3A constant-differential degeneracy rule, which is a Diebold-Mariano rule. All-zero moments, a singular or non-finite $\widehat{\Omega}$, and duplicate or rank-deficient instrument directions raise explicit errors. No ridge, jitter, pseudo-inverse, or silent column dropping is applied.
+
+The frozen market-state specification uses origin-day realized covariance $S_t$ only.
+
+```math
+h_{\mathrm{market},t}
+=
+\bigl[
+1,\
+\log(\operatorname{mean}_i S_{ii,t}),\
+\operatorname{mean}_{i<j} R_{ij}(S_t)
+\bigr].
+```
+
+These instruments are not standardized. Target-day matrices and full-CONFIRM quantiles are forbidden.
+
+The frozen measurement/stress specification uses origin-day synchronized intraday returns only. Per-asset realized quarticity is $\mathrm{RQ}_i=(M/3)\sum_j r_{j,i}^4$. The aggregate is the cross-sectional mean $\mathrm{RQ}_{\mathrm{agg}}=\mathrm{mean}_i\mathrm{RQ}_i$. The jump state is the one-sided 1 percent Barndorff-Nielsen and Shephard (2006) adjusted-ratio test applied to the equal-weight intraday market return $\bar r_j=\mathrm{mean}_i r_{j,i}$. Large negative standardized values indicate jumps. The indicator is $1\{Z_{\mathrm{jump}}<\Phi^{-1}(0.01)\}$. This is a common-market jump state. It is not an any-constituent-jumped indicator. The measurement/stress vector is
+
+```math
+h_{\mathrm{measurement},t}
+=
+\bigl[
+1,\
+\log(\mathrm{RQ}_{\mathrm{agg},t}),\
+\mathbf{1}\{\text{BNS market jump at origin } t\}
+\bigr].
+```
+
+These instruments are not standardized. The family helper runs the two already-constructed specifications separately. It reports raw p-values, Bonferroni-adjusted p-values $\min(1,2p)$, family size 2, family $\alpha=0.05$, and per-test cutoff $0.025$. The six instrument columns are never stacked into one omnibus test.
+
+## Covariance-forecast calibration
+
+The primary Mincer-Zarnowitz representation is the Patton–Sheppard common-coefficient pooled-vech regression. For every date $t$ and unique pair $i\le j$,
+
+```math
+S_{ij,t}
+=
+\alpha
++
+\beta H_{ij,t}
++
+e_{ij,t},
+```
+
+with one common intercept and one common slope. The null is $(\alpha,\beta)=(0,1)$. The 100-random-portfolio MZ design is not used. Stacked $T\cdot N(N+1)/2$ rows are not treated as independent. Coefficients are computed from all unique entries. Daily scores sum pair-level contributions within each date. The sandwich covariance uses Bartlett / Newey-West HAC on that daily score sequence, with the Block 3A lag and kernel convention. The headline level is $0.05$. Exact calibration with a vanishing residual returns Wald $0$, p-value $1$, and `covariance=None`. An exact linear violation of the restriction returns Wald $\infty$, p-value $0$, and `covariance=None`. Ordinary cases return a numeric sandwich. No jitter is added. Diagonal-only and off-diagonal-only pooled coefficients are returned as descriptive diagnostics. They do not carry a headline familywise claim.
+
+State-augmented MZ uses the same pooled representation with origin-day
+
+```math
+z_t
+=
+\bigl[
+\log(\operatorname{mean}_i S_{ii,t}),\
+\operatorname{mean}_{i<j} R_{ij}(S_t)
+\bigr]
+```
+
+and common project-specific coefficients $\gamma_1$ and $\gamma_2$. That pooled state restriction is not Patton–Sheppard's elementwise augmented MZ. The null is $\alpha=0$, $\beta=1$, $\gamma_1=0$, $\gamma_2=0$. GW asks whether state predicts relative loss. Augmented MZ asks whether state predicts one model's calibration error.
+
+Approximate Patton–Sheppard equation-21 weighting uses the scale $s_{ij,t}=\sqrt{H_{ii,t}H_{jj,t}}$, not the product $H_{ii,t}H_{jj,t}$. Every regression column, including any state regressors, is divided by the same scale. The transformed forecast entry is the forecast correlation. On the diagonal this reduces to division by $H_{ii,t}$. The label is `approximate_ps21`. It is never `exact_gls`, because realized covariance is a proxy and the true conditional proxy-error variance is not known. Forecast diagonals must be finite and strictly positive. No epsilon floor is applied. Weighting does not remove serial dependence. Inference still uses the daily-score HAC sandwich. Approximate PS21 is a robustness re-estimation of standard calibration. OLS versus WLS is not selected by whichever rejects.
+
+Headline standard MZ on the two finalists is a Bonferroni family of size 2. Augmented MZ on the same two finalists is a separate family of size 2. Both report raw and Bonferroni-adjusted p-values.
+
+## Time-local forecast comparison
+
+The Giacomini–Rossi fluctuation test is Proposition 1 in the GW-method version. The differential remains $d_t=L_{A,t}-L_{B,t}$. A negative local statistic means A is locally better. A positive local statistic means B is locally better. The frozen window fraction is $\mu=0.30$. The integer centered-window length is $m=2\lfloor 0.30 P/2\rfloor$, which is always even. The test requires $P>m$ and $m\ge 2$. The local path is
+
+```math
+F_t
+=
+\hat\omega^{-1}
+m^{-1/2}
+\sum_{j=t-m/2}^{t+m/2-1} d_j.
+```
+
+The asymptotic process divides by $\sqrt{\mu}$, not by $\mu$. Only the two-sided test is formal. At $\mu=0.30$ and $\alpha=0.05$ the Giacomini–Rossi Table I critical value is $k=3.012$. The test rejects when $\max_t |F_t|>3.012$. No formal one-sided companion is implemented. The sign of the two-sided path is reported descriptively. Centers are the interior positions after dropping the first and last $m/2$ dates. The One-Time Reversal test is not implemented.
+
+The global long-run variance is estimated once from the full confirmatory differential. Uncentered autocovariances are $\gamma_j^0=P^{-1}\sum_{t=j+1}^{P}d_t d_{t-j}$. The Block 3A Newey–West 1994 lag and Bartlett weights are reused. The demeaned Block 3A HAC estimator is not called. $\hat\omega$ is not re-estimated inside local windows. Zero, negative, or non-finite $\hat\omega^2$ is rejected. No jitter or clipping is applied.
 
 Development and confirmation are separated chronologically by the implemented protocol. Model specifications, hyperparameters, information sets, and evaluation criteria are frozen before the locked confirmatory block is examined.
 
@@ -311,14 +398,30 @@ Later extensions include LSTM-BEKK, LSTM-BEKK-RC, and XGBoost-DRD. GHAR is a Blo
 
 The comparison is intended to equalize opportunity rather than model complexity. Conventional models will receive the same validation period, configuration budget, and re-estimation cadence as newer methods. If a model is evaluated with a different information set, that distinction will be made explicit and analyzed rather than hidden within the implementation.
 
-Each forecasting method is expected to conform to a common interface such as
+### Realized-covariance baselines
 
-```python
-model.fit(train_data, ...)
-forecast = model.forecast(...)
+The common model contract is `covharness.models.CovarianceModel`. Realized-covariance models inherit `RealizedCovarianceModel` and consume a caller-supplied origin window of shape $(T,N,N)$. The protocol constructs that window. Models do not inspect VALIDATION, SCREEN, or CONFIRM labels. The one-step forecast is an independent $N\times N$ copy. Inputs are not mutated. There is no silent matrix repair.
+
+Random-walk realized covariance is the origin observation itself.
+
+```math
+H_{t+1\mid t}=S_t.
 ```
 
-and to return an $N\times N$ one-step-ahead covariance forecast. Rolling estimation, evaluation losses, statistical inference, and portfolio analysis remain responsibilities of the common harness rather than individual model implementations.
+Earlier matrices in the window do not enter. A singular PSD $S_t$ remains singular. Reduced QLIKE still requires a strictly PD forecast at evaluation time. That limitation is diagnosed, not repaired in the model.
+
+EWMA is defined on the realized-covariance sequence $S_0,\ldots,S_{T-1}$ with decay $\lambda\in(0,1)$.
+
+```math
+H_0=S_0,\qquad
+H_j=\lambda H_{j-1}+(1-\lambda)S_j,\quad j=1,\ldots,T-1.
+```
+
+The forecast is $H_{T\mid T-1}=H_{T-1}$. This is not an EWMA of daily-return outer products. $\lambda$ is an explicit constructor argument. The conventional RiskMetrics reference $0.94$ may be passed by a caller. It is not a tuned project choice. The planned 20-point VALIDATION grid is not frozen and has not been run.
+
+Both baselines have been validated on synthetic deterministic matrices only. No empirical horse race has begun because the DATA GATE remains unresolved.
+
+Later methods will use the same forecast object. Daily-return models such as DCC and LSTM-BEKK will supply their own `fit` signature. Rolling estimation, evaluation losses, statistical inference, and portfolio analysis remain responsibilities of the common harness.
 
 ---
 
@@ -339,9 +442,10 @@ covharness/
 │   ├── data/          # quote cleaning, P3 venue adapter, synchronization, returns
 │   ├── realized/      # realized-covariance estimators
 │   ├── simulation/
-│   ├── models/
+│   ├── features/      # origin-day quarticity and BNS market jump state
+│   ├── models/        # common contract, random-walk RCov, EWMA RCov
 │   ├── losses/        # squared Frobenius, reduced QLIKE, full Stein
-│   ├── inference/     # Diebold-Mariano, Bartlett HAC, SPA, MCS, scalar Clark-West
+│   ├── inference/     # DM, HAC, SPA, MCS, Clark-West, GW, pooled MZ, GR fluctuation
 │   ├── portfolio/
 │   ├── protocol/      # splits, confirm lock, rolling schedule, train-only scaler
 │   ├── diagnostics/
@@ -385,10 +489,21 @@ The following components are implemented and unit-tested
 - joint Politis–Romano stationary bootstrap with block length $\max(2,\lfloor T^{1/3}\rfloor)$
 - Hansen (2005) SPA with consistent, lower, and upper p-values
 - Hansen–Lunde–Nason (2011) MCS for the range and max procedures
+- one-step Giacomini-White tests with origin-measurable instruments and outer-product $\widehat{\Omega}$
+- two separately run GW specifications with Bonferroni family size 2
+- origin-day market-state instruments $\bigl[1,\log(\operatorname{mean}_i S_{ii,t}),\operatorname{mean}_{i<j} R_{ij}(S_t)\bigr]$
+- origin-day measurement/stress instruments $\bigl[1,\log(\mathrm{RQ}_{\mathrm{agg},t}),\mathbf{1}\{\text{BNS market jump}\}\bigr]$
+- Patton–Sheppard pooled-vech Mincer-Zarnowitz calibration with daily-score HAC sandwich inference
+- state-augmented pooled MZ with project-specific common gamma coefficients
+- approximate Patton–Sheppard equation-21 weighting labeled `approximate_ps21`
+- Giacomini–Rossi Proposition 1 fluctuation test with frozen $\mu=0.30$ and $k=3.012$
+- a common covariance-model contract that returns an $N\times N$ one-step forecast
+- random-walk realized covariance $H_{t+1\mid t}=S_t$
+- EWMA of a realized-covariance window with explicit decay $\lambda\in(0,1)$
 
 A five-stock panel on 13 February 2009 has been constructed on the single-exchange path. The same day remains available on the NBBO path. The Epps diagnostic has been run on the identity-corrected single-exchange panel. Block 1 measurement work is closed. Realized kernels are not implemented.
 
-Forecasting models, Giacomini-White tests, Mincer-Zarnowitz diagnostics, and portfolio evaluation remain planned work. Protocol decisions currently live in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). Final `PREREGISTRATION.md` is written once, after the graph-neural specification and empirical dataset are frozen, and is never edited.
+Random-walk and EWMA baselines are synthetic/unit validated only. They have not been fit on market data. HAR-DRD, HARQ-DRD, shrinkage, DCC, Ridge-DRD, LSTM-BEKK, GHAR, and the graph-neural slot remain unimplemented. Portfolio evaluation remains planned. Protocol decisions currently live in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). Final `PREREGISTRATION.md` is written once, after the graph-neural specification and empirical dataset are frozen, and is never edited.
 
 See [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md) for the exact implementation checkpoint and test history.
 
@@ -417,6 +532,7 @@ Simulation is required to validate estimators, losses, and inference against kno
 
 - Andersen, T. G., & Bollerslev, T. (1998). *Answering the Skeptics: Yes, Standard Volatility Models Do Provide Accurate Forecasts.* International Economic Review.
 - Epps, T. W. (1979). *Comovements in stock prices in the very short run.* Journal of the American Statistical Association, 74(366), 291–298.
+- Barndorff-Nielsen, O. E., & Shephard, N. (2006). *Econometrics of Testing for Jumps in Financial Economics Using Bipower Variation.* Journal of Financial Econometrics.
 - Barndorff-Nielsen, O. E., Hansen, P. R., Lunde, A., & Shephard, N. (2009). *Realised kernels in practice: trades and quotes.* The Econometrics Journal, 12(3), C1–C32.
 - Barndorff-Nielsen, O. E., Hansen, P. R., Lunde, A., & Shephard, N. (2011). *Multivariate realised kernels: consistent positive semi-definite estimators of the covariation of equity prices with noise and non-synchronous trading.* Journal of Econometrics, 162(2), 149–169.
 - Diebold, F. X., & Mariano, R. S. (1995). *Comparing Predictive Accuracy.* Journal of Business & Economic Statistics.
@@ -427,9 +543,11 @@ Simulation is required to validate estimators, losses, and inference against kno
 - Clark, T. E., & West, K. D. (2007). *Approximately Normal Tests for Equal Predictive Accuracy in Nested Models.* Journal of Econometrics.
 - Engle, R. F., & Colacito, R. (2006). *Testing and Valuing Dynamic Correlations for Asset Allocation.* Journal of Business & Economic Statistics.
 - Engle, R. F., Ledoit, O., & Wolf, M. (2019). *Large Dynamic Covariance Matrices.* Journal of Business & Economic Statistics.
+- Giacomini, R., & Rossi, B. (2010). *Forecast Comparisons in Unstable Environments.* Journal of Applied Econometrics.
 - Giacomini, R., & White, H. (2006). *Tests of Conditional Predictive Ability.* Econometrica.
 - Laurent, S., Rombouts, J. V. K., & Violante, F. (2013). *On Loss Functions and Ranking Forecasting Performances of Multivariate Volatility Models.* Journal of Applied Econometrics.
 - Patton, A. J. (2011). *Volatility Forecast Comparison Using Imperfect Volatility Proxies.* Journal of Econometrics.
+- Patton, A. J., & Sheppard, K. (2009). *Evaluating Volatility and Correlation Forecasts.* In T. G. Andersen, R. A. Davis, J.-P. Kreiss, and T. Mikosch (Eds.), *Handbook of Financial Time Series.* Springer.
 
 ---
 

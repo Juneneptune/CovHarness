@@ -1,12 +1,12 @@
 # Project state
 
-Last updated 2026-09-13.
+Last updated 2026-09-15.
 
 Project conda environment is `covharness` (Python 3.11). Recreate with `conda env create -f environment.yml` from the repository root.
 
 ## Current milestone
 
-Block 3B. SPA and MCS multiple-model screening. Block 3A pairwise inference is closed. Giacomini-White, Mincer-Zarnowitz, Giacomini-Rossi, forecasting models, and portfolio evaluation were not added.
+Block 4A-1 common model contract, random-walk realized covariance, and EWMA realized covariance. Both baselines are synthetic/unit validated. No empirical fitting occurred. The DATA GATE remains closed. Blocks 1, 2A, 2B, 3A, 3B, and 3C are accepted as closed. HAR-DRD and later roster members were not begun.
 
 ## Completed
 
@@ -74,7 +74,7 @@ Overnight convention (metadata only). Statistical evaluation uses open-to-close 
 
 Preregistration status. `PREREGISTRATION_DRAFT.md` records the frozen protocol decisions. It is not immutable and not final. Final `PREREGISTRATION.md` is created once, after the graph-neural specification and empirical dataset are frozen, and before Block-4 empirical fitting. After that it is never edited.
 
-DATA GATE. Block 2 and Block 3 may use synthetic known-truth data. Block 4 must not begin until the empirical panel is committed and verified. The long historical dataset remains unresolved. No dataset was chosen in this block.
+DATA GATE. Block 2 and Block 3 used synthetic known-truth data. Empirical Block-4 fitting must not begin until the empirical panel is committed and verified. Model-engineering code may be added and validated on synthetic inputs. The long historical dataset remains unresolved. No dataset was chosen in this block.
 
 GHAR is recorded as a Block-4 structured graph / econometric covariance baseline. It is not a deep-learning model. The graph-neural DL slot remains unresolved. iTransformer is optional and not committed.
 
@@ -102,6 +102,46 @@ MCS. Hansen-Lunde-Nason (2011). Differential $d_{ij,t}=L_{i,t}-L_{j,t}$. Positiv
 
 Synthetic validation, seed 20260913, $B=5000$, $T=120$. Equal-performance SPA consistent p-value 0.4066, not rejected at 0.05. One clearly better alternative, statistic 25.736, consistent p-value 0.0, rejected. Adding ten poor alternatives left the consistent p-value at 0.0. MCS range and max both retained two equivalent best models and eliminated the inferior column. These examples are validation demonstrations, not empirical findings.
 
+Block 3C generic inference is implemented in `covharness.inference`. Blocks 3A and 3B methodology was not changed. The optional Odendahl–Rossi–Sekhposyan threshold extension was not implemented. The One-Time Reversal test was not implemented.
+
+Giacomini-White. One-step only. $d_t=L_{A,t}-L_{B,t}$. $Z_t=h_t d_t$. $\bar Z=\mathrm{mean}_t Z_t$. $\widehat{\Omega}=T^{-1}\sum_t Z_t Z_t^{\top}$ with no demeaning and no Bartlett HAC. Statistic $GW=T\bar Z^{\top}\widehat{\Omega}^{-1}\bar Z\sim\chi^2_q$. Frozen $\alpha=0.05$. A nonzero constant differential with full-rank instruments is a valid test. All-zero moments, singular or non-finite $\widehat{\Omega}$, and rank-deficient instruments raise `DegenerateGWCovarianceError` or `RankDeficientGWInstrumentsError`. No ridge, jitter, pseudo-inverse, or column dropping. Market-state instruments are origin-day $h_t=[1,\log(\mathrm{mean}_i S_{ii,t}),\mathrm{mean}_{i<j}R_{ij}(S_t)]$ and are not standardized. Measurement/stress instruments are origin-day $[1,\log(\mathrm{RQ}_{\mathrm{agg}}),\mathbf{1}\{\mathrm{BNS\ jump}\}]$ from synchronized returns. The family helper runs two already-constructed matrices separately and reports Bonferroni family size 2, family $\alpha=0.05$, cutoff $0.025$, and $p_{\mathrm{adj}}=\min(1,2p)$. Six instruments are never stacked.
+
+Pooled-vech MZ. For unique $i\le j$, $S_{ij,t}=\alpha+\beta H_{ij,t}+e_{ij,t}$ with one common intercept and slope. Null $(\alpha,\beta)=(0,1)$. This is the Patton–Sheppard common-coefficient representation. The 100-random-portfolio design is not used. Stacked unique entries are not treated as independent. Daily scores sum pair-level contributions within each date. Sandwich inference uses Bartlett / Newey-West HAC on the daily score sequence with the Block 3A lag convention. Frozen $\alpha=0.05$. Diagonal-only and off-diagonal-only pooled coefficients are descriptive. Exact calibration returns Wald $0$, p-value $1$, and `covariance=None`. An exact linear violation returns Wald $\infty$, p-value $0$, and `covariance=None`.
+
+State-augmented MZ adds origin-day $z_t=[\log(\mathrm{mean}_i S_{ii,t}),\mathrm{mean}_{i<j}R_{ij}(S_t)]$ with common project-specific $\gamma_1,\gamma_2$. That pooled restriction is not Patton–Sheppard. Null $\alpha=0$, $\beta=1$, $\gamma=0$. Same daily-score HAC sandwich. GW tests whether state predicts relative loss. Augmented MZ tests whether state predicts one model's calibration error.
+
+Approximate Patton–Sheppard equation-21 weighting. Scale $s_{ij,t}=\sqrt{H_{ii,t}H_{jj,t}}$, not the product. The same scale divides $y$ and every $X$ column. The transformed forecast is the forecast correlation. On the diagonal this is division by $H_{ii,t}$. Label `approximate_ps21`. Never `exact_gls`. Forecast diagonals must be finite and strictly positive. No epsilon floor. Weighting does not remove serial dependence. Inference remains daily-score HAC. Approximate PS21 is a robustness re-estimation. OLS versus WLS is not selected by which rejects.
+
+Giacomini–Rossi fluctuation. Proposition 1, GW-method version. $d_t=L_{A,t}-L_{B,t}$. Negative local $F_t$ means A is locally better. Frozen $\mu=0.30$. $m=2\lfloor 0.30 P/2\rfloor$, always even. Require $P>m$ and $m\ge 2$. $F_t=\hat\omega^{-1}m^{-1/2}\sum_{j=t-m/2}^{t+m/2-1}d_j$. The limit divides by $\sqrt{\mu}$, not $\mu$. Two-sided only. Critical value $k=3.012$ at $\alpha=0.05$. Reject iff $\max|F_t|>3.012$. Centered windows only. Path length $P-m+1$. Global uncentered LRV $\gamma_j^0=P^{-1}\sum d_t d_{t-j}$ with Block 3A Newey–West 1994 lags and Bartlett weights. The demeaned Block 3A `hac_long_run_variance` is not called. $\hat\omega$ is computed once. Zero, negative, or non-finite $\hat\omega^2$ raises `DegenerateFluctuationVarianceError`.
+
+Multiplicity metadata. GW family size 2. Standard MZ on two finalists family size 2. Augmented MZ on the same two finalists is a separate family of size 2. Diagonal/off-diagonal MZ remains descriptive.
+
+Origin-day measurement/stress state is implemented in `covharness.features`. Inputs are already-synchronized intraday returns of shape $(M,N)$ or a panel $(T,M,N)$. Raw TAQ and the realized-covariance estimator were not changed. Per-asset quarticity is $\mathrm{RQ}_i=(M/3)\sum_j r_{j,i}^4$. Aggregate $\mathrm{RQ}_{\mathrm{agg}}=\mathrm{mean}_i\mathrm{RQ}_i$ must be strictly positive before $\log$. No annualization, winsorization, or clipping. The jump state is the Barndorff-Nielsen and Shephard (2006) adjusted-ratio test on $\bar r_j=\mathrm{mean}_i r_{j,i}$, with $\delta=1/M$, $\mu_1=\sqrt{2/\pi}$, $\vartheta=\pi^2/4+\pi-5$, and $Z_{\mathrm{jump}}=J_{\mathrm{BNS}}/\sqrt{\vartheta}$. Frozen $\alpha_{\mathrm{jump}}=0.01$. Indicator $1\{Z_{\mathrm{jump}}<\Phi^{-1}(0.01)\}$. Large negative values indicate jumps. The tail is not reversed. The threshold is not estimated from the sample. This is a common-market jump in the equal-weight intraday portfolio. It is not an any-constituent-jumped indicator. Zero RV, zero BV, nonfinite or negative QP, and insufficient $M$ raise `InvalidOriginStateError`. The measurement GW vector is origin-day $[1,\log(\mathrm{RQ}_{\mathrm{agg}}),\mathbf{1}\{\mathrm{BNS\ jump}\}]$ and is not standardized. `giacomini_white_two_specifications` is unchanged as a two-test Bonferroni helper.
+
+Block 3C is accepted as closed in the project continuation.
+
+Block 4A-1 covariance-model contract is implemented in `covharness.models`.
+
+Public types. `CovarianceModel` is the forecast and identity contract. `RealizedCovarianceModel.fit` consumes a copied `(T, N, N)` realized-covariance window through the origin. `CovarianceForecast` returns an independent `(N, N)` matrix, `ForecastDiagnostics`, and `ModelIdentity`. Models do not inspect VALIDATION, SCREEN, or CONFIRM. The protocol supplies the window.
+
+Input contract. `T>=1`. Square finite slices. Symmetry within `SYMMETRY_ATOL=1e-10`. PSD within `PSD_ATOL=1e-12`. Strict PD is not required. Asymmetry and indefiniteness raise `InvalidModelInputError`. No symmetrization, shrinkage, jitter, clipping, diagonal loading, or eigenvalue flooring.
+
+Random walk. $H_{t+1\mid t}=S_t$, an independent copy of the last window matrix. Earlier slices are ignored. A singular PSD origin matrix remains singular. QLIKE still requires a PD forecast at evaluation. That limitation is diagnosed (`positive_definite=False`) rather than repaired.
+
+EWMA. $H_0=S_0$ and $H_j=\lambda H_{j-1}+(1-\lambda)S_j$ for $j=1,\ldots,T-1$, with forecast $H_{T\mid T-1}=H_{T-1}$. Decay $\lambda$ is a required constructor argument in $(0,1)$. The RiskMetrics reference $0.94$ may be passed by a caller. It is not a tuned project default. The 20-point VALIDATION grid is not frozen and was not run. This EWMA is on realized covariance, not daily-return outer products. EWMA of PSD inputs is PSD. A shared null space can remain singular.
+
+Diagnostics reuse `matrix_eigen_diagnostics`. Strict PD is a Cholesky test matching evaluation losses. Condition number is omitted when the smallest eigenvalue is not strictly larger than `PSD_ATOL`.
+
+A synthetic protocol check slices a `(T, N, N)` cube with `ForecastStep` on a VALIDATION origin. CONFIRM remains locked. No runner was added.
+
+Files created. `src/covharness/models/exceptions.py`, `base.py`, `random_walk.py`, `ewma.py`, and `tests/unit/test_models_rcov_baselines.py`. `src/covharness/models/__init__.py` now exports the public API.
+
+MZ exact-fit API. Coefficients and Wald semantics are unchanged. Exact calibration returns Wald $0$, p-value $1$, `inference_case="deterministic_null"`, `covariance=None`, and `covariance_degenerate=True`. An exact linear violation returns Wald $\infty$, p-value $0$, `inference_case="deterministic_alternative"`, and `covariance=None`. Ordinary cases return a numeric sandwich with `inference_case="regular"`. No jitter.
+
+Synthetic origin-state demonstrations, not empirical findings. Hand quarticity on $[[1,2],[0.5,-1],[0,1]]$ gives $\mathrm{RQ}=(1.0625,18)$ and $\mathrm{RQ}_{\mathrm{agg}}=9.53125$. Hand BNS market path $(0.2,0.1,0.3,0.1,0.2)$ gives $\mathrm{RV}=0.19$, $\mathrm{BV}=0.1$, $\mathrm{QP}=0.006$, $J_{\mathrm{BNS}}=-0.3874$, $Z=-0.4965$, indicator $0$. Seed 20260914 Gaussian continuous panel, $M=80$, has $Z=-1.493$ and indicator $0$. The same panel with a $0.2$ common jump at interval 40 has $Z=-11.237$ and indicator $1$. Exact MZ $S=H$ returns `deterministic_null` with `covariance=None`. $S=2H$ and $S=H+c$ return `deterministic_alternative` with `covariance=None`.
+
+Synthetic validation, seed 20260914. These are validation demonstrations, not empirical findings. Alternating-block state-dependent $d_t$ with near-zero mean. Unconditional DM statistic $-0.0700$, p-value $0.9442$. GW statistic $793.437$, p-value $5.10\times 10^{-173}$, df $2$. Perfect pooled MZ recovers $\hat\alpha=0$, $\hat\beta=1$, p-value $1$. Intercept shift $0.4$ and slope $1.6$ both yield p-value $0$. A state-dependent intercept that averages to zero has standard MZ p-value $0.9988$ and augmented MZ p-value $0$ with $\hat\gamma_1=1.2$. Approximate PS21 off-diagonal transform equals forecast correlation $1/3$ under $H_{12}=2$, $H_{11}=4$, $H_{22}=9$, so $s_{12}=6$ rather than $36$. Giacomini–Rossi stable Gaussian null, $P=400$, $m=120$, $\max|F|=1.840<3.012$, not rejected. Known sign-change break of length $200$, $m=60$, $\max|F|=3.506$, rejected, with early mean $F=-3.401$ and late mean $F=3.401$.
+
 ## Files that own the implementation
 
 - `src/covharness/losses/contracts.py`
@@ -126,13 +166,29 @@ Synthetic validation, seed 20260913, $B=5000$, $T=120$. Equal-performance SPA co
 - `src/covharness/inference/bootstrap.py`
 - `src/covharness/inference/spa.py`
 - `src/covharness/inference/mcs.py`
+- `src/covharness/inference/gw.py`
+- `src/covharness/inference/mz.py`
+- `src/covharness/inference/fluctuation.py`
 - `src/covharness/inference/__init__.py`
+- `src/covharness/features/exceptions.py`
+- `src/covharness/features/origin_state.py`
+- `src/covharness/features/__init__.py`
+- `src/covharness/models/exceptions.py`
+- `src/covharness/models/base.py`
+- `src/covharness/models/random_walk.py`
+- `src/covharness/models/ewma.py`
+- `src/covharness/models/__init__.py`
 - `src/covharness/diagnostics/epps.py` (`m_over_n` added)
 - `tests/unit/test_losses.py`
 - `tests/unit/test_loss_robustness.py`
 - `tests/unit/test_protocol.py`
 - `tests/unit/test_inference.py`
 - `tests/unit/test_inference_spa_mcs.py`
+- `tests/unit/test_inference_gw.py`
+- `tests/unit/test_inference_mz.py`
+- `tests/unit/test_inference_fluctuation.py`
+- `tests/unit/test_origin_state.py`
+- `tests/unit/test_models_rcov_baselines.py`
 - `tests/unit/test_epps.py`
 - `notebooks/proxy_robust_losses.ipynb`
 - `notebooks/dm_hac_size.ipynb`
@@ -177,6 +233,68 @@ No tests were skipped. The overflow warning is the same targeted non-finite HAC 
 
 `simulate_hac_size_power()` with unchanged defaults, seed 20260912, 2000 replications, $T=250$. IID naive 0.052. IID HAC DM 0.0545. AR(1) $\rho=0.6$ naive 0.3185. AR(1) HAC DM 0.1135. Mean-shift $-0.20$ two-sided HAC 0.8965. Mean-shift HAC A-better 0.946. These rates were not rerun in Block 3B. Block 3A methodology was not modified.
 
+Targeted Block 3C command on 2026-09-13, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_inference_gw.py tests/unit/test_inference_mz.py tests/unit/test_inference_fluctuation.py`.
+
+```
+.........................................                                [100%]
+41 passed in 1.06s
+```
+
+No warnings and no skips.
+
+Full suite after Block 3C, same interpreter, `python -m pytest -q`.
+
+```
+........................................................................ [ 33%]
+........................................................................ [ 67%]
+......................................................................   [100%]
+214 passed, 1 warning in 17.24s
+```
+
+No tests were skipped. The overflow warning is the same Block 3A non-finite HAC case. Block 3A and 3B tests were not modified.
+
+Targeted origin-state and Block 3C command on 2026-09-13, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_origin_state.py tests/unit/test_inference_gw.py tests/unit/test_inference_mz.py tests/unit/test_inference_fluctuation.py`.
+
+```
+.................................................................        [100%]
+65 passed, 1 warning in 0.96s
+```
+
+The warning is `RuntimeWarning: overflow encountered in matmul` in `test_gw_nonfinite_omega_raises`. No tests were skipped.
+
+Full suite after the origin-state pass, same interpreter, `python -m pytest -q`.
+
+```
+........................................................................ [ 30%]
+........................................................................ [ 60%]
+........................................................................ [ 90%]
+......................                                                   [100%]
+238 passed, 2 warnings in 17.16s
+```
+
+No tests were skipped. The two warnings are the Block 3A non-finite HAC overflow and the Block 3C non-finite GW Omega overflow. Block 3A and 3B methodology was not modified.
+
+Focused Block 4A-1 command on 2026-09-15, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_models_rcov_baselines.py`.
+
+```
+...........................                                              [100%]
+27 passed in 0.37s
+```
+
+No tests were skipped. No warnings.
+
+Full suite after Block 4A-1, same interpreter, `python -m pytest -q`.
+
+```
+........................................................................ [ 27%]
+........................................................................ [ 54%]
+........................................................................ [ 81%]
+.................................................                        [100%]
+265 passed, 2 warnings in 17.07s
+```
+
+No tests were skipped. The two warnings are the same Block 3A non-finite HAC overflow and Block 3C non-finite GW Omega overflow. They are intentional overflow tests. HAR-DRD was not implemented.
+
 ## Methodological decisions already in code
 
 - Reduced QLIKE is the primary ranking loss. Full Stein is the SPD-proxy form.
@@ -197,17 +315,35 @@ No tests were skipped. The overflow warning is the same targeted non-finite HAC 
 - SPA long-run variances use the stationary-bootstrap geometric kernel, not Bartlett HAC.
 - Stationary-bootstrap block length is $\max(2,\lfloor T^{1/3}\rfloor)$ with $B=5000$ and seed $20260913$.
 - Primary MCS is $(T_R,e_R)$ at SCREEN $\alpha=0.10$. $(T_{\max},e_{\max})$ is a companion.
+- One-step GW uses undemeaned outer-product $\widehat{\Omega}=Z^{\top}Z/T$ and $\chi^2_q$. Constant nonzero $d_t$ is valid when $h_t$ has full rank.
+- GW market-state instruments are origin-day and unstandardized.
+- GW measurement/stress instruments are origin-day $\log\mathrm{RQ}_{\mathrm{agg}}$ and the 1 percent BNS equal-weight market jump indicator. They are not standardized.
+- GW Bonferroni family size is exactly 2. The two specifications are not stacked.
+- Primary MZ is Patton–Sheppard pooled vech with daily-score Bartlett HAC sandwich. Diagonal and off-diagonal subsets are descriptive.
+- Exact-fit MZ returns `covariance=None` rather than a singular sandwich. Wald 0 / inf semantics are unchanged.
+- Augmented MZ uses common project-specific gamma coefficients on origin-day market state. It is a separate Bonferroni family of the two finalists.
+- Approximate PS21 uses $s_{ij,t}=\sqrt{H_{ii,t}H_{jj,t}}$ and the label `approximate_ps21`. It is not exact GLS.
+- Giacomini–Rossi uses $\mu=0.30$, even $m=2\lfloor 0.30P/2\rfloor$, two-sided $k=3.012$, and a global uncentered LRV. The One-Time Reversal test is not implemented.
+- The BNS jump state is a common-market portfolio test. It is not an any-constituent-jumped indicator.
+- Random-walk realized covariance is $H_{t+1\mid t}=S_t$ with no repair.
+- EWMA is the recursion $H_0=S_0$, $H_j=\lambda H_{j-1}+(1-\lambda)S_j$ on realized covariance. $\lambda$ is explicit. The 20-point VALIDATION grid is not frozen.
+- Models consume a caller-supplied origin window. They do not inspect protocol block labels.
 
 ## Known problems or limitations
 
 - Realized kernels are not implemented.
-- The long historical empirical panel is unresolved. The DATA GATE blocks Block 4 until that source is committed and verified.
+- The long historical empirical panel is unresolved. The DATA GATE remains closed. Empirical Block-4 fitting is blocked until that source is committed and verified.
 - The graph-neural deep-learning specification is unresolved. Final `PREREGISTRATION.md` cannot be written yet.
-- Giacomini-White, Mincer-Zarnowitz, forecasting models, and portfolio evaluation are not implemented.
+- Blocks 3A, 3B, and 3C are accepted as closed. The pending bounded DM dependence/calibration review remains pending before confirmatory use.
+- The BNS jump indicator can miss an idiosyncratic jump that is small in the equal-weight market average, and a common jump can be flagged even if some names did not jump.
+- Random-walk and EWMA forecasts that remain singular PSD are not QLIKE-evaluable. That is a model-output limitation, not a license to repair $H$.
+- HAR-DRD, HARQ-DRD, shrinkage, DCC, Ridge-DRD, LSTM-BEKK, GHAR, and the graph-neural slot are not implemented. Portfolio evaluation is not implemented.
 - The Newey-West 1994 lag is short relative to a highly persistent AR(1). Under $\rho=0.6$ and $T=250$, HAC DM still over-rejects relative to 5 percent, while remaining far closer to nominal size than an IID $t$-test.
 - MCS may retain a large set when forecasts are highly correlated. That is a feature of the procedure, not a code failure.
 - Hansen SPA assumes positive differential variance. Exact-constant alternatives are rejected rather than studentized.
+- Approximate PS21 weighting is a named approximation to Patton–Sheppard equation 21. It does not recover the unknown conditional proxy-error variance.
+- Bartlett Newey-West long-run variance is positive semi-definite, so a non-roundoff negative Giacomini–Rossi LRV is not constructible without changing the estimator.
 
 ## Next recommended task
 
-Block 3C — Giacomini-White, Mincer-Zarnowitz, and Giacomini-Rossi
+Implement HAR-DRD on the same realized-covariance model contract, still synthetic/unit only. Do not begin empirical fitting. The DATA GATE remains closed.
