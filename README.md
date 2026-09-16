@@ -4,7 +4,7 @@
 
 The benchmark is designed so that a new forecasting method does not receive a different target, a richer information set, a larger tuning budget, or a more favorable evaluation criterion simply because it belongs to a different modeling tradition. Conventional models are therefore treated as serious competitors rather than default baselines. The planned comparison assigns common validation periods, tuning budgets, re-estimation schedules, and confirmatory procedures across model classes. Stochastic methods will be evaluated over pre-specified seed sets rather than selected ex post from favorable individual runs.
 
-> **Current status.** The primary TAQ measurement path is exchange-level quotes, P1/P2, listing-venue P3, Q1–Q4, midquote, and previous-tick synchronization. Consolidated NBBO plus Q1–Q4 remains a labeled alternative. An Epps-effect frequency scan is implemented on the five-stock 13 February 2009 panel. Blocks 1, 2A, 2B, 3A, 3B, and 3C are closed. Covariance-space losses are implemented. Reduced QLIKE is the primary ranking loss. Squared Frobenius is the complementary robust criterion. The leak-proof temporal protocol is implemented, with CONFIRM locked by default. Pairwise Diebold-Mariano tests with Bartlett HAC standard errors are implemented. Hansen (2005) SPA and Hansen–Lunde–Nason (2011) MCS are implemented for one loss/proxy channel at a time. The generic Block 3C inference engine is implemented. Origin-day aggregate realized quarticity and the BNS equal-weight market jump indicator are implemented for the second Giacomini-White specification. Random-walk and EWMA realized-covariance baselines are implemented and synthetic/unit validated. They have not been fit on market data. Realized-kernel estimation is not implemented. The long historical extract is not solved. The DATA GATE remains closed. Protocol decisions are recorded in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). That draft is not the final preregistration.
+> **Current status.** The primary TAQ measurement path is exchange-level quotes, P1/P2, listing-venue P3, Q1–Q4, midquote, and previous-tick synchronization. Consolidated NBBO plus Q1–Q4 remains a labeled alternative. An Epps-effect frequency scan is implemented on the five-stock 13 February 2009 panel. Blocks 1, 2A, 2B, 3A, 3B, and 3C are closed. Covariance-space losses are implemented. Reduced QLIKE is the primary ranking loss. Squared Frobenius is the complementary robust criterion. The leak-proof temporal protocol is implemented, with CONFIRM locked by default. Pairwise Diebold-Mariano tests with Bartlett HAC standard errors are implemented. Hansen (2005) SPA and Hansen–Lunde–Nason (2011) MCS are implemented for one loss/proxy channel at a time. The generic Block 3C inference engine is implemented. Origin-day aggregate realized quarticity and the BNS equal-weight market jump indicator are implemented for the second Giacomini-White specification. Random-walk, EWMA, HAR-DRD, and HARQ-DRD realized-covariance models are implemented and synthetic/unit validated. They have not been fit on market data. Realized-kernel estimation is not implemented. The long historical extract is not solved. The DATA GATE remains closed. Protocol decisions are recorded in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). That draft is not the final preregistration.
 
 Detailed implementation status is maintained in [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md).
 
@@ -400,7 +400,7 @@ The comparison is intended to equalize opportunity rather than model complexity.
 
 ### Realized-covariance baselines
 
-The common model contract is `covharness.models.CovarianceModel`. Realized-covariance models inherit `RealizedCovarianceModel` and consume a caller-supplied origin window of shape $(T,N,N)$. The protocol constructs that window. Models do not inspect VALIDATION, SCREEN, or CONFIRM labels. The one-step forecast is an independent $N\times N$ copy. Inputs are not mutated. There is no silent matrix repair.
+The common model contract is `covharness.models.CovarianceModel`. Realized-covariance models that consume only a covariance cube inherit `RealizedCovarianceModel`. HARQ-DRD uses the same forecast object and a `fit` that also takes a $(T,N)$ per-asset quarticity window. The protocol constructs those windows. Models do not inspect VALIDATION, SCREEN, or CONFIRM labels. The one-step forecast is an independent $N\times N$ copy. Inputs are not mutated. There is no silent matrix repair.
 
 Random-walk realized covariance is the origin observation itself.
 
@@ -419,7 +419,37 @@ H_j=\lambda H_{j-1}+(1-\lambda)S_j,\quad j=1,\ldots,T-1.
 
 The forecast is $H_{T\mid T-1}=H_{T-1}$. This is not an EWMA of daily-return outer products. $\lambda$ is an explicit constructor argument. The conventional RiskMetrics reference $0.94$ may be passed by a caller. It is not a tuned project choice. The planned 20-point VALIDATION grid is not frozen and has not been run.
 
-Both baselines have been validated on synthetic deterministic matrices only. No empirical horse race has begun because the DATA GATE remains unresolved.
+Headline HAR-DRD is a Zhang-style non-overlapping HAR on the Oh–Patton DRD split of each supplied realized covariance. The model is in levels. There is no log-variance transform, Fisher transform, ridge, graph term, or HARQ term.
+
+For every supplied $S_t\in\mathbb{R}^{N\times N}$ we set $v_t=\operatorname{diag}(S_t)$, $D_t=\operatorname{diag}(\sqrt{v_t})$, and $R_t=D_t^{-1}S_t D_t^{-1}$. Every diagonal entry of every $S_t$ must be strictly positive. Positive semidefiniteness alone is not sufficient if a diagonal is zero, because $R_t$ is then undefined. Such a window is rejected with `InvalidModelInputError`. Input matrices are not altered.
+
+Unique correlations use the repository's existing strict upper-triangle order $i<j$, matching `np.triu_indices(N, k=1)` in the Epps and Giacomini–White helpers. The pair count is $P=N(N-1)/2$.
+
+At response date $k\ge 22$ the non-overlapping HAR features are one daily lag, four weekly observations, and seventeen monthly observations.
+
+```math
+z_d(k)=\text{value}[k-1],\qquad
+z_w(k)=\operatorname{mean}(\text{value}[k-5:k-1]),\qquad
+z_m(k)=\operatorname{mean}(\text{value}[k-22:k-5]).
+```
+
+The Python slices are exclusive on the right. The three blocks do not overlap. For a supplied window of length $T=250$ the response dates are $22,\ldots,249$, so there are $228$ regression dates, $228N$ variance observations, and $228P$ correlation observations. The construction never reads before local index $0$. Predictors for the target immediately after the window are $\text{value}[T-1]$, $\operatorname{mean}(\text{value}[T-5:T-1])$, and $\operatorname{mean}(\text{value}[T-22:T-5])$.
+
+Variance equations have asset-specific intercepts $\alpha_D\in\mathbb{R}^N$ and three shared scalar slopes $\beta_D=(\beta_{D,d},\beta_{D,w},\beta_{D,m})$. Correlation equations have pair-specific intercepts $\alpha_R\in\mathbb{R}^P$ and three shared scalar slopes $\beta_R$. We estimate those maps by the exact fixed-effects within transformation. For each group we demean $y$ and the three-column design, stack only the demeaned three-column matrices, solve $\beta$ by least squares, and recover intercepts from the group means. We do not build an $N$-column or $P$-column intercept-dummy matrix.
+
+The raw one-day forecast reconstructs $R_{\mathrm{raw}}$ with unit diagonal in the frozen pair order. When $v_{\mathrm{raw}}$ is finite and strictly positive, $H_{\mathrm{raw}}=D_{\mathrm{raw}}R_{\mathrm{raw}}D_{\mathrm{raw}}$ with $D_{\mathrm{raw}}=\operatorname{diag}(\sqrt{v_{\mathrm{raw}}})$. Raw components are stored even if the headline matrix is later replaced.
+
+The headline forecast uses an explicit BPQ-style insanity filter. The raw forecast is valid only when every $v_{\mathrm{raw}}$ is finite and strictly positive, every $x_{\mathrm{raw}}$ is finite, every pairwise correlation lies in $[-1,1]$, $R_{\mathrm{raw}}$ is symmetric and strictly positive definite, and $H_{\mathrm{raw}}$ is finite, symmetric, and strictly positive definite. If all of those hold, $H_{\mathrm{final}}=H_{\mathrm{raw}}$, `repaired=False`, and `repair_method=None`. If any condition fails, $H_{\mathrm{final}}$ is the arithmetic mean of every realized covariance in the current supplied estimation window, `repaired=True`, and `repair_method="estimation_window_mean"`. That fallback itself must be finite, symmetric, and strictly positive definite. Otherwise the model raises `InvalidModelForecastError`. There is no second repair. We do not clip correlations, floor eigenvalues, call `cov_nearest`, apply Higham projection, add jitter, diagonal-load, transform $v$ or $x$, or replace individual entries. Repair is never silent. Repair frequency will be reported. A valid final matrix does not imply that the raw forecast was valid.
+
+HAR-DRD, HARQ-DRD, random walk, and EWMA have been validated on synthetic matrices only. No empirical horse race has begun because the DATA GATE remains unresolved.
+
+Headline HARQ-DRD is HAR-DRD plus one daily per-asset quarticity interaction on the variance equation. The correlation map is unchanged. There is no weekly or monthly quarticity term, no correlation attenuation, no log-variance transform, no Fisher transform, no ridge, and no graph term.
+
+The documented per-asset realized quarticity is $\mathrm{RQ}_{i,t}=(M/3)\sum_l r_{i,t,l}^4$. HARQ consumes a precomputed window of shape $(T,N)$ aligned with the covariance history. It does not read raw intraday returns. That per-asset series is not the cross-sectional aggregate $\mathrm{RQ}_{\mathrm{agg}}=\mathrm{mean}_i\mathrm{RQ}_i$ used by the second Giacomini-White measurement state, and it is not logged. Zero RQ is allowed. Negative or non-finite RQ is rejected. Empirical construction of the $(T,N)$ panel from TAQ waits for the DATA GATE.
+
+Variance intercepts $\alpha_Q$ are asset-specific. The four shared variance slopes are daily, the quarticity interaction $\phi_{Q,d}$ on $\sqrt{\mathrm{RQ}_{i,k-1}}\,v_{i,k-1}$, weekly, and monthly. No sign constraint is imposed on $\phi_{Q,d}$. Correlation intercepts and the three shared HAR slopes are the HAR-DRD objects. Both maps use the same within-transformation estimator. The variance design has four columns. The correlation design has three. Dummy intercept matrices are not built.
+
+The headline forecast uses the same explicit BPQ-style estimation-window-mean insanity filter as HAR-DRD. Repair is never silent. We do not clip, nearest-PD, floor eigenvalues, add jitter, diagonal-load, or transform.
 
 Later methods will use the same forecast object. Daily-return models such as DCC and LSTM-BEKK will supply their own `fit` signature. Rolling estimation, evaluation losses, statistical inference, and portfolio analysis remain responsibilities of the common harness.
 
@@ -443,7 +473,7 @@ covharness/
 │   ├── realized/      # realized-covariance estimators
 │   ├── simulation/
 │   ├── features/      # origin-day quarticity and BNS market jump state
-│   ├── models/        # common contract, random-walk RCov, EWMA RCov
+│   ├── models/        # common contract, random-walk RCov, EWMA RCov, HAR-DRD, HARQ-DRD
 │   ├── losses/        # squared Frobenius, reduced QLIKE, full Stein
 │   ├── inference/     # DM, HAC, SPA, MCS, Clark-West, GW, pooled MZ, GR fluctuation
 │   ├── portfolio/
@@ -500,10 +530,12 @@ The following components are implemented and unit-tested
 - a common covariance-model contract that returns an $N\times N$ one-step forecast
 - random-walk realized covariance $H_{t+1\mid t}=S_t$
 - EWMA of a realized-covariance window with explicit decay $\lambda\in(0,1)$
+- HAR-DRD on the DRD split with non-overlapping $1/4/17$ HAR features, within-transformation fixed effects, and an explicit estimation-window-mean insanity filter
+- HARQ-DRD as HAR-DRD plus a daily per-asset quarticity interaction $\sqrt{\mathrm{RQ}_{i,t-1}}\,v_{i,t-1}$ with $\mathrm{RQ}_i=(M/3)\sum_l r_{i,l}^4$
 
 A five-stock panel on 13 February 2009 has been constructed on the single-exchange path. The same day remains available on the NBBO path. The Epps diagnostic has been run on the identity-corrected single-exchange panel. Block 1 measurement work is closed. Realized kernels are not implemented.
 
-Random-walk and EWMA baselines are synthetic/unit validated only. They have not been fit on market data. HAR-DRD, HARQ-DRD, shrinkage, DCC, Ridge-DRD, LSTM-BEKK, GHAR, and the graph-neural slot remain unimplemented. Portfolio evaluation remains planned. Protocol decisions currently live in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). Final `PREREGISTRATION.md` is written once, after the graph-neural specification and empirical dataset are frozen, and is never edited.
+Random-walk, EWMA, HAR-DRD, and HARQ-DRD models are synthetic/unit validated only. They have not been fit on market data. Shrinkage, DCC, Ridge-DRD, LSTM-BEKK, GHAR, and the graph-neural slot remain unimplemented. Portfolio evaluation remains planned. Protocol decisions currently live in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). Final `PREREGISTRATION.md` is written once, after the graph-neural specification and empirical dataset are frozen, and is never edited.
 
 See [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md) for the exact implementation checkpoint and test history.
 

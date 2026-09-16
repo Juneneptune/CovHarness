@@ -1,4 +1,3 @@
-[BENCHMARK_IMPLEMENTATION_PLAN.md](https://github.com/user-attachments/files/31852884/design_v4_demo_plan.md)
 # Covariance Benchmark — Consolidated Design (v4)
 
 Companion: `docs/project_ledger.md` (paper status + saved concepts). Protocol
@@ -45,25 +44,15 @@ covharness/
 
 # PART -1 — SCOPE TIERS (read this first)
 
-The rest of this document describes the **full** project. Not all of it fits in a week. This part
-splits it into what ships, what is a stretch, and what is weeks 2-4.
+The rest of this document describes the full project. Work is organized as blocks and parts, not calendar days. Block 1 is measurement. Block 2 is losses and the temporal protocol. Block 3 is inference. Block 4 is models and empirical evaluation after the DATA GATE.
 
-**Revised Block 3 scope.** The week-tier labels below remain scheduling context. The final Block 3
-scope additionally requires covariance-aware MZ-GLS and Giacomini–Rossi fluctuation analysis.
-State-dependent threshold forecast evaluation is a named optional robustness extension, not a
-mandatory demo blocker. These additions do not authorize implementing later inference before the
-existing Block 3A review is closed.
+**Revised Block 3 scope.** The final Block 3 scope additionally requires covariance-aware MZ-GLS and Giacomini–Rossi fluctuation analysis. State-dependent threshold forecast evaluation is a named optional robustness extension, not a mandatory Block 3 closer. These additions do not authorize implementing later inference before the existing Block 3A review is closed.
 
-## The discipline that makes the week work
+## Sequencing discipline
 
-**By end of Day 5 you must have a complete, shippable artifact.** Not "mostly done" — runnable
-end to end, with results, figures, and a README. Days 6-7 are then *bonus*, spent on the risky
-deep-learning model. If Day 6 goes badly you ship what you had on Day 5 and lose nothing.
+The harness is the stable object. The model roster is not. Complete measurement, losses, protocol, and inference before expanding the model set. Deep-learning competitors enter the same interface after the econometric baselines are in place. If a later model is delayed, earlier blocks remain a complete evaluation system.
 
-Most one-week projects fail because the risky item is attempted in parallel with the core and both
-end up half-finished. Sequence them instead.
-
-## TIER 1 — SHIP IN WEEK 1 (Days 1-5). This alone is the resume artifact.
+## TIER 1 — CORE BENCHMARK
 
 | Component | Scope |
 |---|---|
@@ -77,59 +66,34 @@ end up half-finished. Sequence them instead.
 | Figures | Epps curve; eigenvalue shrinkage (sample vs linear vs NL vs true); **the three synthetic demos**; cumulative `d_t` |
 | Docs | `PREREGISTRATION.md`, README |
 
-**Nine models, complete inference stack, six figures.** The three synthetic demos (a non-robust
-loss flipping the ranking; a naive t-test over-rejecting at 25%; DM blind to regime dependence where
-GW is not) cost about two hours total and are the most distinctive content in the repo.
+**Nine models, complete inference stack, six figures.** The three synthetic demos (a non-robust loss flipping the ranking; a naive t-test over-rejecting at 25%; DM blind to regime dependence where GW is not) are required validation of the scoring and inference stack against known truth.
 
-## TIER 2 — WEEK 1 STRETCH (Days 6-7, only if Day 5 shipped)
+## TIER 2 — STRETCH MODELS AND INFERENCE EXTENSIONS
 
-In priority order:
-1. **`LSTM-BEKK`** (faithful, daily returns) — the headline DL competitor. 1.5-2 days honestly.
-2. `XGBoost-DRD` — 31 fits, few hours once features exist.
-3. SPA (benchmark = `HAR-DRD`) — the "does anything beat the workhorse?" headline.
-4. State-augmented MZ / covariance-aware MZ-GLS — required final Block 3C calibration work; schedule here if time permits.
+Enter only after the corresponding Tier 1 components exist. In priority order:
+1. **`LSTM-BEKK`** (faithful, daily returns) — the headline DL competitor.
+2. `XGBoost-DRD` — 31 fits once features exist.
+3. SPA (benchmark = `HAR-DRD`) — whether any alternative beats the workhorse.
+4. State-augmented MZ / covariance-aware MZ-GLS — required final Block 3C calibration work if not already closed.
 5. Third proxy (`RCov_refresh_kernel`).
 
-## TIER 3 — WEEKS 2-4 (this is the paper, not the artifact)
+## TIER 3 — LATER PAPER EXTENSIONS
 
-`LSTM-BEKK-RC` (information parity — the most valuable number in the paper);
+`LSTM-BEKK-RC` (information parity);
 universe variant (C), the 20-draw robustness run; N = 50 with kernel proxies;
 `GPVar`; correlation-change diagnostics; multi-horizon forecasts; net-of-cost
 GMV; and the learned-shrinkage agenda in Part 6.
 
-The revised inference finish line is separate from these model extensions. Giacomini–Rossi
-fluctuation analysis is required before Block 3 is closed if it was not completed earlier.
-Odendahl–Rossi–Sekhposyan state-dependent threshold evaluation remains optional and requires a
-separate applicability and implementation decision.
+The revised inference finish line is separate from these model extensions. Giacomini–Rossi fluctuation analysis is required before Block 3 is closed if it was not completed earlier. Odendahl–Rossi–Sekhposyan state-dependent threshold evaluation remains optional and requires a separate applicability and implementation decision.
 
 **Block 4 structured graph / econometric baseline (not DL).** `GHAR` is a
 Block-4 structured graph covariance baseline. It is not a deep-learning model.
 The exact graph-neural architecture remains unresolved and must be frozen
 before final `PREREGISTRATION.md`. `iTransformer` is optional and not committed.
 
-## Why Tier 1 alone is resume-worthy — including without a deep model
+## Why the core harness comes first
 
-Counterintuitive but true for quant recruiting: **the harness is the credential, not the models.**
-A hiring reader is checking whether you can (a) handle intraday data correctly, (b) estimate
-high-dimensional covariance without fooling yourself, and (c) evaluate forecasts without
-manufacturing significance. Tier 1 demonstrates all three. A deep model demonstrates none of them
-and is the easiest part to fake.
-
-Resume/GitHub bullets Tier 1 supports, all literally true on delivery:
-
-- Built a leak-free benchmark for multivariate covariance forecasting: 9 models from random walk
-  through DCC with nonlinear eigenvalue shrinkage, evaluated under proxy-robust matrix losses with
-  Model Confidence Set screening and pre-registered, chronologically separated confirmatory tests.
-- Implemented realized-covariance estimation from intraday trades with synchronization and
-  microstructure diagnostics (Epps-effect validation, positive-definiteness monitoring).
-- Demonstrated that three standard evaluation shortcuts in the volatility literature — non-robust
-  loss functions, unadjusted t-tests on serially correlated loss differentials, and unconditional
-  average comparison — each produce the wrong answer on data with a known ground truth.
-
-That third bullet is the one that gets an interview, and it is Tier 1 work.
-
-**What Tier 1 cannot claim:** anything about deep learning. The README must say so plainly —
-"deep-learning comparison in progress" is credible; an overclaimed MLP is not.
+The research question is whether later methods outperform strong econometric covariance forecasts under a leak-free protocol. That comparison is not interpretable until measurement, scoring, splits, and inference are fixed. A deep model added before those pieces exist cannot be evaluated fairly. The README must not claim a deep-learning result that the locked confirmatory evaluation has not supported.
 
 ---
 
@@ -137,20 +101,20 @@ That third bullet is the one that gets an interview, and it is Tier 1 work.
 
 ## 0.1 The two blocking risks
 
-**Risk A: data acquisition.** Free intraday equity data is the single most likely thing to eat two
-days. Oxford-Man Realized Library is discontinued. Options in order of preference:
+**Risk A: data acquisition.** Free intraday equity data is the single most likely empirical
+blocker. Oxford-Man Realized Library is discontinued. Options in order of preference:
 - **Alpaca** free API — historical minute bars, generous history, clean API. Best default.
 - **Polygon.io** free/starter tier — minute aggregates.
 - **Databento** — paid but cheap for a one-off pull; highest quality.
-- **Fallback:** if intraday acquisition stalls past Day 1 noon, build the entire harness on
-  **simulated data from a known DCC-NL process** (you can generate this — see Day 2). Simulation
+- **Fallback:** if vendor access is not settled, build the entire harness on
+  **simulated data from a known DCC-NL process**. Simulation
   is required to validate estimators, losses, and inference against known truth before relying on
   market data. Simulation never substitutes for the project's final empirical finding. Swap in
   real data when it arrives.
 
 **Risk B: reading gap.** Read **Liu, Patton & Sheppard (2015)** (`H14`) before writing the RCov
-pipeline. It tells you which realized measure actually wins and why 5-min is the default. Two hours.
-Skim **Archakov & Hansen (2021)** (`M13`) before Day 6 for the matrix-transform justification.
+pipeline. It tells you which realized measure actually wins and why 5-min is the default.
+Skim **Archakov & Hansen (2021)** (`M13`) before matrix-transform or LSTM-BEKK work.
 
 ## 0.2 Acquisition: what actually works
 
@@ -167,14 +131,14 @@ Ranked options:
 | Alpaca | Free tier | **Caution:** free tier is IEX-only, roughly 2-3% of consolidated volume. RCov from IEX-only prints is materially noisier and more Epps-affected than SIP data. Usable for pipeline development, not for headline results. |
 | FirstRate Data / Kibot | One-off purchase | Pre-cleaned minute bars; convenient, less transparent cleaning. |
 
-**Decision rule:** try WRDS today. If unavailable within 24 hours, buy one Databento pull for
-N=50 tickers over 10 years and move on. Do not burn three days on free-data archaeology.
+**Decision rule:** try WRDS first. If unavailable, buy one Databento pull for
+N=50 tickers over 10 years and move on. Do not spend unbounded effort on free-data archaeology.
 
-**Fallback that keeps the week alive:** build and validate the entire harness on **simulated data
+**Fallback that keeps model engineering unblocked:** build and validate the entire harness on **simulated data
 from a known DCC-NL process**. Simulation is required to validate estimators, losses, and
 inference against known truth before relying on market data. Simulation never substitutes for
-the project's final empirical finding. Swap in real data when it lands. Nothing on
-Days 2-3 requires real data.
+the project's final empirical finding. Swap in real data when it lands. Blocks 2 and 3
+do not require market data.
 
 ## DATA GATE
 
@@ -232,7 +196,7 @@ Cost: B times the compute, so run it with the cheap models first and only extend
 ones if the pipeline is fast enough.
 
 **Survivorship:** variants A-C still condition on surviving year Y0. Document it as a limitation
-and, in week 3, add the annual-redraw version where the universe is refreshed each January and
+and, in a later part, add the annual-redraw version where the universe is refreshed each January and
 covariance models are re-initialized at the boundary.
 
 ## 0.4 The dimension constraint nobody writes down
@@ -310,7 +274,7 @@ and explicit; silence is not.
 
 Rank stability across all three is a pre-committed requirement, not a bonus check.
 
-## 0.8 Realized quarticity (you asked for it — here is where it enters)
+## 0.8 Realized quarticity
 
 Per-asset realized quarticity `RQ_i,t = (M/3) sum_j r_{i,t,j}^4` estimates the measurement-error
 variance of `RV_i,t`. Multivariate analogue for covariance entries is messier; use the per-asset
@@ -327,7 +291,7 @@ contaminate it badly. Use a jump-robust variant (tri-power quarticity) as a robu
 
 ---
 
-## 0.9 Frozen design decisions (write these down, do not revisit mid-week)
+## 0.9 Frozen design decisions (write these down, do not revisit after they are frozen)
 
 | Decision | Value | Why |
 |---|---|---|
@@ -336,21 +300,21 @@ contaminate it badly. Use a jump-robust variant (tri-power quarticity) as a robu
 | Sampling | 5-min primary; 1-min subsampled; 15-min | Three proxies for rank-stability check |
 | Rolling window | **m = 250 days, fixed, identical for every model** | (a) GW validity requires fixed finite m; (b) c = N/T = 0.12 gives nonlinear shrinkage something to do |
 | Re-estimation | **Every 21 trading days (monthly), identical for every model** — see 2.5 | Silent confound if models re-fit at different rates |
-| Horizon | 1-day ahead only (week 1) | Multi-step is week 3 |
+| Horizon | 1-day ahead only in the core benchmark | Multi-step is a later part |
 
-**The m = 250 choice is load-bearing.** At m = 1000, c = 0.03 and DCC-NL collapses onto DCC — you
-would ship a benchmark that handicaps your main econometric competitor. Report sensitivity to
+**The m = 250 choice is load-bearing.** At m = 1000, c = 0.03 and DCC-NL collapses onto DCC — the
+benchmark would handicap the main econometric competitor. Report sensitivity to
 m in {250, 500, 1000} in the final paper; use 250 as the headline.
 
 ---
 
 ---
 
-# PART 1 — THE PRE-REGISTRATION (write as PREREGISTRATION.md, commit Day 2, never edit)
+# PART 1 — THE PRE-REGISTRATION (write as PREREGISTRATION.md once, after the graph-neural specification and empirical dataset are frozen, never edit)
 
 ## 1.1 Model universe
 
-See Part 2.4 for the 12-model roster. It is frozen before Day 4; adding a model after seeing
+See Part 2.4 for the 12-model roster. It is frozen before empirical fitting; adding a model after seeing
 results reopens the data-snooping problem the SPA/MCS stage exists to close.
 
 ## 1.2 Data splits (time-ordered, no shuffling, ever)
@@ -362,7 +326,7 @@ results reopens the data-snooping problem the SPA/MCS stage exists to close.
 
 - **VALIDATION** — hyperparameter selection ONLY. Never enters any reported result.
 - **SCREEN** — Stage 1 MCS and Stage 2 finalist selection. Never used for confirmatory inference.
-- **CONFIRM** — locked. Touched exactly once, at the end of Day 7. Enforce this in code: a
+- **CONFIRM** — locked. Touched exactly once, when confirmatory evaluation is authorized. Enforce this in code: a
   `LOCKED = True` flag that raises unless an explicit `--unlock-confirm` argument is passed.
 
 VALIDATION has a target of 250 days. SCREEN and CONFIRM have committed minima of
@@ -435,11 +399,11 @@ A small MLP on lagged RCov features is not a covariance model anyone published �
 regressor with no PSD structure, no econometric prior, and no paper behind it. Its only role was to
 occupy the "nonlinear network" rung of the ladder. **LSTM-BEKK occupies that rung properly, with a
 real architecture from a real paper.** The MLP adds a cell to the factorial that the RCov-augmented
-LSTM-BEKK already covers, at the cost of a day you don't have. Cut.
+LSTM-BEKK already covers. Cut.
 
 ## 2.2 LSTM-BEKK (Wang, Liu, Tran & Wang 2025) — the primary DL competitor
 
-**What the paper actually specifies** [V, read this session]:
+**What the paper actually specifies** [V]:
 ```
 H_t = C C'  +  C_t C_t'  +  a · r_{t-1} r_{t-1}'  +  b · H_{t-1}
 ```
@@ -477,12 +441,12 @@ The gap between these two is a direct measurement of **how much of any DL gain i
 versus architecture** — the single most valuable number your paper can report, and the axis your
 factorial exists to isolate.
 
-**Protocol deviation to declare.** The paper uses a fixed 70/15/15 split [V]. Your protocol requires
-rolling re-estimation with fixed window `m` for GW validity. You will therefore re-estimate on the
+**Protocol deviation to declare.** The paper uses a fixed 70/15/15 split [V]. This protocol requires
+rolling re-estimation with fixed window `m` for GW validity. The project therefore re-estimates on the
 common rolling schedule, which differs from the original. State this: it is a deliberate
 protocol-equalization, not a replication failure.
 
-**Cost:** ~1.5 days. The recursion is a custom differentiable RNN cell; the fiddly parts are
+The recursion is a custom differentiable RNN cell. The fiddly parts are
 Cholesky-based NLL, truncated BPTT through the covariance recursion, `H_0` initialization, and
 constraining `a+b<1` (parameterize via sigmoid on a logit pair).
 
@@ -547,26 +511,26 @@ information fixed; `LSTM-BEKK → LSTM-BEKK-RC` isolates information with archit
 **Deferred to Block 4 as a structured graph / econometric baseline, not as DL.** `GHAR`
 (linear graph HAR). The exact graph-neural model remains unresolved. Also deferred.
 `GPVar` (GluonTS, but the
-MXNet backend is deprecated — budget a day for environment archaeology alone), `SpotV2Net`
+MXNet backend is deprecated — budget environment work), `SpotV2Net`
 (no confirmed public code), `ReSPDNet` (Riemannian, highest bar). Do not half-replicate a
 competitor — that is precisely what you are criticizing others for. `iTransformer` is
 optional and not committed.
 
-## 2.5 The re-estimation cadence decision (this is what makes the week feasible)
+## 2.5 The re-estimation cadence decision
 
 GW validity requires a fixed finite window and **identical cadence across every model**. Retraining
 an LSTM every 5 days over a 1000-day evaluation period is 200 fits and is not affordable.
 
 **Set the common cadence to monthly (21 trading days) for all 12 models, with m = 250.**
-Roughly 48 refits over the evaluation period. An LSTM-BEKK fit on 250 days of N=30 returns is small
-— minutes, not hours. Everything else is faster. Parity preserved, budget survivable, and the
+Roughly 48 refits over the evaluation period. An LSTM-BEKK fit on 250 days of N=30 returns is a
+small network. Everything else is cheaper. Parity is preserved, and the
 choice is defensible and pre-registered rather than convenient.
 
 ---
 
 ## 2.6 Shrinkage: use analytical nonlinear shrinkage, not QuEST
 
-You asked about QuEST. Important practical correction:
+QuEST is not used. Important practical correction:
 
 - **QuEST** (Ledoit-Wolf 2015/2017) inverts the Marchenko-Pastur relation numerically —
   a nonconvex optimization per estimation date. Accurate, slow, fiddly.
@@ -784,48 +748,46 @@ most favorable crisis threshold and attach an ordinary unadjusted p-value.
 
 ---
 
-# PART 4 — THE WEEK (Tier 1 must ship by Day 5)
+# PART 4 — BLOCK SEQUENCE (Tier 1 is the core benchmark)
 
-| Day | Work | Gate — do not proceed until this passes |
+| Block | Work | Gate — do not proceed until this passes |
 |---|---|---|
-| **0** | WRDS/Databento decision; read LPS (2015); skim LSTM-BEKK section 2.2 | Data source settled |
-| **1** | Cleaning, synchronization, 2 proxies, PD/conditioning logs; stylized-fact + **Epps** validation | Epps curve rises and flattens |
-| **2** | Splits + confirm lock; losses (Stein, Frobenius, DRD, GMV); simulated DCC DGP with known Sigma | **Non-robust loss demonstrably flips the ranking** on simulated data |
-| **3** | Rolling driver; DM+HAC, MCS, GW, standard MZ | **Naive t over-rejects ~25% vs HAC ~5%; GW catches regime dependence DM misses** |
-| **4** | `RW`, `EWMA`, `HAR-DRD`, `HARQ-DRD`, `Ridge-DRD` end-to-end | Full results table on the screening block |
-| **5** | `LW-linear`, `LW-NL`, `DCC`, `DCC-NL`; eigenvalue figure; **unlock confirm once**; README + PREREGISTRATION | **TIER 1 SHIPPED — repo is public-ready** |
-| **6-7** | Tier 2, in priority order: `LSTM-BEKK`, then `XGBoost-DRD`, SPA, state-augmented MZ / covariance-aware MZ-GLS | Whatever finishes, finishes |
+| **Pre-flight** | WRDS/Databento decision; read LPS (2015); skim LSTM-BEKK section 2.2 | Data-source options documented; DATA GATE remains closed until a panel is verified |
+| **Block 1** | Cleaning, synchronization, 2 proxies, PD/conditioning logs; stylized-fact + **Epps** validation | Epps curve rises and flattens |
+| **Block 2** | Splits + confirm lock; losses (Stein, Frobenius, DRD, GMV); simulated DCC DGP with known Sigma | **Non-robust loss demonstrably flips the ranking** on simulated data |
+| **Block 3** | Rolling driver; DM+HAC, MCS, GW, standard MZ | **Naive t over-rejects ~25% vs HAC ~5%; GW catches regime dependence DM misses** |
+| **Block 4A (realized-covariance baselines)** | `RW`, `EWMA`, `HAR-DRD`, `HARQ-DRD`, `Ridge-DRD` on the common contract | Synthetic/unit validation on the model contract; no empirical fitting before the DATA GATE |
+| **Block 4A (shrinkage and DCC)** | `LW-linear`, `LW-NL`, `DCC`, `DCC-NL`; eigenvalue figure | Same contract; eigenvalue figure appears on known-Sigma data |
+| **Later Block 4** | Tier 2, in priority order: `LSTM-BEKK`, then `XGBoost-DRD`, SPA, remaining Block 3C calibration if still open | Whatever is implemented enters the same interface |
 
-The week schedule is not the final inference finish line. Covariance-aware MZ-GLS and Giacomini–Rossi
-fluctuation analysis remain required before Block 3 is finally closed even if they slip beyond this
-original week schedule. The state-dependent threshold extension remains optional.
+This sequence is not the final inference finish line. Covariance-aware MZ-GLS and Giacomini–Rossi
+fluctuation analysis remain required before Block 3 is finally closed. The state-dependent
+threshold extension remains optional. Final `PREREGISTRATION.md` is written once after the
+graph-neural specification and empirical dataset are frozen. CONFIRM remains locked until
+confirmatory evaluation is authorized.
 
-## Slippage rules (decide now, not at 2am on Day 4)
+## Scope reduction (if a later piece is blocked)
 
-- **Behind at end of Day 2** → drop the second proxy, keep `RCov_5min` only. Rank-stability moves
-  to Tier 3.
-- **Behind at end of Day 3** → drop GW and MZ from Tier 1, keep DM + MCS. GW moves to Day 6.
-- **Behind at end of Day 4** → drop `HARQ-DRD` and `LW-linear`. The `DCC → DCC-NL` pair is the
-  one that must survive; it is the frontier baseline and the reason the project is interesting.
-- **Day 6 LSTM-BEKK not training by evening** → stop, commit, ship Tier 1, resume in week 2. Do not
-  spend Day 7 debugging a model at the cost of the README.
+- If a second proxy is blocked → keep `RCov_5min` only. Rank-stability moves to Tier 3.
+- If GW or MZ is delayed → keep DM + MCS in the core inference stack. GW remains required before Block 3 is closed.
+- If a later econometric model is delayed → do not drop the `DCC → DCC-NL` pair. That pair is the frontier baseline.
+- If `LSTM-BEKK` is not training → stop that model and leave earlier blocks intact. Do not delay documentation of implemented components.
 
-## The two hours most people skip and shouldn't
+## Synthetic validation that must exist before empirical fitting
 
-The three synthetic demonstrations on Days 2-3 are unit tests *and* paper figures *and* the
-strongest signal in the repo that you understand why the protocol exists rather than having copied
-it. They are also how you find out your HAC and MCS wiring is wrong before real data hides it.
+The three synthetic demonstrations in Blocks 2 and 3 are unit tests and paper figures. They
+show why the protocol exists. They are also how HAC and MCS wiring is checked before market data
+can hide a mistake.
 
 # PART 5 — REPO AND README
 
 See **Repository layout** at the top of this file. `PREREGISTRATION_DRAFT.md` records
 protocol decisions frozen so far. Final `PREREGISTRATION.md` is created once after the
 graph-neural specification and empirical dataset are frozen, and is never edited. Hashed RCov arrays and
-the build script live under `data/`; synthetic-truth tests from Days 2–3 live
+the build script live under `data/`; synthetic-truth tests from Blocks 2 and 3 live
 under `tests/`.
 
-**README framing — this is what a quant reader actually evaluates.** Lead with the protocol, not
-the models:
+**README framing.** Lead with the protocol, not the models:
 
 > A leak-free, pre-registered benchmark for multivariate covariance forecasting. Nine models
 > (random walk through DCC-NL and neural networks) compared under proxy-robust matrix losses across
@@ -835,16 +797,15 @@ the models:
 > literature — non-robust losses, seed-level significance, unconditional-average comparison — give
 > the wrong answer.
 
-Four baselines evaluated impeccably beat nine models evaluated casually. The three synthetic
+A smaller roster evaluated under the protocol is preferable to a larger roster evaluated casually. The three synthetic
 demonstrations (non-robust loss flips ranking; naive t-test over-rejects at 25%; DM blind to regime
-dependence where GW is not) are the most distinctive thing in the repo — they show you know why the
-protocol exists.
+dependence where GW is not) are required known-truth checks of the scoring and inference stack.
 
 ---
 
 ---
 
-# PART 6 — "WHERE SIMPLE AI IS WELL-POSED" (your last question — and it is the paper's future)
+# PART 6 — WHERE SIMPLE AI IS WELL-POSED
 
 The framing that makes this publishable: rather than asking "can a big network beat econometrics,"
 identify **narrow sub-problems where the econometric solution is an explicit analytical map, so a
@@ -867,7 +828,7 @@ without peeking across the time split.
 **2. Learned model switching (the GW decision rule, estimated).**
 GW already yields `choose g if h_T' alpha > c`. Replace the linear rule with a learned classifier on
 richer state features. This *directly operationalizes* the regime-dependence outcome: instead of
-"results are mixed," you ship a switching rule with a formal test that switching adds value.
+"results are mixed," the project reports a switching rule with a formal test that switching adds value.
 
 **3. Learned measurement-error correction (HARQ, generalized).**
 HARQ's attenuation correction is `beta_1 + beta_1Q * sqrt(RQ)` — a hand-specified linear map from
@@ -891,8 +852,8 @@ under the protocol.
 # PART 7 — CUT ORDER
 
 1. Universe variant (C) → 2. `XGBoost-DRD` → 3. `LSTM-BEKK-RC` (keep the faithful one) →
-4. third proxy → 5. `LSTM-BEKK` entirely (ship 10 econometric+linear models, add in week 2) →
-6. `DCC-NL` (ship `LW-NL` and `DCC` separately, compose in week 2).
+4. third proxy → 5. `LSTM-BEKK` entirely (keep the econometric and linear models, add the network in a later block) →
+6. `DCC-NL` (keep `LW-NL` and `DCC` separately, compose in a later block).
 
 **Never cut:** the confirm lock, `PREREGISTRATION.md`, the Epps check, SPA/MCS, the
 cumulative-`d_t` diagnostic, the both-losses requirement, covariance-aware MZ-GLS from the final

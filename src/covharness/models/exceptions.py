@@ -14,3 +14,11 @@ class InvalidModelInputError(ValueError):
 
 class InvalidModelConfigurationError(ValueError):
     """A model configuration is outside the documented parameter domain."""
+
+
+class InvalidModelForecastError(ValueError):
+    """A model forecast failed a documented validity contract.
+
+    The BPQ estimation-window-mean fallback is included when that matrix
+    is not strictly positive definite. No second repair is applied.
+    """

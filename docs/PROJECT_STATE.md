@@ -1,12 +1,14 @@
 # Project state
 
-Last updated 2026-09-15.
+Last updated 2026-09-16.
 
 Project conda environment is `covharness` (Python 3.11). Recreate with `conda env create -f environment.yml` from the repository root.
 
 ## Current milestone
 
-Block 4A-1 common model contract, random-walk realized covariance, and EWMA realized covariance. Both baselines are synthetic/unit validated. No empirical fitting occurred. The DATA GATE remains closed. Blocks 1, 2A, 2B, 3A, 3B, and 3C are accepted as closed. HAR-DRD and later roster members were not begun.
+Block 4A-3 HARQ-DRD on the same DRD and HAR lag contract as HAR-DRD. The model is synthetic/unit validated. No empirical fitting occurred. The DATA GATE remains closed. Blocks 1, 2A, 2B, 3A, 3B, 3C, 4A-1, and 4A-2 are accepted as closed. Ledoit-Wolf and later roster members were not begun.
+
+`BENCHMARK_IMPLEMENTATION_PLAN.md` is organized by blocks and parts. It does not use writing-day or resume framing. Forecast-horizon and rolling-window lengths in trading days are unchanged.
 
 ## Completed
 
@@ -136,6 +138,40 @@ A synthetic protocol check slices a `(T, N, N)` cube with `ForecastStep` on a VA
 
 Files created. `src/covharness/models/exceptions.py`, `base.py`, `random_walk.py`, `ewma.py`, and `tests/unit/test_models_rcov_baselines.py`. `src/covharness/models/__init__.py` now exports the public API.
 
+Block 4A-2 HAR-DRD is implemented in `covharness.models.har_drd` as `HARDRDRealizedCovariance`. Public identity `har_drd`. It consumes the same origin-window contract as random walk and EWMA.
+
+DRD. For each supplied $S_t$, $v_t=\operatorname{diag}(S_t)$, $D_t=\operatorname{diag}(\sqrt{v_t})$, $R_t=D_t^{-1}S_t D_t^{-1}$. Every diagonal must be strictly positive. A PSD matrix with a zero diagonal is rejected with `InvalidModelInputError`. Inputs are not altered.
+
+Pair order. Strict upper triangle $i<j$ via `np.triu_indices(N, k=1)`, the same unique-pair order already used by Epps and Giacomini–White. $P=N(N-1)/2$. Reconstruction uses that order with unit diagonal.
+
+HAR features. Zhang-style non-overlapping lags. Response dates $k=22,\ldots,T-1$. Daily is $k-1$. Weekly is the mean of exactly four observations `[k-5:k-1]`. Monthly is the mean of exactly seventeen observations `[k-22:k-5]`. The blocks do not overlap and do not read before local index 0. For $T=250$ there are $228$ regression dates. Origin predictors for the target after the window are `[T-1]`, `[T-5:T-1]`, and `[T-22:T-5]`.
+
+Equations. Variances have asset-specific intercepts and three shared scalar slopes. Correlations have pair-specific intercepts and three shared scalar slopes. The headline model is in levels. There is no log-variance transform, Fisher transform, ridge, graph term, or HARQ term.
+
+Estimation. Exact fixed-effects within transformation. Group-demean $y$ and the three-column $X$, stack only the demeaned three-column design, solve $\beta$ by `lstsq`, recover intercepts from group means. The dummy-variable helper exists only in tests. The fitted model never builds an $N$-column or $P$-column intercept design. Stored state includes $\alpha_D$, $\beta_D$, $\alpha_R$, $\beta_R$, $N$, $P$, window length, regression-date count, within-design ranks, pair ordering, and lag convention. OLS standard errors are not stored.
+
+Repair. Explicit BPQ-style insanity filter. Raw $H$ is used only when $v_{\mathrm{raw}}$ is finite and strictly positive, $x_{\mathrm{raw}}$ is finite, pairwise correlations lie in $[-1,1]$, and both $R_{\mathrm{raw}}$ and $H_{\mathrm{raw}}$ are strictly PD. Otherwise the headline matrix is the arithmetic mean of the current supplied estimation window, `repaired=True`, `repair_method="estimation_window_mean"`. If that mean is not strictly PD, `InvalidModelForecastError` is raised. No second repair. No clipping, nearest-PD, jitter, diagonal loading, or entrywise replacement. Failure flags are stored. Repair frequency is reportable. Raw components are preserved for diagnostics.
+
+A synthetic protocol check on a $m=250$ VALIDATION window confirms that CONFIRM remains locked. No empirical fitting occurred.
+
+Files created or materially changed. `src/covharness/models/har_drd.py`, `src/covharness/models/exceptions.py` (`InvalidModelForecastError`), `src/covharness/models/__init__.py`, `tests/unit/test_models_har_drd.py`, `README.md`, and `docs/PROJECT_STATE.md`.
+
+Block 4A-3 HARQ-DRD is implemented in `covharness.models.harq_drd` as `HARQDRDRealizedCovariance`. Public identity `harq_drd`. It inherits `CovarianceModel` rather than `RealizedCovarianceModel`, because `fit` requires both a `(T, N, N)` covariance window and a matching `(T, N)` per-asset realized-quarticity window. Random walk, EWMA, and HAR-DRD keep the covariance-only `fit`.
+
+Variance equation. Asset-specific $\alpha_Q$ and four shared slopes $(\beta_{Q,d},\phi_{Q,d},\beta_{Q,w},\beta_{Q,m})$. The extra term is $\phi_{Q,d}(\sqrt{\mathrm{RQ}_{k-1}}\odot v_{k-1})$. No sign constraint on $\phi_{Q,d}$. No weekly or monthly quarticity term. No log-variance transform.
+
+Correlation equation. Unchanged HAR-DRD three-slope map. Same pair order. No Fisher transform and no correlation attenuation.
+
+RQ contract. Precomputed $(T,N)$ panel aligned with the covariance history. Definition label `per_asset_rq_m_over_3_sum_r4`, meaning $\mathrm{RQ}_i=(M/3)\sum_l r_{i,l}^4$. Finite and nonnegative. Zero allowed. No annualization, winsorization, clipping, or standardization. This is not the GW aggregate $\mathrm{RQ}_{\mathrm{agg}}=\mathrm{mean}_i\mathrm{RQ}_i$ and is not logged. The model does not read raw intraday returns. Empirical TAQ-to-RQ assembly waits for the DATA GATE.
+
+Estimation. The HAR-DRD within estimator now accepts any slope width. HARQ variance uses four demeaned columns. Correlation uses the existing three. Dummy intercept matrices are not built. Rank is stored and is not used as an automatic rejection unless `lstsq` already fails.
+
+Repair. Shared `headline_repaired_forecast` with HAR-DRD. Same validity flags. Same estimation-window-mean fallback. No second repair.
+
+A synthetic protocol check on a $m=250$ VALIDATION window confirms that CONFIRM remains locked. No empirical fitting occurred.
+
+Files created or materially changed. `src/covharness/models/harq_drd.py`, `src/covharness/models/har_drd.py` (shared within estimator and headline repair helper), `src/covharness/models/__init__.py`, `tests/unit/test_models_harq_drd.py`, `README.md`, and `docs/PROJECT_STATE.md`.
+
 MZ exact-fit API. Coefficients and Wald semantics are unchanged. Exact calibration returns Wald $0$, p-value $1$, `inference_case="deterministic_null"`, `covariance=None`, and `covariance_degenerate=True`. An exact linear violation returns Wald $\infty$, p-value $0$, `inference_case="deterministic_alternative"`, and `covariance=None`. Ordinary cases return a numeric sandwich with `inference_case="regular"`. No jitter.
 
 Synthetic origin-state demonstrations, not empirical findings. Hand quarticity on $[[1,2],[0.5,-1],[0,1]]$ gives $\mathrm{RQ}=(1.0625,18)$ and $\mathrm{RQ}_{\mathrm{agg}}=9.53125$. Hand BNS market path $(0.2,0.1,0.3,0.1,0.2)$ gives $\mathrm{RV}=0.19$, $\mathrm{BV}=0.1$, $\mathrm{QP}=0.006$, $J_{\mathrm{BNS}}=-0.3874$, $Z=-0.4965$, indicator $0$. Seed 20260914 Gaussian continuous panel, $M=80$, has $Z=-1.493$ and indicator $0$. The same panel with a $0.2$ common jump at interval 40 has $Z=-11.237$ and indicator $1$. Exact MZ $S=H$ returns `deterministic_null` with `covariance=None`. $S=2H$ and $S=H+c$ return `deterministic_alternative` with `covariance=None`.
@@ -177,6 +213,8 @@ Synthetic validation, seed 20260914. These are validation demonstrations, not em
 - `src/covharness/models/base.py`
 - `src/covharness/models/random_walk.py`
 - `src/covharness/models/ewma.py`
+- `src/covharness/models/har_drd.py`
+- `src/covharness/models/harq_drd.py`
 - `src/covharness/models/__init__.py`
 - `src/covharness/diagnostics/epps.py` (`m_over_n` added)
 - `tests/unit/test_losses.py`
@@ -189,6 +227,8 @@ Synthetic validation, seed 20260914. These are validation demonstrations, not em
 - `tests/unit/test_inference_fluctuation.py`
 - `tests/unit/test_origin_state.py`
 - `tests/unit/test_models_rcov_baselines.py`
+- `tests/unit/test_models_har_drd.py`
+- `tests/unit/test_models_harq_drd.py`
 - `tests/unit/test_epps.py`
 - `notebooks/proxy_robust_losses.ipynb`
 - `notebooks/dm_hac_size.ipynb`
@@ -295,6 +335,49 @@ Full suite after Block 4A-1, same interpreter, `python -m pytest -q`.
 
 No tests were skipped. The two warnings are the same Block 3A non-finite HAC overflow and Block 3C non-finite GW Omega overflow. They are intentional overflow tests. HAR-DRD was not implemented.
 
+Focused Block 4A-2 command on 2026-09-16, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_models_har_drd.py`.
+
+```
+.......................                                                  [100%]
+23 passed in 0.47s
+```
+
+No tests were skipped. No warnings.
+
+Full suite after Block 4A-2, same interpreter, `python -m pytest -q`.
+
+```
+........................................................................ [ 25%]
+........................................................................ [ 50%]
+........................................................................ [ 75%]
+........................................................................ [100%]
+288 passed, 2 warnings in 17.49s
+```
+
+No tests were skipped. The two warnings are the Block 3A non-finite HAC overflow (`RuntimeWarning: overflow encountered in dot` in `test_nonfinite_hac_long_run_variance_is_rejected`) and the Block 3C non-finite GW Omega overflow (`RuntimeWarning: overflow encountered in matmul` in `test_gw_nonfinite_omega_raises`). They are intentional overflow tests. Warnings were not suppressed.
+
+Focused Block 4A-3 command on 2026-09-16, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_models_harq_drd.py tests/unit/test_models_har_drd.py`.
+
+```
+....................................................                     [100%]
+52 passed in 0.70s
+```
+
+No tests were skipped. No warnings. That count is 28 HARQ-DRD tests and 24 HAR-DRD tests.
+
+Full suite after Block 4A-3, same interpreter, `python -m pytest -q`.
+
+```
+........................................................................ [ 22%]
+........................................................................ [ 45%]
+........................................................................ [ 68%]
+........................................................................ [ 90%]
+.............................                                            [100%]
+317 passed, 2 warnings in 17.77s
+```
+
+No tests were skipped. The two warnings are the same Block 3A non-finite HAC overflow and Block 3C non-finite GW Omega overflow. They are intentional overflow tests. Warnings were not suppressed.
+
 ## Methodological decisions already in code
 
 - Reduced QLIKE is the primary ranking loss. Full Stein is the SPD-proxy form.
@@ -328,6 +411,16 @@ No tests were skipped. The two warnings are the same Block 3A non-finite HAC ove
 - Random-walk realized covariance is $H_{t+1\mid t}=S_t$ with no repair.
 - EWMA is the recursion $H_0=S_0$, $H_j=\lambda H_{j-1}+(1-\lambda)S_j$ on realized covariance. $\lambda$ is explicit. The 20-point VALIDATION grid is not frozen.
 - Models consume a caller-supplied origin window. They do not inspect protocol block labels.
+- Headline HAR-DRD uses Zhang-style non-overlapping HAR lags of widths $1$, $4$, and $17$ on the DRD split.
+- Variance HAR has asset-specific intercepts and three shared scalar slopes. Correlation HAR has pair-specific intercepts and three shared scalar slopes.
+- HAR-DRD is estimated by the within transformation. Dummy intercept columns are not constructed.
+- Headline HAR-DRD is in levels. Log-variance, Fisher, ridge, graph, and HARQ terms are not used.
+- Unique pairs follow the existing strict upper-triangle order $i<j$.
+- The only headline HAR-DRD repair is replacement by the current estimation-window mean. Repair is never silent. A non-PD fallback raises rather than receiving a second repair.
+- Headline HARQ-DRD adds one daily per-asset quarticity interaction on variances and leaves the HAR-DRD correlation map unchanged.
+- HARQ RQ is the per-asset series $\mathrm{RQ}_i=(M/3)\sum_l r_{i,l}^4$ supplied as a $(T,N)$ window. It is not the GW aggregate $\log\mathrm{RQ}_{\mathrm{agg}}$.
+- HARQ imposes no sign constraint on $\phi_{Q,d}$. Zero RQ is admissible.
+- HARQ uses the same BPQ estimation-window-mean insanity filter as HAR-DRD.
 
 ## Known problems or limitations
 
@@ -337,7 +430,10 @@ No tests were skipped. The two warnings are the same Block 3A non-finite HAC ove
 - Blocks 3A, 3B, and 3C are accepted as closed. The pending bounded DM dependence/calibration review remains pending before confirmatory use.
 - The BNS jump indicator can miss an idiosyncratic jump that is small in the equal-weight market average, and a common jump can be flagged even if some names did not jump.
 - Random-walk and EWMA forecasts that remain singular PSD are not QLIKE-evaluable. That is a model-output limitation, not a license to repair $H$.
-- HAR-DRD, HARQ-DRD, shrinkage, DCC, Ridge-DRD, LSTM-BEKK, GHAR, and the graph-neural slot are not implemented. Portfolio evaluation is not implemented.
+- HAR-DRD repair frequency is unknown on market data. The model has not been fit empirically.
+- HARQ-DRD likewise has no empirical RQ panel. The $(T,N)$ input is a model contract. TAQ-to-RQ assembly is not implemented in this block.
+- Shrinkage, DCC, Ridge-DRD, LSTM-BEKK, GHAR, and the graph-neural slot are not implemented. Portfolio evaluation is not implemented.
+- Final `PREREGISTRATION.md` is absent. The draft remains the only protocol record.
 - The Newey-West 1994 lag is short relative to a highly persistent AR(1). Under $\rho=0.6$ and $T=250$, HAC DM still over-rejects relative to 5 percent, while remaining far closer to nominal size than an IID $t$-test.
 - MCS may retain a large set when forecasts are highly correlated. That is a feature of the procedure, not a code failure.
 - Hansen SPA assumes positive differential variance. Exact-constant alternatives are rejected rather than studentized.
@@ -346,4 +442,4 @@ No tests were skipped. The two warnings are the same Block 3A non-finite HAC ove
 
 ## Next recommended task
 
-Implement HAR-DRD on the same realized-covariance model contract, still synthetic/unit only. Do not begin empirical fitting. The DATA GATE remains closed.
+Implement Ledoit-Wolf linear shrinkage on the same realized-covariance contract after this HARQ-DRD report is reviewed. Remain synthetic/unit only. Do not begin empirical fitting. The DATA GATE remains closed. The pending DM calibration review remains pending. The graph-neural specification remains unresolved. Do not create final `PREREGISTRATION.md`.
