@@ -4,7 +4,7 @@
 
 The benchmark is designed so that a new forecasting method does not receive a different target, a richer information set, a larger tuning budget, or a more favorable evaluation criterion simply because it belongs to a different modeling tradition. Conventional models are therefore treated as serious competitors rather than default baselines. The planned comparison assigns common validation periods, tuning budgets, re-estimation schedules, and confirmatory procedures across model classes. Stochastic methods will be evaluated over pre-specified seed sets rather than selected ex post from favorable individual runs.
 
-> **Current status.** The primary TAQ measurement path is exchange-level quotes, P1/P2, listing-venue P3, Q1–Q4, midquote, and previous-tick synchronization. Consolidated NBBO plus Q1–Q4 remains a labeled alternative. An Epps-effect frequency scan is implemented on the five-stock 13 February 2009 panel. Blocks 1, 2A, 2B, 3A, 3B, and 3C are closed. Covariance-space losses are implemented. Reduced QLIKE is the primary ranking loss. Squared Frobenius is the complementary robust criterion. The leak-proof temporal protocol is implemented, with CONFIRM locked by default. Pairwise Diebold-Mariano tests with Bartlett HAC standard errors are implemented. Hansen (2005) SPA and Hansen–Lunde–Nason (2011) MCS are implemented for one loss/proxy channel at a time. The generic Block 3C inference engine is implemented. Origin-day aggregate realized quarticity and the BNS equal-weight market jump indicator are implemented for the second Giacomini-White specification. Random-walk, EWMA, HAR-DRD, and HARQ-DRD realized-covariance models are implemented and synthetic/unit validated. They have not been fit on market data. Realized-kernel estimation is not implemented. The long historical extract is not solved. The DATA GATE remains closed. Protocol decisions are recorded in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). That draft is not the final preregistration.
+> **Current status.** The primary TAQ measurement path is exchange-level quotes, P1/P2, listing-venue P3, Q1–Q4, midquote, and previous-tick synchronization. Consolidated NBBO plus Q1–Q4 remains a labeled alternative. An Epps-effect frequency scan is implemented on the five-stock 13 February 2009 panel. Blocks 1, 2A, 2B, 3A, 3B, and 3C are closed. Covariance-space losses are implemented. Reduced QLIKE is the primary ranking loss. Squared Frobenius is the complementary robust criterion. The leak-proof temporal protocol is implemented, with CONFIRM locked by default. Pairwise Diebold-Mariano tests with Bartlett HAC standard errors are implemented. Hansen (2005) SPA and Hansen–Lunde–Nason (2011) MCS are implemented for one loss/proxy channel at a time. The generic Block 3C inference engine is implemented. Origin-day aggregate realized quarticity and the BNS equal-weight market jump indicator are implemented for the second Giacomini-White specification. Random-walk, EWMA, HAR-DRD, HARQ-DRD, Ridge-DRD, and XGBoost-DRD realized-covariance models are implemented and synthetic/unit validated. Standalone Ledoit-Wolf linear (2004b) and analytical nonlinear (2020) shrinkage models are implemented on daily-return windows and synthetic/unit validated. Original Engle DCC and DCC-NL are implemented on daily-return windows, with daily filter updates between 21-origin parameter refits, and are synthetic/unit validated. Faithful daily-return LSTM-BEKK is implemented on the same return window and update contract, and is synthetic/unit validated. A serial synthetic rolling runner now advances those models along the 21-origin refit schedule with daily forecasts. A synthetic evaluation adapter then aligns those forecasts to target-day realized covariance and scores reduced QLIKE and squared Frobenius with the existing loss implementations. A synthetic Diebold-Mariano HAC size-sensitivity study has been run. The current automatic Newey-West 1994 lag remains the baseline. No empirical runner has been used. These models have not been fit on market data. Realized-kernel estimation is not implemented. The long historical extract is not solved. The DATA GATE remains closed. Protocol decisions are recorded in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). That draft is not the final preregistration.
 
 Detailed implementation status is maintained in [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md).
 
@@ -215,13 +215,15 @@ The proxy-robustness construction $S=u\Sigma$ with $u\sim\mathrm{Exp}(1)$ is in 
 
 Forecast comparison uses four chronological regions on a strictly increasing trading-date index. HISTORY (rolling burn-in), VALIDATION, SCREEN, and CONFIRM. The ordering is HISTORY < VALIDATION < SCREEN < CONFIRM. There is no shuffling, and the three evaluation blocks do not share target dates.
 
-Intervals are half-open, $[start, end)$, on that index. Evaluation blocks are sets of forecast targets. At origin $t$ the model may use information through $t$. The target is the next trading day $t+1$, which does not enter fitting, scaling, features, or graph construction. The common method is a rolling window of $m=250$ trading days with a 21-trading-day refit cadence.
+Intervals are half-open, $[start, end)$, on that index. Evaluation blocks are sets of forecast targets. At origin $t$ the model may use information through $t$. The target is the next trading day $t+1$, which does not enter fitting, scaling, features, or graph construction. The common method is a rolling window of $m=250$ trading days. The 21-origin cadence is the parameter and estimator refit schedule. It is not the forecast cadence. Forecasts are formed at every origin. Parameter refit, daily observable-state update, and forecast formation are distinct operations.
 
 VALIDATION has a target length of 250 trading days. SCREEN and CONFIRM have committed minima of 500 days. If a calendar cannot support the preferred 250/500/500 evaluation allocation, VALIDATION is shortened first and that fact is reported. A zero-length VALIDATION block makes data-driven tuning unavailable. SCREEN and CONFIRM are not silently reduced. An infeasible confirmatory design fails rather than fitting the sample.
 
 VALIDATION is the only block used for tuning and configuration choice. SCREEN compares frozen candidates. CONFIRM is the locked confirmatory comparison. Retrieving CONFIRM dates raises `ConfirmLockedError` unless `unlock_confirm=True` is passed. The default is locked.
 
-Scalers are fit on the estimation window through $t$ only. Stochastic methods use the pre-specified seeds $(0,1,2,3,4)$ and report the full seed distribution. Each model family has an auditable configuration cap of 20. The protocol records these constraints. It does not yet run forecasting models or a tuning engine.
+Scalers are fit on the estimation window through $t$ only. Stochastic methods use the pre-specified seeds $(0,1,2,3,4)$ and report the full seed distribution. Each model family has an auditable configuration cap of 20. The protocol records these constraints. It does not run a tuning engine.
+
+The serial runner `run_rolling_forecasts` in `covharness.protocol.runner` consumes a `ForecastStep` schedule, one model, and aligned origin-t arrays. `run_block_forecasts` obtains that schedule from `TemporalProtocol`. CONFIRM remains locked unless `unlock_confirm=True` is passed. Models never receive VALIDATION, SCREEN, or CONFIRM labels. The runner emits one copied covariance forecast per origin. It does not compute losses, Diebold-Mariano tests, or the Model Confidence Set. Execution is serial. The same origin never receives both `fit` and a subsequent state update. This runner has been used on synthetic arrays only. It has not been used on market data.
 
 ---
 
@@ -242,6 +244,12 @@ Then $d_t<0$ means A has lower loss on date $t$, and $d_t>0$ means B has lower l
 ```
 
 The HAC estimator uses the Bartlett kernel and the Newey-West (1994) lag $L=\lfloor 4(T/100)^{2/9}\rfloor$, with an optional explicit lag. $L=0$ is the heteroskedasticity-only case. If every supplied differential observation is exactly equal, HAC and Diebold-Mariano are undefined and `DegenerateLossDifferentialError` is raised before demeaning. Constancy is not inferred from a variance floor. A genuinely nonconstant series with small variance remains valid. A non-finite HAC long-run variance is rejected rather than stored. No jitter is added. p-values use the asymptotic $N(0,1)$ reference. The Harvey-Leybourne-Newbold small-sample correction is not applied because the design has not committed to it.
+
+That automatic Bartlett / Newey-West procedure remains the current baseline. The lag rule was not changed after the synthetic sensitivity study. Persistent mean-zero AR(1) differentials can produce finite-sample over-rejection, and the HAC long-run variance can understate the true AR(1) long-run variance $1/(1-\rho)^2$. The expanded calibration in `scripts/dm_hac_calibration_sensitivity.py` is synthetic. It uses common random numbers across $L=0$, $L_{\mathrm{auto}}$, $2L_{\mathrm{auto}}$, and $4L_{\mathrm{auto}}$. No bandwidth was selected from those cells. No new default has been adopted.
+
+A candidate pairwise companion is implemented as `stationary_bootstrap_mean_test` in `covharness.inference.bootstrap_mean`. It is a recentered Politis-Romano test of the mean of $d_t$. The observed statistic is $\sqrt{T}\bar d$. Bootstrap samples are drawn from $d_t-\bar d$ using the existing `stationary_bootstrap_indices` engine. There is no long-run variance and no normal reference. The expected block length is the deterministic rule $\ell_T=\max(2,\lfloor T^{1/3}\rfloor)$, passed explicitly. Candidate production settings are $B=5000$ and seed $20260917$, distinct from the SPA/MCS seed. $p$-values use weak inequalities and $(1+\mathrm{count})/(B+1)$. This is not Hansen SPA. SPA remains a composite-null max-statistic with a different $p$-value construction. The companion is under synthetic calibration. It has not been adopted for confirmatory reporting. No empirical losses were used to choose it.
+
+Confirmatory Diebold-Mariano use still awaits review of the calibration evidence. A Monte Carlo rejection rate, a Monte Carlo interval, and an empirical forecast-comparison $p$-value are different objects.
 
 Nested comparisons require separate care. Clark-West is implemented only for scalar squared-error forecasts, and only when the caller declares `nested=True`. It is not applied to reduced QLIKE or squared Frobenius. A later nested covariance comparison may need a loss-specific justified procedure.
 
@@ -266,9 +274,13 @@ $\hat\omega_k^2$ is Hansen's stationary-bootstrap population long-run variance w
 
 The Model Confidence Set asks which models cannot be distinguished from the best. Pairwise differentials are $d_{ij,t}=L_{i,t}-L_{j,t}$, so a positive value means $i$ is worse than $j$. Both coherent Hansen–Lunde–Nason pairs are implemented. The primary SCREEN procedure is $(T_R,e_R)$ with $T_R=\max|t_{ij}|$ and $e_R=\arg\max_i\sup_j t_{ij}$. The companion is $(T_{\max},e_{\max})$. The two pairs are never crossed. Studentization uses standard errors. MCS bootstrap p-values use $\mathrm{mean}(T^\ast\ge T)$. Model p-values are the running maximum along the elimination path, so membership at any $\alpha$ is $\hat p_i\ge\alpha$ without rerunning the bootstrap. The last surviving model has p-value 1. The frozen SCREEN membership level is $\alpha=0.10$. Ties in elimination are broken by original column index. Identical loss columns are treated as ties with $t_{ij}=0$. A pairwise differential that is constant and nonzero raises `DegenerateMCSDifferentialError`.
 
-Simulation is required to validate estimators, losses, and inference against known truth before relying on market data. Simulation never substitutes for the project's final empirical finding. A fixed-seed demonstration of naive $t$-test over-rejection versus HAC DM is in [`notebooks/dm_hac_size.ipynb`](notebooks/dm_hac_size.ipynb) and [`results/dm_hac_size.png`](results/dm_hac_size.png).
+Simulation is required to validate estimators, losses, and inference against known truth before relying on market data. Simulation never substitutes for the project's final empirical finding. A fixed-seed demonstration of naive $t$-test over-rejection versus HAC DM is in [`notebooks/dm_hac_size.ipynb`](notebooks/dm_hac_size.ipynb) and [`results/dm_hac_size.png`](results/dm_hac_size.png). The expanded synthetic size grid is stored in [`results/dm_hac_calibration_sensitivity.csv`](results/dm_hac_calibration_sensitivity.csv), with descriptive figures [`results/dm_hac_calibration_size_vs_rho.png`](results/dm_hac_calibration_size_vs_rho.png) and [`results/dm_hac_calibration_bandwidth.png`](results/dm_hac_calibration_bandwidth.png). Candidate companion calibration is stored in [`results/bootstrap_mean_calibration_stage1.csv`](results/bootstrap_mean_calibration_stage1.csv) and [`results/bootstrap_mean_calibration_stage2.csv`](results/bootstrap_mean_calibration_stage2.csv).
 
 ![Naive t-test versus HAC Diebold-Mariano](results/dm_hac_size.png)
+
+![Current automatic Newey-West lag, rejection versus persistence](results/dm_hac_calibration_size_vs_rho.png)
+
+![HAC lag sensitivity on persistent AR(1) nulls](results/dm_hac_calibration_bandwidth.png)
 
 ---
 
@@ -393,14 +405,22 @@ The initial benchmark is designed to span naive, realized-measure, shrinkage, dy
 - DCC
 - DCC-NL
 - Ridge-DRD
+- XGBoost-DRD
+- LSTM-BEKK
 
-Later extensions include LSTM-BEKK, LSTM-BEKK-RC, and XGBoost-DRD. GHAR is a Block-4 structured graph / econometric covariance baseline. It is not classified as a deep-learning model. One graph-neural architecture remains unresolved and must be frozen before final preregistration. iTransformer is optional and is not committed.
+Later extensions include LSTM-BEKK-RC. GHAR is a Block-4 structured graph / econometric covariance baseline. It is not classified as a deep-learning model. One graph-neural architecture remains unresolved and must be frozen before final preregistration. iTransformer is optional and is not committed.
 
 The comparison is intended to equalize opportunity rather than model complexity. Conventional models will receive the same validation period, configuration budget, and re-estimation cadence as newer methods. If a model is evaluated with a different information set, that distinction will be made explicit and analyzed rather than hidden within the implementation.
 
 ### Realized-covariance baselines
 
-The common model contract is `covharness.models.CovarianceModel`. Realized-covariance models that consume only a covariance cube inherit `RealizedCovarianceModel`. HARQ-DRD uses the same forecast object and a `fit` that also takes a $(T,N)$ per-asset quarticity window. The protocol constructs those windows. Models do not inspect VALIDATION, SCREEN, or CONFIRM labels. The one-step forecast is an independent $N\times N$ copy. Inputs are not mutated. There is no silent matrix repair.
+The common model contract is `covharness.models.CovarianceModel`. Realized-covariance models that consume only a covariance cube inherit `RealizedCovarianceModel`. HARQ-DRD uses the same forecast object and a `fit` that also takes a $(T,N)$ per-asset quarticity window. Ridge-DRD and XGBoost-DRD consume the same $(T,N,N)$ cube as HAR-DRD. Standalone Ledoit-Wolf, DCC, DCC-NL, and LSTM-BEKK models consume a $(T,N)$ daily-return window through `as_daily_return_history`. Rolling behavior is declared by `ModelCapabilities` rather than class-name dispatch. The four cadences are origin-map (random walk), window-state (HAR, HARQ, Ridge, XGBoost), recursive-state (EWMA, DCC, DCC-NL, LSTM-BEKK), and refit-hold (standalone LW-linear and LW-NL). Models do not inspect VALIDATION, SCREEN, or CONFIRM labels. The one-step forecast is an independent $N\times N$ copy. Inputs are not mutated. There is no silent matrix repair.
+
+At a refit origin the runner calls `fit` on the current $m=250$ window through $t$ and then `forecast`. It does not ingest origin $t$ a second time. At a non-refit origin it advances daily state once, then forecasts. Random walk maps $H_{t+1\mid t}=S_t$ at every origin. EWMA applies the frozen-$\lambda$ recursion to the new $S_t$. HAR, HARQ, Ridge, and XGBoost rebuild origin $1/4/17$ features from the current 250-day realized-covariance window, and HARQ also rebuilds the current per-asset RQ window, while coefficients remain frozen. Ridge and XGBoost scales remain the values stored at the last coefficient fit. XGBoost boosters and group means remain frozen as well. Ridge origin features stay in raw units. XGBoost origin features are then centered and RMS-scaled with those frozen quantities. The HAR-family insanity-filter fallback is the arithmetic mean of that current origin window, not the window from the last coefficient fit. DCC, DCC-NL, and LSTM-BEKK apply one frozen-parameter filter update to the new return. Standalone Ledoit-Wolf estimators have no daily filter. Between scheduled refits they return the previously fitted covariance unchanged. Daily-moving-window Ledoit-Wolf is a possible later robustness specification. It is not the headline equal-cadence rule.
+
+Forecast generation and forecast evaluation remain separate. The serial runner emits `RollingForecastRecord` objects and does not compute losses. The evaluation adapter in `covharness.evaluation` looks up the realized-covariance proxy by the record's target date, so $H_{t+1\mid t}$ is scored against $S_{t+1}$ and never against $S_t$. Reduced multivariate QLIKE and squared Frobenius are the existing Block 2A functions. They are not reimplemented. A non-PD forecast fails the existing QLIKE domain contract. Evaluation does not repair covariance matrices. Compared models must share identical target dates by default. Loss differentials $d_t=L_{A,t}-L_{B,t}$ are available for the existing Block 3 inference engine. DM, SPA, MCS, and GW mathematics are unchanged. The implemented Bartlett / Newey-West DM remains the current baseline. A candidate recentered stationary-bootstrap pairwise mean test is implemented and remains under synthetic calibration. It has not been adopted for confirmatory reporting.
+
+The synthetic flow is therefore time-ordered protocol, then refit or daily state update, then covariance forecast, then realized target alignment, then covariance-space loss. A seeded synthetic panel generator supplies aligned returns, realized covariances, and per-asset quarticity for integration tests and a demonstration script. Demonstration hyperparameters are not tuned. Synthetic loss tables are integration diagnostics, not empirical findings. CONFIRM remains locked. The DATA GATE remains unresolved.
 
 Random-walk realized covariance is the origin observation itself.
 
@@ -417,7 +437,7 @@ H_0=S_0,\qquad
 H_j=\lambda H_{j-1}+(1-\lambda)S_j,\quad j=1,\ldots,T-1.
 ```
 
-The forecast is $H_{T\mid T-1}=H_{T-1}$. This is not an EWMA of daily-return outer products. $\lambda$ is an explicit constructor argument. The conventional RiskMetrics reference $0.94$ may be passed by a caller. It is not a tuned project choice. The planned 20-point VALIDATION grid is not frozen and has not been run.
+The forecast is $H_{T\mid T-1}=H_{T-1}$. This is not an EWMA of daily-return outer products. $\lambda$ is an explicit constructor argument. The conventional RiskMetrics reference $0.94$ may be passed by a caller. It is not a tuned project choice. The planned 20-point VALIDATION grid is not frozen and has not been run. Between coefficient-free refits of the 250-day window, `update(S_t)` applies one recursion step with that same frozen $\lambda$. Lambda is never re-estimated by `update`.
 
 Headline HAR-DRD is a Zhang-style non-overlapping HAR on the Oh–Patton DRD split of each supplied realized covariance. The model is in levels. There is no log-variance transform, Fisher transform, ridge, graph term, or HARQ term.
 
@@ -439,9 +459,9 @@ Variance equations have asset-specific intercepts $\alpha_D\in\mathbb{R}^N$ and 
 
 The raw one-day forecast reconstructs $R_{\mathrm{raw}}$ with unit diagonal in the frozen pair order. When $v_{\mathrm{raw}}$ is finite and strictly positive, $H_{\mathrm{raw}}=D_{\mathrm{raw}}R_{\mathrm{raw}}D_{\mathrm{raw}}$ with $D_{\mathrm{raw}}=\operatorname{diag}(\sqrt{v_{\mathrm{raw}}})$. Raw components are stored even if the headline matrix is later replaced.
 
-The headline forecast uses an explicit BPQ-style insanity filter. The raw forecast is valid only when every $v_{\mathrm{raw}}$ is finite and strictly positive, every $x_{\mathrm{raw}}$ is finite, every pairwise correlation lies in $[-1,1]$, $R_{\mathrm{raw}}$ is symmetric and strictly positive definite, and $H_{\mathrm{raw}}$ is finite, symmetric, and strictly positive definite. If all of those hold, $H_{\mathrm{final}}=H_{\mathrm{raw}}$, `repaired=False`, and `repair_method=None`. If any condition fails, $H_{\mathrm{final}}$ is the arithmetic mean of every realized covariance in the current supplied estimation window, `repaired=True`, and `repair_method="estimation_window_mean"`. That fallback itself must be finite, symmetric, and strictly positive definite. Otherwise the model raises `InvalidModelForecastError`. There is no second repair. We do not clip correlations, floor eigenvalues, call `cov_nearest`, apply Higham projection, add jitter, diagonal-load, transform $v$ or $x$, or replace individual entries. Repair is never silent. Repair frequency will be reported. A valid final matrix does not imply that the raw forecast was valid.
+The headline forecast uses an explicit BPQ-style insanity filter. The raw forecast is valid only when every $v_{\mathrm{raw}}$ is finite and strictly positive, every $x_{\mathrm{raw}}$ is finite, every pairwise correlation lies in $[-1,1]$, $R_{\mathrm{raw}}$ is symmetric and strictly positive definite, and $H_{\mathrm{raw}}$ is finite, symmetric, and strictly positive definite. If all of those hold, $H_{\mathrm{final}}=H_{\mathrm{raw}}$, `repaired=False`, and `repair_method=None`. If any condition fails, $H_{\mathrm{final}}$ is the arithmetic mean of every realized covariance in the current origin's 250-day window, `repaired=True`, and `repair_method="estimation_window_mean"`. Between coefficient refits that fallback mean moves with the window. Coefficients do not. That fallback itself must be finite, symmetric, and strictly positive definite. Otherwise the model raises `InvalidModelForecastError`. There is no second repair. We do not clip correlations, floor eigenvalues, call `cov_nearest`, apply Higham projection, add jitter, diagonal-load, transform $v$ or $x$, or replace individual entries. Repair is never silent. Repair frequency will be reported. A valid final matrix does not imply that the raw forecast was valid. Between coefficient refits `update_window` rebuilds origin daily, weekly, and monthly predictors from the current 250-day realized-covariance window and replaces that fallback mean. It does not re-estimate $\alpha_D$, $\beta_D$, $\alpha_R$, or $\beta_R$. Between coefficient refits `update_window` rebuilds origin daily, weekly, and monthly predictors from the current 250-day realized-covariance window and replaces that fallback mean. It does not re-estimate $\alpha_D$, $\beta_D$, $\alpha_R$, or $\beta_R$.
 
-HAR-DRD, HARQ-DRD, random walk, and EWMA have been validated on synthetic matrices only. No empirical horse race has begun because the DATA GATE remains unresolved.
+HAR-DRD, HARQ-DRD, Ridge-DRD, XGBoost-DRD, random walk, EWMA, LW-linear, LW-NL, DCC, DCC-NL, and LSTM-BEKK have been validated on synthetic inputs only. No empirical horse race has begun because the DATA GATE remains unresolved.
 
 Headline HARQ-DRD is HAR-DRD plus one daily per-asset quarticity interaction on the variance equation. The correlation map is unchanged. There is no weekly or monthly quarticity term, no correlation attenuation, no log-variance transform, no Fisher transform, no ridge, and no graph term.
 
@@ -449,9 +469,109 @@ The documented per-asset realized quarticity is $\mathrm{RQ}_{i,t}=(M/3)\sum_l r
 
 Variance intercepts $\alpha_Q$ are asset-specific. The four shared variance slopes are daily, the quarticity interaction $\phi_{Q,d}$ on $\sqrt{\mathrm{RQ}_{i,k-1}}\,v_{i,k-1}$, weekly, and monthly. No sign constraint is imposed on $\phi_{Q,d}$. Correlation intercepts and the three shared HAR slopes are the HAR-DRD objects. Both maps use the same within-transformation estimator. The variance design has four columns. The correlation design has three. Dummy intercept matrices are not built.
 
-The headline forecast uses the same explicit BPQ-style estimation-window-mean insanity filter as HAR-DRD. Repair is never silent. We do not clip, nearest-PD, floor eigenvalues, add jitter, diagonal-load, or transform.
+The headline forecast uses the same explicit BPQ-style estimation-window-mean insanity filter as HAR-DRD. Repair is never silent. We do not clip, nearest-PD, floor eigenvalues, add jitter, diagonal-load, or transform. Between coefficient refits `update_window` rebuilds HAR variance predictors, HAR correlation predictors, the origin-day per-asset RQ interaction, and the current-window fallback mean. It does not refit the four-slope HARQ regression. Between coefficient refits `update_window` rebuilds HAR variance predictors, HAR correlation predictors, the origin-day per-asset RQ interaction, and the current-window fallback mean. It does not refit the four-slope HARQ regression.
 
-Later methods will use the same forecast object. Daily-return models such as DCC and LSTM-BEKK will supply their own `fit` signature. Rolling estimation, evaluation losses, statistical inference, and portfolio analysis remain responsibilities of the common harness.
+Headline Ridge-DRD (`RidgeDRDRealizedCovariance`, identity `ridge_drd`) is the regularized HAR-DRD control. Variance targets remain realized-variance levels. Correlation targets remain raw realized correlations. Predictors are the same non-overlapping daily, weekly (exactly four observations), and monthly (exactly seventeen observations) HAR features. There is no quarticity term, cross-sectional average, market-state variable, pair-summary feature, daily-return feature, macro series, log-variance transform, or Fisher transform.
+
+Variance maps keep asset-specific intercepts and three shared slopes. Correlation maps keep pair-specific intercepts and three shared slopes. Dummy intercept matrices are not built. After the within transformation, each of the three predictor columns is divided by its estimation-window RMS $\sqrt{\mathrm{mean}(\widetilde X_j^2)}$. An exact zero column receives scale 1 and is retained. Responses are not standardized. Scales are fit only on the caller-supplied window at a scheduled refit. Between refits `update_window` rebuilds current origin features in raw units and replaces the fallback mean. It does not recompute RMS scales, slopes, intercepts, or $\lambda$.
+
+The explicit penalty $\lambda\ge 0$ is required at construction and is shared by the variance and correlation problems. There is no tuned default. The future 20-point VALIDATION grid is not frozen and was not run. On the scaled within design the objective is the sum of squared errors plus $\lambda\|\gamma\|_2^2$. Intercepts are recovered after the slopes and are not penalized. Raw-space slopes are $\beta_j=\gamma_j/\mathrm{scale}_j$. The case $\lambda=0$ nests the implemented HAR-DRD OLS problem. sklearn is a test reference only.
+
+The headline forecast uses the same explicit BPQ-style estimation-window-mean insanity filter as HAR-DRD. Repair is never silent. A log-variance XGBoost variant, if ever added, would be a separately named specification.
+
+Headline XGBoost-DRD (`XGBoostDRDRealizedCovariance`, identity `xgboost_drd`) completes the controlled HAR-DRD to Ridge-DRD to XGBoost-DRD ladder. We hold fixed the variance-level and raw-correlation targets, the non-overlapping $1/4/17$ information set, the lag convention, the asset and pair group structure, the dummy-free within transformation, the Ridge RMS-scaled predictor representation, the WINDOW_STATE cadence, covariance reconstruction, and the current-origin 250-day mean repair. The linear ridge learner is replaced by a boosted-tree learner. That is the defensible architecture-control statement. We do not describe the step as changing only one mathematical parameterization.
+
+There is no quarticity term, cross-sectional average, pair summary, asset or pair identity feature, group-ID column, return, macro series, VIX, volume, OptionMetrics, log-variance transform, or Fisher transform. Unique pairs remain the strict upper triangle $i<j$. For $T=250$ the response dates remain $22,\ldots,249$, so there are $228$ regression dates.
+
+Group-specific location remains entirely through the refit-window means $\bar y_D[g]$ and $\bar y_R[p]$. Dummy intercept columns are not built. Group identifiers are not passed to XGBoost. We do not claim nonlinear Frisch-Waugh-Lovell equivalence. After the same within demeaning, each of the three predictor columns is divided by the Ridge RMS $\sqrt{\mathrm{mean}(\widetilde X_j^2)}$. An exact zero column receives scale 1. Responses are not standardized. This scaling is imposed so that the numerical predictor representation matches Ridge exactly for the architecture-control experiment. It is not imposed because trees require feature scaling.
+
+We train exactly two pooled boosters per refit. The variance map $f_D\colon\mathbb{R}^3\to\mathbb{R}$ and the correlation map $f_R\colon\mathbb{R}^3\to\mathbb{R}$ are shared across groups. We do not train $N$ variance models or $P$ pair models. Both boosters use `objective="reg:squarederror"` on the within residuals. Forecast evaluation remains a separate covariance-space step. There is no internal validation set and no early stopping. The public constructor requires `n_estimators`, `max_depth`, `learning_rate`, `min_child_weight`, `reg_lambda`, `reg_alpha`, and `gamma`. Those values are not tuned here. The future empirical search remains subject to a maximum of 20 configurations on VALIDATION.
+
+Frozen package constants are `booster="gbtree"`, `tree_method="hist"`, `device="cpu"`, `n_jobs=1`, `subsample=1.0`, every `colsample` value $1$, `grow_policy="depthwise"`, `max_bin=256`, `base_score=0.0`, `random_state=0`, and `early_stopping=False`. Runtime is pinned at `xgboost==3.2.0`. Training is CPU only. Headline XGBoost-DRD is deterministic by that configuration. We do not apply the stochastic-model seed ensemble $(0,1,2,3,4)$. A later configuration with row or column sampling below one would be stochastic and would require a separate seed-policy decision. That extension is not implemented.
+
+At a forecast origin the raw HAR predictors are centered with the frozen refit-window group means and divided by the frozen RMS scales. Raw forecasts are $\bar y_g+f(Z_{\mathrm{origin},g})$. Between refits `update_window` rebuilds current-origin HAR predictors and the current 250-day fallback mean. It does not call `booster.fit`, recompute group means, or recompute scales. The headline repair remains the arithmetic mean of the current origin window. Repair is never silent. We do not clip, nearest-PD, floor eigenvalues, add jitter, or apply a second repair.
+
+SHAP, ALE, and feature-importance analysis are not implemented. Pair subsampling is not implemented. High-dimensional pooled-correlation training is a computing limitation, particularly near $N=200$, where the refit design has roughly $4.5$ million rows. Validation is synthetic only. The DATA GATE remains unresolved.
+
+### Daily-return Ledoit-Wolf shrinkage
+
+Standalone Ledoit-Wolf models consume a caller-supplied daily-return window of shape $(T,N)$. They do not consume realized-covariance histories. They do not shrink a DCC targeting matrix. DCC-NL is a separate model that uses the same analytical estimator only as its correlation intercept.
+
+Returns are demeaned inside the current supplied window. For $T$ observations we set $Y=X-\mathrm{column\_mean}(X)$, $n_{\mathrm{eff}}=T-1$, and $S=Y^{\top}Y/(T-1)$. The same centered sample covariance is the starting object for both estimators. There is no annualization, scaling, winsorization, or silent missing-value deletion. The empirical definition of a daily return, open-to-close versus close-to-close, is not frozen here. The model consumes a generic return matrix. That empirical choice waits for DATA GATE integration.
+
+Headline LW-linear (`LedoitWolfLinearCovariance`, identity `lw_linear`) is Ledoit-Wolf 2004b rotation-equivariant shrinkage toward $\mu I$, with $\mu=\operatorname{tr}(S)/N$.
+
+```math
+\Sigma_L=(1-\rho)S+\rho\mu I.
+```
+
+$\rho$ is the Ledoit-Wolf estimated intensity. It is not a user-chosen coefficient. Equivalently, if $S=U\operatorname{diag}(\lambda_i)U^{\top}$, then $\Sigma_L=U\operatorname{diag}((1-\rho)\lambda_i+\rho\mu)U^{\top}$. Sample eigenvectors are retained. Every sample eigenvalue receives the same affine map. The Honey / equicorrelation-target estimator of Ledoit-Wolf 2004a is not the headline model.
+
+Headline LW-NL (`LedoitWolfNonlinearCovariance`, identity `lw_nl`) is the Ledoit-Wolf 2020 analytical nonlinear estimator. We wrap the pinned PyPI package `nonlinshrink==0.7` (MIT license, https://github.com/matzhaugen/analytic_shrinkage), a transparent port of the 2018 working paper that became the 2020 Annals of Statistics method. It is not QuEST. It is not QIS 2022. We do not transcribe the kernel or Hilbert formulas. Centered returns $Y$ are passed with $k=1$ so that the reference uses $n_{\mathrm{eff}}=T-1$ and the same $S=Y^{\top}Y/(T-1)$. Sample eigenvectors are retained. Shrunk eigenvalues are eigenvalue-specific and are not a common affine map of the sample spectrum.
+
+The reference requires $n_{\mathrm{eff}}\ge 12$, so $T\ge 13$. The $N\ge T$ supplement branch of the 2020 paper is exposed by that package and is included. A nonfinite, asymmetric, or non-strictly-PD reference matrix raises `InvalidModelForecastError`. There is no silent repair, jitter, or eigenvalue floor.
+
+Both models treat the window estimate as the one-day-ahead forecast $H_{t+1\mid t}=\widehat{\Sigma}_t$. Standalone LW-linear and LW-NL follow the common 21-origin estimator-refit cadence as a project fairness choice. At `ForecastStep.refit=True` the entire estimator is recomputed from the current 250-day return window. At non-refit origins the stored covariance is returned unchanged. Sample covariance, $\rho$, and nonlinear eigenvalues are not refreshed daily. There is no recursive update and no partial daily LW rule such as a frozen $\rho$ with a refreshed $S$. A later robustness may evaluate daily-moving-window LW. That is not the headline cadence. They do not inspect VALIDATION, SCREEN, or CONFIRM labels. Validation is synthetic only. No empirical fitting occurred.
+
+### Original DCC and DCC-NL
+
+Headline DCC models consume a caller-supplied daily-return window of shape $(T,N)$ through `as_daily_return_history`. They require $N\ge 2$. They do not consume realized-covariance histories. The empirical open-to-close versus close-to-close convention is not frozen here.
+
+Both identities use original Engle (2002) DCC, not Aielli cDCC. Public classes are `DCCCovariance` (identity `dcc`) and `DCCNonlinearCovariance` (identity `dcc_nl`). They share stage-one GARCH, the DCC recursion, the all-pairs composite likelihood, SLSQP, forecast construction, and daily update. They differ only in the intercept $C$. cDCC is deferred as a potential named robustness and is not implemented.
+
+Raw returns are demeaned once per parameter-fit window. For each asset, $\mu_i$ is the mean of the supplied window and $\varepsilon_{i,t}=r_{i,t}-\mu_i$. A ZeroMean Gaussian GARCH(1,1) is then fit to $\varepsilon_i$ with the pinned runtime dependency `arch==8.0.0`. Between parameter refits, $\mu_i$ is frozen. Every newly observed return is centered with that same $\mu_i$. The mean is re-estimated only on the next common parameter refit.
+
+The explicit backcast is the sample second moment with divisor $T$.
+
+```math
+h_{i,0}=\frac{1}{T}\sum_{t=0}^{T-1}\varepsilon_{i,t}^2.
+```
+
+That value is passed through `arch`'s explicit backcast argument. We do not initialize with $\omega_i/(1-a_i-b_i)$ and we do not inherit package mean, scaling, or backcast defaults. The production call is `mean="Zero"`, `vol="GARCH"`, $p=1$, $o=0$, $q=1$, `dist="normal"`, and `rescale=False` on the already-centered series. Conditional variance follows $h_{i,t}=\omega_i+a_i\varepsilon_{i,t-1}^2+b_i h_{i,t-1}$. The standardized residual is $s_{i,t}=\varepsilon_{i,t}/\sqrt{h_{i,t}}$, never $\varepsilon_{i,t}/h_{i,t}$. Accepted GARCH parameters must satisfy $\omega_i>0$, $a_i\ge 0$, $b_i\ge 0$, and $a_i+b_i<1$. A failed asset fails the DCC fit. Assets are not dropped. Parameters are not altered after the package fit.
+
+Plain DCC targeting does not demean standardized residuals again. It forms $\widetilde{C}=S_{\mathrm{std}}^{\top}S_{\mathrm{std}}/T$ and renormalizes the diagonal to obtain $C$. The sample target is guaranteed rank-deficient when $N>T$. At $N=T$ it may still be full rank. Strict positive definiteness is checked by Cholesky after construction. There is no $N\ge T$ rejection rule, no jitter, no nearest-PD, and no eigenvalue flooring.
+
+DCC-NL changes only that intercept. It calls `nonlinshrink.shrink_cov(Sstd, k=0)` under the already pinned `nonlinshrink==0.7` runtime, so the target covariance uses the DCC zero-mean convention and effective divisor $T$. The returned matrix is then diagonally renormalized to $C_{\mathrm{NL}}$. This is not QuEST, not QIS, and not the standalone LW-NL demeaned $T-1$ wrapper. Nonlinear shrinkage is not applied to the final $H$. If the nonlinear estimator fails or the normalized target is invalid, the model raises `InvalidModelForecastError`. It does not fall back to plain $C$. The reference requires $n_{\mathrm{eff}}\ge 12$, so DCC-NL requires $T\ge 12$.
+
+The original DCC recursion uses $Q_0=C_{\star}$ with $C_{\star}=C$ or $C_{\mathrm{NL}}$. Window rows are $t=0,\ldots,T-1$. $Q_t$ scores the observed standardized residual $s_t$ after conversion to $R_t=\mathrm{diag}(Q_t)^{-1/2}Q_t\mathrm{diag}(Q_t)^{-1/2}$. After $s_t$ is observed,
+
+```math
+Q_{t+1}=(1-\alpha-\beta)C_{\star}+\alpha s_t s_t^{\top}+\beta Q_t.
+```
+
+No cDCC transformed shock enters. Stored `current_q` is $Q_{T-1}$, the state for the last observed return. `forecast()` forms $Q_{T\mid T-1}$ from that state and does not mutate it. The one-day forecast is $H_{t+1\mid t}=D_{t+1\mid t}R_{t+1\mid t}D_{t+1\mid t}$ with $D_{t+1\mid t}=\mathrm{diag}(\sqrt{h_{t+1\mid t}})$. An invalid final matrix raises rather than being repaired.
+
+Headline second-stage estimation is the all-pairs bivariate composite Gaussian quasi-likelihood over every unique pair $i<j$ in the existing strict upper-triangle order. The pair count is $N(N-1)/2$. Contiguous $N-1$ 2MSCLE is not used. A random pair subset is not used. Parameters $(\alpha,\beta)$ are estimated by deterministic SciPy SLSQP starting at $(0.05,0.90)$, with bounds $[0,1]\times[0,1]$ and constraint $\alpha+\beta\le 1$. There are no random restarts and no alternative starts. An accepted fit must satisfy $\alpha\ge 0$, $\beta\ge 0$, and $\alpha+\beta<1$. The boundary $\alpha+\beta=1$ is rejected. Parameters are not moved inward by an epsilon.
+
+Parameter refit cadence and state update are different. Parameters are re-estimated every 21 forecast origins. Between those refits, DCC and GARCH states update daily through `update(new_return)` and produce a new one-day-ahead covariance every day. `update` does not re-estimate $\mu$, GARCH parameters, $C_{\star}$, or $(\alpha,\beta)$. The serial runner calls `fit` only at `ForecastStep.refit=True` and `update` only at non-refit origins. It never does both at the same origin.
+
+Validation is synthetic only. No empirical fitting occurred.
+
+### Daily-return LSTM-BEKK
+
+Headline LSTM-BEKK (`LSTMBEKKCovariance`, identity `lstm_bekk`) is the faithful daily-return competitor of Wang, Liu, Tran, and Wang (2025). It consumes a caller-supplied daily-return window of shape $(T,N)$ through `as_daily_return_history`. It requires $N\ge 2$. It does not consume realized covariance, realized quarticity, or any other intradaily feature. LSTM-BEKK-RC is deferred. The empirical open-to-close versus close-to-close convention is not frozen here.
+
+The paper recursion, in internal percent units $x_t=100(r_t-\mu)$, is scalar BEKK plus an LSTM intercept.
+
+```math
+H_t = CC^{\top} + C_t C_t^{\top} + a x_{t-1}x_{t-1}^{\top} + b H_{t-1}.
+```
+
+$C$ and $C_t$ are lower triangular. $a$ and $b$ are scalars. This is not full Engle–Kroner matrix $A,B$. Every term is positive semidefinite when $a,b\ge 0$. Strict positive definiteness is anchored by static $CC^{\top}$ with a strictly positive diagonal on $C$. Dynamic $C_t C_t^{\top}$ remains a Gram matrix even if a Swish-transformed diagonal entry is negative. There is no jitter, nearest-PD map, eigenvalue floor, or other silent repair.
+
+Paper-specified architecture. The LSTM input is the lagged internal return. Hidden size equals the asset count $N$. Depth is three to five hidden layers. Dropout is in $[0.1,0.2]$. The dynamic intercept is a lower triangle whose diagonal is passed through Swish $x\sigma(\beta x)$ with a learnable $\beta$. Training uses Gaussian negative log-likelihood, RMSprop, Cholesky evaluation of $\log\det H_t$ and the quadratic form, and gradient clipping. Empirical returns in the source paper are de-meaned and multiplied by 100.
+
+The following completions are project choices. They fill omissions in the paper and are not attributed to Wang et al.
+
+Stacked LSTM layers implement the paper's "3–5 hidden layers". A linear map $\mathbb{R}^N\to\mathbb{R}^{N(N+1)/2}$ with bias converts the hidden state to the packed triangle. Swish $\beta$ is one global scalar, initialized at $1$. Static $C$ is a packed lower triangle with a softplus diagonal. Stationarity uses three unconstrained logits whose softmax is $(w,a,b)$ on the interior of the simplex, initialized at $(0.05,0.05,0.90)$. $w$ is slack only. It does not enter the recursion. $H_0$ is the internal sample covariance $X^{\top}X/(T-1)$ when that matrix is strictly PD by Cholesky, otherwise the diagonal of that matrix when every variance is strictly positive. Static $C$ is initialized so $CC^{\top}=0.05 H_0$. Recurrent states start at zero on every `fit` and are not learned. Training is full-sequence BPTT with a fixed epoch count and no rolling-window early stopping. RMSprop uses $\alpha=0.99$, $\varepsilon=10^{-8}$, momentum $0$, uncentered updates, and no weight decay. The implementation is `torch.float64` on CPU under the pinned runtime dependency `torch==2.13.0`. The public forecast is $H/10000$ so caller-native covariance units are restored.
+
+Fit indexing. Observed internal returns are $x_0,\ldots,x_{T-1}$. The first return is scored under $H_0$. No presample return is created. After $x_t$ is processed by the LSTM, $H_{t+1}$ scores $x_{t+1}$. All $T$ observations enter the training NLL. After the last scored return, $x_{T-1}$ is processed once more to form $H_T$, which is the one-step forecast and is not added to the fit-window likelihood. `forecast()` returns a copy of $H_T/10000$ and does not mutate state. `update(new_return)` centers with the frozen fit-window mean, scales by 100, advances hidden, cell, and $H$ once, and leaves all learned parameters unchanged. The serial runner calls `fit` only at scheduled refits. Non-refit origins call `update` once and do not reseed. The serial runner calls `fit` only at scheduled refits. Non-refit origins call `update` once and do not reseed.
+
+Constructor arguments `seed`, `num_layers`, `dropout`, `learning_rate`, `gradient_clip_norm`, and `max_epochs` are required. There is no tuned default configuration. Future VALIDATION may select one training rule inside the 20-configuration budget. Rolling fits then use that frozen rule on the full 250-day window. This block does not run that search.
+
+Validation is synthetic only. No empirical fitting occurred. High-dimensional rolling estimation with $T=250$ remains a computing limitation. The model is not claimed to be practical at $N=100$ or $N=200$ under the project's window.
+
+Later methods will use the same forecast object. Rolling estimation, evaluation losses, statistical inference, and portfolio analysis remain responsibilities of the common harness.
 
 ---
 
@@ -471,16 +591,18 @@ covharness/
 ├── src/covharness/
 │   ├── data/          # quote cleaning, P3 venue adapter, synchronization, returns
 │   ├── realized/      # realized-covariance estimators
-│   ├── simulation/
+│   ├── simulation/    # Gaussian intraday draws and synthetic benchmark panels
 │   ├── features/      # origin-day quarticity and BNS market jump state
-│   ├── models/        # common contract, random-walk RCov, EWMA RCov, HAR-DRD, HARQ-DRD
+│   ├── models/        # common contract, capabilities, RW/EWMA/HAR/HARQ/Ridge/XGBoost RCov, LW, DCC, DCC-NL, LSTM-BEKK
 │   ├── losses/        # squared Frobenius, reduced QLIKE, full Stein
+│   ├── evaluation/    # target-date alignment, point-loss adapter, descriptive panels
 │   ├── inference/     # DM, HAC, SPA, MCS, Clark-West, GW, pooled MZ, GR fluctuation
 │   ├── portfolio/
-│   ├── protocol/      # splits, confirm lock, rolling schedule, train-only scaler
+│   ├── protocol/      # splits, confirm lock, rolling schedule, train-only scaler, serial runner
 │   ├── diagnostics/
 │   └── utils/
 ├── tests/unit/
+├── scripts/           # synthetic rolling evaluation and DM calibration scripts
 ├── experiments/
 ├── notebooks/
 └── results/
@@ -510,12 +632,18 @@ The following components are implemented and unit-tested
 - descriptive variance-versus-correlation localization diagnostics
 - a fixed-seed proxy-robustness demonstration
 - chronological VALIDATION / SCREEN / CONFIRM splits with a code-enforced CONFIRM lock
-- rolling $m=250$ windows and 21-day refit scheduling
+- rolling $m=250$ windows and 21-origin parameter/estimator refit scheduling
+- a serial synthetic rolling forecast runner that keeps refit, daily state update, and forecast distinct
+- a synthetic evaluation adapter that aligns $H_{t+1\mid t}$ to $S_{t+1}$ and scores existing reduced QLIKE and squared Frobenius
+- a seeded synthetic benchmark panel of returns, realized covariance, and per-asset quarticity
+- a demonstration script at `scripts/synthetic_benchmark_demo.py` that uses untuned demonstration settings
 - a train-only scaler contract that rejects full-sample leakage
 - Diebold-Mariano tests with Bartlett / Newey-West HAC standard errors
 - loss-differential diagnostics (cumulative sum, ACF, $\kappa$, $T_{\mathrm{eff}}$)
 - Clark-West for explicitly nested scalar squared-error comparisons only
 - a fixed-seed demonstration that a naive $t$-test over-rejects under serial correlation
+- a synthetic HAC DM size-sensitivity grid over persistence, sample length, and lag multipliers, with no change to the current default
+- a candidate recentered stationary-bootstrap pairwise mean test under synthetic calibration, not yet adopted
 - joint Politis–Romano stationary bootstrap with block length $\max(2,\lfloor T^{1/3}\rfloor)$
 - Hansen (2005) SPA with consistent, lower, and upper p-values
 - Hansen–Lunde–Nason (2011) MCS for the range and max procedures
@@ -528,14 +656,21 @@ The following components are implemented and unit-tested
 - approximate Patton–Sheppard equation-21 weighting labeled `approximate_ps21`
 - Giacomini–Rossi Proposition 1 fluctuation test with frozen $\mu=0.30$ and $k=3.012$
 - a common covariance-model contract that returns an $N\times N$ one-step forecast
-- random-walk realized covariance $H_{t+1\mid t}=S_t$
-- EWMA of a realized-covariance window with explicit decay $\lambda\in(0,1)$
-- HAR-DRD on the DRD split with non-overlapping $1/4/17$ HAR features, within-transformation fixed effects, and an explicit estimation-window-mean insanity filter
+- random-walk realized covariance $H_{t+1\mid t}=S_t$ at every origin
+- EWMA of a realized-covariance window with explicit decay $\lambda\in(0,1)$ and frozen-lambda daily `update`
+- HAR-DRD on the DRD split with non-overlapping $1/4/17$ HAR features, within-transformation fixed effects, frozen coefficients between refits, and a current-origin estimation-window-mean insanity filter
 - HARQ-DRD as HAR-DRD plus a daily per-asset quarticity interaction $\sqrt{\mathrm{RQ}_{i,t-1}}\,v_{i,t-1}$ with $\mathrm{RQ}_i=(M/3)\sum_l r_{i,l}^4$
+- Ridge-DRD as the regularized HAR-DRD control with one explicit $\lambda\ge 0$ on the three shared slopes and frozen scales between refits
+- XGBoost-DRD as the nonlinear architecture-control step after Ridge, using the same within-transformed RMS-scaled $1/4/17$ predictors, two pooled CPU hist boosters, and frozen boosters, group means, and scales between refits
+- standalone Ledoit-Wolf 2004b linear shrinkage toward $\mu I$ on in-window demeaned daily returns with $S=Y^{\top}Y/(T-1)$, held between 21-origin refits
+- standalone Ledoit-Wolf 2020 analytical nonlinear shrinkage wrapped from pinned `nonlinshrink==0.7`, held on the same cadence
+- original Engle DCC on daily returns with ZeroMean Gaussian GARCH(1,1), sample-correlation targeting, and all-pairs composite likelihood
+- DCC-NL using the same recursion with analytical LW 2020 targeting of standardized residuals at $k=0$
+- faithful daily-return LSTM-BEKK with a stacked LSTM intercept, Cholesky Gaussian NLL, and daily `update`
 
 A five-stock panel on 13 February 2009 has been constructed on the single-exchange path. The same day remains available on the NBBO path. The Epps diagnostic has been run on the identity-corrected single-exchange panel. Block 1 measurement work is closed. Realized kernels are not implemented.
 
-Random-walk, EWMA, HAR-DRD, and HARQ-DRD models are synthetic/unit validated only. They have not been fit on market data. Shrinkage, DCC, Ridge-DRD, LSTM-BEKK, GHAR, and the graph-neural slot remain unimplemented. Portfolio evaluation remains planned. Protocol decisions currently live in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). Final `PREREGISTRATION.md` is written once, after the graph-neural specification and empirical dataset are frozen, and is never edited.
+Random-walk, EWMA, HAR-DRD, HARQ-DRD, Ridge-DRD, XGBoost-DRD, LW-linear, LW-NL, DCC, DCC-NL, and LSTM-BEKK models are synthetic/unit validated only. The serial runner and the synthetic evaluation adapter are synthetic only. They have not been fit on market data. Synthetic demo losses are not empirical findings. The synthetic DM calibration study is not an empirical forecast comparison. The candidate stationary-bootstrap pairwise companion is under synthetic calibration and is not a confirmatory default. LSTM-BEKK-RC, GHAR, and the graph-neural slot remain unimplemented. Portfolio evaluation remains planned. Protocol decisions currently live in [`PREREGISTRATION_DRAFT.md`](PREREGISTRATION_DRAFT.md). Final `PREREGISTRATION.md` is written once, after the graph-neural specification and empirical dataset are frozen, and is never edited.
 
 See [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md) for the exact implementation checkpoint and test history.
 
@@ -578,6 +713,8 @@ Simulation is required to validate estimators, losses, and inference against kno
 - Giacomini, R., & Rossi, B. (2010). *Forecast Comparisons in Unstable Environments.* Journal of Applied Econometrics.
 - Giacomini, R., & White, H. (2006). *Tests of Conditional Predictive Ability.* Econometrica.
 - Laurent, S., Rombouts, J. V. K., & Violante, F. (2013). *On Loss Functions and Ranking Forecasting Performances of Multivariate Volatility Models.* Journal of Applied Econometrics.
+- Ledoit, O., & Wolf, M. (2004). *A Well-Conditioned Estimator for Large-Dimensional Covariance Matrices.* Journal of Multivariate Analysis.
+- Ledoit, O., & Wolf, M. (2020). *Analytical Nonlinear Shrinkage of Large-Dimensional Covariance Matrices.* Annals of Statistics.
 - Patton, A. J. (2011). *Volatility Forecast Comparison Using Imperfect Volatility Proxies.* Journal of Econometrics.
 - Patton, A. J., & Sheppard, K. (2009). *Evaluating Volatility and Correlation Forecasts.* In T. G. Andersen, R. A. Davis, J.-P. Kreiss, and T. Mikosch (Eds.), *Handbook of Financial Time Series.* Springer.
 

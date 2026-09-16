@@ -69,9 +69,9 @@ class CovarianceForecast:
 class CovarianceModel(ABC):
     """One-day-ahead covariance forecast issued at a supplied origin.
 
-    Later daily-return models (DCC, LSTM-BEKK) inherit this forecast and
-    identity contract and supply their own ``fit`` signature. Realized-
-    covariance models use :class:`RealizedCovarianceModel`.
+    Daily-return models inherit this forecast and identity contract and
+    supply a ``fit`` on a ``(T, N)`` return window. Realized-covariance
+    models use :class:`RealizedCovarianceModel`.
     """
 
     @property
@@ -94,6 +94,39 @@ class RealizedCovarianceModel(CovarianceModel):
     @abstractmethod
     def fit(self, realized_covariances: ArrayLike) -> RealizedCovarianceModel:
         """Construct origin-window state from ``(T, N, N)`` realized covariances."""
+
+
+def as_daily_return_history(
+    returns: ArrayLike,
+    name: str = "returns",
+) -> NDArray[np.floating]:
+    """Copy a finite ``(T, N)`` return window. Inputs are not mutated.
+
+    Rows are time. Columns are assets in caller order. ``T`` must be at
+    least 2 and ``N`` at least 1. Values must be finite. The array is not
+    demeaned, scaled, winsorized, or annualized. Missing rows are not
+    dropped. Open-to-close versus close-to-close is a data-layer choice
+    and is not made here.
+    """
+    array = np.array(returns, dtype=float, copy=True)
+    if array.ndim != 2:
+        raise InvalidModelInputError(
+            f"{name} must have shape (T, N); got {array.shape}"
+        )
+    n_times, n_assets = array.shape
+    if n_times < 2:
+        raise InvalidModelInputError(
+            f"{name} must contain at least two observations; got T={n_times}"
+        )
+    if n_assets < 1:
+        raise InvalidModelInputError(
+            f"{name} must contain at least one asset; got N={n_assets}"
+        )
+    if not np.isfinite(array).all():
+        raise InvalidModelInputError(
+            f"{name} must be finite (NaN and inf are rejected)"
+        )
+    return array
 
 
 def as_realized_covariance_history(
@@ -131,6 +164,28 @@ def as_realized_covariance_history(
         except InvalidCovarianceMatrixError as exc:
             raise InvalidModelInputError(str(exc)) from exc
     return array
+
+
+def as_realized_covariance_matrix(
+    matrix: ArrayLike,
+    *,
+    n_assets: int | None = None,
+    name: str = "realized_covariance",
+) -> NDArray[np.floating]:
+    """Copy one finite PSD ``(N, N)`` realized covariance. No repair."""
+    array = np.array(matrix, dtype=float, copy=True)
+    if array.ndim != 2:
+        raise InvalidModelInputError(
+            f"{name} must have shape (N, N); got {array.shape}"
+        )
+    history = as_realized_covariance_history(array[None, ...], name=name)
+    observed = history[0]
+    if n_assets is not None and observed.shape[0] != n_assets:
+        raise InvalidModelInputError(
+            f"{name} N must equal the fitted width {n_assets}; "
+            f"got N={observed.shape[0]}"
+        )
+    return observed
 
 
 def forecast_diagnostics(matrix: NDArray[np.floating]) -> ForecastDiagnostics:

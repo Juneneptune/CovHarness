@@ -15,7 +15,7 @@ state.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
@@ -26,6 +26,12 @@ from covharness.models.base import (
     ModelIdentity,
     as_realized_covariance_history,
     pack_forecast,
+)
+from covharness.models.capabilities import (
+    FitInput,
+    ModelCapabilities,
+    RollingCadence,
+    UpdateObservable,
 )
 from covharness.models.exceptions import InvalidModelForecastError, InvalidModelInputError
 from covharness.models.har_drd import (
@@ -84,6 +90,12 @@ class HARQDRDRealizedCovariance(CovarianceModel):
     matrix. The class does not inherit ``RealizedCovarianceModel`` because
     that parent ``fit`` accepts covariance history only.
     """
+
+    capabilities = ModelCapabilities(
+        rolling_cadence=RollingCadence.WINDOW_STATE,
+        fit_input=FitInput.REALIZED_COVARIANCE_AND_RQ,
+        update_observable=UpdateObservable.REALIZED_COVARIANCE_AND_RQ_WINDOW,
+    )
 
     def __init__(self) -> None:
         self._fit: HARQDRDFitState | None = None
@@ -230,6 +242,50 @@ class HARQDRDRealizedCovariance(CovarianceModel):
         self._H_raw = None if H_raw is None else np.array(H_raw, dtype=float, copy=True)
         self._raw_validity = validity
         return pack_forecast(H_final, self.identity)
+
+    def update_window(
+        self,
+        realized_covariances: ArrayLike,
+        realized_quarticity: ArrayLike,
+    ) -> HARQDRDRealizedCovariance:
+        """Rebuild origin HARQ features and the current-window fallback mean.
+
+        Coefficients remain the values stored at the last ``fit``. Origin-day
+        per-asset RQ is taken from the current window. Aggregate GW RQ is not
+        used.
+        """
+        state = _require_fit(self._fit)
+        history = as_realized_covariance_history(realized_covariances)
+        n_times, n_assets, _n_cols = history.shape
+        if n_assets != state.n_assets:
+            raise InvalidModelInputError(
+                "HARQ-DRD update_window N must equal the fitted width "
+                f"{state.n_assets}; got N={n_assets}"
+            )
+        if n_times < MIN_WINDOW_LENGTH:
+            raise InvalidModelInputError(
+                "HARQ-DRD update_window requires T >= "
+                f"{MIN_WINDOW_LENGTH}; got T={n_times}"
+            )
+        quarticity = as_realized_quarticity_history(
+            realized_quarticity, n_times=n_times, n_assets=n_assets
+        )
+        # Rebuild origin panels from the current windows only.
+        variances, correlations = _drd_panel(history)
+        self._variance_panel = variances
+        self._pair_panel = pair_panel_from_correlations(correlations)
+        self._quarticity_panel = quarticity
+        self._fit = replace(
+            state,
+            window_length=n_times,
+            window_mean=np.mean(history, axis=0),
+        )
+        self._raw_validity = None
+        self._v_raw = None
+        self._x_raw = None
+        self._R_raw = None
+        self._H_raw = None
+        return self
 
     def _origin_predictors(self) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
         """HARQ predictors at the supplied origin. Target-day values are unused."""

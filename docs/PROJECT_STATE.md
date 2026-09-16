@@ -6,7 +6,7 @@ Project conda environment is `covharness` (Python 3.11). Recreate with `conda en
 
 ## Current milestone
 
-Block 4A-3 HARQ-DRD on the same DRD and HAR lag contract as HAR-DRD. The model is synthetic/unit validated. No empirical fitting occurred. The DATA GATE remains closed. Blocks 1, 2A, 2B, 3A, 3B, 3C, 4A-1, and 4A-2 are accepted as closed. Ledoit-Wolf and later roster members were not begun.
+Candidate recentered stationary-bootstrap pairwise mean test, under synthetic calibration. Conventional Bartlett / Newey-West Diebold-Mariano remains the unchanged baseline. The companion has not been adopted for confirmatory reporting. No empirical fitting occurred. The DATA GATE remains closed. LSTM-BEKK-RC and GHAR were not begun.
 
 `BENCHMARK_IMPLEMENTATION_PLAN.md` is organized by blocks and parts. It does not use writing-day or resume framing. Forecast-horizon and rolling-window lengths in trading days are unchanged.
 
@@ -172,6 +172,70 @@ A synthetic protocol check on a $m=250$ VALIDATION window confirms that CONFIRM 
 
 Files created or materially changed. `src/covharness/models/harq_drd.py`, `src/covharness/models/har_drd.py` (shared within estimator and headline repair helper), `src/covharness/models/__init__.py`, `tests/unit/test_models_harq_drd.py`, `README.md`, and `docs/PROJECT_STATE.md`.
 
+Block 4A-4 standalone Ledoit-Wolf shrinkage is implemented in `covharness.models.ledoit_wolf`. Public classes are `LedoitWolfLinearCovariance` (identity `lw_linear`) and `LedoitWolfNonlinearCovariance` (identity `lw_nl`). Both inherit `CovarianceModel` and consume a copied `(T, N)` daily-return window. They do not consume realized-covariance histories. They do not shrink a DCC targeting matrix. DCC-NL remains a later model.
+
+Return contract. `T>=2`. `N>=1`. Finite values. Caller column order is asset order. Inputs are copied. Open-to-close versus close-to-close is not chosen here. Helper `as_daily_return_history` lives in `covharness.models.base` next to the realized-covariance helper.
+
+Centering and sample covariance. Inside `fit`, `mean = returns.mean(axis=0)`, `Y = returns - mean`, `n_eff = T-1`, and `S = Y^{\top}Y/(T-1)`. The caller is not assumed to have demeaned the window. There is no annualization, scaling, winsorization, or silent missing-value deletion. The same $S$ is the starting object for both estimators.
+
+LW-linear. Ledoit-Wolf 2004b rotation-equivariant shrinkage $\Sigma_L=(1-\rho)S+\rho\mu I$ with $\mu=\operatorname{tr}(S)/N$. $\rho$ is estimated. It is not a user-chosen intensity. Honey / equicorrelation (2004a) is not the headline estimator. Sample eigenvectors are retained. Every sample eigenvalue receives the same affine map $d_i=(1-\rho)\lambda_i+\rho\mu$. The 2004b coefficient is implemented in-house. sklearn 1.9.1 `LedoitWolf` is the independent test reference only and is a pinned dev extra, not a runtime dependency. sklearn uses a $1/T$ Gram matrix. Tests feed $Y_{\mathrm{ref}}=\sqrt{T/(T-1)}\,Y$ with `assume_centered=True` so that $(1/T)Y_{\mathrm{ref}}^{\top}Y_{\mathrm{ref}}$ equals $S$. Production $\rho$ and $\Sigma_L$ match that reference.
+
+LW-NL. Wrapper of pinned runtime dependency `nonlinshrink==0.7` (MIT, https://github.com/matzhaugen/analytic_shrinkage), a port of the 2018 working paper that became Ledoit-Wolf 2020 analytical nonlinear shrinkage. It is not QuEST and not QIS 2022. The kernel/Hilbert formulas are not transcribed. Centered $Y$ is passed with `k=1` so the reference uses $n_{\mathrm{eff}}=T-1$ and the same $S$. Sample eigenvectors are retained. Shrunk eigenvalues are eigenvalue-specific. The reference requires $n_{\mathrm{eff}}\ge 12$, so $T\ge 13$. The $N\ge T$ supplement branch is exposed by the package and is included. A nonfinite, asymmetric, or non-strictly-PD reference matrix raises `InvalidModelForecastError`. No silent repair, jitter, or eigenvalue floor.
+
+Forecast semantics. $H_{t+1\mid t}=\widehat{\Sigma}_t$ from the current supplied window. The model does not update between scheduled common refits and does not inspect VALIDATION, SCREEN, or CONFIRM labels. No runner was added.
+
+Fit-state metadata. Linear stores the in-window mean, $T$, $N$, $n_{\mathrm{eff}}$, centering, divisor `T_minus_1`, $\rho$, $\mu$, and sample eigenvalues. Nonlinear stores the same centering contract plus reference package, version, analytical method label, sample eigenvalues, and nonlinear shrunk eigenvalues. Full eigenvector matrices are not stored.
+
+A synthetic known-$\Sigma$ draw (seed 20260916, $T=60$, $N=4$, spectrum $(8,3,1.2,0.4)$) records that linear eigenvalues lie on one affine map of the sample spectrum and nonlinear eigenvalues do not. That draw is a demonstration fixture, not a superiority claim.
+
+No empirical fitting occurred. WRDS and market data were not accessed.
+
+Files created or materially changed. `src/covharness/models/ledoit_wolf.py`, `src/covharness/models/base.py` (`as_daily_return_history`), `src/covharness/models/__init__.py`, `tests/unit/test_models_ledoit_wolf.py`, `pyproject.toml` (`nonlinshrink==0.7` runtime, `scikit-learn==1.9.1` dev extra), `README.md`, and `docs/PROJECT_STATE.md`.
+
+Block 4A-5 original Engle DCC and DCC-NL is implemented in `covharness.models.dcc`. Public classes are `DCCCovariance` (identity `dcc`) and `DCCNonlinearCovariance` (identity `dcc_nl`). They inherit `CovarianceModel`, share one engine, and differ only in the intercept $C$. cDCC is not implemented.
+
+Return contract. The existing helper `as_daily_return_history` is reused. $T\ge 2$. $N\ge 2$. Finite values. Caller column order is asset order. Inputs are copied. There is no silent NaN deletion, annualization, or percent scaling. Open-to-close versus close-to-close remains a data-layer choice.
+
+Stage-one mean. At each parameter fit, $\mu_i$ is the mean of the supplied window and $\varepsilon_{i,t}=r_{i,t}-\mu_i$. A ZeroMean Gaussian GARCH(1,1) is fit to $\varepsilon_i$. Between refits, $\mu_i$ is frozen. `update` centers new returns with that same $\mu_i$.
+
+Stage-one backcast. $h_{i,0}=\mathrm{mean}_t\varepsilon_{i,t}^2$ with divisor $T$. Finite and strictly positive. The value is passed through `arch`'s explicit backcast argument. The unconditional GARCH variance $\omega/(1-a-b)$ is not used as an initializer.
+
+Stage-one fitter. Pinned runtime dependency `arch==8.0.0`. The production call is `mean="Zero"`, `vol="GARCH"`, $p=1$, $o=0$, $q=1$, `dist="normal"`, `rescale=False`. Package mean, scaling, and backcast defaults are not inherited. After the package fit, parameters must satisfy $\omega_i>0$, $a_i\ge 0$, $b_i\ge 0$, and $a_i+b_i<1$. The in-window variance path must be finite and strictly positive. A failed asset fails the DCC fit. Assets are not dropped. Fitted parameters are not altered. The GARCH filter is then replayed with those frozen parameters so targeting, composite likelihood, and stored state share the same $s_t=\varepsilon_t/\sqrt{h_t}$.
+
+Plain target. Standardized residuals are not demeaned again. $\widetilde{C}=S_{\mathrm{std}}^{\top}S_{\mathrm{std}}/T$, then diagonal renormalization to $C$. Divisor $T$. Target type `sample_standardized_residual_correlation`. The sample target is guaranteed rank-deficient when $N>T$ and is rejected then. At $N=T$ the helper constructs $C$ and tests strict PD by Cholesky. There is no $N\ge T$ rejection rule, jitter, nearest-PD, or eigenvalue floor.
+
+DCC-NL target. Same $S_{\mathrm{std}}$. Call `nonlinshrink.shrink_cov(Sstd, k=0)` under pinned `nonlinshrink==0.7`. Do not demean or rescale. Require the nonlinear covariance to be finite, symmetric, positive-diagonal, and strictly PD, then diagonally renormalize to $C_{\mathrm{NL}}$. Target type `analytical_nonlinear_standardized_residual_correlation`. Effective divisor $T$. This is not QuEST, not QIS, and not the standalone LW-NL $k=1$ wrapper. Failure does not fall back to plain $C$. The reference requires $n_{\mathrm{eff}}\ge 12$, so DCC-NL requires $T\ge 12$. Nonlinear shrinkage is not applied to final $H$.
+
+Original DCC recursion. $Q_0=C_{\star}$. Window rows $t=0,\ldots,T-1$. $Q_t$ scores observed $s_t$ after $R_t=\mathrm{diag}(Q_t)^{-1/2}Q_t\mathrm{diag}(Q_t)^{-1/2}$. Then $Q_{t+1}=(1-\alpha-\beta)C_{\star}+\alpha s_ts_t^{\top}+\beta Q_t$. Stored `current_q` is $Q_{T-1}$. `forecast()` forms $Q_{T\mid T-1}$ without mutating state. No cDCC transformed shock. No target-day return.
+
+All-pairs composite likelihood. Strict upper triangle $i<j$. Pair count $N(N-1)/2$. Objective $\sum_t\sum_{i<j}l_{ij,t}$ with the bivariate Gaussian correlation NLL. Contiguous $N-1$ 2MSCLE is not used. Rho is not clipped. A nonfinite or $|rho|\ge 1$ evaluation returns an invalid objective.
+
+Second-stage optimizer. Deterministic SciPy SLSQP. Start $(0.05,0.90)$. Bounds $[0,1]\times[0,1]$. Constraint $\alpha+\beta\le 1$. No random restarts. An accepted fit requires `result.success`, finite objective, $\alpha\ge 0$, $\beta\ge 0$, and $\alpha+\beta<1$. The boundary $\alpha+\beta=1$ raises `InvalidModelForecastError`. Parameters are not clipped or moved inward.
+
+Forecast. $h_{t+1\mid t}=\omega+a\varepsilon_t^2+b h_t$, $Q_{t+1\mid t}=(1-\alpha-\beta)C_{\star}+\alpha s_ts_t^{\top}+\beta Q_t$, $H_{t+1\mid t}=D_{t+1\mid t}R_{t+1\mid t}D_{t+1\mid t}$ with $D=\mathrm{diag}(\sqrt{h})$. Finite, symmetric, strictly PD. No repair. Repeated `forecast()` before `update` is identical.
+
+Daily update. `update(new_return)` with shape $(N,)$. No parameter re-estimation. Advance $h$ and $Q$ one step, center the new return with the frozen fit-window mean, and store the new observed state. The future runner, not the model, interprets `ForecastStep.refit`.
+
+No empirical fitting occurred. WRDS and market data were not accessed.
+
+Files created or materially changed. `src/covharness/models/dcc.py`, `src/covharness/models/__init__.py`, `tests/unit/test_models_dcc.py`, `pyproject.toml` (`arch==8.0.0` runtime), `README.md`, and `docs/PROJECT_STATE.md`.
+
+Block 4A-6 Ridge-DRD is implemented in `covharness.models.ridge_drd` as `RidgeDRDRealizedCovariance`. Public identity `ridge_drd`. It inherits `RealizedCovarianceModel` and consumes the same copied `(T, N, N)` realized-covariance window as HAR-DRD.
+
+Scientific contrast. Ridge-DRD is the regularized HAR-DRD control. Targets, non-overlapping $1/4/17$ predictors, asset and pair fixed effects, pair order, reconstruction, and the estimation-window-mean insanity filter are the HAR-DRD objects. The only headline change is OLS shared slopes versus $\ell_2$-penalized shared slopes. There is no quarticity, cross-section, market state, pair-summary, daily-return, or macro feature. There is no log-variance or Fisher transform. $N$ separate ridge regressions are not used. Pair dummy columns are not built.
+
+Penalty. One explicit constructor argument `lambda_ >= 0`, stored as `ridge_lambda`, shared by the variance and correlation maps. There is no tuned default. The future 20-point VALIDATION grid is not frozen and was not run.
+
+Within transform and scaling. Group-demean $y$ and the three-column $X$. Dummy intercepts are not constructed. Predictor column $j$ is then divided by $\mathrm{scale}_j=\sqrt{\mathrm{mean}_m\widetilde X_{m,j}^2}$ with divisor $M$. An exact zero column receives scale 1 and is retained. Responses are not standardized. Scales are fit only on the supplied window.
+
+Objective. On the scaled within design, $\hat\gamma=\arg\min_\gamma\|\widetilde y-X_{\mathrm{scaled}}\gamma\|_2^2+\lambda\|\gamma\|_2^2$. This is sum of squared errors plus the penalty. The loss is not divided by $M$. Raw slopes are $\beta_j=\gamma_j/\mathrm{scale}_j$. Intercepts $\alpha_g=\bar y_g-\bar X_g\beta$ are unpenalized. For $\lambda=0$, production uses the existing HAR `lstsq` path so the model nests HAR-DRD, including rank deficiency. For $\lambda>0$, production solves $(X_{\mathrm{scaled}}^{\top}X_{\mathrm{scaled}}+\lambda I)\gamma=X_{\mathrm{scaled}}^{\top}\widetilde y$ with SciPy `solve`. sklearn `Ridge` remains a dev/test reference only.
+
+Later headline XGBoost-DRD must keep the same level variance target, raw correlation target, $1/4/17$ information set, and validity rule. Its pooling structure remains unresolved. Log-variance XGBoost is demoted to a possible separately named later variant and was not implemented.
+
+No empirical fitting occurred. WRDS and market data were not accessed.
+
+Files created or materially changed. `src/covharness/models/ridge_drd.py`, `src/covharness/models/__init__.py`, `tests/unit/test_models_ridge_drd.py`, `README.md`, and `docs/PROJECT_STATE.md`.
+
 MZ exact-fit API. Coefficients and Wald semantics are unchanged. Exact calibration returns Wald $0$, p-value $1$, `inference_case="deterministic_null"`, `covariance=None`, and `covariance_degenerate=True`. An exact linear violation returns Wald $\infty$, p-value $0$, `inference_case="deterministic_alternative"`, and `covariance=None`. Ordinary cases return a numeric sandwich with `inference_case="regular"`. No jitter.
 
 Synthetic origin-state demonstrations, not empirical findings. Hand quarticity on $[[1,2],[0.5,-1],[0,1]]$ gives $\mathrm{RQ}=(1.0625,18)$ and $\mathrm{RQ}_{\mathrm{agg}}=9.53125$. Hand BNS market path $(0.2,0.1,0.3,0.1,0.2)$ gives $\mathrm{RV}=0.19$, $\mathrm{BV}=0.1$, $\mathrm{QP}=0.006$, $J_{\mathrm{BNS}}=-0.3874$, $Z=-0.4965$, indicator $0$. Seed 20260914 Gaussian continuous panel, $M=80$, has $Z=-1.493$ and indicator $0$. The same panel with a $0.2$ common jump at interval 40 has $Z=-11.237$ and indicator $1$. Exact MZ $S=H$ returns `deterministic_null` with `covariance=None`. $S=2H$ and $S=H+c$ return `deterministic_alternative` with `covariance=None`.
@@ -215,6 +279,9 @@ Synthetic validation, seed 20260914. These are validation demonstrations, not em
 - `src/covharness/models/ewma.py`
 - `src/covharness/models/har_drd.py`
 - `src/covharness/models/harq_drd.py`
+- `src/covharness/models/ledoit_wolf.py`
+- `src/covharness/models/dcc.py`
+- `src/covharness/models/ridge_drd.py`
 - `src/covharness/models/__init__.py`
 - `src/covharness/diagnostics/epps.py` (`m_over_n` added)
 - `tests/unit/test_losses.py`
@@ -229,6 +296,9 @@ Synthetic validation, seed 20260914. These are validation demonstrations, not em
 - `tests/unit/test_models_rcov_baselines.py`
 - `tests/unit/test_models_har_drd.py`
 - `tests/unit/test_models_harq_drd.py`
+- `tests/unit/test_models_ledoit_wolf.py`
+- `tests/unit/test_models_dcc.py`
+- `tests/unit/test_models_ridge_drd.py`
 - `tests/unit/test_epps.py`
 - `notebooks/proxy_robust_losses.ipynb`
 - `notebooks/dm_hac_size.ipynb`
@@ -378,6 +448,376 @@ Full suite after Block 4A-3, same interpreter, `python -m pytest -q`.
 
 No tests were skipped. The two warnings are the same Block 3A non-finite HAC overflow and Block 3C non-finite GW Omega overflow. They are intentional overflow tests. Warnings were not suppressed.
 
+Focused Block 4A-4 command on 2026-09-16, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_models_ledoit_wolf.py`.
+
+```
+......................................                                   [100%]
+38 passed, 1 warning in 1.31s
+```
+
+No tests were skipped. The warning is `PendingDeprecationWarning: Importing from numpy.matlib is deprecated` from the pinned `nonlinshrink` package when LW-NL first imports that reference. It is not suppressed.
+
+Full suite after Block 4A-4, same interpreter, `python -m pytest -q`.
+
+```
+........................................................................ [ 20%]
+........................................................................ [ 40%]
+........................................................................ [ 60%]
+........................................................................ [ 81%]
+...................................................................      [100%]
+355 passed, 3 warnings in 18.72s
+```
+
+No tests were skipped. The three warnings are the Block 3A non-finite HAC overflow, the Block 3C non-finite GW Omega overflow, and the `nonlinshrink` `numpy.matlib` pending deprecation. Warnings were not suppressed. DCC was not implemented.
+
+Focused Block 4A-5 command on 2026-09-16, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_models_dcc.py`.
+
+```
+................................................                         [100%]
+48 passed, 1 warning in 3.56s
+```
+
+No tests were skipped. The warning is `PendingDeprecationWarning: Importing from numpy.matlib is deprecated` from the pinned `nonlinshrink` package when DCC-NL first imports that reference. It is not suppressed.
+
+Full suite after Block 4A-5, same interpreter, `python -m pytest -q`.
+
+```
+........................................................................ [ 17%]
+........................................................................ [ 35%]
+........................................................................ [ 53%]
+........................................................................ [ 71%]
+........................................................................ [ 89%]
+...........................................                              [100%]
+403 passed, 3 warnings in 20.28s
+```
+
+No tests were skipped. The three warnings are the Block 3A non-finite HAC overflow, the Block 3C non-finite GW Omega overflow, and the `nonlinshrink` `numpy.matlib` pending deprecation. Warnings were not suppressed. Ridge-DRD was not begun.
+
+Focused Block 4A-6 command on 2026-09-16, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_models_ridge_drd.py tests/unit/test_models_har_drd.py`.
+
+```
+.................................................                        [100%]
+49 passed in 1.63s
+```
+
+No tests were skipped. No warnings. That count is 25 Ridge-DRD tests and 24 HAR-DRD tests.
+
+Full suite after Block 4A-6, same interpreter, `python -m pytest -q`.
+
+```
+........................................................................ [ 16%]
+........................................................................ [ 33%]
+........................................................................ [ 50%]
+........................................................................ [ 67%]
+........................................................................ [ 84%]
+....................................................................     [100%]
+428 passed, 3 warnings in 19.61s
+```
+
+No tests were skipped. The three warnings are the Block 3A non-finite HAC overflow, the Block 3C non-finite GW Omega overflow, and the `nonlinshrink` `numpy.matlib` pending deprecation. Warnings were not suppressed. XGBoost-DRD and LSTM-BEKK were not begun.
+
+Block 4A-7 faithful daily-return LSTM-BEKK is implemented in `covharness.models.lstm_bekk` as `LSTMBEKKCovariance`. Public identity `lstm_bekk`. It consumes the same origin-window daily-return contract as DCC through `as_daily_return_history`, requires $N\ge 2$, and exposes `fit`, `forecast`, and `update`.
+
+Paper recursion in internal percent units $x_t=100(r_t-\mu)$.
+
+```math
+H_t=CC^{\top}+C_tC_t^{\top}+a x_{t-1}x_{t-1}^{\top}+b H_{t-1}.
+```
+
+$C$ and $C_t$ are lower triangular. $a$ and $b$ are scalars. This is Wang, Liu, Tran, and Wang (2025) scalar BEKK plus an LSTM intercept, not full Engle–Kroner matrix $A,B$. Static $CC^{\top}$ with a strictly positive diagonal is the strict-PD anchor. Dynamic $C_tC_t^{\top}$ is a Gram matrix for any real lower triangle, including a negative Swish diagonal. Failed Cholesky raises. There is no jitter, nearest-PD, eigenvalue flooring, or other repair.
+
+Returns. Fit-window mean $\mu$ is stored and frozen between parameter refits. Native residuals are $r_t-\mu$. Internal recursion uses $x_t=100(r_t-\mu)$. Public forecasts divide internal $H$ by $10000$. A constant or nonpositive centered column is rejected. Inputs are copied. Missing rows are not dropped.
+
+Paper-specified pieces. LSTM input is the lagged internal return. Hidden size equals $N$. Depth is in $\{3,4,5\}$. Dropout is in $[0.1,0.2]$. Dynamic lower triangle with Swish on the diagonal. Gaussian NLL. RMSprop. Cholesky $\log\det$ and quadratic. Gradient clipping. Source empirical scale $\times 100$.
+
+Project completions, not attributed to the paper. Stacked `torch.nn.LSTM` layers. Linear head $\mathbb{R}^N\to\mathbb{R}^{N(N+1)/2}$ with bias. One global Swish $\beta$ initialized at $1$. Softplus static diagonal. Softmax logits $(w,a,b)$ initialized at $(0.05,0.05,0.90)$ with $w$ unused in the recursion. $H_0=X^{\top}X/(T-1)$ when strictly PD, otherwise $\operatorname{diag}(\operatorname{diag}(S_0))$ when variances are strictly positive. $H_0$ is detached data. Static $C$ is initialized so $CC^{\top}=0.05 H_0$. Zero recurrent states on every `fit`. Full-sequence BPTT. Fixed epochs and no rolling early stopping. RMSprop $\alpha=0.99$, $\varepsilon=10^{-8}$, momentum $0$, uncentered, no weight decay. `torch.float64` on CPU. Seed list remains $(0,1,2,3,4)$ at the protocol layer. One instance receives one explicit seed.
+
+Indexing. $x_0$ is scored under $H_0$. No presample return. Training NLL has $T$ terms. $H_T$ is formed after processing $x_{T-1}$ and is not scored in-window. `forecast()` returns $H_T/10000$ without mutation. `update` advances hidden, cell, and $H$ once using the frozen mean and frozen parameters.
+
+Runtime pin. `torch==2.13.0` in `pyproject.toml`. This environment resolved `2.13.0+cpu`. License-Expression is the PyTorch mixed OSS set (Apache-2.0, BSD-2/3, MIT, BSL-1.0, LLVM exception). Requires-Python `>=3.10`, including 3.11. `torch.cuda.is_available()` is False here. The model never moves parameters to CUDA.
+
+LSTM-BEKK-RC is not implemented. An input-builder method `build_lstm_input` is the unused seam. No RCov enters the faithful model.
+
+Files created. `src/covharness/models/lstm_bekk.py` and `tests/unit/test_models_lstm_bekk.py`. Files changed. `src/covharness/models/__init__.py`, `pyproject.toml`, `README.md`, and `docs/PROJECT_STATE.md`.
+
+Focused tests, same interpreter, `python -m pytest -q tests/unit/test_models_lstm_bekk.py`.
+
+```
+58 passed in 4.38s
+```
+
+No tests were skipped. No warnings in that focused run. Training examples are tiny by design. The $N=20$ case uses one epoch only.
+
+Full suite after Block 4A-7, same interpreter, `python -m pytest -q`.
+
+```
+........................................................................ [ 14%]
+........................................................................ [ 29%]
+........................................................................ [ 44%]
+........................................................................ [ 59%]
+........................................................................ [ 73%]
+........................................................................ [ 88%]
+.......................................................                  [100%]
+487 passed, 3 warnings in 24.27s
+```
+
+No tests were skipped. The three warnings are the Block 3A non-finite HAC overflow, the Block 3C non-finite GW Omega overflow, and the `nonlinshrink` `numpy.matlib` pending deprecation. Warnings were not suppressed. XGBoost-DRD and LSTM-BEKK-RC were not begun.
+
+Block 4A-8 implements daily origin-state APIs and a serial synthetic rolling runner. Parameter refit, daily observable-state update, and forecast formation are distinct. The 21-origin cadence is estimator refit. Forecasts remain daily.
+
+Capability mechanism. `ModelCapabilities` in `covharness.models.capabilities` records `RollingCadence`, `FitInput`, and `UpdateObservable` as class attributes. The four cadences are `ORIGIN_MAP` (random walk), `WINDOW_STATE` (HAR-DRD, HARQ-DRD, Ridge-DRD), `RECURSIVE_STATE` (EWMA, DCC, DCC-NL, LSTM-BEKK), and `REFIT_HOLD` (LW-linear, LW-NL). The runner dispatches from those types. It does not branch on class names. Models do not inspect VALIDATION, SCREEN, or CONFIRM.
+
+State APIs. Random walk `update` stores a copy of the new $S_t$. EWMA `update` applies one frozen-lambda recursion step. HAR, HARQ, and Ridge `update_window` rebuild origin $1/4/17$ predictors and the current-window fallback mean without re-estimating coefficients or Ridge scales. HARQ also refreshes the current per-asset RQ window. DCC, DCC-NL, and LSTM-BEKK keep their existing `update`. Standalone LW has no recursive update.
+
+Frozen Ledoit-Wolf cadence. At `ForecastStep.refit=True` the entire estimator is recomputed from the current 250-day return window. At `refit=False` the stored covariance is returned unchanged. Sample covariance, $\rho$, and nonlinear eigenvalues are not refreshed. There is no frozen-$\rho$ plus refreshed-$S$ rule. Daily-moving-window LW remains a possible later robustness. It is not the headline equal-cadence specification.
+
+Frozen HAR-family fallback. Between coefficient refits the insanity-filter mean is the arithmetic mean of the current origin's 250-day realized-covariance window. It is not the window from the last coefficient fit. HAR coefficients freeze. HARQ coefficients freeze. Ridge lambda, slopes, fixed effects, and predictor scales freeze.
+
+Runner. `covharness.protocol.runner` exposes `OriginPayload`, `RollingForecastRecord`, `run_rolling_forecasts`, and `run_block_forecasts`. The payload has optional return, RCov, and RQ fields. Windows end at origin $t$. Target $t+1$ is never included. Records store a copied covariance. Losses and inference are not computed. Execution is serial. A refit origin calls `fit` once and does not update afterward. A non-refit origin advances state once. CONFIRM remains locked.
+
+No empirical fit. No WRDS access. No market data. VALIDATION was not used for tuning. SCREEN was unused. CONFIRM stayed locked. DATA GATE unresolved.
+
+Files created. `src/covharness/models/capabilities.py`, `src/covharness/protocol/runner.py`, `tests/unit/test_models_daily_state.py`, and `tests/unit/test_rolling_runner.py`. Files changed. `src/covharness/models/base.py`, `src/covharness/models/random_walk.py`, `src/covharness/models/ewma.py`, `src/covharness/models/har_drd.py`, `src/covharness/models/harq_drd.py`, `src/covharness/models/ridge_drd.py`, `src/covharness/models/ledoit_wolf.py`, `src/covharness/models/dcc.py`, `src/covharness/models/lstm_bekk.py`, `src/covharness/models/__init__.py`, `src/covharness/protocol/__init__.py`, `README.md`, and `docs/PROJECT_STATE.md`.
+
+Focused daily-state command on 2026-09-16, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_models_daily_state.py`.
+
+```
+12 passed, 1 warning in 1.91s
+```
+
+No tests were skipped. The warning is the pinned `nonlinshrink` `numpy.matlib` pending deprecation. It is not suppressed.
+
+Runner integration command, same interpreter, `python -m pytest -q tests/unit/test_rolling_runner.py`.
+
+```
+14 passed, 1 warning in 19.48s
+```
+
+No tests were skipped. The same `nonlinshrink` pending deprecation appears when LW-NL is first imported. Warnings were not suppressed.
+
+Full suite after Block 4A-8, same interpreter, `python -m pytest -q`.
+
+```
+........................................................................ [ 14%]
+........................................................................ [ 28%]
+........................................................................ [ 42%]
+........................................................................ [ 56%]
+........................................................................ [ 70%]
+........................................................................ [ 84%]
+........................................................................ [ 98%]
+.........                                                                [100%]
+513 passed, 3 warnings in 39.39s
+```
+
+No tests were skipped. The three warnings are the Block 3A non-finite HAC overflow, the Block 3C non-finite GW Omega overflow, and the `nonlinshrink` `numpy.matlib` pending deprecation. Warnings were not suppressed. XGBoost-DRD, LSTM-BEKK-RC, and GHAR were not begun. Final `PREREGISTRATION.md` was not created.
+
+Block 4A-9 implements XGBoost-DRD as the nonlinear architecture-control step after Ridge-DRD. Public class `XGBoostDRDRealizedCovariance`, identity `xgboost_drd`. It inherits `RealizedCovarianceModel` and declares `WINDOW_STATE` / `REALIZED_COVARIANCE` / `REALIZED_COVARIANCE_WINDOW`. The Block 4A-8 runner dispatches from those capabilities. It does not branch on the class name.
+
+Architecture-control definition. HAR-DRD to Ridge-DRD to XGBoost-DRD holds fixed the variance-level and raw-correlation targets, the non-overlapping $1/4/17$ information set, the lag convention, the asset and pair group structure, the dummy-free within transformation, the Ridge RMS-scaled predictor representation, the 21-origin WINDOW_STATE cadence, DRD reconstruction, and the current-origin 250-day mean repair. The linear ridge learner is replaced by a boosted-tree learner. That is the defensible statement. The step is not described as changing only one mathematical parameterization.
+
+Pooling and preprocessing. Variance groups are assets. Correlation groups are unique pairs $i<j$. Group means $\bar y$ and $\bar X$ are computed on the $228$ training rows when $T=250$. Within residuals are $y-\bar y$ and $X-\bar X$. Dummy columns and group IDs are not used. After demeaning, each of the three predictor columns is divided by $\sqrt{\mathrm{mean}(\widetilde X_j^2)}$. An exact zero column receives scale $1$. Responses are not standardized. Scaling is imposed so that the numerical predictor representation matches Ridge exactly. It is not imposed because trees require scaling. Ridge helpers `within_transformed_arrays`, `within_predictor_scales`, and `scale_within_predictors` are reused without mathematical change.
+
+Learners. Exactly two pooled boosters are fit per refit, $f_D\colon\mathbb{R}^3\to\mathbb{R}$ and $f_R\colon\mathbb{R}^3\to\mathbb{R}$, both with `objective="reg:squarederror"` on the within residuals. There is no $N$-model or $P$-model explosion, no eval set, and no early stopping. Origin forecasts are $\bar y_g+f(Z_{\mathrm{origin},g})$ with frozen $\bar y$, $\bar X$, and RMS scales. `update_window` rebuilds current-origin HAR predictors and the current 250-day fallback mean only.
+
+Explicit configuration. Constructor requires `n_estimators`, `max_depth`, `learning_rate`, `min_child_weight`, `reg_lambda`, `reg_alpha`, and `gamma`. Frozen package constants are `booster="gbtree"`, `tree_method="hist"`, `device="cpu"`, `n_jobs=1`, `subsample=1.0`, every `colsample` value $1$, `grow_policy="depthwise"`, `max_bin=256`, `base_score=0.0`, `random_state=0`, `validate_parameters=True`, and `early_stopping_rounds=None`. Headline fitting is deterministic. The seed ensemble $(0,1,2,3,4)$ is not applied. SHAP, ALE, feature importance, and pair subsampling are not implemented.
+
+Runtime pin. `xgboost==3.2.0` in `pyproject.toml`. This environment resolved `3.2.0`. License is Apache-2.0. Requires-Python `>=3.10`, including 3.11.16 here. Training uses CPU hist only. The manylinux wheel also installs `nvidia-nccl-cu12` on Linux. That extra is unused. `device="cpu"` is passed explicitly.
+
+Repair. The shared `headline_repaired_forecast` contract is unchanged. Fallback is the arithmetic mean of the current origin's exact 250-day RCov window. An invalid fallback raises. There is no clipping, nearest-PD, jitter, or second repair.
+
+No empirical fit. No WRDS access. No market data. VALIDATION was not used for tuning. SCREEN was unused. CONFIRM stayed locked. DATA GATE unresolved. The pending bounded DM calibration review remains pending. LSTM-BEKK-RC was not begun. The graph-neural specification remains unresolved. Final `PREREGISTRATION.md` was not created.
+
+Files created. `src/covharness/models/xgboost_drd.py` and `tests/unit/test_models_xgboost_drd.py`. Files changed. `src/covharness/models/__init__.py`, `pyproject.toml`, `tests/unit/test_models_daily_state.py`, `tests/unit/test_rolling_runner.py`, `tests/unit/test_models_lstm_bekk.py` (LSTM-BEKK-RC seam now allows the implemented XGBoost export), `README.md`, and `docs/PROJECT_STATE.md`. Ridge within and scaling helpers were not moved.
+
+Focused Block 4A-9 command on 2026-09-16, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_models_xgboost_drd.py`.
+
+```
+22 passed in 12.75s
+```
+
+No tests were skipped. No warnings in that focused run.
+
+HAR, Ridge, daily-state, and runner regression, same interpreter, `python -m pytest -q tests/unit/test_models_har_drd.py tests/unit/test_models_ridge_drd.py tests/unit/test_models_daily_state.py tests/unit/test_rolling_runner.py`.
+
+```
+78 passed, 1 warning in 33.34s
+```
+
+No tests were skipped. The warning is the pinned `nonlinshrink` `numpy.matlib` pending deprecation. It is not suppressed.
+
+Full suite after Block 4A-9, same interpreter, `python -m pytest -q`.
+
+```
+........................................................................ [ 13%]
+........................................................................ [ 26%]
+........................................................................ [ 40%]
+........................................................................ [ 53%]
+........................................................................ [ 67%]
+........................................................................ [ 80%]
+........................................................................ [ 93%]
+.................................                                        [100%]
+537 passed, 3 warnings in 52.75s
+```
+
+No tests were skipped. The three warnings are the Block 3A non-finite HAC overflow, the Block 3C non-finite GW Omega overflow, and the `nonlinshrink` `numpy.matlib` pending deprecation. Warnings were not suppressed. LSTM-BEKK-RC and GHAR were not begun. Final `PREREGISTRATION.md` was not created.
+
+Block 4A-10 wires the existing serial runner to the existing covariance-space losses on synthetic data only. No forecasting model was added. Reduced multivariate QLIKE remains `covharness.losses.qlike.reduced_qlike_loss`. Squared Frobenius remains `covharness.losses.frobenius.squared_frobenius_loss`. Both remain one-date functions of shape `(N, N)`. DM, SPA, MCS, GW, and MZ mathematics were not changed.
+
+Evaluator path. `covharness.evaluation.score` is the adapter. Public constructors are `target_covariance_panel`, `align_forecast_records`, `score_forecast_records`, `build_loss_panel`, `summarize_loss_panel`, and `loss_differential_from_panel`. `TargetCovariancePanel` stores unique calendar keys and a copied `(T, N, N)` cube. Lookup is by timestamp, not by positional alignment with the forecast list. `AlignedForecastTarget` pairs `H_{t+1\mid t}` with `S_{t+1}`. `LossRecord` stores `model_name`, `origin`, `target`, `loss_name`, `loss_value`, `refit`, and `action`. Covariance matrices are not copied into loss records. `repaired` is omitted because `RollingForecastRecord` does not expose it.
+
+Alignment. For every `RollingForecastRecord`, origin $t$ must be the calendar predecessor of target $t+1$, and the scoring proxy is `covariance_at(target)`. Origin-day $S_t$ is never the evaluation target. Missing target dates, duplicate `(model, target)` keys, dimension mismatch, and non-next-date origin/target pairs raise `EvaluationAlignmentError`. Existing loss-domain failures (`ForecastNotPositiveDefiniteError`, `InvalidCovarianceMatrixError`) pass through. Evaluation does not jitter, clip, or nearest-PD a forecast.
+
+Loss panel. `build_loss_panel` returns a `(n_targets, n_models)` matrix in chronological target order. Default `date_support='error'` requires identical target dates across compared models. `date_support='intersection'` is explicit. Silent NA dropping is not implemented. Model column order follows the caller roster when supplied, otherwise first appearance. `summarize_loss_panel` returns roster-ordered count, mean, median, and sample standard deviation. It does not label a winner.
+
+Differentials. `loss_differential_from_panel(panel, A, B)` returns $d_t=L_{A,t}-L_{B,t}$ through the existing Block 3A `loss_differential`. Negative means A has lower loss that date. A focused smoke test passes the resulting series to existing `diebold_mariano_from_losses`. SPA and MCS were not invoked in this block. DM bandwidth and dependence defaults were not changed. The pending DM calibration review remains pending.
+
+Synthetic generator. `covharness.simulation.benchmark.synthetic_benchmark_panel` draws a seeded panel of business-day calendar, daily returns, strictly PD realized covariance, and per-asset $\mathrm{RQ}_i=(M/3)\sum_l r_{i,l}^4$. Latent covariance uses time-varying volatilities and equicorrelation. Interval returns are Gaussian given that latent matrix. The evaluation target is the noisy realized-covariance proxy, not the latent generator. The generator is an integration fixture. It is not a market simulator.
+
+Demo. `scripts/synthetic_benchmark_demo.py` uses `build_schedule`, not a full `TemporalProtocol` allocation, because production $T-m\ge 1000$ is too long for a demonstration. Demonstration window $m=40$, $N=3$, $8$ targets, seed $20260916$. Roster is random-walk RCov, EWMA, HAR-DRD, HARQ-DRD, Ridge-DRD ($\lambda=1$), XGBoost-DRD (`n_estimators=2`, `max_depth=1`), LW-linear, LW-NL, DCC, DCC-NL, and LSTM-BEKK (`max_epochs=1`). Those hyperparameters are demonstration settings. They are not tuned. Printed tables are integration diagnostics, not empirical findings. CONFIRM remains locked. SCREEN is unused.
+
+No empirical fit. No WRDS access. No market data. VALIDATION was not used for tuning. SCREEN was unused. CONFIRM stayed locked. DATA GATE unresolved. The pending bounded DM calibration review remains pending. LSTM-BEKK-RC was not begun. GHAR was not begun. The graph-neural specification remains unresolved. Final `PREREGISTRATION.md` was not created.
+
+Files created. `src/covharness/evaluation/exceptions.py`, `src/covharness/evaluation/score.py`, `src/covharness/evaluation/__init__.py`, `src/covharness/simulation/benchmark.py`, `scripts/synthetic_benchmark_demo.py`, `tests/unit/test_evaluation.py`, and `tests/unit/test_synthetic_benchmark.py`. Files changed. `src/covharness/simulation/__init__.py`, `README.md`, and `docs/PROJECT_STATE.md`.
+
+Focused evaluator command on 2026-09-16, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_evaluation.py`.
+
+```
+18 passed in 2.46s
+```
+
+No tests were skipped. No warnings in that focused run.
+
+Synthetic end-to-end command, same interpreter, `python -m pytest -q tests/unit/test_synthetic_benchmark.py`.
+
+```
+7 passed in 2.57s
+```
+
+No tests were skipped. No warnings in that focused run. The cheap unit roster is random walk, EWMA, HAR-DRD, and Ridge-DRD. LSTM-BEKK is scored through a hand-built forecast record rather than a live unit-level fit.
+
+Executable demo, same interpreter, `python scripts/synthetic_benchmark_demo.py`.
+
+```
+success
+roster 11 models
+forecast count 88
+wall time 11.98s
+descriptive tables 11 rows by 4 statistics for reduced QLIKE and for squared Frobenius
+```
+
+The printed numbers are integration diagnostics. They are not empirical benchmark results and are not recorded here as a ranking.
+
+Full suite after Block 4A-10, same interpreter, `python -m pytest -q`.
+
+```
+........................................................................ [ 12%]
+........................................................................ [ 25%]
+........................................................................ [ 38%]
+........................................................................ [ 51%]
+........................................................................ [ 64%]
+........................................................................ [ 76%]
+........................................................................ [ 89%]
+..........................................................               [100%]
+562 passed, 3 warnings in 53.52s
+```
+
+No tests were skipped. The three warnings are the Block 3A non-finite HAC overflow, the Block 3C non-finite GW Omega overflow, and the `nonlinshrink` `numpy.matlib` pending deprecation. Warnings were not suppressed. LSTM-BEKK-RC and GHAR were not begun. Final `PREREGISTRATION.md` was not created.
+
+The bounded Diebold-Mariano dependence / calibration study measures the finite-sample size of the current procedure on synthetic AR(1) loss differentials. Block 3A mathematics were not reopened. `hac_long_run_variance`, `diebold_mariano`, the automatic lag $L=\lfloor 4(T/100)^{2/9}\rfloor$, the $N(0,1)$ reference, alternatives, and diagnostic definitions were not changed. HLN, fixed-$b$, prewhitening, stationary-bootstrap DM, self-normalization, Andrews bandwidth, and Kiefer-Vogelsang critical values were not added.
+
+Historical baseline reproduction, same interpreter, `simulate_hac_size_power()` with seed $20260912$, $B=2000$, $T=250$.
+
+```
+IID null naive=0.0520 HAC DM=0.0545
+AR(1) rho=0.6 naive=0.3185 HAC DM=0.1135
+IID mean shift -0.20 two-sided=0.8965 A-better=0.9460
+```
+
+Those six rates match the previously recorded experiment exactly. The historical function API is unchanged.
+
+Expanded null grid. $d_t=\rho d_{t-1}+\varepsilon_t$ with $\varepsilon_t\sim N(0,1)$ and exact stationary start $d_0\sim N(0,1/(1-\rho^2))$. No burn-in. $\mathrm{E}[d_t]=0$. Frozen cells $\rho\in\{0.0,0.3,0.6,0.8,0.9\}$ and $T\in\{250,500,1000\}$. Lag rules $L=0$, $L_{\mathrm{auto}}$, $2L_{\mathrm{auto}}$, $4L_{\mathrm{auto}}$, with explicit lags capped at $T-1$. Automatic lags are $4$, $5$, and $6$ at $T=250$, $500$, and $1000$. $B=5000$. Seed $20260916$. Common random numbers across lag rules within each $(T,\rho)$ cell. $60$ rows. Zero HAC/DM failures.
+
+Automatic-lag two-sided rejection at $\alpha=0.05$, with Monte Carlo $\mathrm{se}=\sqrt{\hat p(1-\hat p)/B}$ and $\hat p\pm 1.96\,\mathrm{se}$.
+
+$T=250$. $\rho=0.0$ rate $0.0558$, interval $[0.0494,0.0622]$, close to nominal. $\rho=0.3$ rate $0.0806$, moderately oversized. $\rho=0.6$ rate $0.1228$, moderately oversized. $\rho=0.8$ rate $0.2378$ and $\rho=0.9$ rate $0.3818$, severely oversized.
+
+$T=500$. $\rho=0.0$ rate $0.0530$, close to nominal. $\rho=0.3$ rate $0.0690$ and $\rho=0.6$ rate $0.1104$, moderately oversized. $\rho=0.8$ rate $0.2004$ and $\rho=0.9$ rate $0.3368$, severely oversized.
+
+$T=1000$. $\rho=0.0$ rate $0.0564$, interval $[0.0500,0.0628]$, close to nominal. $\rho=0.3$ rate $0.0714$ and $\rho=0.6$ rate $0.0862$, moderately oversized. $\rho=0.8$ rate $0.1688$ and $\rho=0.9$ rate $0.2848$, severely oversized.
+
+True long-run variance $\omega=1/(1-\rho)^2$ is simulation truth only. Mean $\hat\omega/\omega$ under the automatic lag falls from about $0.98$ at $\rho=0$ to $0.20$ at $T=250$, $\rho=0.9$. Size distortion tracks systematic LRV underestimation. $\omega$ is not used inside the DM statistic.
+
+No bandwidth was selected from these cells. $L=0$ is a diagnostic heteroskedasticity-only case, not a headline. Larger multiplier lags reduce over-rejection on persistent nulls and can inflate size under $\rho=0$. That pattern is recorded, not optimized.
+
+Evaluator / calibration helpers live in `covharness.inference.size`. The historical `simulate_hac_size_power` contract is unchanged. New public helpers are `stationary_ar1_paths`, `ar1_true_long_run_variance`, `calibration_hac_lag`, `simulate_dm_hac_calibration`, and the two descriptive plotters. The executable study is `scripts/dm_hac_calibration_sensitivity.py`.
+
+No empirical losses. No WRDS. No market data. VALIDATION unused. SCREEN unused. CONFIRM locked. DATA GATE unresolved. Final `PREREGISTRATION.md` was not created.
+
+Files created. `tests/unit/test_inference_dm_calibration.py`, `scripts/dm_hac_calibration_sensitivity.py`, `results/dm_hac_calibration_sensitivity.csv`, `results/dm_hac_calibration_size_vs_rho.png`, and `results/dm_hac_calibration_bandwidth.png`. Files changed. `src/covharness/inference/size.py`, `src/covharness/inference/__init__.py`, `notebooks/dm_hac_size.ipynb`, `README.md`, and `docs/PROJECT_STATE.md`. `src/covharness/inference/hac.py` and `src/covharness/inference/dm.py` were not modified.
+
+Focused calibration tests on 2026-09-16, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_inference_dm_calibration.py`.
+
+```
+15 passed in 1.14s
+```
+
+No tests were skipped. No warnings in that focused run.
+
+Calibration grid execution, same interpreter, `python scripts/dm_hac_calibration_sensitivity.py`.
+
+```
+historical baseline reproduced
+expanded grid B=5000 seed=20260916 rows=60 wall_time_s=38.37
+```
+
+Full suite after the calibration study, same interpreter, `python -m pytest -q`.
+
+```
+577 passed, 3 warnings in 53.19s
+```
+
+No tests were skipped. The three warnings are the Block 3A non-finite HAC overflow, the Block 3C non-finite GW Omega overflow, and the `nonlinshrink` `numpy.matlib` pending deprecation. Warnings were not suppressed. LSTM-BEKK-RC and GHAR were not begun. Final `PREREGISTRATION.md` was not created.
+
+The candidate pairwise companion is a recentered Politis-Romano test of the mean of $d_t=L_{A,t}-L_{B,t}$. Public function `stationary_bootstrap_mean_test` in `covharness.inference.bootstrap_mean`. Observed statistic $S=\sqrt{T}\bar d$. Bootstrap population $d_t-\bar d$. No long-run variance. No normal reference. No bootstrap-$t$. Indices come from existing `stationary_bootstrap_indices` with the expected length passed explicitly as $\ell_T=\max(2,\lfloor T^{1/3}\rfloor)$. $T=250,500,1000$ give $\ell=6,7,10$. Candidate production settings $B=5000$ and seed $20260917$, distinct from SPA/MCS seed $20260913$. $p$-values use weak inequalities and $(1+\mathrm{count})/(B+1)$, so $p\in(0,1]$. This is not Hansen SPA. Constant differentials raise `DegenerateLossDifferentialError`. `dm.py` and `hac.py` were not modified. `bootstrap.py` mathematics were not modified.
+
+Calibration DGP reuses `stationary_ar1_paths`. Outer DGP seed $20260918$. Inner bootstrap seeds are `SeedSequence(20260918, 2, T, round(1000\rho), replication)`. Stage 1 and Stage 2 cells were frozen before any companion size result was seen.
+
+Stage 1. All 15 cells, $M_1=200$, $B_1=499$, wall time $46.64$ seconds. Path `results/bootstrap_mean_calibration_stage1.csv`.
+
+Stage 2 pilot. One cell $T=250$, $\rho=0.6$, $20$ outer replications, $B=1999$, $0.34$ seconds. Extrapolated full Stage 2 about $379$ seconds. Not prohibitive.
+
+Stage 2. The pre-specified 10 cells, $M_2=1000$, $B_2=1999$, wall time $312.37$ seconds. Path `results/bootstrap_mean_calibration_stage2.csv`. Zero failures.
+
+Stage-2 two-sided rejection at $\alpha=0.05$, versus stored automatic-NW rates from the earlier $B=5000$ NW grid.
+
+$T=250$. $\rho=0.0$ companion $0.054$ (NW $0.0558$). $\rho=0.6$ companion $0.094$ (NW $0.1228$). $\rho=0.8$ companion $0.195$ (NW $0.2378$). $\rho=0.9$ companion $0.253$ (NW $0.3818$).
+
+$T=500$. $\rho=0.6$ companion $0.077$ (NW $0.1104$). $\rho=0.8$ companion $0.148$ (NW $0.2004$). $\rho=0.9$ companion $0.240$ (NW $0.3368$).
+
+$T=1000$. $\rho=0.6$ companion $0.064$ (NW $0.0862$). $\rho=0.8$ companion $0.097$ (NW $0.1688$). $\rho=0.9$ companion $0.189$ (NW $0.2848$).
+
+These comparisons are descriptive calibration evidence. The companion is not adopted. No winner label is attached.
+
+Files created. `src/covharness/inference/bootstrap_mean.py`, `tests/unit/test_inference_bootstrap_mean.py`, `scripts/bootstrap_mean_calibration.py`, `results/bootstrap_mean_calibration_stage1.csv`, `results/bootstrap_mean_calibration_stage2.csv`, `results/bootstrap_mean_calibration_size_vs_rho.png`, and `results/bootstrap_mean_versus_nw_size.png`. Files changed. `src/covharness/inference/__init__.py`, `README.md`, and `docs/PROJECT_STATE.md`.
+
+Focused companion tests on 2026-09-16, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_inference_bootstrap_mean.py`.
+
+```
+16 passed in 1.06s
+```
+
+Full suite after the companion was added and before the calibration grids, same interpreter, `python -m pytest -q`.
+
+```
+593 passed, 3 warnings in 53.20s
+```
+
+Full suite after the comparison-figure helper filter, same interpreter.
+
+```
+593 passed, 3 warnings in 52.99s
+```
+
 ## Methodological decisions already in code
 
 - Reduced QLIKE is the primary ranking loss. Full Stein is the SPD-proxy form.
@@ -387,11 +827,15 @@ No tests were skipped. The two warnings are the same Block 3A non-finite HAC ove
 - `M/N` is a proxy-quality diagnostic, not a gate on reduced QLIKE.
 - Protocol intervals are half-open on the trading-date index.
 - VALIDATION 250 is a target. SCREEN and CONFIRM 500 are committed minima. Zero VALIDATION makes data-driven tuning unavailable.
-- Rolling $m=250$ and 21-day refit cadence are part of the forecasting method.
+- Rolling $m=250$ is the estimation window. The 21-origin cadence is parameter and estimator refit, not forecast cadence.
+- Parameter refit, daily observable-state update, and forecast formation are distinct.
 - CONFIRM is locked unless `unlock_confirm=True` is passed.
 - Stochastic seeds and the configuration budget are protocol metadata, not later model-local choices.
 - Statistical evaluation is open-to-close. Later economic GMV includes overnight.
 - Pairwise tests use $d_t=L_{A,t}-L_{B,t}$ and Bartlett / Newey-West HAC. Harvey-Leybourne-Newbold is not applied.
+- The current automatic lag remains $L=\lfloor 4(T/100)^{2/9}\rfloor$. The synthetic sensitivity study did not adopt a new default.
+- A Monte Carlo rejection rate and Monte Carlo interval describe the implemented procedure. They are not empirical forecast-comparison $p$-values.
+- A candidate recentered stationary-bootstrap pairwise mean test exists as a companion API. It is not the confirmatory default. It does not use an LRV.
 - Clark-West is opt-in, nested, and scalar squared-error only.
 - SPA and MCS are applied separately to each loss/proxy channel.
 - SPA uses Hansen's benchmark-minus-alternative differential and the consistent p-value as the headline.
@@ -416,25 +860,74 @@ No tests were skipped. The two warnings are the same Block 3A non-finite HAC ove
 - HAR-DRD is estimated by the within transformation. Dummy intercept columns are not constructed.
 - Headline HAR-DRD is in levels. Log-variance, Fisher, ridge, graph, and HARQ terms are not used.
 - Unique pairs follow the existing strict upper-triangle order $i<j$.
-- The only headline HAR-DRD repair is replacement by the current estimation-window mean. Repair is never silent. A non-PD fallback raises rather than receiving a second repair.
+- The only headline HAR-DRD, HARQ-DRD, Ridge-DRD, and XGBoost-DRD repair is replacement by the arithmetic mean of the current origin's 250-day realized-covariance window. Between coefficient refits that fallback mean moves. Coefficients, Ridge scales, Ridge lambda, XGBoost group means, XGBoost scales, and XGBoost boosters do not.
+- Standalone LW-linear and LW-NL follow the common 21-origin estimator-refit cadence. Between refits the stored covariance is held. Daily-moving-window LW is a later robustness, not the headline.
 - Headline HARQ-DRD adds one daily per-asset quarticity interaction on variances and leaves the HAR-DRD correlation map unchanged.
 - HARQ RQ is the per-asset series $\mathrm{RQ}_i=(M/3)\sum_l r_{i,l}^4$ supplied as a $(T,N)$ window. It is not the GW aggregate $\log\mathrm{RQ}_{\mathrm{agg}}$.
 - HARQ imposes no sign constraint on $\phi_{Q,d}$. Zero RQ is admissible.
 - HARQ uses the same BPQ estimation-window-mean insanity filter as HAR-DRD.
+- Standalone LW models consume daily returns, not realized-covariance histories.
+- Returns are demeaned in-window. $S=Y^{\top}Y/(T-1)$ is shared by LW-linear and LW-NL.
+- Headline LW-linear is Ledoit-Wolf 2004b $\mu I$ shrinkage. Honey / equicorrelation is not used.
+- Headline LW-NL is the pinned 2020 analytical estimator via `nonlinshrink==0.7`. QuEST and QIS are not used.
+- Both LW estimators retain sample eigenvectors. Linear uses one affine eigenvalue map. Nonlinear uses eigenvalue-specific shrinkage.
+- Standalone LW is distinct from DCC-NL targeting. DCC-NL uses the same analytical estimator on standardized residuals with $k=0$ and divisor $T$.
+- The empirical daily-return convention remains unresolved until DATA GATE integration.
+- Headline DCC identities are original Engle (2002) DCC, not cDCC.
+- Stage-one GARCH is ZeroMean Gaussian GARCH(1,1) on in-window demeaned returns, fit by pinned `arch==8.0.0`.
+- The GARCH backcast is the sample second moment of centered residuals with divisor $T$, passed as an explicit `arch` backcast.
+- The fit-window mean is frozen between 21-origin parameter refits. Daily `update` does not re-estimate parameters.
+- Plain DCC targeting is $S_{\mathrm{std}}^{\top}S_{\mathrm{std}}/T$ then diagonal renormalization. Strict PD is checked by Cholesky. $N>T$ is rejected as rank-deficient. $N=T$ is not categorically rejected.
+- Headline second-stage estimation is all-pairs composite Gaussian QMLE over $i<j$, optimized by deterministic SLSQP from $(0.05,0.90)$. An accepted fit requires $\alpha+\beta<1$.
+- DCC-NL changes only the intercept $C$. Final $H$ is not nonlinearly shrunk.
+- Headline Ridge-DRD is the regularized HAR-DRD control. Same level variance, raw correlation, $1/4/17$ features, pooling, and repair.
+- Ridge predictors are scaled only after within demeaning. Responses are not scaled. Intercepts are unpenalized.
+- Ridge objective is SSE plus $\lambda\|\gamma\|_2^2$ on scaled slopes. One $\lambda\ge 0$ is shared by variance and correlation. $\lambda=0$ nests HAR-DRD.
+- The Ridge 20-point empirical $\lambda$ grid is not frozen.
+- Headline XGBoost-DRD is the nonlinear architecture-control step after Ridge. Same targets, $1/4/17$ features, dummy-free within transform, Ridge RMS-scaled predictors, WINDOW_STATE cadence, and repair. The linear ridge learner is replaced by two pooled squared-error boosters.
+- XGBoost scaling matches Ridge so that the numerical predictor representation is identical. It is not imposed because trees require scaling. Responses are not standardized. Group IDs are not passed.
+- Exactly two boosters are fit per refit. There is no $N$-model or $P$-model explosion and no five-seed ensemble. Headline configuration is deterministic CPU hist with `xgboost==3.2.0`.
+- The XGBoost 20-configuration VALIDATION grid is not frozen. Constructor hyperparameters are explicit and untuned.
+- Headline LSTM-BEKK is daily returns only. Hidden size equals $N$. Depth is a stacked LSTM in $\{3,4,5\}$.
+- LSTM-BEKK public forecasts are native-unit matrices $H/10000$ after internal percent-scale training.
+- LSTM $(a,b)$ live in the open simplex through softmax logits. Exact zeros are unattainable in production parameters.
+- Static $C$ uses a softplus diagonal. Dynamic Swish diagonals may be negative. There is no covariance repair.
+- LSTM training in Block 4A uses fixed epochs, full BPTT, CPU float64, and RMSprop settings recorded above. No VALIDATION search was run.
+- Forecast generation and forecast evaluation remain separate. Models and the serial runner do not compute losses. The evaluation adapter consumes `RollingForecastRecord` objects after the fact.
+- The evaluation target is the realized-covariance proxy on the record's target date $t+1$, looked up by calendar key. Origin-day $S_t$ is never the scoring target.
+- Compared models must share identical evaluation target dates by default. Intersection support is explicit.
+- Reduced QLIKE and squared Frobenius are the existing Block 2A implementations. Evaluation does not repair forecasts.
+- Loss differentials $d_t=L_{A,t}-L_{B,t}$ reuse the existing Block 3A helper. Descriptive summaries do not rank models.
+- The synthetic benchmark generator and `scripts/synthetic_benchmark_demo.py` are integration fixtures. Demonstration hyperparameters are not tuned. Synthetic losses are not empirical findings.
 
 ## Known problems or limitations
 
 - Realized kernels are not implemented.
 - The long historical empirical panel is unresolved. The DATA GATE remains closed. Empirical Block-4 fitting is blocked until that source is committed and verified.
 - The graph-neural deep-learning specification is unresolved. Final `PREREGISTRATION.md` cannot be written yet.
-- Blocks 3A, 3B, and 3C are accepted as closed. The pending bounded DM dependence/calibration review remains pending before confirmatory use.
+- Blocks 3A, 3B, and 3C are accepted as closed. The bounded synthetic DM size-sensitivity study has been run. The current automatic lag remains the baseline. Confirmatory DM use still awaits review of that evidence. No additional robustness procedure has been implemented.
 - The BNS jump indicator can miss an idiosyncratic jump that is small in the equal-weight market average, and a common jump can be flagged even if some names did not jump.
 - Random-walk and EWMA forecasts that remain singular PSD are not QLIKE-evaluable. That is a model-output limitation, not a license to repair $H$.
 - HAR-DRD repair frequency is unknown on market data. The model has not been fit empirically.
 - HARQ-DRD likewise has no empirical RQ panel. The $(T,N)$ input is a model contract. TAQ-to-RQ assembly is not implemented in this block.
-- Shrinkage, DCC, Ridge-DRD, LSTM-BEKK, GHAR, and the graph-neural slot are not implemented. Portfolio evaluation is not implemented.
+- LW-NL requires $T\ge 13$ because the pinned `nonlinshrink` reference rejects $n_{\mathrm{eff}}<12$. Linear shrinkage has no such extra floor beyond $T\ge 2$.
+- DCC-NL requires $T\ge 12$ because the same reference with $k=0$ uses $n_{\mathrm{eff}}=T$.
+- Plain DCC sample targeting is unsupported when $N>T$. At $N\le T$, rank is not inferred from dimensions.
+- Univariate GARCH QMLE can land on the IGARCH boundary $a+b=1$, which `arch` allows and the project rejects. That is a surfaced fit failure, not a silent repair.
+- Importing `nonlinshrink` emits NumPy's `PendingDeprecationWarning` for `numpy.matlib`. The warning is from the pinned reference, not from project code. It is not suppressed.
+- Ridge-DRD $\lambda$ is an explicit untuned hyperparameter. The 20-point VALIDATION grid has not been frozen or run.
+- LSTM-BEKK-RC, GHAR, and the graph-neural slot are not implemented. Portfolio evaluation is not implemented. cDCC is not implemented.
+- XGBoost-DRD constructor hyperparameters are explicit and untuned. The 20-point VALIDATION grid has not been frozen or run.
+- Pooled XGBoost-DRD correlation training at $N=200$ has roughly $4.5$ million refit rows. Pair subsampling is not implemented. That remains a computing limitation.
+- LSTM-BEKK rolling fits at $N=100$ or $N=200$ with $T=250$ remain a computing and overparameterization limitation. The source paper's longer panels are not this protocol.
+- The LSTM 20-configuration training grid is not frozen. Constructor hyperparameters are explicit and untuned.
+- The serial synthetic runner generates forecasts only. It has not been used on market data.
+- The synthetic evaluation adapter and demonstration script have been used on synthetic panels only. They are not an empirical benchmark.
+- A full production `TemporalProtocol` allocation still requires $T-m\ge 1000$. The demonstration therefore uses a short `build_schedule` rather than VALIDATION/SCREEN/CONFIRM lengths.
+- Daily-moving-window Ledoit-Wolf is not implemented. The headline LW cadence holds the estimator between 21-origin refits.
 - Final `PREREGISTRATION.md` is absent. The draft remains the only protocol record.
-- The Newey-West 1994 lag is short relative to a highly persistent AR(1). Under $\rho=0.6$ and $T=250$, HAC DM still over-rejects relative to 5 percent, while remaining far closer to nominal size than an IID $t$-test.
+- The Newey-West 1994 lag is short relative to a highly persistent AR(1). Under the current automatic lag, two-sided 5 percent rejection at $T=250$ is $0.0558$ for $\rho=0$ and $0.1228$ for $\rho=0.6$, rising to $0.3818$ for $\rho=0.9$. Larger $T$ reduces but does not remove the high-persistence distortion. Mean $\hat\omega/\omega_{\mathrm{true}}$ falls with $\rho$. This is recorded finite-sample behavior of the current procedure, not a coding defect and not a selected new default.
+- The candidate recentered stationary-bootstrap mean test remains oversized at high persistence. Stage 2 at $T=250$, $\rho=0.9$ rejects at $0.253$ versus stored automatic NW $0.3818$. Closer numerical size in some cells is not an adoption decision.
 - MCS may retain a large set when forecasts are highly correlated. That is a feature of the procedure, not a code failure.
 - Hansen SPA assumes positive differential variance. Exact-constant alternatives are rejected rather than studentized.
 - Approximate PS21 weighting is a named approximation to Patton–Sheppard equation 21. It does not recover the unknown conditional proxy-error variance.
@@ -442,4 +935,4 @@ No tests were skipped. The two warnings are the same Block 3A non-finite HAC ove
 
 ## Next recommended task
 
-Implement Ledoit-Wolf linear shrinkage on the same realized-covariance contract after this HARQ-DRD report is reviewed. Remain synthetic/unit only. Do not begin empirical fitting. The DATA GATE remains closed. The pending DM calibration review remains pending. The graph-neural specification remains unresolved. Do not create final `PREREGISTRATION.md`.
+Review the synthetic calibration of the recentered stationary-bootstrap pairwise mean companion before any confirmatory adoption. Do not implement bootstrap-$t$, fixed-$b$, prewhitening, or self-normalization until that review. Conventional Bartlett / Newey-West DM remains the baseline. Remain synthetic/unit only. Do not begin LSTM-BEKK-RC, GHAR, or graph-neural implementation as part of this closeout. Do not begin empirical fitting. The DATA GATE remains closed. Final `PREREGISTRATION.md` remains absent.

@@ -16,12 +16,17 @@ dependencies = [
     "scipy",
     "pyyaml",
     "matplotlib",
+    "nonlinshrink==0.7",
+    "arch==8.0.0",
+    "torch==2.13.0",
+    "xgboost==3.2.0",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest",
     "statsmodels",
+    "scikit-learn==1.9.1",
 ]
 
 [tool.setuptools.packages.find]

@@ -14,7 +14,7 @@ order, matching ``np.triu_indices(N, k=1)`` in Epps and GW.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
@@ -31,6 +31,12 @@ from covharness.models.base import (
     RealizedCovarianceModel,
     as_realized_covariance_history,
     pack_forecast,
+)
+from covharness.models.capabilities import (
+    FitInput,
+    ModelCapabilities,
+    RollingCadence,
+    UpdateObservable,
 )
 from covharness.models.exceptions import InvalidModelForecastError, InvalidModelInputError
 
@@ -80,6 +86,12 @@ class HARDRDFitState:
 
 class HARDRDRealizedCovariance(RealizedCovarianceModel):
     """One-day-ahead HAR-DRD of a realized-covariance window."""
+
+    capabilities = ModelCapabilities(
+        rolling_cadence=RollingCadence.WINDOW_STATE,
+        fit_input=FitInput.REALIZED_COVARIANCE,
+        update_observable=UpdateObservable.REALIZED_COVARIANCE_WINDOW,
+    )
 
     def __init__(self) -> None:
         self._fit: HARDRDFitState | None = None
@@ -208,6 +220,43 @@ class HARDRDRealizedCovariance(RealizedCovarianceModel):
         self._H_raw = None if H_raw is None else np.array(H_raw, dtype=float, copy=True)
         self._raw_validity = validity
         return pack_forecast(H_final, self.identity)
+
+    def update_window(
+        self, realized_covariances: ArrayLike
+    ) -> HARDRDRealizedCovariance:
+        """Rebuild origin HAR features and the current-window fallback mean.
+
+        Coefficients remain the values stored at the last ``fit``. This method
+        does not re-estimate intercepts or slopes.
+        """
+        state = _require_fit(self._fit)
+        history = as_realized_covariance_history(realized_covariances)
+        n_times, n_assets, _n_cols = history.shape
+        if n_assets != state.n_assets:
+            raise InvalidModelInputError(
+                "HAR-DRD update_window N must equal the fitted width "
+                f"{state.n_assets}; got N={n_assets}"
+            )
+        if n_times < MIN_WINDOW_LENGTH:
+            raise InvalidModelInputError(
+                "HAR-DRD update_window requires T >= "
+                f"{MIN_WINDOW_LENGTH}; got T={n_times}"
+            )
+        # Rebuild origin panels from the current window only.
+        variances, correlations = _drd_panel(history)
+        self._variance_panel = variances
+        self._pair_panel = pair_panel_from_correlations(correlations)
+        self._fit = replace(
+            state,
+            window_length=n_times,
+            window_mean=np.mean(history, axis=0),
+        )
+        self._raw_validity = None
+        self._v_raw = None
+        self._x_raw = None
+        self._R_raw = None
+        self._H_raw = None
+        return self
 
     def _origin_predictors(self) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
         """HAR predictors at the supplied origin. Target-day values are unused."""

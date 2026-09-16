@@ -24,8 +24,15 @@ from covharness.models.base import (
     ModelIdentity,
     RealizedCovarianceModel,
     as_realized_covariance_history,
+    as_realized_covariance_matrix,
     pack_forecast,
     require_fitted_state,
+)
+from covharness.models.capabilities import (
+    FitInput,
+    ModelCapabilities,
+    RollingCadence,
+    UpdateObservable,
 )
 from covharness.models.exceptions import InvalidModelConfigurationError
 
@@ -34,6 +41,12 @@ MODEL_NAME = "ewma_rcov"
 
 class EWMARealizedCovariance(RealizedCovarianceModel):
     """One-day-ahead EWMA of a realized-covariance window."""
+
+    capabilities = ModelCapabilities(
+        rolling_cadence=RollingCadence.RECURSIVE_STATE,
+        fit_input=FitInput.REALIZED_COVARIANCE,
+        update_observable=UpdateObservable.REALIZED_COVARIANCE,
+    )
 
     def __init__(self, *, decay: float) -> None:
         self._decay = _require_decay(decay)
@@ -57,6 +70,17 @@ class EWMARealizedCovariance(RealizedCovarianceModel):
         for time_index in range(1, history.shape[0]):
             state = decay * state + one_minus * history[time_index]
         self._state = state
+        return self
+
+    def update(self, new_realized_covariance: ArrayLike) -> EWMARealizedCovariance:
+        """Advance the frozen-lambda recursion by one realized covariance."""
+        state = require_fitted_state(self._state, MODEL_NAME)
+        observed = as_realized_covariance_matrix(
+            new_realized_covariance, n_assets=state.shape[0]
+        )
+        decay = self._decay
+        # Recurse one day. Lambda is never changed here.
+        self._state = decay * state + (1.0 - decay) * observed
         return self
 
     def forecast(self) -> CovarianceForecast:
