@@ -8,7 +8,7 @@ Project conda environment is `covharness` (Python 3.11). Recreate with `conda en
 
 Binance open-data SCREEN execution and Stage-2 finalist selection. VALIDATION configurations are frozen. SCREEN forecasts, SPA, MCS, and the median-rank econometric finalist exist. Those SCREEN quantities are selection data, not confirmation. CONFIRM remains locked. The U.S.-equity DATA GATE remains closed. LSTM-BEKK-RC and GHAR were not begun.
 
-The public research narrative is `README.md`. Exact model contracts are in `docs/MODEL_IMPLEMENTATION.md`. Inference implementation is in `docs/INFERENCE_METHODS.md`. The U.S.-equity quote path is in `docs/EQUITY_MEASUREMENT.md`. Frozen scientific artifacts were not rewritten.
+The public research narrative is `README.md`. GitHub-facing math uses `\mathrm` rather than unsupported operator-name macros. The public README describes a development period, a selection period, and a locked final holdout, with implementation names `VALIDATION`, `SCREEN`, and `CONFIRM` introduced once. Exact model contracts are in `docs/MODEL_IMPLEMENTATION.md`. Inference implementation is in `docs/INFERENCE_METHODS.md`. The U.S.-equity quote path is in `docs/EQUITY_MEASUREMENT.md`. Frozen scientific artifacts were not rewritten.
 
 `INITIAL_CORE_BENCHMARK_PLAN.md` is the initial core plan. It is organized by blocks and parts. It is not a locked roster or a final evaluation specification. It does not use writing-day or resume framing. Forecast-horizon and rolling-window lengths in trading days are unchanged.
 
@@ -23,7 +23,7 @@ Losses implemented in `covharness.losses`.
 Squared Frobenius.
 
 ```math
-L_F(S,H)=\|S-H\|_F^2=\operatorname{tr}((S-H)^{\top}(S-H))=\sum_{ij}(S_{ij}-H_{ij})^2
+L_F(S,H)=\|S-H\|_F^2=\mathrm{tr}((S-H)^{\top}(S-H))=\sum_{ij}(S_{ij}-H_{ij})^2
 ```
 
 Equal square dimensions, finite entries, symmetry within `SYMMETRY_ATOL=1e-10`. PSD is not required to compute it. No scaling or annualization. Scalar float. Inputs are not mutated.
@@ -31,10 +31,10 @@ Equal square dimensions, finite entries, symmetry within `SYMMETRY_ATOL=1e-10`. 
 Reduced multivariate QLIKE, the primary ranking loss.
 
 ```math
-L_Q(S,H)=\log\det(H)+\operatorname{tr}(H^{-1}S)
+L_Q(S,H)=\log\det(H)+\mathrm{tr}(H^{-1}S)
 ```
 
-`S` is square, finite, symmetric, and PSD, and it may be singular. `H` is strictly PD. Cholesky `H=LL^{\top}` supplies both `logdet(H)=2\sum\log\operatorname{diag}(L)` and the triangular solves for `tr(H^{-1}S)`. `inv(H)` is not formed. A failed Cholesky is the PD failure. No jitter, diagonal loading, clipping, or silent fallback.
+`S` is square, finite, symmetric, and PSD, and it may be singular. `H` is strictly PD. Cholesky `H=LL^{\top}` supplies both `logdet(H)=2\sum\log\mathrm{diag}(L)` and the triangular solves for `tr(H^{-1}S)`. `inv(H)` is not formed. A failed Cholesky is the PD failure. No jitter, diagonal loading, clipping, or silent fallback.
 
 Full Stein, when both arguments are SPD.
 
@@ -142,7 +142,7 @@ Files created. `src/covharness/models/exceptions.py`, `base.py`, `random_walk.py
 
 Block 4A-2 HAR-DRD is implemented in `covharness.models.har_drd` as `HARDRDRealizedCovariance`. Public identity `har_drd`. It consumes the same origin-window contract as random walk and EWMA.
 
-DRD. For each supplied $S_t$, $v_t=\operatorname{diag}(S_t)$, $D_t=\operatorname{diag}(\sqrt{v_t})$, $R_t=D_t^{-1}S_t D_t^{-1}$. Every diagonal must be strictly positive. A PSD matrix with a zero diagonal is rejected with `InvalidModelInputError`. Inputs are not altered.
+DRD. For each supplied $S_t$, $v_t=\mathrm{diag}(S_t)$, $D_t=\mathrm{diag}(\sqrt{v_t})$, $R_t=D_t^{-1}S_t D_t^{-1}$. Every diagonal must be strictly positive. A PSD matrix with a zero diagonal is rejected with `InvalidModelInputError`. Inputs are not altered.
 
 Pair order. Strict upper triangle $i<j$ via `np.triu_indices(N, k=1)`, the same unique-pair order already used by Epps and Giacomini–White. $P=N(N-1)/2$. Reconstruction uses that order with unit diagonal.
 
@@ -180,7 +180,7 @@ Return contract. `T>=2`. `N>=1`. Finite values. Caller column order is asset ord
 
 Centering and sample covariance. Inside `fit`, `mean = returns.mean(axis=0)`, `Y = returns - mean`, `n_eff = T-1`, and `S = Y^{\top}Y/(T-1)`. The caller is not assumed to have demeaned the window. There is no annualization, scaling, winsorization, or silent missing-value deletion. The same $S$ is the starting object for both estimators.
 
-LW-linear. Ledoit-Wolf 2004b rotation-equivariant shrinkage $\Sigma_L=(1-\rho)S+\rho\mu I$ with $\mu=\operatorname{tr}(S)/N$. $\rho$ is estimated. It is not a user-chosen intensity. Honey / equicorrelation (2004a) is not the headline estimator. Sample eigenvectors are retained. Every sample eigenvalue receives the same affine map $d_i=(1-\rho)\lambda_i+\rho\mu$. The 2004b coefficient is implemented in-house. sklearn 1.9.1 `LedoitWolf` is the independent test reference only and is a pinned dev extra, not a runtime dependency. sklearn uses a $1/T$ Gram matrix. Tests feed $Y_{\mathrm{ref}}=\sqrt{T/(T-1)}\,Y$ with `assume_centered=True` so that $(1/T)Y_{\mathrm{ref}}^{\top}Y_{\mathrm{ref}}$ equals $S$. Production $\rho$ and $\Sigma_L$ match that reference.
+LW-linear. Ledoit-Wolf 2004b rotation-equivariant shrinkage $\Sigma_L=(1-\rho)S+\rho\mu I$ with $\mu=\mathrm{tr}(S)/N$. $\rho$ is estimated. It is not a user-chosen intensity. Honey / equicorrelation (2004a) is not the headline estimator. Sample eigenvectors are retained. Every sample eigenvalue receives the same affine map $d_i=(1-\rho)\lambda_i+\rho\mu$. The 2004b coefficient is implemented in-house. sklearn 1.9.1 `LedoitWolf` is the independent test reference only and is a pinned dev extra, not a runtime dependency. sklearn uses a $1/T$ Gram matrix. Tests feed $Y_{\mathrm{ref}}=\sqrt{T/(T-1)}\,Y$ with `assume_centered=True` so that $(1/T)Y_{\mathrm{ref}}^{\top}Y_{\mathrm{ref}}$ equals $S$. Production $\rho$ and $\Sigma_L$ match that reference.
 
 LW-NL. Wrapper of pinned runtime dependency `nonlinshrink==0.7` (MIT, https://github.com/matzhaugen/analytic_shrinkage), a port of the 2018 working paper that became Ledoit-Wolf 2020 analytical nonlinear shrinkage. It is not QuEST and not QIS 2022. The kernel/Hilbert formulas are not transcribed. Centered $Y$ is passed with `k=1` so the reference uses $n_{\mathrm{eff}}=T-1$ and the same $S$. Sample eigenvectors are retained. Shrunk eigenvalues are eigenvalue-specific. The reference requires $n_{\mathrm{eff}}\ge 12$, so $T\ge 13$. The $N\ge T$ supplement branch is exposed by the package and is included. A nonfinite, asymmetric, or non-strictly-PD reference matrix raises `InvalidModelForecastError`. No silent repair, jitter, or eigenvalue floor.
 
@@ -532,7 +532,7 @@ Returns. Fit-window mean $\mu$ is stored and frozen between parameter refits. Na
 
 Paper-specified pieces. LSTM input is the lagged internal return. Hidden size equals $N$. Depth is in $\{3,4,5\}$. Dropout is in $[0.1,0.2]$. Dynamic lower triangle with Swish on the diagonal. Gaussian NLL. RMSprop. Cholesky $\log\det$ and quadratic. Gradient clipping. Source empirical scale $\times 100$.
 
-Project completions, not attributed to the paper. Stacked `torch.nn.LSTM` layers. Linear head $\mathbb{R}^N\to\mathbb{R}^{N(N+1)/2}$ with bias. One global Swish $\beta$ initialized at $1$. Softplus static diagonal. Softmax logits $(w,a,b)$ initialized at $(0.05,0.05,0.90)$ with $w$ unused in the recursion. $H_0=X^{\top}X/(T-1)$ when strictly PD, otherwise $\operatorname{diag}(\operatorname{diag}(S_0))$ when variances are strictly positive. $H_0$ is detached data. Static $C$ is initialized so $CC^{\top}=0.05 H_0$. Zero recurrent states on every `fit`. Full-sequence BPTT. Fixed epochs and no rolling early stopping. RMSprop $\alpha=0.99$, $\varepsilon=10^{-8}$, momentum $0$, uncentered, no weight decay. `torch.float64` on CPU. Seed list remains $(0,1,2,3,4)$ at the protocol layer. One instance receives one explicit seed.
+Project completions, not attributed to the paper. Stacked `torch.nn.LSTM` layers. Linear head $\mathbb{R}^N\to\mathbb{R}^{N(N+1)/2}$ with bias. One global Swish $\beta$ initialized at $1$. Softplus static diagonal. Softmax logits $(w,a,b)$ initialized at $(0.05,0.05,0.90)$ with $w$ unused in the recursion. $H_0=X^{\top}X/(T-1)$ when strictly PD, otherwise $\mathrm{diag}(\mathrm{diag}(S_0))$ when variances are strictly positive. $H_0$ is detached data. Static $C$ is initialized so $CC^{\top}=0.05 H_0$. Zero recurrent states on every `fit`. Full-sequence BPTT. Fixed epochs and no rolling early stopping. RMSprop $\alpha=0.99$, $\varepsilon=10^{-8}$, momentum $0$, uncentered, no weight decay. `torch.float64` on CPU. Seed list remains $(0,1,2,3,4)$ at the protocol layer. One instance receives one explicit seed.
 
 Indexing. $x_0$ is scored under $H_0$. No presample return. Training NLL has $T$ terms. $H_T$ is formed after processing $x_{T-1}$ and is not scored in-window. `forecast()` returns $H_T/10000$ without mutation. `update` advances hidden, cell, and $H$ once using the frozen mean and frozen parameters.
 

@@ -109,14 +109,14 @@ h_{\mathrm{market},t}
 =
 \bigl[
 1,\
-\log(\operatorname{mean}_i S_{ii,t}),\
-\operatorname{mean}_{i<j} R_{ij}(S_t)
+\log(\mathrm{mean}_i S_{ii,t}),\
+\mathrm{mean}_{i<j} R_{ij}(S_t)
 \bigr].
 ```
 
 These instruments are not standardized. Target-day matrices and full-CONFIRM quantiles are forbidden.
 
-The frozen measurement/stress specification uses origin-day synchronized intraday returns only. Per-asset realized quarticity is $\mathrm{RQ}_i=(M/3)\sum_j r_{j,i}^4$. The aggregate is the cross-sectional mean $\mathrm{RQ}_{\mathrm{agg}}=\mathrm{mean}_i\mathrm{RQ}_i$, which must be strictly positive before $\log$. The jump state is the one-sided 1 percent Barndorff-Nielsen and Shephard (2006) adjusted-ratio test applied to the equal-weight intraday market return $\bar r_j=\mathrm{mean}_i r_{j,i}$, with $\delta=1/M$, $\mu_1=\sqrt{2/\pi}$, $\vartheta=\pi^2/4+\pi-5$, and $Z_{\mathrm{jump}}=J_{\mathrm{BNS}}/\sqrt{\vartheta}$. Frozen $\alpha_{\mathrm{jump}}=0.01$. Large negative standardized values indicate jumps. The indicator is $1\{Z_{\mathrm{jump}}<\Phi^{-1}(0.01)\}$. This is a common-market jump state. It is not an any-constituent-jumped indicator. The measurement/stress vector is
+The frozen measurement/stress specification uses origin-day synchronized intraday returns only. Per-asset realized quarticity is $`\mathrm{RQ}_i=(M/3)\sum_j r_{j,i}^4`$. The aggregate is the cross-sectional mean $`\mathrm{RQ}_{\mathrm{agg}}=\mathrm{mean}_i\mathrm{RQ}_i`$, which must be strictly positive before $\log$. The jump state is the one-sided 1 percent Barndorff-Nielsen and Shephard (2006) adjusted-ratio test applied to the equal-weight intraday market return $`\bar r_j=\mathrm{mean}_i r_{j,i}`$, with $`\delta=1/M`$, $`\mu_1=\sqrt{2/\pi}`$, $`\vartheta=\pi^2/4+\pi-5`$, and $`Z_{\mathrm{jump}}=J_{\mathrm{BNS}}/\sqrt{\vartheta}`$. Frozen $\alpha_{\mathrm{jump}}=0.01$. Large negative standardized values indicate jumps. The indicator is $`1\{Z_{\mathrm{jump}}<\Phi^{-1}(0.01)\}`$. This is a common-market jump state. It is not an any-constituent-jumped indicator. The measurement/stress vector is
 
 ```math
 h_{\mathrm{measurement},t}
@@ -156,8 +156,8 @@ State-augmented MZ uses the same pooled representation with origin-day
 z_t
 =
 \bigl[
-\log(\operatorname{mean}_i S_{ii,t}),\
-\operatorname{mean}_{i<j} R_{ij}(S_t)
+\log(\mathrm{mean}_i S_{ii,t}),\
+\mathrm{mean}_{i<j} R_{ij}(S_t)
 \bigr]
 ```
 

@@ -47,7 +47,7 @@ Identity `har_drd`. Source [`har_drd.py`](../src/covharness/models/har_drd.py).
 
 Headline HAR-DRD is a Zhang-style non-overlapping HAR on the Oh–Patton DRD split of each supplied realized covariance. The model is in levels. It does not use a log-variance transform, Fisher transform, ridge, graph term, or HARQ term.
 
-For every supplied $S_t\in\mathbb{R}^{N\times N}$ we set $v_t=\operatorname{diag}(S_t)$, $D_t=\operatorname{diag}(\sqrt{v_t})$, and $R_t=D_t^{-1}S_t D_t^{-1}$. Every diagonal entry of every $S_t$ must be strictly positive. Positive semidefiniteness alone is not sufficient if a diagonal is zero, because $R_t$ is then undefined. Such a window is rejected with `InvalidModelInputError`. Input matrices are not altered.
+For every supplied $S_t\in\mathbb{R}^{N\times N}$ we set $`v_t=\mathrm{diag}(S_t)`$, $`D_t=\mathrm{diag}(\sqrt{v_t})`$, and $`R_t=D_t^{-1}S_t D_t^{-1}`$. Every diagonal entry of every $S_t$ must be strictly positive. Positive semidefiniteness alone is not sufficient if a diagonal is zero, because $R_t$ is then undefined. Such a window is rejected with `InvalidModelInputError`. Input matrices are not altered.
 
 Unique correlations use the repository's existing strict upper-triangle order $i<j$, matching `np.triu_indices(N, k=1)` in the Epps and Giacomini–White helpers. The pair count is $P=N(N-1)/2$.
 
@@ -55,15 +55,15 @@ At response date $k\ge 22$ the non-overlapping HAR features are one daily lag, f
 
 ```math
 z_d(k)=\text{value}[k-1],\qquad
-z_w(k)=\operatorname{mean}(\text{value}[k-5:k-1]),\qquad
-z_m(k)=\operatorname{mean}(\text{value}[k-22:k-5]).
+z_w(k)=\mathrm{mean}(\text{value}[k-5:k-1]),\qquad
+z_m(k)=\mathrm{mean}(\text{value}[k-22:k-5]).
 ```
 
-The Python slices are exclusive on the right. The three blocks do not overlap. For a supplied window of length $T=250$ the response dates are $22,\ldots,249$, so there are $228$ regression dates, $228N$ variance observations, and $228P$ correlation observations. The construction never reads before local index $0$. Predictors for the target immediately after the window are $\text{value}[T-1]$, $\operatorname{mean}(\text{value}[T-5:T-1])$, and $\operatorname{mean}(\text{value}[T-22:T-5])$.
+The Python slices are exclusive on the right. The three blocks do not overlap. For a supplied window of length $T=250$ the response dates are $22,\ldots,249$, so there are $228$ regression dates, $228N$ variance observations, and $228P$ correlation observations. The construction never reads before local index $0$. Predictors for the target immediately after the window are $`\text{value}[T-1]`$, $`\mathrm{mean}(\text{value}[T-5:T-1])`$, and $`\mathrm{mean}(\text{value}[T-22:T-5])`$.
 
 Variance equations have asset-specific intercepts $\alpha_D\in\mathbb{R}^N$ and three shared scalar slopes $\beta_D=(\beta_{D,d},\beta_{D,w},\beta_{D,m})$. Correlation equations have pair-specific intercepts $\alpha_R\in\mathbb{R}^P$ and three shared scalar slopes $\beta_R$. We estimate those maps by the exact fixed-effects within transformation. For each group we demean $y$ and the three-column design, stack only the demeaned three-column matrices, solve $\beta$ by least squares, and recover intercepts from the group means. We do not build an $N$-column or $P$-column intercept-dummy matrix.
 
-The raw one-day forecast reconstructs $R_{\mathrm{raw}}$ with unit diagonal in the frozen pair order. When $v_{\mathrm{raw}}$ is finite and strictly positive, $H_{\mathrm{raw}}=D_{\mathrm{raw}}R_{\mathrm{raw}}D_{\mathrm{raw}}$ with $D_{\mathrm{raw}}=\operatorname{diag}(\sqrt{v_{\mathrm{raw}}})$. Raw components are stored even if the headline matrix is later replaced.
+The raw one-day forecast reconstructs $R_{\mathrm{raw}}$ with unit diagonal in the frozen pair order. When $v_{\mathrm{raw}}$ is finite and strictly positive, $H_{\mathrm{raw}}=D_{\mathrm{raw}}R_{\mathrm{raw}}D_{\mathrm{raw}}$ with $`D_{\mathrm{raw}}=\mathrm{diag}(\sqrt{v_{\mathrm{raw}}})`$. Raw components are stored even if the headline matrix is later replaced.
 
 The headline forecast uses an explicit BPQ-style insanity filter. The raw forecast is valid only when every $v_{\mathrm{raw}}$ is finite and strictly positive, every $x_{\mathrm{raw}}$ is finite, every pairwise correlation lies in $[-1,1]$, $R_{\mathrm{raw}}$ is symmetric and strictly positive definite, and $H_{\mathrm{raw}}$ is finite, symmetric, and strictly positive definite. If all of those hold, $H_{\mathrm{final}}=H_{\mathrm{raw}}$, `repaired=False`, and `repair_method=None`. If any condition fails, $H_{\mathrm{final}}$ is the arithmetic mean of every realized covariance in the current origin's 250-day window, `repaired=True`, and `repair_method="estimation_window_mean"`. Between coefficient refits that fallback mean moves with the window. Coefficients do not. That fallback itself must be finite, symmetric, and strictly positive definite. Otherwise the model raises `InvalidModelForecastError`.
 
@@ -127,13 +127,13 @@ Standalone Ledoit–Wolf models consume a caller-supplied daily-return window of
 
 Returns are demeaned inside the current supplied window. For $T$ observations we set $Y=X-\mathrm{column\_mean}(X)$, $n_{\mathrm{eff}}=T-1$, and $S=Y^{\top}Y/(T-1)$. The same centered sample covariance is the starting object for both estimators. There is no annualization, scaling, winsorization, or silent missing-value deletion. On the Binance first-stage, the daily return is the matched 24-hour UTC interval used for RCov and RQ.
 
-Headline LW-linear is Ledoit–Wolf 2004b rotation-equivariant shrinkage toward $\mu I$, with $\mu=\operatorname{tr}(S)/N$.
+Headline LW-linear is Ledoit–Wolf 2004b rotation-equivariant shrinkage toward $\mu I$, with $`\mu=\mathrm{tr}(S)/N`$.
 
 ```math
 \Sigma_L=(1-\rho)S+\rho\mu I.
 ```
 
-$\rho$ is the Ledoit–Wolf estimated intensity. It is not a user-chosen coefficient. Equivalently, if $S=U\operatorname{diag}(\lambda_i)U^{\top}$, then $\Sigma_L=U\operatorname{diag}((1-\rho)\lambda_i+\rho\mu)U^{\top}$. Sample eigenvectors are retained. Every sample eigenvalue receives the same affine map. The Honey / equicorrelation-target estimator of Ledoit–Wolf 2004a is not the headline model.
+$\rho$ is the Ledoit–Wolf estimated intensity. It is not a user-chosen coefficient. Equivalently, if $`S=U\mathrm{diag}(\lambda_i)U^{\top}`$, then $`\Sigma_L=U\mathrm{diag}((1-\rho)\lambda_i+\rho\mu)U^{\top}`$. Sample eigenvectors are retained. Every sample eigenvalue receives the same affine map. The Honey / equicorrelation-target estimator of Ledoit–Wolf 2004a is not the headline model.
 
 Headline LW-NL is the Ledoit–Wolf 2020 analytical nonlinear estimator. We wrap the pinned PyPI package `nonlinshrink==0.7` (MIT license, https://github.com/matzhaugen/analytic_shrinkage), a transparent port of the 2018 working paper that became the 2020 Annals of Statistics method. It is not QuEST. It is not QIS 2022. We do not transcribe the kernel or Hilbert formulas. Centered returns $Y$ are passed with $k=1$ so that the reference uses $n_{\mathrm{eff}}=T-1$ and the same $S=Y^{\top}Y/(T-1)$. Sample eigenvectors are retained. Shrunk eigenvalues are eigenvalue-specific and are not a common affine map of the sample spectrum.
 
@@ -165,13 +165,13 @@ Plain DCC targeting does not demean standardized residuals again. It forms $\wid
 
 DCC-NL changes only that intercept. It calls `nonlinshrink.shrink_cov(Sstd, k=0)` under the already pinned `nonlinshrink==0.7` runtime, so the target covariance uses the DCC zero-mean convention and effective divisor $T$. The returned matrix is then diagonally renormalized to $C_{\mathrm{NL}}$. This is not QuEST, not QIS, and not the standalone LW-NL demeaned $T-1$ wrapper. Nonlinear shrinkage is not applied to the final $H$. If the nonlinear estimator fails or the normalized target is invalid, the model raises `InvalidModelForecastError`. It does not fall back to plain $C$. The reference requires $n_{\mathrm{eff}}\ge 12$, so DCC-NL requires $T\ge 12$.
 
-The original DCC recursion uses $Q_0=C_{\star}$ with $C_{\star}=C$ or $C_{\mathrm{NL}}$. Window rows are $t=0,\ldots,T-1$. $Q_t$ scores the observed standardized residual $s_t$ after conversion to $R_t=\operatorname{diag}(Q_t)^{-1/2}Q_t\operatorname{diag}(Q_t)^{-1/2}$. After $s_t$ is observed,
+The original DCC recursion uses $Q_0=C_{\star}$ with $C_{\star}=C$ or $C_{\mathrm{NL}}$. Window rows are $t=0,\ldots,T-1$. $Q_t$ scores the observed standardized residual $s_t$ after conversion to $`R_t=\mathrm{diag}(Q_t)^{-1/2}Q_t\mathrm{diag}(Q_t)^{-1/2}`$. After $s_t$ is observed,
 
 ```math
 Q_{t+1}=(1-\alpha-\beta)C_{\star}+\alpha s_t s_t^{\top}+\beta Q_t.
 ```
 
-No cDCC transformed shock enters. Stored `current_q` is $Q_{T-1}$, the state for the last observed return. `forecast()` forms $Q_{T\mid T-1}$ from that state and does not mutate it. The one-day forecast is $H_{t+1\mid t}=D_{t+1\mid t}R_{t+1\mid t}D_{t+1\mid t}$ with $D_{t+1\mid t}=\operatorname{diag}(\sqrt{h_{t+1\mid t}})$. An invalid final matrix raises rather than being repaired.
+No cDCC transformed shock enters. Stored `current_q` is $Q_{T-1}$, the state for the last observed return. `forecast()` forms $Q_{T\mid T-1}$ from that state and does not mutate it. The one-day forecast is $H_{t+1\mid t}=D_{t+1\mid t}R_{t+1\mid t}D_{t+1\mid t}$ with $`D_{t+1\mid t}=\mathrm{diag}(\sqrt{h_{t+1\mid t}})`$. An invalid final matrix raises rather than being repaired.
 
 Headline second-stage estimation is the all-pairs bivariate composite Gaussian quasi-likelihood over every unique pair $i<j$ in the existing strict upper-triangle order. The pair count is $N(N-1)/2$. Contiguous $N-1$ 2MSCLE is not used. A random pair subset is not used. Parameters $(\alpha,\beta)$ are estimated by deterministic SciPy SLSQP starting at $(0.05,0.90)$, with bounds $[0,1]\times[0,1]$ and constraint $\alpha+\beta\le 1$. There are no random restarts and no alternative starts. An accepted fit must satisfy $\alpha\ge 0$, $\beta\ge 0$, and $\alpha+\beta<1$. The boundary $\alpha+\beta=1$ is rejected. Parameters are not moved inward by an epsilon.
 
