@@ -1,6 +1,6 @@
 # covharness
 
-`covharness` is a research implementation for one-day-ahead multivariate covariance forecasts. We compare econometric, shallow machine-learning, and deep-learning methods under a common measurement, estimation, and scoring protocol. A new method does not receive a different target, a richer information set, extra tuning, or a more favourable scoring rule because it belongs to a different modelling tradition.
+This repository is an ongoing research project. `covharness` implements a reusable evaluation harness for one-day-ahead multivariate covariance forecasts. We compare econometric, shallow machine-learning, and deep-learning methods under a common measurement, estimation, and scoring protocol. A new method does not receive a different target, a richer information set, extra tuning, or a more favourable scoring rule because it belongs to a different modelling tradition.
 
 The object of interest is the latent conditional covariance $\Sigma_{t+1\mid t}$. After day $t+1$ ends that matrix is still unobserved, so we score forecasts against a realized-covariance proxy under rules that are fixed before confirmatory evaluation. Whether a difference is large enough to support a claim is decided by pre-specified inferential procedures, not by a ranking of average losses.
 
@@ -8,7 +8,7 @@ Implementation status is in [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md). Mo
 
 ## Current research status
 
-The Binance development period and selection period have been run. Nine of eleven model specifications completed the full 500-day selection period. DCC and DCC-NL failed the frozen admissibility checks and remain in the reported roster. HARQ-DRD was selected as the econometric representative. LSTM-BEKK configuration `LSTM19`, scored as a five-seed equal-weight covariance ensemble, is the current deep-learning representative. Those quantities are interim selection results. They do not establish confirmatory superiority. The 500-day final holdout remains untouched. No confirmatory forecasting, comparison, tuning, or inference has been executed. Broader model, proxy, and economic work remains unfinished.
+The project remains in progress. The Binance development period and selection period have been run. Nine of eleven model specifications completed the full 500-day selection period. DCC and DCC-NL failed the frozen admissibility checks and remain in the reported roster. HARQ-DRD was selected as the econometric representative. LSTM-BEKK configuration `LSTM19`, scored as a five-seed equal-weight covariance ensemble, is the current deep-learning representative. Those quantities are interim selection results. They do not establish confirmatory superiority. The 500-day final holdout remains untouched. No confirmatory forecasting, comparison, tuning, or inference has been executed. Broader model, proxy, and economic work remains unfinished.
 
 The long-panel U.S.-equity experiment remains pending because production TAQ access has not yet been established. The one-day 13 February 2009 TAQ extract is a measurement validation panel. LSTM-BEKK-RC, GHAR, and a neural graph covariance model are unimplemented. Global-minimum-variance evaluation is unimplemented. Final `PREREGISTRATION.md` has not been created.
 
