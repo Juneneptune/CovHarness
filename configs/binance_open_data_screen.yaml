@@ -1,0 +1,197 @@
+branch: binance_open_data_screen
+version: '2026-09-21'
+source_core_config: configs/binance_open_data_core.yaml
+source_core_config_sha256: 8d63eacacf13a876651f9c4eb5399a8527d8458278974ff069dd0701dd5cbf07
+source_validation_selection: results/binance_validation_selection.json
+source_validation_selection_sha256: f6d9830302b03afa2f3f45cd15576d70fbae4b96482af5c71d935822bc132f4b
+production_panel_sha256: 2b7358107a10f77c3879524e1d9b1389c2c66db4a444af89c2cdf59aa186640a
+assets:
+- BTCUSDT
+- ETHUSDT
+- BNBUSDT
+- LTCUSDT
+- ADAUSDT
+confirm_locked: true
+pack_across_halt: false
+m: 250
+refit_cadence: 21
+screen:
+  start: '2023-11-30'
+  end: '2025-04-12'
+  n_targets: 500
+  first_origin: '2023-11-29'
+  first_window_start: '2023-03-25'
+  max_model_observation_date: '2025-04-11'
+  max_scoring_target_date: '2025-04-12'
+primary_screen_loss: reduced_qlike
+secondary_screen_loss: squared_frobenius
+secondary_loss_selects: false
+seeds:
+- 0
+- 1
+- 2
+- 3
+- 4
+seed_aggregation: mean_ensemble
+allow_best_seed: false
+spa:
+  benchmark: HAR-DRD
+  n_boot: 5000
+  seed: 20260913
+  block_length_rule: max(2, floor(T**(1/3)))
+  primary_recentering: consistent
+  exact_zero_benchmark_differential: exact_benchmark_tie
+mcs:
+  n_boot: 5000
+  seed: 20260913
+  primary_procedure: range
+  companion_procedure: max
+  membership_alpha: 0.1
+  report_alphas:
+  - 0.05
+  - 0.1
+  - 0.25
+finalist_rule:
+  headline_comparison: one_dl_finalist_versus_one_econ_finalist
+  dl_eligible:
+  - LSTM-BEKK
+  econ_eligible:
+  - RW
+  - EWMA
+  - HAR-DRD
+  - HARQ-DRD
+  - LW-linear
+  - LW-NL
+  - DCC
+  - DCC-NL
+  headline_ineligible:
+  - Ridge-DRD
+  - XGBoost-DRD
+  method: median_rank_four_125_qlike_blocks
+  subblock_size: 125
+  subblock_bounds:
+  - - 0
+    - 125
+  - - 125
+    - 250
+  - - 250
+    - 375
+  - - 375
+    - 500
+  tie_break:
+  - lowest_median_block_rank
+  - lowest_mean_block_rank
+  - lexicographically_smaller_family_id
+  full_sample_mean_qlike: robustness_only
+  frobenius_selects_finalist: false
+  mcs_does_not_replace_finalist: true
+roster:
+- RW
+- EWMA
+- HAR-DRD
+- HARQ-DRD
+- LW-linear
+- LW-NL
+- DCC
+- DCC-NL
+- Ridge-DRD
+- XGBoost-DRD
+- LSTM-BEKK
+representatives:
+  RW:
+    id: RW01
+  EWMA:
+    id: EWMA01
+    decay: 0.8
+  HAR-DRD:
+    id: HARDRD01
+  HARQ-DRD:
+    id: HARQDRD01
+  LW-linear:
+    id: LWLIN01
+  LW-NL:
+    id: LWNL01
+  DCC:
+    id: DCC01
+  DCC-NL:
+    id: DCCNL01
+  Ridge-DRD:
+    id: RIDGE01
+    lambda: 0.0
+  XGBoost-DRD:
+    id: XGB08
+    fixed:
+      objective: reg:squarederror
+      booster: gbtree
+      tree_method: hist
+      device: cpu
+      n_jobs: 1
+      subsample: 1
+      colsample_bytree: 1
+      colsample_bylevel: 1
+      colsample_bynode: 1
+      grow_policy: depthwise
+      max_bin: 256
+      base_score: 0
+      random_state: 0
+      early_stopping: false
+    parameters:
+      id: XGB08
+      capacity: C2
+      regularization: R3
+      n_estimators: 100
+      max_depth: 2
+      learning_rate: 0.05
+      min_child_weight: 1
+      reg_lambda: 10
+      reg_alpha: 0
+      gamma: 0
+  LSTM-BEKK:
+    id: LSTM19
+    fixed:
+      hidden_size: N
+      dtype: float64
+      device: cpu
+      full_bptt: true
+      early_stopping: false
+      inner_validation_split: false
+      learning_rate_scheduler: false
+      optimizer: RMSprop
+      rmsprop_alpha: 0.99
+      rmsprop_eps: 1.0e-08
+      rmsprop_momentum: 0.0
+      rmsprop_centered: false
+      weight_decay: 0.0
+      seeds_are_not_configurations: true
+    parameters:
+      id: LSTM19
+      architecture: A5
+      optimizer: O3
+      num_layers: 5
+      dropout: 0.2
+      max_epochs: 75
+      learning_rate: 0.001
+      gradient_clip_norm: 1
+    seeds:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    seed_aggregation: mean_ensemble
+    allow_best_seed: false
+selected_ids:
+  RW: RW01
+  HAR-DRD: HARDRD01
+  HARQ-DRD: HARQDRD01
+  LW-linear: LWLIN01
+  LW-NL: LWNL01
+  DCC: DCC01
+  DCC-NL: DCCNL01
+  EWMA: EWMA01
+  Ridge-DRD: RIDGE01
+  XGBoost-DRD: XGB08
+  LSTM-BEKK: LSTM19
+boundary_notes:
+  EWMA01: smallest_lambda_candidate_retained
+  RIDGE01: lambda_zero_nests_HAR_retained

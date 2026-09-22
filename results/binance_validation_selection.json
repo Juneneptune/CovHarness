@@ -1,0 +1,142 @@
+{
+  "any_candidate_failed": false,
+  "families": {
+    "DCC": {
+      "failure_reason": null,
+      "family": "DCC",
+      "mean_frobenius": 4.5900634219941976e-05,
+      "mean_qlike": -32.182909212053225,
+      "n_candidates": 1,
+      "n_valid": 1,
+      "repair_count": 0,
+      "selected_id": "DCC01",
+      "status": "fixed",
+      "tuned": false
+    },
+    "DCC-NL": {
+      "failure_reason": null,
+      "family": "DCC-NL",
+      "mean_frobenius": 4.586238902378492e-05,
+      "mean_qlike": -32.1971689344779,
+      "n_candidates": 1,
+      "n_valid": 1,
+      "repair_count": 0,
+      "selected_id": "DCCNL01",
+      "status": "fixed",
+      "tuned": false
+    },
+    "EWMA": {
+      "failure_reason": null,
+      "family": "EWMA",
+      "mean_frobenius": 4.263040744795783e-05,
+      "mean_qlike": -32.73154867789014,
+      "n_candidates": 20,
+      "n_valid": 20,
+      "repair_count": 0,
+      "selected_id": "EWMA01",
+      "status": "selected",
+      "tuned": true
+    },
+    "HAR-DRD": {
+      "failure_reason": null,
+      "family": "HAR-DRD",
+      "mean_frobenius": 3.0331065954931998e-05,
+      "mean_qlike": -32.84554386201314,
+      "n_candidates": 1,
+      "n_valid": 1,
+      "repair_count": 0,
+      "selected_id": "HARDRD01",
+      "status": "fixed",
+      "tuned": false
+    },
+    "HARQ-DRD": {
+      "failure_reason": null,
+      "family": "HARQ-DRD",
+      "mean_frobenius": 2.9553667478612837e-05,
+      "mean_qlike": -32.87929394892996,
+      "n_candidates": 1,
+      "n_valid": 1,
+      "repair_count": 0,
+      "selected_id": "HARQDRD01",
+      "status": "fixed",
+      "tuned": false
+    },
+    "LSTM-BEKK": {
+      "failure_reason": null,
+      "family": "LSTM-BEKK",
+      "mean_frobenius": 4.612462237757348e-05,
+      "mean_qlike": -32.285398774051586,
+      "n_candidates": 20,
+      "n_valid": 20,
+      "repair_count": 0,
+      "selected_id": "LSTM19",
+      "status": "selected",
+      "tuned": true
+    },
+    "LW-NL": {
+      "failure_reason": null,
+      "family": "LW-NL",
+      "mean_frobenius": 6.183517543750875e-05,
+      "mean_qlike": -31.578890979563635,
+      "n_candidates": 1,
+      "n_valid": 1,
+      "repair_count": 0,
+      "selected_id": "LWNL01",
+      "status": "fixed",
+      "tuned": false
+    },
+    "LW-linear": {
+      "failure_reason": null,
+      "family": "LW-linear",
+      "mean_frobenius": 6.060476759296544e-05,
+      "mean_qlike": -31.635742012187773,
+      "n_candidates": 1,
+      "n_valid": 1,
+      "repair_count": 0,
+      "selected_id": "LWLIN01",
+      "status": "fixed",
+      "tuned": false
+    },
+    "RW": {
+      "failure_reason": null,
+      "family": "RW",
+      "mean_frobenius": 3.410576855410453e-05,
+      "mean_qlike": -32.23438146012932,
+      "n_candidates": 1,
+      "n_valid": 1,
+      "repair_count": 0,
+      "selected_id": "RW01",
+      "status": "fixed",
+      "tuned": false
+    },
+    "Ridge-DRD": {
+      "failure_reason": null,
+      "family": "Ridge-DRD",
+      "mean_frobenius": 3.0331065954931998e-05,
+      "mean_qlike": -32.84554386201314,
+      "n_candidates": 20,
+      "n_valid": 20,
+      "repair_count": 0,
+      "selected_id": "RIDGE01",
+      "status": "selected",
+      "tuned": true
+    },
+    "XGBoost-DRD": {
+      "failure_reason": null,
+      "family": "XGBoost-DRD",
+      "mean_frobenius": 3.1641912477168996e-05,
+      "mean_qlike": -32.78193966002438,
+      "n_candidates": 20,
+      "n_valid": 20,
+      "repair_count": 0,
+      "selected_id": "XGB08",
+      "status": "selected",
+      "tuned": true
+    }
+  },
+  "secondary_loss": "squared_frobenius_descriptive_only",
+  "selection_rule": "mean_reduced_qlike_complete_250_validation_targets",
+  "source_config_sha256": "8d63eacacf13a876651f9c4eb5399a8527d8458278974ff069dd0701dd5cbf07",
+  "source_panel_sha256": "2b7358107a10f77c3879524e1d9b1389c2c66db4a444af89c2cdf59aa186640a",
+  "tie_rule": "lexicographically_smaller_config_id"
+}

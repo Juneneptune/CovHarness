@@ -1,4 +1,4 @@
-"""Leak-proof temporal protocol.
+"""Chronological temporal protocol.
 
 Four chronological regions. HISTORY, VALIDATION, SCREEN, CONFIRM.
 Half-open ``[start, end)`` spans on a strictly increasing trading-date index.
@@ -49,6 +49,18 @@ from covharness.protocol.runner import (
     run_block_forecasts,
     run_rolling_forecasts,
 )
+from covharness.protocol.binance import (
+    BinanceBlock,
+    BinanceBlockSchedule,
+    BinanceSegmentedProtocol,
+    BinanceSelectionError,
+    CandidateValidationRecord,
+    InvalidBinanceProtocolError,
+    build_binance_segmented_protocol,
+    core_config_sha256,
+    load_core_config,
+    select_validation_configuration,
+)
 from covharness.protocol.splits import (
     BlockAllocation,
     IndexSpan,
@@ -58,6 +70,12 @@ from covharness.protocol.splits import (
 )
 
 __all__ = [
+    "BinanceBlock",
+    "BinanceBlockSchedule",
+    "BinanceSegmentedProtocol",
+    "BinanceSelectionError",
+    "CandidateValidationRecord",
+    "InvalidBinanceProtocolError",
     "BLOCK_ROLES",
     "DEFAULT_MAX_CONFIGURATIONS",
     "DEFAULT_REFIT_CADENCE",
@@ -87,6 +105,10 @@ __all__ = [
     "TemporalProtocol",
     "TuningBudget",
     "allocate_blocks",
+    "build_binance_segmented_protocol",
+    "core_config_sha256",
+    "load_core_config",
+    "select_validation_configuration",
     "assert_no_target_leakage",
     "build_origin_payload",
     "build_schedule",

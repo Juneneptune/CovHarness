@@ -1,0 +1,41 @@
+{
+  "audit_utc": "2026-09-21T03:34:00Z",
+  "date": "2023-03-24",
+  "source": "official Binance monthly 1m kline ZIPs already cached",
+  "symbols": ["BTCUSDT", "ETHUSDT", "BNBUSDT", "LTCUSDT", "ADAUSDT"],
+  "expected_1m_bars": 1440,
+  "missing_identical_across_five": true,
+  "n_missing_minutes": 80,
+  "n_contiguous_blocks": 1,
+  "first_missing_utc": "2023-03-24 12:40:00 UTC",
+  "last_missing_utc": "2023-03-24 13:59:00 UTC",
+  "minute_immediately_before": "12:39",
+  "minute_immediately_after": "14:00",
+  "has_00:00": true,
+  "has_23:59": true,
+  "n_five_minute_endpoints_inside_missing_block": 16,
+  "five_minute_endpoints_inside_missing_block": [
+    "12:44", "12:49", "12:54", "12:59",
+    "13:04", "13:09", "13:14", "13:19",
+    "13:24", "13:29", "13:34", "13:39",
+    "13:44", "13:49", "13:54", "13:59"
+  ],
+  "per_symbol": {
+    "BTCUSDT": {"n_present": 1360, "close_at_12:39": 28080.0, "close_at_14:00": 27925.59},
+    "ETHUSDT": {"n_present": 1360, "close_at_12:39": 1789.52, "close_at_14:00": 1763.69},
+    "BNBUSDT": {"n_present": 1360, "close_at_12:39": 323.8, "close_at_14:00": 322.0},
+    "LTCUSDT": {"n_present": 1360, "close_at_12:39": 91.79, "close_at_14:00": 90.54},
+    "ADAUSDT": {"n_present": 1360, "close_at_12:39": 0.3629, "close_at_14:00": 0.3584}
+  },
+  "official_incident": {
+    "user_supplied_statement": "Binance reported a spot-trading system interruption on 2023-03-24, with spot trading disabled during a matching-engine incident and trading subsequently resumed that day.",
+    "binance_ceo_blog_zh": "https://www.binance.com/zh-CN/blog/from-our-ceo/6789340645608890113",
+    "binance_square_en": "https://www.binance.com/en/square/post/696655",
+    "support_announcement": "https://www.binance.com/en/support/announcement/detail/813a31506e9f478ea8c1058b425df87a",
+    "live_fetch_on_2026-09-21": "Binance WAF/CloudFront challenge. Times below are from indexed official-page excerpts, not a live HTML capture.",
+    "announced_spot_disable_utc": "11:27",
+    "announced_fix_utc": "13:30",
+    "announced_resume_utc": "14:00",
+    "cause": "matching-engine bug involving trailing-stop orders"
+  }
+}

@@ -94,6 +94,7 @@ results/**/*.pkl
 results/**/*.npy
 results/**/*.npz
 results/**/checkpoints/
+results/**/*_checkpoints/
 results/**/runs/
 results/**/wandb/
 results/**/lightning_logs/

@@ -1,0 +1,38 @@
+[
+  {
+    "complete_support": false,
+    "configuration_id": "DCC01",
+    "failure_reason": "RuntimeError: model execution failed at origin 2023-12-20: ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 1; got omega=4.966346473336044e-12, a=0.0, b=1.0",
+    "family": "DCC",
+    "fit_failures": 1,
+    "frobenius_failures": 500,
+    "mean_frobenius": null,
+    "mean_qlike": null,
+    "median_frobenius": null,
+    "median_qlike": null,
+    "n_targets": 0,
+    "nonfinite_forecasts": 0,
+    "qlike_failures": 500,
+    "repair_count": 0,
+    "runtime_seconds": 0.8597579430788755,
+    "seed_scope": "deterministic"
+  },
+  {
+    "complete_support": false,
+    "configuration_id": "DCCNL01",
+    "failure_reason": "RuntimeError: model execution failed at origin 2023-12-20: ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 1; got omega=4.966346473336044e-12, a=0.0, b=1.0",
+    "family": "DCC-NL",
+    "fit_failures": 1,
+    "frobenius_failures": 500,
+    "mean_frobenius": null,
+    "mean_qlike": null,
+    "median_frobenius": null,
+    "median_qlike": null,
+    "n_targets": 0,
+    "nonfinite_forecasts": 0,
+    "qlike_failures": 500,
+    "repair_count": 0,
+    "runtime_seconds": 0.5264320310670882,
+    "seed_scope": "deterministic"
+  }
+]

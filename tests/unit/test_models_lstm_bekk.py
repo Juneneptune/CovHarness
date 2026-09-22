@@ -234,9 +234,11 @@ def test_num_layers_outside_range_is_rejected() -> None:
 
 def test_dropout_outside_interval_is_rejected() -> None:
     with pytest.raises(InvalidModelConfigurationError, match="dropout"):
-        _tiny_model(dropout=0.09)
+        _tiny_model(dropout=-0.01)
     with pytest.raises(InvalidModelConfigurationError, match="dropout"):
         _tiny_model(dropout=0.21)
+    model = _tiny_model(dropout=0.0)
+    assert model._dropout == 0.0
 
 
 def test_output_head_width_and_bias() -> None:

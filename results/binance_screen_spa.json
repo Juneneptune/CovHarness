@@ -1,0 +1,98 @@
+{
+  "frobenius": {
+    "alpha": 0.05,
+    "alternative_labels": [
+      "RW",
+      "EWMA",
+      "HARQ-DRD",
+      "LW-linear",
+      "LW-NL",
+      "XGBoost-DRD",
+      "LSTM-BEKK"
+    ],
+    "benchmark": "HAR-DRD",
+    "block_length": 7,
+    "bootstrap_method": "stationary",
+    "exact_benchmark_ties": [
+      "Ridge-DRD"
+    ],
+    "excluded_from_spa_statistic": [
+      "Ridge-DRD"
+    ],
+    "mean_differentials": {
+      "EWMA": -3.109176320046898e-06,
+      "HARQ-DRD": 1.570803198332096e-08,
+      "LSTM-BEKK": -7.799076542439819e-06,
+      "LW-NL": -1.712904986617964e-05,
+      "LW-linear": -1.7730076304779225e-05,
+      "RW": -3.29259922076566e-05,
+      "XGBoost-DRD": -3.6670370653566833e-06
+    },
+    "n_boot": 5000,
+    "n_models_in_spa": 8,
+    "n_models_in_universe": 9,
+    "p_value_consistent": 0.8792,
+    "p_value_lower": 0.5692,
+    "p_value_upper": 0.9634,
+    "primary_recentering": "consistent",
+    "seed": 20260913,
+    "statistic": 0.01017192672629011,
+    "studentized_statistics": {
+      "EWMA": -1.6565788705064441,
+      "HARQ-DRD": 0.01017192672629011,
+      "LSTM-BEKK": -2.2738969304308148,
+      "LW-NL": -3.464513292619115,
+      "LW-linear": -3.4942712911886074,
+      "RW": -2.465409622990765,
+      "XGBoost-DRD": -1.0122328240917544
+    }
+  },
+  "qlike": {
+    "alpha": 0.05,
+    "alternative_labels": [
+      "RW",
+      "EWMA",
+      "HARQ-DRD",
+      "LW-linear",
+      "LW-NL",
+      "XGBoost-DRD",
+      "LSTM-BEKK"
+    ],
+    "benchmark": "HAR-DRD",
+    "block_length": 7,
+    "bootstrap_method": "stationary",
+    "exact_benchmark_ties": [
+      "Ridge-DRD"
+    ],
+    "excluded_from_spa_statistic": [
+      "Ridge-DRD"
+    ],
+    "mean_differentials": {
+      "EWMA": 0.017373271325246128,
+      "HARQ-DRD": 0.10263181510255076,
+      "LSTM-BEKK": -0.3506785939640984,
+      "LW-NL": -1.5972233465997592,
+      "LW-linear": -1.5242794247852716,
+      "RW": -0.48870547173030193,
+      "XGBoost-DRD": -0.0478994815075859
+    },
+    "n_boot": 5000,
+    "n_models_in_spa": 8,
+    "n_models_in_universe": 9,
+    "p_value_consistent": 0.0016,
+    "p_value_lower": 0.0016,
+    "p_value_upper": 0.0016,
+    "primary_recentering": "consistent",
+    "seed": 20260913,
+    "statistic": 3.0010295525346193,
+    "studentized_statistics": {
+      "EWMA": 0.19197478019647635,
+      "HARQ-DRD": 3.0010295525346193,
+      "LSTM-BEKK": -3.480817546320614,
+      "LW-NL": -4.595117713929589,
+      "LW-linear": -4.764894909193639,
+      "RW": -3.529030295030492,
+      "XGBoost-DRD": -0.7003622228412177
+    }
+  }
+}

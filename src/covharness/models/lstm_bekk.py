@@ -51,7 +51,7 @@ B0 = 0.90
 SWISH_BETA0 = 1.0
 MIN_NUM_LAYERS = 3
 MAX_NUM_LAYERS = 5
-MIN_DROPOUT = 0.1
+MIN_DROPOUT = 0.0
 MAX_DROPOUT = 0.2
 OUTPUT_HEAD_BIAS = True
 RMSPROP_ALPHA = 0.99
@@ -757,7 +757,7 @@ def _require_num_layers(num_layers: int) -> int:
 
 
 def _require_dropout(dropout: float) -> float:
-    """Require dropout in the paper interval [0.1, 0.2]."""
+    """Require dropout in [0, 0.2]. Zero is the no-dropout stacked-LSTM setting."""
     value = float(dropout)
     if not np.isfinite(value) or value < MIN_DROPOUT or value > MAX_DROPOUT:
         raise InvalidModelConfigurationError(

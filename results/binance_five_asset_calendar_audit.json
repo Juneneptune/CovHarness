@@ -1,0 +1,5617 @@
+{
+  "audit_utc": "2026-09-21T03:08:09Z",
+  "task": "binance_five_asset_calendar_audit",
+  "no_empirical_model_fit": true,
+  "no_rcov_production": true,
+  "no_rq_production": true,
+  "confirm_locked": true,
+  "us_equity_data_gate_not_opened": true,
+  "coverage_audit_universe": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "BNBUSDT",
+    "LTCUSDT",
+    "ADAUSDT"
+  ],
+  "coverage_audit_universe_is_not_final_empirical_universe": true,
+  "window_months": {
+    "start": "2022-01",
+    "end": "2026-08"
+  },
+  "utc_calendar": {
+    "start": "2022-01-01",
+    "end": "2026-08-31",
+    "n_requested_dates": 1704
+  },
+  "download": {
+    "n_zip_requested": 280,
+    "n_checksum_requested": 280,
+    "n_successfully_downloaded_or_reused_and_verified": 280,
+    "n_absent_archives": 0,
+    "compressed_bytes": 512308203,
+    "wall_clock_download_seconds": 90.672,
+    "cache_dir": "data/cache/open_data/binance/spot/monthly/klines/1m",
+    "cache_cap_bytes": 5368709120,
+    "archives": [
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2022-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1638272,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2022-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1442532,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2022-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1560657,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2022-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1515443,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2022-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1792295,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2022-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1739237,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2022-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1732561,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2022-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1714234,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2022-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1646693,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2022-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1628119,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2022-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1606417,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2022-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1521529,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2023-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1643270,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2023-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1483024,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2023-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1661876,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44560,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2023-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1595764,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2023-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1564627,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2023-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1565214,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2023-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1586279,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2023-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1500372,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2023-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1394672,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2023-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1508590,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2023-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1625601,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2023-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1766111,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2024-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1704789,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2024-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1604952,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 41760,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2024-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1777383,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2024-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1655758,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2024-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1631339,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2024-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1550191,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2024-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1648504,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2024-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1628169,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2024-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1560486,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2024-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1613656,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2024-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1784216,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2024-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1848787,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2025-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1859446,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2025-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1652940,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2025-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1829639,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2025-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1703338,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2025-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1784003,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2025-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1675747,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2025-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1792361,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2025-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1817379,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2025-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1695432,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2025-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1768074,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2025-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1685271,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2025-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1673419,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2026-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1665278,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2026-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1506912,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2026-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1626692,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2026-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1535225,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2026-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1559260,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2026-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1555967,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2026-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1530529,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ADAUSDT/1m/ADAUSDT-1m-2026-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1567738,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2022-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1739813,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2022-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1545192,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2022-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1681409,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2022-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1624951,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2022-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1718238,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2022-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1624231,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2022-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1634675,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2022-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1652243,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2022-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1550125,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2022-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1549048,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2022-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1615188,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2022-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1549423,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2023-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1582584,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2023-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1451692,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2023-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1605486,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44560,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2023-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1528417,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2023-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1532494,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2023-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1553087,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2023-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1548037,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2023-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1506516,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2023-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1432902,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2023-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1515468,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2023-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1570263,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2023-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1649404,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2024-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1652756,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2024-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1530830,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 41760,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2024-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1772576,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2024-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1662764,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2024-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1636552,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2024-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1590649,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2024-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1641573,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2024-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1668777,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2024-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1595721,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2024-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1631119,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2024-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1827351,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2024-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1912580,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1838958,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1718092,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1869185,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1758676,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1831948,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1721490,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1831422,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1860442,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1801466,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1979342,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1839385,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1827968,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2026-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1813692,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2026-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1671569,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2026-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1804670,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2026-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1718780,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2026-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1796060,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2026-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1760912,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2026-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1755225,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2026-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1775449,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2229634,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2011133,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2207992,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2103010,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2216492,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2158139,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2298791,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2318381,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2260540,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2300603,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2241831,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2022-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2261860,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2304509,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2109501,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2300446,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44560,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2064504,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2111728,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2043702,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2033186,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2018512,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1967613,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2099200,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2056098,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2023-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2144300,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2169570,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2013843,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 41760,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2221094,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2120723,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2144250,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2018857,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2141506,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2164472,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2049758,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2121607,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2146495,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2024-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2218893,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2222830,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1993970,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2215591,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2120466,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2184868,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2074513,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2136490,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2150048,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2045189,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2216628,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2165376,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2154846,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2127988,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2021779,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2213444,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2088776,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2120776,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2092027,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2112275,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2026-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2084946,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2022-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2114115,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2022-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1912778,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2022-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2089094,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2022-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2008130,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2022-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2110136,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2022-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2056565,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2022-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2119356,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2022-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2107847,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2022-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2020746,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2022-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2020787,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2022-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1994209,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2022-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1955495,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1989184,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1828792,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2052232,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44560,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1956086,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1980623,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1907373,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1920823,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1884880,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1840420,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1958976,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1960231,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2040096,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2050101,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1922719,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 41760,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2118386,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2016825,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2054099,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1945704,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2050486,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2065075,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1965720,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2039885,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2062193,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2126128,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2120787,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1930330,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2096749,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2029272,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2125837,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2034318,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2130574,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2162576,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2040217,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2145592,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2074392,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2079108,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2068379,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1918913,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2086704,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1980853,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2023074,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1996139,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2027161,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 2005311,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2022-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1566479,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2022-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1406511,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2022-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1520696,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2022-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1432699,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2022-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1511430,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2022-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1573445,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2022-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1691234,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2022-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1682760,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2022-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1652662,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2022-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1618441,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2022-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1726818,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2022-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1696457,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2023-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1731991,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2023-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1558489,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2023-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1764692,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44560,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2023-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1665533,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2023-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1710583,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2023-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1672229,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2023-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1743255,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2023-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1657317,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2023-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1565157,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2023-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1624799,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2023-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1634739,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2023-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1696425,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2024-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1694215,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2024-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1559971,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 41760,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2024-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1818501,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2024-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1723989,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2024-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1677126,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2024-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1596564,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2024-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1671262,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2024-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1689120,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2024-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1618814,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2024-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1670413,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2024-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1739091,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2024-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1841085,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "milliseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2025-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1814540,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2025-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1698044,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2025-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1787567,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2025-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1677817,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2025-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1774551,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2025-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1650490,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2025-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1770599,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2025-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1784783,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-09",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2025-09.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1657001,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-10",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2025-10.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1779275,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-11",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2025-11.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1731030,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-12",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2025-12.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1690128,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-01",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2026-01.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1706182,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-02",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2026-02.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1534408,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 40320,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-03",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2026-03.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1648780,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-04",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2026-04.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1552478,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-05",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2026-05.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1615520,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-06",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2026-06.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1591924,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 43200,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-07",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2026-07.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1608323,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-08",
+        "zip_url": "https://data.binance.vision/data/spot/monthly/klines/LTCUSDT/1m/LTCUSDT-1m-2026-08.zip",
+        "zip_http_status": 200,
+        "checksum_http_status": 200,
+        "compressed_bytes": 1586457,
+        "checksum_status": "verified",
+        "extraction_status": "ok",
+        "inferred_timestamp_unit": "microseconds",
+        "n_rows": 44640,
+        "error": null
+      }
+    ]
+  },
+  "parse": {
+    "uncompressed_csv_bytes_from_zip_info": 1772426179,
+    "rows_by_symbol": {
+      "BTCUSDT": 2453680,
+      "ETHUSDT": 2453680,
+      "BNBUSDT": 2453680,
+      "LTCUSDT": 2453680,
+      "ADAUSDT": 2453680
+    },
+    "total_rows": 12268400,
+    "wall_clock_parse_audit_seconds": 57.422,
+    "decompressed_csv_files_retained": false
+  },
+  "per_symbol": {
+    "BTCUSDT": {
+      "symbol": "BTCUSDT",
+      "n_utc_dates_in_window": 1704,
+      "n_complete_dates": 1703,
+      "n_incomplete_dates": 1,
+      "n_dates_with_missing_minutes": 1,
+      "n_dates_with_duplicate_minutes": 0,
+      "n_dates_with_invalid_prices": 0,
+      "n_dates_with_offgrid_timestamps": 0,
+      "n_dates_with_nonmonotone": 0,
+      "longest_complete_day_streak": 1256,
+      "longest_complete_streak_start": "2023-03-25",
+      "longest_complete_streak_end": "2026-08-31",
+      "earliest_complete_date": "2022-01-01",
+      "latest_complete_date": "2026-08-31",
+      "missing_minute_count_distribution_on_incomplete_days": {
+        "80": 1
+      },
+      "parsed_rows": 2453680,
+      "uncompressed_csv_bytes": 375108813,
+      "file_level_nonmonotone_adjacent_pairs": 0,
+      "timestamp_unit_by_month": {
+        "2022-01": "milliseconds",
+        "2022-02": "milliseconds",
+        "2022-03": "milliseconds",
+        "2022-04": "milliseconds",
+        "2022-05": "milliseconds",
+        "2022-06": "milliseconds",
+        "2022-07": "milliseconds",
+        "2022-08": "milliseconds",
+        "2022-09": "milliseconds",
+        "2022-10": "milliseconds",
+        "2022-11": "milliseconds",
+        "2022-12": "milliseconds",
+        "2023-01": "milliseconds",
+        "2023-02": "milliseconds",
+        "2023-03": "milliseconds",
+        "2023-04": "milliseconds",
+        "2023-05": "milliseconds",
+        "2023-06": "milliseconds",
+        "2023-07": "milliseconds",
+        "2023-08": "milliseconds",
+        "2023-09": "milliseconds",
+        "2023-10": "milliseconds",
+        "2023-11": "milliseconds",
+        "2023-12": "milliseconds",
+        "2024-01": "milliseconds",
+        "2024-02": "milliseconds",
+        "2024-03": "milliseconds",
+        "2024-04": "milliseconds",
+        "2024-05": "milliseconds",
+        "2024-06": "milliseconds",
+        "2024-07": "milliseconds",
+        "2024-08": "milliseconds",
+        "2024-09": "milliseconds",
+        "2024-10": "milliseconds",
+        "2024-11": "milliseconds",
+        "2024-12": "milliseconds",
+        "2025-01": "microseconds",
+        "2025-02": "microseconds",
+        "2025-03": "microseconds",
+        "2025-04": "microseconds",
+        "2025-05": "microseconds",
+        "2025-06": "microseconds",
+        "2025-07": "microseconds",
+        "2025-08": "microseconds",
+        "2025-09": "microseconds",
+        "2025-10": "microseconds",
+        "2025-11": "microseconds",
+        "2025-12": "microseconds",
+        "2026-01": "microseconds",
+        "2026-02": "microseconds",
+        "2026-03": "microseconds",
+        "2026-04": "microseconds",
+        "2026-05": "microseconds",
+        "2026-06": "microseconds",
+        "2026-07": "microseconds",
+        "2026-08": "microseconds"
+      },
+      "n_dates_no_bars": 0,
+      "example_missing_minute_dates": [
+        "2023-03-24"
+      ],
+      "example_duplicate_dates": [],
+      "example_invalid_price_dates": []
+    },
+    "ETHUSDT": {
+      "symbol": "ETHUSDT",
+      "n_utc_dates_in_window": 1704,
+      "n_complete_dates": 1703,
+      "n_incomplete_dates": 1,
+      "n_dates_with_missing_minutes": 1,
+      "n_dates_with_duplicate_minutes": 0,
+      "n_dates_with_invalid_prices": 0,
+      "n_dates_with_offgrid_timestamps": 0,
+      "n_dates_with_nonmonotone": 0,
+      "longest_complete_day_streak": 1256,
+      "longest_complete_streak_start": "2023-03-25",
+      "longest_complete_streak_end": "2026-08-31",
+      "earliest_complete_date": "2022-01-01",
+      "latest_complete_date": "2026-08-31",
+      "missing_minute_count_distribution_on_incomplete_days": {
+        "80": 1
+      },
+      "parsed_rows": 2453680,
+      "uncompressed_csv_bytes": 366702403,
+      "file_level_nonmonotone_adjacent_pairs": 0,
+      "timestamp_unit_by_month": {
+        "2022-01": "milliseconds",
+        "2022-02": "milliseconds",
+        "2022-03": "milliseconds",
+        "2022-04": "milliseconds",
+        "2022-05": "milliseconds",
+        "2022-06": "milliseconds",
+        "2022-07": "milliseconds",
+        "2022-08": "milliseconds",
+        "2022-09": "milliseconds",
+        "2022-10": "milliseconds",
+        "2022-11": "milliseconds",
+        "2022-12": "milliseconds",
+        "2023-01": "milliseconds",
+        "2023-02": "milliseconds",
+        "2023-03": "milliseconds",
+        "2023-04": "milliseconds",
+        "2023-05": "milliseconds",
+        "2023-06": "milliseconds",
+        "2023-07": "milliseconds",
+        "2023-08": "milliseconds",
+        "2023-09": "milliseconds",
+        "2023-10": "milliseconds",
+        "2023-11": "milliseconds",
+        "2023-12": "milliseconds",
+        "2024-01": "milliseconds",
+        "2024-02": "milliseconds",
+        "2024-03": "milliseconds",
+        "2024-04": "milliseconds",
+        "2024-05": "milliseconds",
+        "2024-06": "milliseconds",
+        "2024-07": "milliseconds",
+        "2024-08": "milliseconds",
+        "2024-09": "milliseconds",
+        "2024-10": "milliseconds",
+        "2024-11": "milliseconds",
+        "2024-12": "milliseconds",
+        "2025-01": "microseconds",
+        "2025-02": "microseconds",
+        "2025-03": "microseconds",
+        "2025-04": "microseconds",
+        "2025-05": "microseconds",
+        "2025-06": "microseconds",
+        "2025-07": "microseconds",
+        "2025-08": "microseconds",
+        "2025-09": "microseconds",
+        "2025-10": "microseconds",
+        "2025-11": "microseconds",
+        "2025-12": "microseconds",
+        "2026-01": "microseconds",
+        "2026-02": "microseconds",
+        "2026-03": "microseconds",
+        "2026-04": "microseconds",
+        "2026-05": "microseconds",
+        "2026-06": "microseconds",
+        "2026-07": "microseconds",
+        "2026-08": "microseconds"
+      },
+      "n_dates_no_bars": 0,
+      "example_missing_minute_dates": [
+        "2023-03-24"
+      ],
+      "example_duplicate_dates": [],
+      "example_invalid_price_dates": []
+    },
+    "BNBUSDT": {
+      "symbol": "BNBUSDT",
+      "n_utc_dates_in_window": 1704,
+      "n_complete_dates": 1703,
+      "n_incomplete_dates": 1,
+      "n_dates_with_missing_minutes": 1,
+      "n_dates_with_duplicate_minutes": 0,
+      "n_dates_with_invalid_prices": 0,
+      "n_dates_with_offgrid_timestamps": 0,
+      "n_dates_with_nonmonotone": 0,
+      "longest_complete_day_streak": 1256,
+      "longest_complete_streak_start": "2023-03-25",
+      "longest_complete_streak_end": "2026-08-31",
+      "earliest_complete_date": "2022-01-01",
+      "latest_complete_date": "2026-08-31",
+      "missing_minute_count_distribution_on_incomplete_days": {
+        "80": 1
+      },
+      "parsed_rows": 2453680,
+      "uncompressed_csv_bytes": 351195977,
+      "file_level_nonmonotone_adjacent_pairs": 0,
+      "timestamp_unit_by_month": {
+        "2022-01": "milliseconds",
+        "2022-02": "milliseconds",
+        "2022-03": "milliseconds",
+        "2022-04": "milliseconds",
+        "2022-05": "milliseconds",
+        "2022-06": "milliseconds",
+        "2022-07": "milliseconds",
+        "2022-08": "milliseconds",
+        "2022-09": "milliseconds",
+        "2022-10": "milliseconds",
+        "2022-11": "milliseconds",
+        "2022-12": "milliseconds",
+        "2023-01": "milliseconds",
+        "2023-02": "milliseconds",
+        "2023-03": "milliseconds",
+        "2023-04": "milliseconds",
+        "2023-05": "milliseconds",
+        "2023-06": "milliseconds",
+        "2023-07": "milliseconds",
+        "2023-08": "milliseconds",
+        "2023-09": "milliseconds",
+        "2023-10": "milliseconds",
+        "2023-11": "milliseconds",
+        "2023-12": "milliseconds",
+        "2024-01": "milliseconds",
+        "2024-02": "milliseconds",
+        "2024-03": "milliseconds",
+        "2024-04": "milliseconds",
+        "2024-05": "milliseconds",
+        "2024-06": "milliseconds",
+        "2024-07": "milliseconds",
+        "2024-08": "milliseconds",
+        "2024-09": "milliseconds",
+        "2024-10": "milliseconds",
+        "2024-11": "milliseconds",
+        "2024-12": "milliseconds",
+        "2025-01": "microseconds",
+        "2025-02": "microseconds",
+        "2025-03": "microseconds",
+        "2025-04": "microseconds",
+        "2025-05": "microseconds",
+        "2025-06": "microseconds",
+        "2025-07": "microseconds",
+        "2025-08": "microseconds",
+        "2025-09": "microseconds",
+        "2025-10": "microseconds",
+        "2025-11": "microseconds",
+        "2025-12": "microseconds",
+        "2026-01": "microseconds",
+        "2026-02": "microseconds",
+        "2026-03": "microseconds",
+        "2026-04": "microseconds",
+        "2026-05": "microseconds",
+        "2026-06": "microseconds",
+        "2026-07": "microseconds",
+        "2026-08": "microseconds"
+      },
+      "n_dates_no_bars": 0,
+      "example_missing_minute_dates": [
+        "2023-03-24"
+      ],
+      "example_duplicate_dates": [],
+      "example_invalid_price_dates": []
+    },
+    "LTCUSDT": {
+      "symbol": "LTCUSDT",
+      "n_utc_dates_in_window": 1704,
+      "n_complete_dates": 1703,
+      "n_incomplete_dates": 1,
+      "n_dates_with_missing_minutes": 1,
+      "n_dates_with_duplicate_minutes": 0,
+      "n_dates_with_invalid_prices": 0,
+      "n_dates_with_offgrid_timestamps": 0,
+      "n_dates_with_nonmonotone": 0,
+      "longest_complete_day_streak": 1256,
+      "longest_complete_streak_start": "2023-03-25",
+      "longest_complete_streak_end": "2026-08-31",
+      "earliest_complete_date": "2022-01-01",
+      "latest_complete_date": "2026-08-31",
+      "missing_minute_count_distribution_on_incomplete_days": {
+        "80": 1
+      },
+      "parsed_rows": 2453680,
+      "uncompressed_csv_bytes": 339567554,
+      "file_level_nonmonotone_adjacent_pairs": 0,
+      "timestamp_unit_by_month": {
+        "2022-01": "milliseconds",
+        "2022-02": "milliseconds",
+        "2022-03": "milliseconds",
+        "2022-04": "milliseconds",
+        "2022-05": "milliseconds",
+        "2022-06": "milliseconds",
+        "2022-07": "milliseconds",
+        "2022-08": "milliseconds",
+        "2022-09": "milliseconds",
+        "2022-10": "milliseconds",
+        "2022-11": "milliseconds",
+        "2022-12": "milliseconds",
+        "2023-01": "milliseconds",
+        "2023-02": "milliseconds",
+        "2023-03": "milliseconds",
+        "2023-04": "milliseconds",
+        "2023-05": "milliseconds",
+        "2023-06": "milliseconds",
+        "2023-07": "milliseconds",
+        "2023-08": "milliseconds",
+        "2023-09": "milliseconds",
+        "2023-10": "milliseconds",
+        "2023-11": "milliseconds",
+        "2023-12": "milliseconds",
+        "2024-01": "milliseconds",
+        "2024-02": "milliseconds",
+        "2024-03": "milliseconds",
+        "2024-04": "milliseconds",
+        "2024-05": "milliseconds",
+        "2024-06": "milliseconds",
+        "2024-07": "milliseconds",
+        "2024-08": "milliseconds",
+        "2024-09": "milliseconds",
+        "2024-10": "milliseconds",
+        "2024-11": "milliseconds",
+        "2024-12": "milliseconds",
+        "2025-01": "microseconds",
+        "2025-02": "microseconds",
+        "2025-03": "microseconds",
+        "2025-04": "microseconds",
+        "2025-05": "microseconds",
+        "2025-06": "microseconds",
+        "2025-07": "microseconds",
+        "2025-08": "microseconds",
+        "2025-09": "microseconds",
+        "2025-10": "microseconds",
+        "2025-11": "microseconds",
+        "2025-12": "microseconds",
+        "2026-01": "microseconds",
+        "2026-02": "microseconds",
+        "2026-03": "microseconds",
+        "2026-04": "microseconds",
+        "2026-05": "microseconds",
+        "2026-06": "microseconds",
+        "2026-07": "microseconds",
+        "2026-08": "microseconds"
+      },
+      "n_dates_no_bars": 0,
+      "example_missing_minute_dates": [
+        "2023-03-24"
+      ],
+      "example_duplicate_dates": [],
+      "example_invalid_price_dates": []
+    },
+    "ADAUSDT": {
+      "symbol": "ADAUSDT",
+      "n_utc_dates_in_window": 1704,
+      "n_complete_dates": 1703,
+      "n_incomplete_dates": 1,
+      "n_dates_with_missing_minutes": 1,
+      "n_dates_with_duplicate_minutes": 0,
+      "n_dates_with_invalid_prices": 0,
+      "n_dates_with_offgrid_timestamps": 0,
+      "n_dates_with_nonmonotone": 0,
+      "longest_complete_day_streak": 1256,
+      "longest_complete_streak_start": "2023-03-25",
+      "longest_complete_streak_end": "2026-08-31",
+      "earliest_complete_date": "2022-01-01",
+      "latest_complete_date": "2026-08-31",
+      "missing_minute_count_distribution_on_incomplete_days": {
+        "80": 1
+      },
+      "parsed_rows": 2453680,
+      "uncompressed_csv_bytes": 339851432,
+      "file_level_nonmonotone_adjacent_pairs": 0,
+      "timestamp_unit_by_month": {
+        "2022-01": "milliseconds",
+        "2022-02": "milliseconds",
+        "2022-03": "milliseconds",
+        "2022-04": "milliseconds",
+        "2022-05": "milliseconds",
+        "2022-06": "milliseconds",
+        "2022-07": "milliseconds",
+        "2022-08": "milliseconds",
+        "2022-09": "milliseconds",
+        "2022-10": "milliseconds",
+        "2022-11": "milliseconds",
+        "2022-12": "milliseconds",
+        "2023-01": "milliseconds",
+        "2023-02": "milliseconds",
+        "2023-03": "milliseconds",
+        "2023-04": "milliseconds",
+        "2023-05": "milliseconds",
+        "2023-06": "milliseconds",
+        "2023-07": "milliseconds",
+        "2023-08": "milliseconds",
+        "2023-09": "milliseconds",
+        "2023-10": "milliseconds",
+        "2023-11": "milliseconds",
+        "2023-12": "milliseconds",
+        "2024-01": "milliseconds",
+        "2024-02": "milliseconds",
+        "2024-03": "milliseconds",
+        "2024-04": "milliseconds",
+        "2024-05": "milliseconds",
+        "2024-06": "milliseconds",
+        "2024-07": "milliseconds",
+        "2024-08": "milliseconds",
+        "2024-09": "milliseconds",
+        "2024-10": "milliseconds",
+        "2024-11": "milliseconds",
+        "2024-12": "milliseconds",
+        "2025-01": "microseconds",
+        "2025-02": "microseconds",
+        "2025-03": "microseconds",
+        "2025-04": "microseconds",
+        "2025-05": "microseconds",
+        "2025-06": "microseconds",
+        "2025-07": "microseconds",
+        "2025-08": "microseconds",
+        "2025-09": "microseconds",
+        "2025-10": "microseconds",
+        "2025-11": "microseconds",
+        "2025-12": "microseconds",
+        "2026-01": "microseconds",
+        "2026-02": "microseconds",
+        "2026-03": "microseconds",
+        "2026-04": "microseconds",
+        "2026-05": "microseconds",
+        "2026-06": "microseconds",
+        "2026-07": "microseconds",
+        "2026-08": "microseconds"
+      },
+      "n_dates_no_bars": 0,
+      "example_missing_minute_dates": [
+        "2023-03-24"
+      ],
+      "example_duplicate_dates": [],
+      "example_invalid_price_dates": []
+    }
+  },
+  "intersection": {
+    "n_requested_calendar_dates": 1704,
+    "complete_date_count_by_symbol": {
+      "BTCUSDT": 1703,
+      "ETHUSDT": 1703,
+      "BNBUSDT": 1703,
+      "LTCUSDT": 1703,
+      "ADAUSDT": 1703
+    },
+    "n_five_way_complete_dates": 1703,
+    "earliest_five_way_complete_date": "2022-01-01",
+    "latest_five_way_complete_date": "2026-08-31",
+    "longest_consecutive_five_way_complete_streak": {
+      "n": 1256,
+      "start": "2023-03-25",
+      "end": "2026-08-31"
+    },
+    "n_excluded_dates": 1,
+    "excluded_dates": [
+      {
+        "date": "2023-03-24",
+        "failed_symbols": [
+          "BTCUSDT",
+          "ETHUSDT",
+          "BNBUSDT",
+          "LTCUSDT",
+          "ADAUSDT"
+        ],
+        "reasons": {
+          "BTCUSDT": [
+            "missing_minutes:80"
+          ],
+          "ETHUSDT": [
+            "missing_minutes:80"
+          ],
+          "BNBUSDT": [
+            "missing_minutes:80"
+          ],
+          "LTCUSDT": [
+            "missing_minutes:80"
+          ],
+          "ADAUSDT": [
+            "missing_minutes:80"
+          ]
+        }
+      }
+    ],
+    "preferred_full_design_ge_1500": true,
+    "minimum_confirmatory_design_ge_1250": true,
+    "common_complete_dates_minus_250": 1453,
+    "note_minus_250": "Descriptive maximum one-step targets under m=250 before any VALIDATION/SCREEN/CONFIRM split. No split was allocated in this task."
+  },
+  "timestamp_units": {
+    "documentation": "Official binance-public-data README. Spot timestamps from 2025-01-01 onward are microseconds.",
+    "n_month_files_milliseconds": 180,
+    "n_month_files_microseconds": 100,
+    "anomalies_vs_documented_2025_01_01_cut": [],
+    "by_month": [
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2022-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2023-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2024-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-01",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-02",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-03",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-04",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-05",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-06",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-07",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-08",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-09",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-10",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-11",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2025-12",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-01",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-02",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-03",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-04",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-05",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-06",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-07",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "month": "2026-08",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2022-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2023-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2024-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-01",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-02",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-03",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-04",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-05",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-06",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-07",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-08",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-09",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-10",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-11",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2025-12",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-01",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-02",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-03",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-04",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-05",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-06",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-07",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "month": "2026-08",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2022-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2023-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2024-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-01",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-02",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-03",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-04",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-05",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-06",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-07",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-08",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-09",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-10",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-11",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2025-12",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-01",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-02",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-03",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-04",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-05",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-06",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-07",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "month": "2026-08",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2022-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2023-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2024-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-01",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-02",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-03",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-04",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-05",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-06",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-07",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-08",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-09",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-10",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-11",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2025-12",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-01",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-02",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-03",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-04",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-05",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-06",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-07",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "LTCUSDT",
+        "month": "2026-08",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2022-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2023-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-01",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-02",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-03",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-04",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-05",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-06",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-07",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-08",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-09",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-10",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-11",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2024-12",
+        "unit": "milliseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-01",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-02",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-03",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-04",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-05",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-06",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-07",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-08",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-09",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-10",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-11",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2025-12",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-01",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-02",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-03",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-04",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-05",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-06",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-07",
+        "unit": "microseconds"
+      },
+      {
+        "symbol": "ADAUSDT",
+        "month": "2026-08",
+        "unit": "microseconds"
+      }
+    ]
+  },
+  "structural_synchronized_panel": {
+    "n_common_complete_dates": 1703,
+    "n_days_identical_1440_minute_support": 1703,
+    "n_days_inner_join_would_lose_rows": 0,
+    "n_days_all_closes_finite_positive": 1703,
+    "n_days_within_day_1439_log_returns_finite": 1703,
+    "n_days_full_1440_log_returns_finite_prior_complete": 1701,
+    "n_days_midnight_crossing_unavailable_prior_not_common_complete": 2,
+    "n_days_within_day_287_five_minute_log_returns_finite": 1703,
+    "n_days_full_288_five_minute_log_returns_finite_prior_complete": 1701,
+    "note": "Temporary log returns are a mechanical diagnostic. No realized-covariance or realized-quarticity panel was stored. Production convention is not chosen.",
+    "convention_A_within_utc_day_1m": {
+      "description": "log(close_t / close_{t-1}) for 00:01 through 23:59 using 00:00 through 23:59 closes",
+      "n_returns": 1439
+    },
+    "convention_B_contiguous_24h_1m": {
+      "description": "convention A plus the midnight-crossing return log(today 00:00 close / prior 23:59 close) when the prior UTC day is also complete",
+      "n_returns": 1440
+    },
+    "five_minute_within_day": {
+      "n_returns": 287,
+      "n_prices": 288
+    },
+    "five_minute_with_midnight_cross": {
+      "n_returns": 288,
+      "n_prices_including_prior": 289
+    }
+  },
+  "thresholds": {
+    "preferred_full_design": true,
+    "minimum_confirmatory_design": true,
+    "binance_empirical_data_gate_fully_passed": false
+  },
+  "complete_dates_artifact": "results/binance_five_asset_calendar_complete_dates.csv.gz"
+}

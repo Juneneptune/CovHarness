@@ -1,0 +1,62 @@
+{
+  "N": 5,
+  "T": 1750,
+  "any_date_after_sample_end": false,
+  "artifact_bytes": 359563,
+  "artifact_path": "data/processed/binance_five_asset_panel.npz",
+  "artifact_sha256": "2b7358107a10f77c3879524e1d9b1389c2c66db4a444af89c2cdf59aa186640a",
+  "assets": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "BNBUSDT",
+    "LTCUSDT",
+    "ADAUSDT"
+  ],
+  "condition_number_max": 605.1833149160849,
+  "condition_number_median": 52.38874926030631,
+  "condition_number_min": 12.663834964551468,
+  "confirm_after_screen": true,
+  "daily_nonfinite": 0,
+  "daily_return_max": 0.5432092637962491,
+  "daily_return_min": -0.28001695783272296,
+  "daily_returns_shape": [
+    1750,
+    5
+  ],
+  "date_end": "2026-08-25",
+  "date_start": "2021-11-09",
+  "halt_in_dates": false,
+  "history_b_after_validation": true,
+  "n_archive_checksums": 290,
+  "psd_failures": 0,
+  "rcov_max_eigenvalue": 0.9172798620889434,
+  "rcov_min_eigenvalue": 3.51325218252141e-06,
+  "rcov_nonfinite": 0,
+  "rcov_rank_counts": {
+    "5": 1750
+  },
+  "rcov_shape": [
+    1750,
+    5,
+    5
+  ],
+  "rq_max": 17.41941235552369,
+  "rq_median": 1.5940250809368411e-06,
+  "rq_min": 1.1168563091513678e-10,
+  "rq_nonfinite": 0,
+  "rq_shape": [
+    1750,
+    5
+  ],
+  "screen_after_history_b": true,
+  "segment_counts": {
+    "CONFIRM": 500,
+    "HISTORY_A": 250,
+    "HISTORY_B": 250,
+    "SCREEN": 500,
+    "VALIDATION": 250
+  },
+  "sidecar_path": "data/processed/binance_five_asset_panel.json",
+  "sidecar_sha256": "38ed1d4843ea6138d7f87fc0405b668b1ee2fd7403d4cddfba0ca49160737394",
+  "symmetry_failures": 0
+}

@@ -1,0 +1,187 @@
+{
+  "companion": {
+    "alpha": 0.1,
+    "block_length": 7,
+    "bootstrap_method": "stationary",
+    "elimination_order": [
+      "LW-linear",
+      "LW-NL",
+      "RW",
+      "LSTM-BEKK",
+      "EWMA",
+      "XGBoost-DRD",
+      "HAR-DRD",
+      "Ridge-DRD",
+      "HARQ-DRD"
+    ],
+    "in_mcs_primary_alpha": {
+      "EWMA": true,
+      "HAR-DRD": true,
+      "HARQ-DRD": true,
+      "LSTM-BEKK": true,
+      "LW-NL": false,
+      "LW-linear": false,
+      "RW": false,
+      "Ridge-DRD": true,
+      "XGBoost-DRD": true
+    },
+    "labels": [
+      "RW",
+      "EWMA",
+      "HAR-DRD",
+      "HARQ-DRD",
+      "LW-linear",
+      "LW-NL",
+      "Ridge-DRD",
+      "XGBoost-DRD",
+      "LSTM-BEKK"
+    ],
+    "mcs_pvalues": {
+      "EWMA": 0.5954,
+      "HAR-DRD": 0.9932,
+      "HARQ-DRD": 1.0,
+      "LSTM-BEKK": 0.1486,
+      "LW-NL": 0.0598,
+      "LW-linear": 0.0508,
+      "RW": 0.0666,
+      "Ridge-DRD": 0.9932,
+      "XGBoost-DRD": 0.5954
+    },
+    "mean_losses": {
+      "EWMA": 7.800251041053436e-05,
+      "HAR-DRD": 7.489333409048751e-05,
+      "HARQ-DRD": 7.487762605850421e-05,
+      "LSTM-BEKK": 8.269241063292733e-05,
+      "LW-NL": 9.202238395666713e-05,
+      "LW-linear": 9.262341039526677e-05,
+      "RW": 0.00010781932629814422,
+      "Ridge-DRD": 7.489333409048751e-05,
+      "XGBoost-DRD": 7.85603711558443e-05
+    },
+    "membership_by_alpha": {
+      "0.05": [
+        "RW",
+        "EWMA",
+        "HAR-DRD",
+        "HARQ-DRD",
+        "LW-linear",
+        "LW-NL",
+        "Ridge-DRD",
+        "XGBoost-DRD",
+        "LSTM-BEKK"
+      ],
+      "0.10": [
+        "EWMA",
+        "HAR-DRD",
+        "HARQ-DRD",
+        "Ridge-DRD",
+        "XGBoost-DRD",
+        "LSTM-BEKK"
+      ],
+      "0.25": [
+        "EWMA",
+        "HAR-DRD",
+        "HARQ-DRD",
+        "Ridge-DRD",
+        "XGBoost-DRD"
+      ]
+    },
+    "n_boot": 5000,
+    "n_models": 9,
+    "n_observations": 500,
+    "procedure": "max",
+    "seed": 20260913
+  },
+  "primary": {
+    "alpha": 0.1,
+    "block_length": 7,
+    "bootstrap_method": "stationary",
+    "elimination_order": [
+      "LW-linear",
+      "LW-NL",
+      "RW",
+      "LSTM-BEKK",
+      "EWMA",
+      "XGBoost-DRD",
+      "HAR-DRD",
+      "Ridge-DRD",
+      "HARQ-DRD"
+    ],
+    "in_mcs_primary_alpha": {
+      "EWMA": true,
+      "HAR-DRD": true,
+      "HARQ-DRD": true,
+      "LSTM-BEKK": true,
+      "LW-NL": false,
+      "LW-linear": false,
+      "RW": true,
+      "Ridge-DRD": true,
+      "XGBoost-DRD": true
+    },
+    "labels": [
+      "RW",
+      "EWMA",
+      "HAR-DRD",
+      "HARQ-DRD",
+      "LW-linear",
+      "LW-NL",
+      "Ridge-DRD",
+      "XGBoost-DRD",
+      "LSTM-BEKK"
+    ],
+    "mcs_pvalues": {
+      "EWMA": 0.286,
+      "HAR-DRD": 0.9932,
+      "HARQ-DRD": 1.0,
+      "LSTM-BEKK": 0.1244,
+      "LW-NL": 0.0112,
+      "LW-linear": 0.011,
+      "RW": 0.1084,
+      "Ridge-DRD": 0.9932,
+      "XGBoost-DRD": 0.46
+    },
+    "mean_losses": {
+      "EWMA": 7.800251041053436e-05,
+      "HAR-DRD": 7.489333409048751e-05,
+      "HARQ-DRD": 7.487762605850421e-05,
+      "LSTM-BEKK": 8.269241063292733e-05,
+      "LW-NL": 9.202238395666713e-05,
+      "LW-linear": 9.262341039526677e-05,
+      "RW": 0.00010781932629814422,
+      "Ridge-DRD": 7.489333409048751e-05,
+      "XGBoost-DRD": 7.85603711558443e-05
+    },
+    "membership_by_alpha": {
+      "0.05": [
+        "RW",
+        "EWMA",
+        "HAR-DRD",
+        "HARQ-DRD",
+        "Ridge-DRD",
+        "XGBoost-DRD",
+        "LSTM-BEKK"
+      ],
+      "0.10": [
+        "RW",
+        "EWMA",
+        "HAR-DRD",
+        "HARQ-DRD",
+        "Ridge-DRD",
+        "XGBoost-DRD",
+        "LSTM-BEKK"
+      ],
+      "0.25": [
+        "EWMA",
+        "HAR-DRD",
+        "HARQ-DRD",
+        "Ridge-DRD",
+        "XGBoost-DRD"
+      ]
+    },
+    "n_boot": 5000,
+    "n_models": 9,
+    "n_observations": 500,
+    "procedure": "range",
+    "seed": 20260913
+  }
+}

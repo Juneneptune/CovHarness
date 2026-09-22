@@ -1,0 +1,169 @@
+{
+  "companion": {
+    "alpha": 0.1,
+    "block_length": 7,
+    "bootstrap_method": "stationary",
+    "elimination_order": [
+      "LW-linear",
+      "LW-NL",
+      "RW",
+      "LSTM-BEKK",
+      "XGBoost-DRD",
+      "HAR-DRD",
+      "Ridge-DRD",
+      "EWMA",
+      "HARQ-DRD"
+    ],
+    "in_mcs_primary_alpha": {
+      "EWMA": true,
+      "HAR-DRD": true,
+      "HARQ-DRD": true,
+      "LSTM-BEKK": false,
+      "LW-NL": false,
+      "LW-linear": false,
+      "RW": false,
+      "Ridge-DRD": true,
+      "XGBoost-DRD": true
+    },
+    "labels": [
+      "RW",
+      "EWMA",
+      "HAR-DRD",
+      "HARQ-DRD",
+      "LW-linear",
+      "LW-NL",
+      "Ridge-DRD",
+      "XGBoost-DRD",
+      "LSTM-BEKK"
+    ],
+    "mcs_pvalues": {
+      "EWMA": 0.3678,
+      "HAR-DRD": 0.3678,
+      "HARQ-DRD": 1.0,
+      "LSTM-BEKK": 0.0044,
+      "LW-NL": 0.001,
+      "LW-linear": 0.0002,
+      "RW": 0.0044,
+      "Ridge-DRD": 0.3678,
+      "XGBoost-DRD": 0.3678
+    },
+    "mean_losses": {
+      "EWMA": -31.776804256929157,
+      "HAR-DRD": -31.759430985603924,
+      "HARQ-DRD": -31.86206280070645,
+      "LSTM-BEKK": -31.408752391639847,
+      "LW-NL": -30.162207639004176,
+      "LW-linear": -30.235151560818636,
+      "RW": -31.2707255138736,
+      "Ridge-DRD": -31.759430985603924,
+      "XGBoost-DRD": -31.71153150409631
+    },
+    "membership_by_alpha": {
+      "0.05": [
+        "EWMA",
+        "HAR-DRD",
+        "HARQ-DRD",
+        "Ridge-DRD",
+        "XGBoost-DRD"
+      ],
+      "0.10": [
+        "EWMA",
+        "HAR-DRD",
+        "HARQ-DRD",
+        "Ridge-DRD",
+        "XGBoost-DRD"
+      ],
+      "0.25": [
+        "EWMA",
+        "HAR-DRD",
+        "HARQ-DRD",
+        "Ridge-DRD",
+        "XGBoost-DRD"
+      ]
+    },
+    "n_boot": 5000,
+    "n_models": 9,
+    "n_observations": 500,
+    "procedure": "max",
+    "seed": 20260913
+  },
+  "primary": {
+    "alpha": 0.1,
+    "block_length": 7,
+    "bootstrap_method": "stationary",
+    "elimination_order": [
+      "LW-linear",
+      "RW",
+      "LW-NL",
+      "LSTM-BEKK",
+      "HAR-DRD",
+      "Ridge-DRD",
+      "XGBoost-DRD",
+      "EWMA",
+      "HARQ-DRD"
+    ],
+    "in_mcs_primary_alpha": {
+      "EWMA": true,
+      "HAR-DRD": false,
+      "HARQ-DRD": true,
+      "LSTM-BEKK": false,
+      "LW-NL": false,
+      "LW-linear": false,
+      "RW": false,
+      "Ridge-DRD": false,
+      "XGBoost-DRD": false
+    },
+    "labels": [
+      "RW",
+      "EWMA",
+      "HAR-DRD",
+      "HARQ-DRD",
+      "LW-linear",
+      "LW-NL",
+      "Ridge-DRD",
+      "XGBoost-DRD",
+      "LSTM-BEKK"
+    ],
+    "mcs_pvalues": {
+      "EWMA": 0.3154,
+      "HAR-DRD": 0.0124,
+      "HARQ-DRD": 1.0,
+      "LSTM-BEKK": 0.001,
+      "LW-NL": 0.0004,
+      "LW-linear": 0.0002,
+      "RW": 0.0002,
+      "Ridge-DRD": 0.0124,
+      "XGBoost-DRD": 0.0124
+    },
+    "mean_losses": {
+      "EWMA": -31.776804256929157,
+      "HAR-DRD": -31.759430985603924,
+      "HARQ-DRD": -31.86206280070645,
+      "LSTM-BEKK": -31.408752391639847,
+      "LW-NL": -30.162207639004176,
+      "LW-linear": -30.235151560818636,
+      "RW": -31.2707255138736,
+      "Ridge-DRD": -31.759430985603924,
+      "XGBoost-DRD": -31.71153150409631
+    },
+    "membership_by_alpha": {
+      "0.05": [
+        "EWMA",
+        "HARQ-DRD"
+      ],
+      "0.10": [
+        "EWMA",
+        "HARQ-DRD"
+      ],
+      "0.25": [
+        "EWMA",
+        "HARQ-DRD"
+      ]
+    },
+    "n_boot": 5000,
+    "n_models": 9,
+    "n_observations": 500,
+    "procedure": "range",
+    "seed": 20260913
+  }
+}

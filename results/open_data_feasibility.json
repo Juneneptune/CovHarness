@@ -1,0 +1,4593 @@
+{
+  "audit_utc": "2026-09-21T02:49:27Z",
+  "task": "open_data_feasibility",
+  "no_empirical_model_fit": true,
+  "confirm_locked": true,
+  "data_gate_not_opened": true,
+  "wrds_not_used": true,
+  "yfinance_not_used": true,
+  "download_cap_bytes": 157286400,
+  "bytes_downloaded_this_task": 8640819,
+  "urls_accessed": [
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/BTCUSDT/1m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/ETHUSDT/1m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/BNBUSDT/1m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/XRPUSDT/1m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/ADAUSDT/1m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/LTCUSDT/1m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/BCHUSDT/1m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/XLMUSDT/1m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/TRXUSDT/1m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/ETCUSDT/1m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/LINKUSDT/1m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/EOSUSDT/1m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/BTCUSDT/5m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/ETHUSDT/5m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/BNBUSDT/5m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/XRPUSDT/5m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/ADAUSDT/5m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/LTCUSDT/5m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/BCHUSDT/5m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/XLMUSDT/5m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/TRXUSDT/5m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/ETCUSDT/5m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/LINKUSDT/5m/",
+    "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/monthly/klines/EOSUSDT/5m/",
+    "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-02.zip",
+    "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-02.zip.CHECKSUM",
+    "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-02.zip",
+    "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-02.zip.CHECKSUM",
+    "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-02.zip",
+    "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-02.zip.CHECKSUM",
+    "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/5m/ETHUSDT-5m-2025-02.zip",
+    "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/5m/ETHUSDT-5m-2025-02.zip.CHECKSUM",
+    "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-02.zip",
+    "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-02.zip.CHECKSUM",
+    "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/5m/BNBUSDT-5m-2025-02.zip",
+    "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/5m/BNBUSDT-5m-2025-02.zip.CHECKSUM",
+    "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2024-12.zip",
+    "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2024-12.zip.CHECKSUM"
+  ],
+  "m6": {
+    "source_url": "https://raw.githubusercontent.com/Mcompetitions/M6-methods/main/assets_m6.csv",
+    "repository": "https://github.com/Mcompetitions/M6-methods",
+    "local_path": "data/cache/open_data/m6/assets_m6.csv",
+    "retrieval_date_utc": "2026-09-21T02:38:13Z",
+    "sha256": "48c67aa0976ae63de3a6d7a42228ef374d39221734a433c9391572d01e85b20a",
+    "file_size_bytes": 590752,
+    "columns": [
+      "symbol",
+      "date",
+      "price"
+    ],
+    "dtypes": {
+      "symbol": "object",
+      "date": "object",
+      "price": "float64"
+    },
+    "n_rows": 26446,
+    "n_unique_symbols": 100,
+    "verified_100_assets": true,
+    "min_date": "2022-01-31",
+    "max_date": "2023-02-17",
+    "n_unique_dates_union": 273,
+    "n_duplicate_symbol_date": 0,
+    "n_nonfinite_prices": 0,
+    "n_nonpositive_prices": 0,
+    "obs_per_symbol": {
+      "min": 209,
+      "max": 267,
+      "median": 265.0,
+      "min_symbols": [
+        "DRE"
+      ],
+      "max_symbols": [
+        "SEGA.L"
+      ],
+      "n_symbols_with_265": 98,
+      "n_symbols_with_267": 1,
+      "n_symbols_with_209": 1
+    },
+    "all_100": {
+      "label": "all_100_official_assets",
+      "symbols": [
+        "ABBV",
+        "ACN",
+        "AEP",
+        "AIZ",
+        "ALLE",
+        "AMAT",
+        "AMP",
+        "AMZN",
+        "AVB",
+        "AVY",
+        "AXP",
+        "BDX",
+        "BF-B",
+        "BMY",
+        "BR",
+        "CARR",
+        "CDW",
+        "CE",
+        "CHTR",
+        "CNC",
+        "CNP",
+        "COP",
+        "CTAS",
+        "CZR",
+        "DG",
+        "DPZ",
+        "DRE",
+        "DXC",
+        "EWA",
+        "EWC",
+        "EWG",
+        "EWH",
+        "EWJ",
+        "EWL",
+        "EWQ",
+        "EWT",
+        "EWU",
+        "EWY",
+        "EWZ",
+        "FTV",
+        "GOOG",
+        "GPC",
+        "GSG",
+        "HIG",
+        "HIGH.L",
+        "HST",
+        "HYG",
+        "IAU",
+        "ICLN",
+        "IEAA.L",
+        "IEF",
+        "IEFM.L",
+        "IEMG",
+        "IEUS",
+        "IEVL.L",
+        "IGF",
+        "INDA",
+        "IUMO.L",
+        "IUVL.L",
+        "IVV",
+        "IWM",
+        "IXN",
+        "JPEA.L",
+        "JPM",
+        "KR",
+        "LQD",
+        "MCHI",
+        "META",
+        "MVEU.L",
+        "OGN",
+        "PG",
+        "PPL",
+        "PRU",
+        "PYPL",
+        "RE",
+        "REET",
+        "ROL",
+        "ROST",
+        "SEGA.L",
+        "SHY",
+        "SLV",
+        "SPMV.L",
+        "TLT",
+        "UNH",
+        "URI",
+        "V",
+        "VRSK",
+        "VXX",
+        "WRK",
+        "XLB",
+        "XLC",
+        "XLE",
+        "XLF",
+        "XLI",
+        "XLK",
+        "XLP",
+        "XLU",
+        "XLV",
+        "XLY",
+        "XOM"
+      ],
+      "n_symbols": 100,
+      "selection_rule": "coverage/completeness only; more observed dates first, alphabetical symbol tie-break. FEASIBILITY SUBSET, not an adopted universe.",
+      "n_union_dates": 273,
+      "n_intersection_dates": 201,
+      "n_common_complete_dates": 201,
+      "n_common_log_returns_successive_intersection": 200,
+      "intersection_min": "2022-01-31",
+      "intersection_max": "2022-11-28",
+      "longest_calendar_consecutive_common": {
+        "n_dates": 5,
+        "start": "2022-01-31",
+        "end": "2022-02-04",
+        "calendar_days": 5
+      },
+      "longest_weekend_tolerant_trading_streak": {
+        "n_dates": 47,
+        "start": "2022-09-20",
+        "end": "2022-11-23",
+        "calendar_span_days": 65
+      },
+      "ge_1500_common_dates": false,
+      "ge_1250_common_dates": false,
+      "ge_1500_common_log_returns": false,
+      "ge_1250_common_log_returns": false
+    },
+    "feasibility_subset_5_greedy_coverage": {
+      "label": "feasibility_subset_5_greedy_coverage",
+      "symbols": [
+        "SEGA.L",
+        "ABBV",
+        "ACN",
+        "AEP",
+        "AIZ"
+      ],
+      "n_symbols": 5,
+      "selection_rule": "coverage/completeness only; more observed dates first, alphabetical symbol tie-break. FEASIBILITY SUBSET, not an adopted universe.",
+      "n_union_dates": 272,
+      "n_intersection_dates": 260,
+      "n_common_complete_dates": 260,
+      "n_common_log_returns_successive_intersection": 259,
+      "intersection_min": "2022-01-31",
+      "intersection_max": "2023-02-17",
+      "longest_calendar_consecutive_common": {
+        "n_dates": 5,
+        "start": "2022-01-31",
+        "end": "2022-02-04",
+        "calendar_days": 5
+      },
+      "longest_weekend_tolerant_trading_streak": {
+        "n_dates": 57,
+        "start": "2022-09-06",
+        "end": "2022-11-23",
+        "calendar_span_days": 79
+      },
+      "ge_1500_common_dates": false,
+      "ge_1250_common_dates": false,
+      "ge_1500_common_log_returns": false,
+      "ge_1250_common_log_returns": false
+    },
+    "feasibility_subset_10_greedy_coverage": {
+      "label": "feasibility_subset_10_greedy_coverage",
+      "symbols": [
+        "SEGA.L",
+        "ABBV",
+        "ACN",
+        "AEP",
+        "AIZ",
+        "ALLE",
+        "AMAT",
+        "AMP",
+        "AMZN",
+        "AVB"
+      ],
+      "n_symbols": 10,
+      "selection_rule": "coverage/completeness only; more observed dates first, alphabetical symbol tie-break. FEASIBILITY SUBSET, not an adopted universe.",
+      "n_union_dates": 272,
+      "n_intersection_dates": 260,
+      "n_common_complete_dates": 260,
+      "n_common_log_returns_successive_intersection": 259,
+      "intersection_min": "2022-01-31",
+      "intersection_max": "2023-02-17",
+      "longest_calendar_consecutive_common": {
+        "n_dates": 5,
+        "start": "2022-01-31",
+        "end": "2022-02-04",
+        "calendar_days": 5
+      },
+      "longest_weekend_tolerant_trading_streak": {
+        "n_dates": 57,
+        "start": "2022-09-06",
+        "end": "2022-11-23",
+        "calendar_span_days": 79
+      },
+      "ge_1500_common_dates": false,
+      "ge_1250_common_dates": false,
+      "ge_1500_common_log_returns": false,
+      "ge_1250_common_log_returns": false
+    },
+    "feasibility_subset_5_greedy_max_intersection": {
+      "label": "feasibility_subset_5_greedy_max_intersection",
+      "symbols": [
+        "SEGA.L",
+        "HIGH.L",
+        "IEAA.L",
+        "IEVL.L",
+        "IUMO.L"
+      ],
+      "n_symbols": 5,
+      "selection_rule": "coverage/completeness only; more observed dates first, alphabetical symbol tie-break. FEASIBILITY SUBSET, not an adopted universe.",
+      "n_union_dates": 267,
+      "n_intersection_dates": 265,
+      "n_common_complete_dates": 265,
+      "n_common_log_returns_successive_intersection": 264,
+      "intersection_min": "2022-01-31",
+      "intersection_max": "2023-02-17",
+      "longest_calendar_consecutive_common": {
+        "n_dates": 5,
+        "start": "2022-01-31",
+        "end": "2022-02-04",
+        "calendar_days": 5
+      },
+      "longest_weekend_tolerant_trading_streak": {
+        "n_dates": 69,
+        "start": "2022-09-20",
+        "end": "2022-12-23",
+        "calendar_span_days": 95
+      },
+      "ge_1500_common_dates": false,
+      "ge_1250_common_dates": false,
+      "ge_1500_common_log_returns": false,
+      "ge_1250_common_log_returns": false
+    },
+    "feasibility_subset_10_greedy_max_intersection": {
+      "label": "feasibility_subset_10_greedy_max_intersection",
+      "symbols": [
+        "SEGA.L",
+        "HIGH.L",
+        "IEAA.L",
+        "IEVL.L",
+        "IUMO.L",
+        "IUVL.L",
+        "JPEA.L",
+        "MVEU.L",
+        "SPMV.L",
+        "IEFM.L"
+      ],
+      "n_symbols": 10,
+      "selection_rule": "coverage/completeness only; more observed dates first, alphabetical symbol tie-break. FEASIBILITY SUBSET, not an adopted universe.",
+      "n_union_dates": 269,
+      "n_intersection_dates": 263,
+      "n_common_complete_dates": 263,
+      "n_common_log_returns_successive_intersection": 262,
+      "intersection_min": "2022-01-31",
+      "intersection_max": "2023-02-17",
+      "longest_calendar_consecutive_common": {
+        "n_dates": 5,
+        "start": "2022-01-31",
+        "end": "2022-02-04",
+        "calendar_days": 5
+      },
+      "longest_weekend_tolerant_trading_streak": {
+        "n_dates": 69,
+        "start": "2022-09-20",
+        "end": "2022-12-23",
+        "calendar_span_days": 95
+      },
+      "ge_1500_common_dates": false,
+      "ge_1250_common_dates": false,
+      "ge_1500_common_log_returns": false,
+      "ge_1250_common_log_returns": false
+    },
+    "missingness_by_symbol": [
+      {
+        "symbol": "ABBV",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "ACN",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "AEP",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "AIZ",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "ALLE",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "AMAT",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "AMP",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "AMZN",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "AVB",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "AVY",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "AXP",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "BDX",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "BF-B",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "BMY",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "BR",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "CARR",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "CDW",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "CE",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "CHTR",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "CNC",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "CNP",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "COP",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "CTAS",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "CZR",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "DG",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "DPZ",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "DRE",
+        "n_obs": 209,
+        "min_date": "2022-01-31",
+        "max_date": "2022-11-28",
+        "n_missing_vs_union": 64,
+        "n_missing_vs_own_minmax_calendar": 93
+      },
+      {
+        "symbol": "DXC",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "EWA",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "EWC",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "EWG",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "EWH",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "EWJ",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "EWL",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "EWQ",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "EWT",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "EWU",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "EWY",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "EWZ",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "FTV",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "GOOG",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "GPC",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "GSG",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "HIG",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "HIGH.L",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "HST",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "HYG",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IAU",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "ICLN",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IEAA.L",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IEF",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IEFM.L",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IEMG",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IEUS",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IEVL.L",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IGF",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "INDA",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IUMO.L",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IUVL.L",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IVV",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IWM",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "IXN",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "JPEA.L",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "JPM",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "KR",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "LQD",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "MCHI",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "META",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "MVEU.L",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "OGN",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "PG",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "PPL",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "PRU",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "PYPL",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "RE",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "REET",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "ROL",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "ROST",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "SEGA.L",
+        "n_obs": 267,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 6,
+        "n_missing_vs_own_minmax_calendar": 116
+      },
+      {
+        "symbol": "SHY",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "SLV",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "SPMV.L",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "TLT",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "UNH",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "URI",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "V",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "VRSK",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "VXX",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "WRK",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "XLB",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "XLC",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "XLE",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "XLF",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "XLI",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "XLK",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "XLP",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "XLU",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "XLV",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "XLY",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      },
+      {
+        "symbol": "XOM",
+        "n_obs": 265,
+        "min_date": "2022-01-31",
+        "max_date": "2023-02-17",
+        "n_missing_vs_union": 8,
+        "n_missing_vs_own_minmax_calendar": 118
+      }
+    ],
+    "log_returns_by_symbol": [
+      {
+        "symbol": "ABBV",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "ACN",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "AEP",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "AIZ",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "ALLE",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "AMAT",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "AMP",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "AMZN",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "AVB",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "AVY",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "AXP",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "BDX",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "BF-B",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "BMY",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "BR",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "CARR",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "CDW",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "CE",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "CHTR",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "CNC",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "CNP",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "COP",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "CTAS",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "CZR",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "DG",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "DPZ",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "DRE",
+        "n_finite_log_returns": 208
+      },
+      {
+        "symbol": "DXC",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "EWA",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "EWC",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "EWG",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "EWH",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "EWJ",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "EWL",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "EWQ",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "EWT",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "EWU",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "EWY",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "EWZ",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "FTV",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "GOOG",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "GPC",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "GSG",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "HIG",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "HIGH.L",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "HST",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "HYG",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IAU",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "ICLN",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IEAA.L",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IEF",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IEFM.L",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IEMG",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IEUS",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IEVL.L",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IGF",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "INDA",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IUMO.L",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IUVL.L",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IVV",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IWM",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "IXN",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "JPEA.L",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "JPM",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "KR",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "LQD",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "MCHI",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "META",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "MVEU.L",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "OGN",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "PG",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "PPL",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "PRU",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "PYPL",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "RE",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "REET",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "ROL",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "ROST",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "SEGA.L",
+        "n_finite_log_returns": 266
+      },
+      {
+        "symbol": "SHY",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "SLV",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "SPMV.L",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "TLT",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "UNH",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "URI",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "V",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "VRSK",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "VXX",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "WRK",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "XLB",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "XLC",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "XLE",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "XLF",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "XLI",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "XLK",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "XLP",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "XLU",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "XLV",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "XLY",
+        "n_finite_log_returns": 264
+      },
+      {
+        "symbol": "XOM",
+        "n_finite_log_returns": 264
+      }
+    ],
+    "complete_all_union_dates": 0,
+    "note_complete_all_union_dates": "No symbol is observed on every union date, so dates complete for all 100 assets equal the 100-asset intersection rather than the union.",
+    "can_support_1500_common_daily_observations": false,
+    "can_support_1250_common_daily_observations": false,
+    "can_form_5_or_10_asset_subset_with_1500_common": false,
+    "models_that_can_consume_daily_return_panel": [
+      "LedoitWolfLinearCovariance",
+      "LedoitWolfNonlinearCovariance",
+      "DCCCovariance",
+      "DCCNonlinearCovariance",
+      "LSTMBEKKCovariance"
+    ],
+    "models_that_cannot_because_rcov_or_rq_absent": [
+      "RandomWalkRealizedCovariance",
+      "EWMARealizedCovariance",
+      "HARDRDRealizedCovariance",
+      "HARQDRDRealizedCovariance",
+      "RidgeDRDRealizedCovariance",
+      "XGBoostDRDRealizedCovariance"
+    ],
+    "outer_product_of_daily_returns_is_not_hf_rcov": true,
+    "date_format_in_csv": "YYYY/MM/DD"
+  },
+  "binance_archive": {
+    "listing_method": "GET official S3 ListBucket on data.binance.vision prefix",
+    "s3_list_endpoint": "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision",
+    "file_base": "https://data.binance.vision/data/spot/monthly/klines/{SYMBOL}/{INTERVAL}/{SYMBOL}-{INTERVAL}-YYYY-MM.zip",
+    "timestamp_documentation": "Official binance-public-data README. Spot timestamps from 2025-01-01 onward are microseconds.",
+    "candidate_set_not_a_frozen_universe": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "BNBUSDT",
+      "XRPUSDT",
+      "ADAUSDT",
+      "LTCUSDT",
+      "BCHUSDT",
+      "XLMUSDT",
+      "TRXUSDT",
+      "ETCUSDT",
+      "LINKUSDT",
+      "EOSUSDT"
+    ],
+    "per_symbol_1m": {
+      "BTCUSDT": {
+        "symbol": "BTCUSDT",
+        "interval": "1m",
+        "n_monthly_zips": 109,
+        "earliest_month": "2017-08",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3318,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 109,
+        "zip_bytes_sum": 232900676,
+        "zip_bytes_mean": 2136703.4495412842,
+        "zip_bytes_median": 2157176.0
+      },
+      "ETHUSDT": {
+        "symbol": "ETHUSDT",
+        "interval": "1m",
+        "n_monthly_zips": 109,
+        "earliest_month": "2017-08",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3318,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 109,
+        "zip_bytes_sum": 216930808,
+        "zip_bytes_mean": 1990190.8990825687,
+        "zip_bytes_median": 2014257.0
+      },
+      "BNBUSDT": {
+        "symbol": "BNBUSDT",
+        "interval": "1m",
+        "n_monthly_zips": 106,
+        "earliest_month": "2017-11",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3226,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 106,
+        "zip_bytes_sum": 183819132,
+        "zip_bytes_mean": 1734142.7547169812,
+        "zip_bytes_median": 1741518.0
+      },
+      "XRPUSDT": {
+        "symbol": "XRPUSDT",
+        "interval": "1m",
+        "n_monthly_zips": 100,
+        "earliest_month": "2018-05",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3045,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 100,
+        "zip_bytes_sum": 172672622,
+        "zip_bytes_mean": 1726726.22,
+        "zip_bytes_median": 1728397.5
+      },
+      "ADAUSDT": {
+        "symbol": "ADAUSDT",
+        "interval": "1m",
+        "n_monthly_zips": 101,
+        "earliest_month": "2018-04",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3075,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 101,
+        "zip_bytes_sum": 166487813,
+        "zip_bytes_mean": 1648394.188118812,
+        "zip_bytes_median": 1642005.0
+      },
+      "LTCUSDT": {
+        "symbol": "LTCUSDT",
+        "interval": "1m",
+        "n_monthly_zips": 105,
+        "earliest_month": "2017-12",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3196,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 105,
+        "zip_bytes_sum": 180119573,
+        "zip_bytes_mean": 1715424.5047619047,
+        "zip_bytes_median": 1697542.0
+      },
+      "BCHUSDT": {
+        "symbol": "BCHUSDT",
+        "interval": "1m",
+        "n_monthly_zips": 82,
+        "earliest_month": "2019-11",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 2496,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 82,
+        "zip_bytes_sum": 124792322,
+        "zip_bytes_mean": 1521857.5853658537,
+        "zip_bytes_median": 1503102.0
+      },
+      "XLMUSDT": {
+        "symbol": "XLMUSDT",
+        "interval": "1m",
+        "n_monthly_zips": 100,
+        "earliest_month": "2018-05",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3045,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 100,
+        "zip_bytes_sum": 144391426,
+        "zip_bytes_mean": 1443914.26,
+        "zip_bytes_median": 1446079.0
+      },
+      "TRXUSDT": {
+        "symbol": "TRXUSDT",
+        "interval": "1m",
+        "n_monthly_zips": 99,
+        "earliest_month": "2018-06",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3014,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 99,
+        "zip_bytes_sum": 164019643,
+        "zip_bytes_mean": 1656764.0707070706,
+        "zip_bytes_median": 1652470.0
+      },
+      "ETCUSDT": {
+        "symbol": "ETCUSDT",
+        "interval": "1m",
+        "n_monthly_zips": 99,
+        "earliest_month": "2018-06",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3014,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 99,
+        "zip_bytes_sum": 140878536,
+        "zip_bytes_mean": 1423015.5151515151,
+        "zip_bytes_median": 1419623.0
+      },
+      "LINKUSDT": {
+        "symbol": "LINKUSDT",
+        "interval": "1m",
+        "n_monthly_zips": 92,
+        "earliest_month": "2019-01",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 2800,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 92,
+        "zip_bytes_sum": 146467850,
+        "zip_bytes_mean": 1592041.847826087,
+        "zip_bytes_median": 1606633.5
+      },
+      "EOSUSDT": {
+        "symbol": "EOSUSDT",
+        "interval": "1m",
+        "n_monthly_zips": 85,
+        "earliest_month": "2018-05",
+        "latest_month": "2025-05",
+        "archive_span_days_inclusive_month_bounds": 2588,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 85,
+        "zip_bytes_sum": 130756903,
+        "zip_bytes_mean": 1538316.505882353,
+        "zip_bytes_median": 1594148.0
+      }
+    },
+    "per_symbol_5m": {
+      "BTCUSDT": {
+        "symbol": "BTCUSDT",
+        "interval": "5m",
+        "n_monthly_zips": 109,
+        "earliest_month": "2017-08",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3318,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 109,
+        "zip_bytes_sum": 49986019,
+        "zip_bytes_mean": 458587.33027522935,
+        "zip_bytes_median": 461718.0
+      },
+      "ETHUSDT": {
+        "symbol": "ETHUSDT",
+        "interval": "5m",
+        "n_monthly_zips": 109,
+        "earliest_month": "2017-08",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3318,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 109,
+        "zip_bytes_sum": 46789314,
+        "zip_bytes_mean": 429259.7614678899,
+        "zip_bytes_median": 431744.0
+      },
+      "BNBUSDT": {
+        "symbol": "BNBUSDT",
+        "interval": "5m",
+        "n_monthly_zips": 106,
+        "earliest_month": "2017-11",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3226,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 106,
+        "zip_bytes_sum": 40494324,
+        "zip_bytes_mean": 382021.92452830187,
+        "zip_bytes_median": 383801.5
+      },
+      "XRPUSDT": {
+        "symbol": "XRPUSDT",
+        "interval": "5m",
+        "n_monthly_zips": 100,
+        "earliest_month": "2018-05",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3045,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 100,
+        "zip_bytes_sum": 37801624,
+        "zip_bytes_mean": 378016.24,
+        "zip_bytes_median": 377841.5
+      },
+      "ADAUSDT": {
+        "symbol": "ADAUSDT",
+        "interval": "5m",
+        "n_monthly_zips": 101,
+        "earliest_month": "2018-04",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3075,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 101,
+        "zip_bytes_sum": 37325795,
+        "zip_bytes_mean": 369562.3267326733,
+        "zip_bytes_median": 367736.0
+      },
+      "LTCUSDT": {
+        "symbol": "LTCUSDT",
+        "interval": "5m",
+        "n_monthly_zips": 105,
+        "earliest_month": "2017-12",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3196,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 105,
+        "zip_bytes_sum": 39762879,
+        "zip_bytes_mean": 378694.0857142857,
+        "zip_bytes_median": 376022.0
+      },
+      "BCHUSDT": {
+        "symbol": "BCHUSDT",
+        "interval": "5m",
+        "n_monthly_zips": 82,
+        "earliest_month": "2019-11",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 2496,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 82,
+        "zip_bytes_sum": 28601695,
+        "zip_bytes_mean": 348801.15853658534,
+        "zip_bytes_median": 342596.0
+      },
+      "XLMUSDT": {
+        "symbol": "XLMUSDT",
+        "interval": "5m",
+        "n_monthly_zips": 100,
+        "earliest_month": "2018-05",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3045,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 100,
+        "zip_bytes_sum": 33560969,
+        "zip_bytes_mean": 335609.69,
+        "zip_bytes_median": 335824.5
+      },
+      "TRXUSDT": {
+        "symbol": "TRXUSDT",
+        "interval": "5m",
+        "n_monthly_zips": 99,
+        "earliest_month": "2018-06",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3014,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 99,
+        "zip_bytes_sum": 36447121,
+        "zip_bytes_mean": 368152.7373737374,
+        "zip_bytes_median": 369572.0
+      },
+      "ETCUSDT": {
+        "symbol": "ETCUSDT",
+        "interval": "5m",
+        "n_monthly_zips": 99,
+        "earliest_month": "2018-06",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 3014,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 99,
+        "zip_bytes_sum": 33750899,
+        "zip_bytes_mean": 340918.17171717173,
+        "zip_bytes_median": 341917.0
+      },
+      "LINKUSDT": {
+        "symbol": "LINKUSDT",
+        "interval": "5m",
+        "n_monthly_zips": 92,
+        "earliest_month": "2019-01",
+        "latest_month": "2026-08",
+        "archive_span_days_inclusive_month_bounds": 2800,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 92,
+        "zip_bytes_sum": 33082155,
+        "zip_bytes_mean": 359588.64130434784,
+        "zip_bytes_median": 361938.5
+      },
+      "EOSUSDT": {
+        "symbol": "EOSUSDT",
+        "interval": "5m",
+        "n_monthly_zips": 85,
+        "earliest_month": "2018-05",
+        "latest_month": "2025-05",
+        "archive_span_days_inclusive_month_bounds": 2588,
+        "archive_span_ge_1500": true,
+        "missing_months_inside_first_last": [],
+        "n_missing_months_inside_first_last": 0,
+        "n_checksum_files": 85,
+        "zip_bytes_sum": 29944362,
+        "zip_bytes_mean": 352286.61176470586,
+        "zip_bytes_median": 361931.0
+      }
+    },
+    "missing_months_1m": {
+      "BTCUSDT": [],
+      "ETHUSDT": [],
+      "BNBUSDT": [],
+      "XRPUSDT": [],
+      "ADAUSDT": [],
+      "LTCUSDT": [],
+      "BCHUSDT": [],
+      "XLMUSDT": [],
+      "TRXUSDT": [],
+      "ETCUSDT": [],
+      "LINKUSDT": [],
+      "EOSUSDT": []
+    },
+    "missing_months_5m": {
+      "BTCUSDT": [],
+      "ETHUSDT": [],
+      "BNBUSDT": [],
+      "XRPUSDT": [],
+      "ADAUSDT": [],
+      "LTCUSDT": [],
+      "BCHUSDT": [],
+      "XLMUSDT": [],
+      "TRXUSDT": [],
+      "ETCUSDT": [],
+      "LINKUSDT": [],
+      "EOSUSDT": []
+    },
+    "all_12_1m": {
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "XRPUSDT",
+        "ADAUSDT",
+        "LTCUSDT",
+        "BCHUSDT",
+        "XLMUSDT",
+        "TRXUSDT",
+        "ETCUSDT",
+        "LINKUSDT",
+        "EOSUSDT"
+      ],
+      "n_symbols": 12,
+      "n_common_months": 67,
+      "common_start": "2019-11",
+      "common_end": "2025-05",
+      "missing_union_inside_common_bounds": [],
+      "longest_consecutive": {
+        "n_months": 67,
+        "start": "2019-11",
+        "end": "2025-05",
+        "calendar_days": 2039,
+        "ge_1500": true
+      },
+      "days_in_all_common_months": 2039,
+      "inclusive_bounds_days": 2039,
+      "archive_span_ge_1500_longest_consecutive": true,
+      "archive_span_ge_1500_inclusive_bounds": true,
+      "note": "Archive-span counts monthly ZIP presence from the official S3 listing. They are not verified usable UTC days after missing-bar filters."
+    },
+    "all_12_5m": {
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "XRPUSDT",
+        "ADAUSDT",
+        "LTCUSDT",
+        "BCHUSDT",
+        "XLMUSDT",
+        "TRXUSDT",
+        "ETCUSDT",
+        "LINKUSDT",
+        "EOSUSDT"
+      ],
+      "n_symbols": 12,
+      "n_common_months": 67,
+      "common_start": "2019-11",
+      "common_end": "2025-05",
+      "missing_union_inside_common_bounds": [],
+      "longest_consecutive": {
+        "n_months": 67,
+        "start": "2019-11",
+        "end": "2025-05",
+        "calendar_days": 2039,
+        "ge_1500": true
+      },
+      "days_in_all_common_months": 2039,
+      "inclusive_bounds_days": 2039,
+      "archive_span_ge_1500_longest_consecutive": true,
+      "archive_span_ge_1500_inclusive_bounds": true,
+      "note": "Archive-span counts monthly ZIP presence from the official S3 listing. They are not verified usable UTC days after missing-bar filters."
+    },
+    "feasibility_subset_5_1m": {
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "LTCUSDT",
+        "ADAUSDT"
+      ],
+      "n_symbols": 5,
+      "n_common_months": 101,
+      "common_start": "2018-04",
+      "common_end": "2026-08",
+      "missing_union_inside_common_bounds": [],
+      "longest_consecutive": {
+        "n_months": 101,
+        "start": "2018-04",
+        "end": "2026-08",
+        "calendar_days": 3075,
+        "ge_1500": true
+      },
+      "days_in_all_common_months": 3075,
+      "inclusive_bounds_days": 3075,
+      "archive_span_ge_1500_longest_consecutive": true,
+      "archive_span_ge_1500_inclusive_bounds": true,
+      "note": "Archive-span counts monthly ZIP presence from the official S3 listing. They are not verified usable UTC days after missing-bar filters."
+    },
+    "feasibility_subset_5_5m": {
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "LTCUSDT",
+        "ADAUSDT"
+      ],
+      "n_symbols": 5,
+      "n_common_months": 101,
+      "common_start": "2018-04",
+      "common_end": "2026-08",
+      "missing_union_inside_common_bounds": [],
+      "longest_consecutive": {
+        "n_months": 101,
+        "start": "2018-04",
+        "end": "2026-08",
+        "calendar_days": 3075,
+        "ge_1500": true
+      },
+      "days_in_all_common_months": 3075,
+      "inclusive_bounds_days": 3075,
+      "archive_span_ge_1500_longest_consecutive": true,
+      "archive_span_ge_1500_inclusive_bounds": true,
+      "note": "Archive-span counts monthly ZIP presence from the official S3 listing. They are not verified usable UTC days after missing-bar filters."
+    },
+    "feasibility_subset_10_1m": {
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "LTCUSDT",
+        "ADAUSDT",
+        "XRPUSDT",
+        "XLMUSDT",
+        "TRXUSDT",
+        "ETCUSDT",
+        "LINKUSDT"
+      ],
+      "n_symbols": 10,
+      "n_common_months": 92,
+      "common_start": "2019-01",
+      "common_end": "2026-08",
+      "missing_union_inside_common_bounds": [],
+      "longest_consecutive": {
+        "n_months": 92,
+        "start": "2019-01",
+        "end": "2026-08",
+        "calendar_days": 2800,
+        "ge_1500": true
+      },
+      "days_in_all_common_months": 2800,
+      "inclusive_bounds_days": 2800,
+      "archive_span_ge_1500_longest_consecutive": true,
+      "archive_span_ge_1500_inclusive_bounds": true,
+      "note": "Archive-span counts monthly ZIP presence from the official S3 listing. They are not verified usable UTC days after missing-bar filters."
+    },
+    "feasibility_subset_10_5m": {
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "LTCUSDT",
+        "ADAUSDT",
+        "XRPUSDT",
+        "XLMUSDT",
+        "TRXUSDT",
+        "ETCUSDT",
+        "LINKUSDT"
+      ],
+      "n_symbols": 10,
+      "n_common_months": 92,
+      "common_start": "2019-01",
+      "common_end": "2026-08",
+      "missing_union_inside_common_bounds": [],
+      "longest_consecutive": {
+        "n_months": 92,
+        "start": "2019-01",
+        "end": "2026-08",
+        "calendar_days": 2800,
+        "ge_1500": true
+      },
+      "days_in_all_common_months": 2800,
+      "inclusive_bounds_days": 2800,
+      "archive_span_ge_1500_longest_consecutive": true,
+      "archive_span_ge_1500_inclusive_bounds": true,
+      "note": "Archive-span counts monthly ZIP presence from the official S3 listing. They are not verified usable UTC days after missing-bar filters."
+    },
+    "earliest_listed_5_1m": {
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "LTCUSDT",
+        "ADAUSDT"
+      ],
+      "n_symbols": 5,
+      "n_common_months": 101,
+      "common_start": "2018-04",
+      "common_end": "2026-08",
+      "missing_union_inside_common_bounds": [],
+      "longest_consecutive": {
+        "n_months": 101,
+        "start": "2018-04",
+        "end": "2026-08",
+        "calendar_days": 3075,
+        "ge_1500": true
+      },
+      "days_in_all_common_months": 3075,
+      "inclusive_bounds_days": 3075,
+      "archive_span_ge_1500_longest_consecutive": true,
+      "archive_span_ge_1500_inclusive_bounds": true,
+      "note": "Archive-span counts monthly ZIP presence from the official S3 listing. They are not verified usable UTC days after missing-bar filters."
+    },
+    "earliest_listed_10_1m": {
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "LTCUSDT",
+        "ADAUSDT",
+        "EOSUSDT",
+        "XLMUSDT",
+        "XRPUSDT",
+        "ETCUSDT",
+        "TRXUSDT"
+      ],
+      "n_symbols": 10,
+      "n_common_months": 84,
+      "common_start": "2018-06",
+      "common_end": "2025-05",
+      "missing_union_inside_common_bounds": [],
+      "longest_consecutive": {
+        "n_months": 84,
+        "start": "2018-06",
+        "end": "2025-05",
+        "calendar_days": 2557,
+        "ge_1500": true
+      },
+      "days_in_all_common_months": 2557,
+      "inclusive_bounds_days": 2557,
+      "archive_span_ge_1500_longest_consecutive": true,
+      "archive_span_ge_1500_inclusive_bounds": true,
+      "note": "Archive-span counts monthly ZIP presence from the official S3 listing. They are not verified usable UTC days after missing-bar filters."
+    },
+    "binary_search_head_was_not_used_as_source_of_truth": true,
+    "binary_search_note": "An initial bounded HEAD binary search misstated some first/last months when archives are gappy. Official S3 listings replace those HEAD endpoints."
+  },
+  "binance_sample_downloads": [
+    {
+      "symbol": "BTCUSDT",
+      "interval": "1m",
+      "month": "2025-02",
+      "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-02.zip",
+      "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/1m/BTCUSDT-1m-2025-02.zip.CHECKSUM",
+      "zip_path": "data/cache/open_data/binance/BTCUSDT-1m-2025-02.zip",
+      "zip_bytes": 1993970,
+      "sha256_zip": "26b3795072983a66bdbe8327e0d5e71069bdd5ca831d4da3850ba68ef7a991ef",
+      "checksum_text": "26b3795072983a66bdbe8327e0d5e71069bdd5ca831d4da3850ba68ef7a991ef  BTCUSDT-1m-2025-02.zip",
+      "checksum_verified": true,
+      "checksum_error": null
+    },
+    {
+      "symbol": "BTCUSDT",
+      "interval": "5m",
+      "month": "2025-02",
+      "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-02.zip",
+      "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-02.zip.CHECKSUM",
+      "zip_path": "data/cache/open_data/binance/BTCUSDT-5m-2025-02.zip",
+      "zip_bytes": 428947,
+      "sha256_zip": "a4859a5b4ad31f41f3ffad1d9a044154ff529c41983b76432ef3f10981b32415",
+      "checksum_text": "a4859a5b4ad31f41f3ffad1d9a044154ff529c41983b76432ef3f10981b32415  BTCUSDT-5m-2025-02.zip",
+      "checksum_verified": true,
+      "checksum_error": null
+    },
+    {
+      "symbol": "ETHUSDT",
+      "interval": "1m",
+      "month": "2025-02",
+      "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-02.zip",
+      "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-02.zip.CHECKSUM",
+      "zip_path": "data/cache/open_data/binance/ETHUSDT-1m-2025-02.zip",
+      "zip_bytes": 1930330,
+      "sha256_zip": "5ec2fb4e87e29241745ee7e9449fb86f4f44bad96508a80a1af0e308d73c6f5a",
+      "checksum_text": "5ec2fb4e87e29241745ee7e9449fb86f4f44bad96508a80a1af0e308d73c6f5a  ETHUSDT-1m-2025-02.zip",
+      "checksum_verified": true,
+      "checksum_error": null
+    },
+    {
+      "symbol": "ETHUSDT",
+      "interval": "5m",
+      "month": "2025-02",
+      "zip_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/5m/ETHUSDT-5m-2025-02.zip",
+      "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/ETHUSDT/5m/ETHUSDT-5m-2025-02.zip.CHECKSUM",
+      "zip_path": "data/cache/open_data/binance/ETHUSDT-5m-2025-02.zip",
+      "zip_bytes": 411687,
+      "sha256_zip": "c68b0d0e7c09715d072e4bb2fa0645db45fbe7fb864c4f5931856be1a9902e18",
+      "checksum_text": "c68b0d0e7c09715d072e4bb2fa0645db45fbe7fb864c4f5931856be1a9902e18  ETHUSDT-5m-2025-02.zip",
+      "checksum_verified": true,
+      "checksum_error": null
+    },
+    {
+      "symbol": "BNBUSDT",
+      "interval": "1m",
+      "month": "2025-02",
+      "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-02.zip",
+      "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/1m/BNBUSDT-1m-2025-02.zip.CHECKSUM",
+      "zip_path": "data/cache/open_data/binance/BNBUSDT-1m-2025-02.zip",
+      "zip_bytes": 1718092,
+      "sha256_zip": "57a5659e7f9662f5962288f95ecb730a739d51fcfa3ed15ce13715dfdc156ce8",
+      "checksum_text": "57a5659e7f9662f5962288f95ecb730a739d51fcfa3ed15ce13715dfdc156ce8  BNBUSDT-1m-2025-02.zip",
+      "checksum_verified": true,
+      "checksum_error": null
+    },
+    {
+      "symbol": "BNBUSDT",
+      "interval": "5m",
+      "month": "2025-02",
+      "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/5m/BNBUSDT-5m-2025-02.zip",
+      "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BNBUSDT/5m/BNBUSDT-5m-2025-02.zip.CHECKSUM",
+      "zip_path": "data/cache/open_data/binance/BNBUSDT-5m-2025-02.zip",
+      "zip_bytes": 370748,
+      "sha256_zip": "302bfeffc24572350b8c92909b66eb65e2d4ce8425e2c78219b7cbe00194a508",
+      "checksum_text": "302bfeffc24572350b8c92909b66eb65e2d4ce8425e2c78219b7cbe00194a508  BNBUSDT-5m-2025-02.zip",
+      "checksum_verified": true,
+      "checksum_error": null
+    },
+    {
+      "symbol": "BTCUSDT",
+      "interval": "5m",
+      "month": "2024-12",
+      "zip_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2024-12.zip",
+      "checksum_url": "https://data.binance.vision/data/spot/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2024-12.zip.CHECKSUM",
+      "zip_path": "data/cache/open_data/binance/BTCUSDT-5m-2024-12.zip",
+      "zip_bytes": 474874,
+      "sha256_zip": "0a2f70744f9244a066ab4ced934a725d85b247e917cfe22ada218435c1573301",
+      "checksum_text": "0a2f70744f9244a066ab4ced934a725d85b247e917cfe22ada218435c1573301  BTCUSDT-5m-2024-12.zip",
+      "checksum_verified": true,
+      "checksum_error": null
+    }
+  ],
+  "binance_sample_diagnostics": [
+    {
+      "symbol": "BTCUSDT",
+      "interval": "1m",
+      "month": "2025-02",
+      "zip_members": [
+        "BTCUSDT-1m-2025-02.csv"
+      ],
+      "uncompressed_csv_bytes": 6306224,
+      "n_rows": 40320,
+      "inferred_timestamp_unit": "microseconds",
+      "timestamp_min_raw": 1738368000000000,
+      "timestamp_max_raw": 1740787140000000,
+      "timestamp_min_utc": "2025-02-01T00:00:00+00:00",
+      "timestamp_max_utc": "2025-02-28T23:59:00+00:00",
+      "expected_bars_per_utc_day": 1440,
+      "n_days_in_month": 28,
+      "expected_bars_in_month_if_complete": 40320,
+      "n_duplicate_open_times": 0,
+      "n_nonmonotone_open_times": 0,
+      "n_nonfinite_ohlc": 0,
+      "n_nonpositive_ohlc": 0,
+      "n_finite_log_close": 40320,
+      "n_utc_days_present": 28,
+      "n_complete_utc_days": 28,
+      "n_days_starting_utc_midnight": 28,
+      "n_days_ending_last_bar": 28,
+      "utc_boundaries_clean": true,
+      "close_min": 78362.36,
+      "close_max": 102778.0,
+      "volume_zero_rows": 0,
+      "zip_bytes": 1993970,
+      "per_day_summary_n": 28
+    },
+    {
+      "symbol": "BTCUSDT",
+      "interval": "5m",
+      "month": "2025-02",
+      "zip_members": [
+        "BTCUSDT-5m-2025-02.csv"
+      ],
+      "uncompressed_csv_bytes": 1291183,
+      "n_rows": 8064,
+      "inferred_timestamp_unit": "microseconds",
+      "timestamp_min_raw": 1738368000000000,
+      "timestamp_max_raw": 1740786900000000,
+      "timestamp_min_utc": "2025-02-01T00:00:00+00:00",
+      "timestamp_max_utc": "2025-02-28T23:55:00+00:00",
+      "expected_bars_per_utc_day": 288,
+      "n_days_in_month": 28,
+      "expected_bars_in_month_if_complete": 8064,
+      "n_duplicate_open_times": 0,
+      "n_nonmonotone_open_times": 0,
+      "n_nonfinite_ohlc": 0,
+      "n_nonpositive_ohlc": 0,
+      "n_finite_log_close": 8064,
+      "n_utc_days_present": 28,
+      "n_complete_utc_days": 28,
+      "n_days_starting_utc_midnight": 28,
+      "n_days_ending_last_bar": 28,
+      "utc_boundaries_clean": true,
+      "close_min": 78487.01,
+      "close_max": 102778.0,
+      "volume_zero_rows": 0,
+      "zip_bytes": 428947,
+      "per_day_summary_n": 28
+    },
+    {
+      "symbol": "ETHUSDT",
+      "interval": "1m",
+      "month": "2025-02",
+      "zip_members": [
+        "ETHUSDT-1m-2025-02.csv"
+      ],
+      "uncompressed_csv_bytes": 6237209,
+      "n_rows": 40320,
+      "inferred_timestamp_unit": "microseconds",
+      "timestamp_min_raw": 1738368000000000,
+      "timestamp_max_raw": 1740787140000000,
+      "timestamp_min_utc": "2025-02-01T00:00:00+00:00",
+      "timestamp_max_utc": "2025-02-28T23:59:00+00:00",
+      "expected_bars_per_utc_day": 1440,
+      "n_days_in_month": 28,
+      "expected_bars_in_month_if_complete": 40320,
+      "n_duplicate_open_times": 0,
+      "n_nonmonotone_open_times": 0,
+      "n_nonfinite_ohlc": 0,
+      "n_nonpositive_ohlc": 0,
+      "n_finite_log_close": 40320,
+      "n_utc_days_present": 28,
+      "n_complete_utc_days": 28,
+      "n_days_starting_utc_midnight": 28,
+      "n_days_ending_last_bar": 28,
+      "utc_boundaries_clean": true,
+      "close_min": 2076.88,
+      "close_max": 3330.47,
+      "volume_zero_rows": 0,
+      "zip_bytes": 1930330,
+      "per_day_summary_n": 28
+    },
+    {
+      "symbol": "ETHUSDT",
+      "interval": "5m",
+      "month": "2025-02",
+      "zip_members": [
+        "ETHUSDT-5m-2025-02.csv"
+      ],
+      "uncompressed_csv_bytes": 1277468,
+      "n_rows": 8064,
+      "inferred_timestamp_unit": "microseconds",
+      "timestamp_min_raw": 1738368000000000,
+      "timestamp_max_raw": 1740786900000000,
+      "timestamp_min_utc": "2025-02-01T00:00:00+00:00",
+      "timestamp_max_utc": "2025-02-28T23:55:00+00:00",
+      "expected_bars_per_utc_day": 288,
+      "n_days_in_month": 28,
+      "expected_bars_in_month_if_complete": 8064,
+      "n_duplicate_open_times": 0,
+      "n_nonmonotone_open_times": 0,
+      "n_nonfinite_ohlc": 0,
+      "n_nonpositive_ohlc": 0,
+      "n_finite_log_close": 8064,
+      "n_utc_days_present": 28,
+      "n_complete_utc_days": 28,
+      "n_days_starting_utc_midnight": 28,
+      "n_days_ending_last_bar": 28,
+      "utc_boundaries_clean": true,
+      "close_min": 2084.84,
+      "close_max": 3328.19,
+      "volume_zero_rows": 0,
+      "zip_bytes": 411687,
+      "per_day_summary_n": 28
+    },
+    {
+      "symbol": "BNBUSDT",
+      "interval": "1m",
+      "month": "2025-02",
+      "zip_members": [
+        "BNBUSDT-1m-2025-02.csv"
+      ],
+      "uncompressed_csv_bytes": 5972370,
+      "n_rows": 40320,
+      "inferred_timestamp_unit": "microseconds",
+      "timestamp_min_raw": 1738368000000000,
+      "timestamp_max_raw": 1740787140000000,
+      "timestamp_min_utc": "2025-02-01T00:00:00+00:00",
+      "timestamp_max_utc": "2025-02-28T23:59:00+00:00",
+      "expected_bars_per_utc_day": 1440,
+      "n_days_in_month": 28,
+      "expected_bars_in_month_if_complete": 40320,
+      "n_duplicate_open_times": 0,
+      "n_nonmonotone_open_times": 0,
+      "n_nonfinite_ohlc": 0,
+      "n_nonpositive_ohlc": 0,
+      "n_finite_log_close": 40320,
+      "n_utc_days_present": 28,
+      "n_complete_utc_days": 28,
+      "n_days_starting_utc_midnight": 28,
+      "n_days_ending_last_bar": 28,
+      "utc_boundaries_clean": true,
+      "close_min": 505.07,
+      "close_max": 731.08,
+      "volume_zero_rows": 0,
+      "zip_bytes": 1718092,
+      "per_day_summary_n": 28
+    },
+    {
+      "symbol": "BNBUSDT",
+      "interval": "5m",
+      "month": "2025-02",
+      "zip_members": [
+        "BNBUSDT-5m-2025-02.csv"
+      ],
+      "uncompressed_csv_bytes": 1226043,
+      "n_rows": 8064,
+      "inferred_timestamp_unit": "microseconds",
+      "timestamp_min_raw": 1738368000000000,
+      "timestamp_max_raw": 1740786900000000,
+      "timestamp_min_utc": "2025-02-01T00:00:00+00:00",
+      "timestamp_max_utc": "2025-02-28T23:55:00+00:00",
+      "expected_bars_per_utc_day": 288,
+      "n_days_in_month": 28,
+      "expected_bars_in_month_if_complete": 8064,
+      "n_duplicate_open_times": 0,
+      "n_nonmonotone_open_times": 0,
+      "n_nonfinite_ohlc": 0,
+      "n_nonpositive_ohlc": 0,
+      "n_finite_log_close": 8064,
+      "n_utc_days_present": 28,
+      "n_complete_utc_days": 28,
+      "n_days_starting_utc_midnight": 28,
+      "n_days_ending_last_bar": 28,
+      "utc_boundaries_clean": true,
+      "close_min": 522.94,
+      "close_max": 730.83,
+      "volume_zero_rows": 0,
+      "zip_bytes": 370748,
+      "per_day_summary_n": 28
+    },
+    {
+      "symbol": "BTCUSDT",
+      "interval": "5m",
+      "month": "2024-12",
+      "zip_members": [
+        "BTCUSDT-5m-2024-12.csv"
+      ],
+      "uncompressed_csv_bytes": 1389778,
+      "n_rows": 8928,
+      "inferred_timestamp_unit": "milliseconds",
+      "timestamp_min_raw": 1733011200000,
+      "timestamp_max_raw": 1735689300000,
+      "timestamp_min_utc": "2024-12-01T00:00:00+00:00",
+      "timestamp_max_utc": "2024-12-31T23:55:00+00:00",
+      "expected_bars_per_utc_day": 288,
+      "n_days_in_month": 31,
+      "expected_bars_in_month_if_complete": 8928,
+      "n_duplicate_open_times": 0,
+      "n_nonmonotone_open_times": 0,
+      "n_nonfinite_ohlc": 0,
+      "n_nonpositive_ohlc": 0,
+      "n_finite_log_close": 8928,
+      "n_utc_days_present": 31,
+      "n_complete_utc_days": 31,
+      "n_days_starting_utc_midnight": 31,
+      "n_days_ending_last_bar": 31,
+      "utc_boundaries_clean": true,
+      "close_min": 91613.28,
+      "close_max": 108258.39,
+      "volume_zero_rows": 0,
+      "zip_bytes": 474874,
+      "per_day_summary_n": 31
+    }
+  ],
+  "binance_sample_per_day": {
+    "BTCUSDT_1m_2025-02": [
+      {
+        "utc_date": "2025-02-01",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-02",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-03",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-04",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-05",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-06",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-07",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-08",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-09",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-10",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-11",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-12",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-13",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-14",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-15",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-16",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-17",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-18",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-19",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-20",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-21",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-22",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-23",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-24",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-25",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-26",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-27",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-28",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      }
+    ],
+    "BTCUSDT_5m_2025-02": [
+      {
+        "utc_date": "2025-02-01",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-02",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-03",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-04",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-05",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-06",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-07",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-08",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-09",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-10",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-11",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-12",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-13",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-14",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-15",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-16",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-17",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-18",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-19",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-20",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-21",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-22",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-23",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-24",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-25",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-26",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-27",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-28",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      }
+    ],
+    "ETHUSDT_1m_2025-02": [
+      {
+        "utc_date": "2025-02-01",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-02",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-03",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-04",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-05",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-06",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-07",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-08",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-09",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-10",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-11",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-12",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-13",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-14",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-15",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-16",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-17",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-18",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-19",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-20",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-21",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-22",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-23",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-24",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-25",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-26",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-27",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-28",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      }
+    ],
+    "ETHUSDT_5m_2025-02": [
+      {
+        "utc_date": "2025-02-01",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-02",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-03",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-04",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-05",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-06",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-07",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-08",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-09",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-10",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-11",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-12",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-13",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-14",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-15",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-16",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-17",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-18",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-19",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-20",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-21",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-22",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-23",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-24",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-25",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-26",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-27",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-28",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      }
+    ],
+    "BNBUSDT_1m_2025-02": [
+      {
+        "utc_date": "2025-02-01",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-02",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-03",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-04",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-05",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-06",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-07",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-08",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-09",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-10",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-11",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-12",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-13",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-14",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-15",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-16",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-17",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-18",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-19",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-20",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-21",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-22",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-23",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-24",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-25",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-26",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-27",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-28",
+        "n_bars": 1440,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      }
+    ],
+    "BNBUSDT_5m_2025-02": [
+      {
+        "utc_date": "2025-02-01",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-02",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-03",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-04",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-05",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-06",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-07",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-08",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-09",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-10",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-11",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-12",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-13",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-14",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-15",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-16",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-17",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-18",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-19",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-20",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-21",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-22",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-23",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-24",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-25",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-26",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-27",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2025-02-28",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      }
+    ],
+    "BTCUSDT_5m_2024-12": [
+      {
+        "utc_date": "2024-12-01",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-02",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-03",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-04",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-05",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-06",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-07",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-08",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-09",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-10",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-11",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-12",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-13",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-14",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-15",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-16",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-17",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-18",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-19",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-20",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-21",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-22",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-23",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-24",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-25",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-26",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-27",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-28",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-29",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-30",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      },
+      {
+        "utc_date": "2024-12-31",
+        "n_bars": 288,
+        "n_missing_vs_1440_or_288": 0,
+        "n_missing_vs_regular_utc_grid": 0,
+        "starts_at_utc_midnight": true,
+        "ends_at_last_bar": true,
+        "complete": true
+      }
+    ]
+  },
+  "binance_1m_vs_5m_close_diagnostic": [
+    {
+      "symbol": "BTCUSDT",
+      "month": "2025-02",
+      "timestamp_unit_1m": "microseconds",
+      "timestamp_unit_5m": "microseconds",
+      "n_1m": 40320,
+      "n_5m": 8064,
+      "n_1m_opens_on_5m_grid": 8064,
+      "n_5m_opens": 8064,
+      "n_5m_opens_missing_from_1m_grid": 0,
+      "n_1m_grid_opens_missing_from_5m": 0,
+      "n_5m_rows_with_matching_1m_plus_4m": 8064,
+      "n_compared": 8064,
+      "n_exact_close_equal": 8064,
+      "n_close_atol_1e12": 8064,
+      "n_close_disagree": 0,
+      "max_abs_close_diff": 0.0,
+      "note": "Diagnostic only. A 5m kline close is compared to the 1m close of the bar that opens four minutes after the 5m open. This is not a production estimator."
+    },
+    {
+      "symbol": "ETHUSDT",
+      "month": "2025-02",
+      "timestamp_unit_1m": "microseconds",
+      "timestamp_unit_5m": "microseconds",
+      "n_1m": 40320,
+      "n_5m": 8064,
+      "n_1m_opens_on_5m_grid": 8064,
+      "n_5m_opens": 8064,
+      "n_5m_opens_missing_from_1m_grid": 0,
+      "n_1m_grid_opens_missing_from_5m": 0,
+      "n_5m_rows_with_matching_1m_plus_4m": 8064,
+      "n_compared": 8064,
+      "n_exact_close_equal": 8064,
+      "n_close_atol_1e12": 8064,
+      "n_close_disagree": 0,
+      "max_abs_close_diff": 0.0,
+      "note": "Diagnostic only. A 5m kline close is compared to the 1m close of the bar that opens four minutes after the 5m open. This is not a production estimator."
+    },
+    {
+      "symbol": "BNBUSDT",
+      "month": "2025-02",
+      "timestamp_unit_1m": "microseconds",
+      "timestamp_unit_5m": "microseconds",
+      "n_1m": 40320,
+      "n_5m": 8064,
+      "n_1m_opens_on_5m_grid": 8064,
+      "n_5m_opens": 8064,
+      "n_5m_opens_missing_from_1m_grid": 0,
+      "n_1m_grid_opens_missing_from_5m": 0,
+      "n_5m_rows_with_matching_1m_plus_4m": 8064,
+      "n_compared": 8064,
+      "n_exact_close_equal": 8064,
+      "n_close_atol_1e12": 8064,
+      "n_close_disagree": 0,
+      "max_abs_close_diff": 0.0,
+      "note": "Diagnostic only. A 5m kline close is compared to the 1m close of the bar that opens four minutes after the 5m open. This is not a production estimator."
+    }
+  ],
+  "binance_synchronized_log_close_diagnostic": {
+    "month": "2025-02",
+    "symbols": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "BNBUSDT"
+    ],
+    "timestamp_units": {
+      "BTCUSDT": "microseconds",
+      "ETHUSDT": "microseconds",
+      "BNBUSDT": "microseconds"
+    },
+    "n_synchronized_1m_log_close_rows": 40320,
+    "n_rows_with_any_nonfinite": 0,
+    "first_ts": "2025-02-01T00:00:00+00:00",
+    "last_ts": "2025-02-28T23:59:00+00:00",
+    "note": "Diagnostic only. Synchronized 1m kline log closes are not the equity TAQ midquote previous-tick estimator and are not a production RCov panel."
+  },
+  "storage_estimates": {
+    "five_assets_1500_days_1m": {
+      "n_assets": 5,
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "LTCUSDT",
+        "ADAUSDT"
+      ],
+      "target_days": 1500,
+      "window_start": "2022-07",
+      "window_end": "2026-08",
+      "interval": "1m",
+      "window_calendar_days": 1523,
+      "scaled_from_window_to_target_days": true,
+      "compressed_zip_bytes_in_window": 458457455,
+      "compressed_zip_bytes_estimate": 451533935,
+      "compressed_zip_mib": 430.616,
+      "sample_uncompressed_to_zip_ratio_mean": 3.28999122259183,
+      "parsed_csv_bytes_estimate": 1485542683,
+      "parsed_csv_mib": 1416.724,
+      "rows_per_asset_if_complete_1m": 2160000,
+      "total_rows_if_complete_1m": 10800000,
+      "rows_per_asset_if_complete_5m": 432000,
+      "total_rows_if_complete_5m": 2160000,
+      "expected_synchronized_1m_observations_per_utc_day": 1440,
+      "expected_five_minute_returns_per_utc_day_including_midnight_cross": 288,
+      "expected_five_minute_returns_per_utc_day_within_day_only": 287,
+      "expected_1m_bars_per_complete_utc_day": 1440,
+      "expected_5m_bars_per_complete_utc_day": 288,
+      "basis": "Official S3 listing Size fields on monthly ZIP objects. Not a bulk download."
+    },
+    "ten_assets_1500_days_1m": {
+      "n_assets": 10,
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "LTCUSDT",
+        "ADAUSDT",
+        "XRPUSDT",
+        "XLMUSDT",
+        "TRXUSDT",
+        "ETCUSDT",
+        "LINKUSDT"
+      ],
+      "target_days": 1500,
+      "window_start": "2022-07",
+      "window_end": "2026-08",
+      "interval": "1m",
+      "window_calendar_days": 1523,
+      "scaled_from_window_to_target_days": true,
+      "compressed_zip_bytes_in_window": 833889174,
+      "compressed_zip_bytes_estimate": 821295969,
+      "compressed_zip_mib": 783.249,
+      "sample_uncompressed_to_zip_ratio_mean": 3.28999122259183,
+      "parsed_csv_bytes_estimate": 2702056529,
+      "parsed_csv_mib": 2576.882,
+      "rows_per_asset_if_complete_1m": 2160000,
+      "total_rows_if_complete_1m": 21600000,
+      "rows_per_asset_if_complete_5m": 432000,
+      "total_rows_if_complete_5m": 4320000,
+      "expected_synchronized_1m_observations_per_utc_day": 1440,
+      "expected_five_minute_returns_per_utc_day_including_midnight_cross": 288,
+      "expected_five_minute_returns_per_utc_day_within_day_only": 287,
+      "expected_1m_bars_per_complete_utc_day": 1440,
+      "expected_5m_bars_per_complete_utc_day": 288,
+      "basis": "Official S3 listing Size fields on monthly ZIP objects. Not a bulk download."
+    },
+    "ten_assets_1500_days_5m": {
+      "n_assets": 10,
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "LTCUSDT",
+        "ADAUSDT",
+        "XRPUSDT",
+        "XLMUSDT",
+        "TRXUSDT",
+        "ETCUSDT",
+        "LINKUSDT"
+      ],
+      "target_days": 1500,
+      "window_start": "2022-07",
+      "window_end": "2026-08",
+      "interval": "5m",
+      "window_calendar_days": 1523,
+      "scaled_from_window_to_target_days": true,
+      "compressed_zip_bytes_in_window": 185468371,
+      "compressed_zip_bytes_estimate": 182667470,
+      "compressed_zip_mib": 174.205,
+      "sample_uncompressed_to_zip_ratio_mean": 3.086674854158947,
+      "parsed_csv_bytes_estimate": 563835086,
+      "parsed_csv_mib": 537.715,
+      "rows_per_asset_if_complete_1m": 2160000,
+      "total_rows_if_complete_1m": 21600000,
+      "rows_per_asset_if_complete_5m": 432000,
+      "total_rows_if_complete_5m": 4320000,
+      "expected_synchronized_1m_observations_per_utc_day": 1440,
+      "expected_five_minute_returns_per_utc_day_including_midnight_cross": 288,
+      "expected_five_minute_returns_per_utc_day_within_day_only": 287,
+      "expected_1m_bars_per_complete_utc_day": 1440,
+      "expected_5m_bars_per_complete_utc_day": 288,
+      "basis": "Official S3 listing Size fields on monthly ZIP objects. Not a bulk download."
+    }
+  },
+  "grid_verification": {
+    "intended_1m_bars_per_complete_utc_day": 1440,
+    "intended_5m_bars_per_complete_utc_day": 288,
+    "sample_month": "2025-02",
+    "sample_days_in_month": 28,
+    "observed_complete_1m_days_by_symbol": {
+      "BTCUSDT": 28,
+      "ETHUSDT": 28,
+      "BNBUSDT": 28
+    },
+    "observed_complete_5m_days_by_symbol": {
+      "BTCUSDT": 28,
+      "ETHUSDT": 28,
+      "BNBUSDT": 28
+    },
+    "verified_on_complete_sample_days": true,
+    "verified_across_1500_days": false
+  },
+  "feasibility_conclusions": {
+    "m6_can_support_daily_return_auxiliary_at_1500_or_1250": false,
+    "m6_can_support_short_daily_return_auxiliary": true,
+    "binance_archive_span_5_assets_ge_1500_1m": true,
+    "binance_archive_span_10_assets_ge_1500_1m": true,
+    "binance_usable_1500_utc_days_verified": false,
+    "binance_is_distinct_from_equity_taq_path": true
+  },
+  "prior_head_probes": {
+    "note": "A bounded HEAD binary search was issued first against data.binance.vision monthly ZIP URLs. First and last months from that search are not the source of truth because holes invalidate binary search. Official S3 listings replace those endpoints.",
+    "n_head_requests_initial": 335,
+    "follow_up_head_checks_included_btc_1m_2017_08_through_2019_11": true
+  }
+}
