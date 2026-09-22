@@ -55,9 +55,11 @@ A Binance statistical day $t$ is the UTC interval $`[00:00:00,\ 24:00:00)`$. Rea
 
 For retained date $t$, 288 non-overlapping five-minute log returns use the prior-day 23:59 close, then 00:04 through 23:59. The previous UTC day need not itself be a retained statistical day. Missing required endpoints are rejected. There is no forward fill. The unscaled realized covariance is the Gram matrix of those 288 return vectors. Per-asset realized quarticity is
 
-$`\mathrm{RQ}_{i,t}
+```math
+\mathrm{RQ}_{i,t}
 =
-\frac{M}{3}\sum_{j=1}^{288} r_{i,t,j}^{4}`$
+\frac{M}{3}\sum_{j=1}^{288} r_{i,t,j}^{4}
+```
 
 with $M=288$. No annualization, winsorization, clipping, or standardization is applied.
 
