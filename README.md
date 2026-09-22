@@ -10,7 +10,7 @@ Implementation status is in [`docs/PROJECT_STATE.md`](docs/PROJECT_STATE.md). Mo
 
 The Binance development period and selection period have been run. Nine of eleven model specifications completed the full 500-day selection period. DCC and DCC-NL failed the frozen admissibility checks and remain in the reported roster. HARQ-DRD was selected as the econometric representative. LSTM-BEKK configuration `LSTM19`, scored as a five-seed equal-weight covariance ensemble, is the current deep-learning representative. Those quantities are interim selection results. They do not establish confirmatory superiority. The 500-day final holdout remains untouched. No confirmatory forecasting, comparison, tuning, or inference has been executed. Broader model, proxy, and economic work remains unfinished.
 
-The long-panel U.S.-equity experiment remains pending because production TAQ access has not yet been established. The one-day 13 February 2009 TAQ extract is a measurement validation panel, not the empirical horse race. LSTM-BEKK-RC, GHAR, and a neural graph covariance model are unimplemented. Global-minimum-variance evaluation is unimplemented. Final `PREREGISTRATION.md` has not been created.
+The long-panel U.S.-equity experiment remains pending because production TAQ access has not yet been established. The one-day 13 February 2009 TAQ extract is a measurement validation panel. LSTM-BEKK-RC, GHAR, and a neural graph covariance model are unimplemented. Global-minimum-variance evaluation is unimplemented. Final `PREREGISTRATION.md` has not been created.
 
 This document describes implemented software, synthetic checks, the executed Binance first-stage, and remaining work. Those layers are not interchangeable.
 
