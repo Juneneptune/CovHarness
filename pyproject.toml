@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "covharness"
 version = "0.1.0"
-description = "Leak-free benchmark for multivariate covariance forecasting"
+description = "Research harness for one-day-ahead multivariate covariance forecasts"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"

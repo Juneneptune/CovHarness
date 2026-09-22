@@ -1,0 +1,554 @@
+branch: binance_open_data_core
+version: '2026-09-21'
+production_panel_sha256: 2b7358107a10f77c3879524e1d9b1389c2c66db4a444af89c2cdf59aa186640a
+assets:
+- BTCUSDT
+- ETHUSDT
+- BNBUSDT
+- LTCUSDT
+- ADAUSDT
+halt_date: '2023-03-24'
+sample_end: '2026-08-25'
+segments:
+  HISTORY_A:
+    start: '2021-11-09'
+    end: '2022-07-16'
+    n_dates: 250
+  VALIDATION:
+    start: '2022-07-17'
+    end: '2023-03-23'
+    n_dates: 250
+  HISTORY_B:
+    start: '2023-03-25'
+    end: '2023-11-29'
+    n_dates: 250
+  SCREEN:
+    start: '2023-11-30'
+    end: '2025-04-12'
+    n_dates: 500
+  CONFIRM:
+    start: '2025-04-13'
+    end: '2026-08-25'
+    n_dates: 500
+m: 250
+refit_cadence: 21
+first_origin_is_refit: true
+block_local_refit_reset: true
+pack_across_halt: false
+roster:
+- RW
+- EWMA
+- HAR-DRD
+- HARQ-DRD
+- LW-linear
+- LW-NL
+- DCC
+- DCC-NL
+- Ridge-DRD
+- XGBoost-DRD
+- LSTM-BEKK
+primary_validation_loss: reduced_qlike
+secondary_validation_loss: squared_frobenius
+secondary_loss_selects: false
+seeds:
+- 0
+- 1
+- 2
+- 3
+- 4
+seed_aggregation: mean_ensemble
+allow_best_seed: false
+tie_rule: lexicographically_smaller_config_id
+candidate_failure_rule: complete_validation_support_required
+confirm_locked: true
+candidates:
+  RW:
+  - id: RW01
+  HAR-DRD:
+  - id: HARDRD01
+  HARQ-DRD:
+  - id: HARQDRD01
+  LW-linear:
+  - id: LWLIN01
+  LW-NL:
+  - id: LWNL01
+  DCC:
+  - id: DCC01
+  DCC-NL:
+  - id: DCCNL01
+  EWMA:
+  - id: EWMA01
+    decay: 0.8
+  - id: EWMA02
+    decay: 0.85
+  - id: EWMA03
+    decay: 0.88
+  - id: EWMA04
+    decay: 0.9
+  - id: EWMA05
+    decay: 0.92
+  - id: EWMA06
+    decay: 0.93
+  - id: EWMA07
+    decay: 0.94
+  - id: EWMA08
+    decay: 0.95
+  - id: EWMA09
+    decay: 0.96
+  - id: EWMA10
+    decay: 0.965
+  - id: EWMA11
+    decay: 0.97
+  - id: EWMA12
+    decay: 0.975
+  - id: EWMA13
+    decay: 0.98
+  - id: EWMA14
+    decay: 0.9825
+  - id: EWMA15
+    decay: 0.985
+  - id: EWMA16
+    decay: 0.9875
+  - id: EWMA17
+    decay: 0.99
+  - id: EWMA18
+    decay: 0.9925
+  - id: EWMA19
+    decay: 0.995
+  - id: EWMA20
+    decay: 0.9975
+  Ridge-DRD:
+  - id: RIDGE01
+    lambda: 0.0
+  - id: RIDGE02
+    lambda: 0.0001
+  - id: RIDGE03
+    lambda: 0.0003
+  - id: RIDGE04
+    lambda: 0.001
+  - id: RIDGE05
+    lambda: 0.003
+  - id: RIDGE06
+    lambda: 0.01
+  - id: RIDGE07
+    lambda: 0.03
+  - id: RIDGE08
+    lambda: 0.1
+  - id: RIDGE09
+    lambda: 0.3
+  - id: RIDGE10
+    lambda: 1.0
+  - id: RIDGE11
+    lambda: 3.0
+  - id: RIDGE12
+    lambda: 10.0
+  - id: RIDGE13
+    lambda: 30.0
+  - id: RIDGE14
+    lambda: 100.0
+  - id: RIDGE15
+    lambda: 300.0
+  - id: RIDGE16
+    lambda: 1000.0
+  - id: RIDGE17
+    lambda: 3000.0
+  - id: RIDGE18
+    lambda: 10000.0
+  - id: RIDGE19
+    lambda: 30000.0
+  - id: RIDGE20
+    lambda: 100000.0
+  XGBoost-DRD:
+    fixed:
+      objective: reg:squarederror
+      booster: gbtree
+      tree_method: hist
+      device: cpu
+      n_jobs: 1
+      subsample: 1
+      colsample_bytree: 1
+      colsample_bylevel: 1
+      colsample_bynode: 1
+      grow_policy: depthwise
+      max_bin: 256
+      base_score: 0
+      random_state: 0
+      early_stopping: false
+    grid:
+    - id: XGB01
+      capacity: C1
+      regularization: R1
+      n_estimators: 50
+      max_depth: 1
+      learning_rate: 0.1
+      min_child_weight: 1
+      reg_lambda: 1
+      reg_alpha: 0
+      gamma: 0
+    - id: XGB02
+      capacity: C1
+      regularization: R2
+      n_estimators: 50
+      max_depth: 1
+      learning_rate: 0.1
+      min_child_weight: 5
+      reg_lambda: 1
+      reg_alpha: 0
+      gamma: 0
+    - id: XGB03
+      capacity: C1
+      regularization: R3
+      n_estimators: 50
+      max_depth: 1
+      learning_rate: 0.1
+      min_child_weight: 1
+      reg_lambda: 10
+      reg_alpha: 0
+      gamma: 0
+    - id: XGB04
+      capacity: C1
+      regularization: R4
+      n_estimators: 50
+      max_depth: 1
+      learning_rate: 0.1
+      min_child_weight: 1
+      reg_lambda: 1
+      reg_alpha: 0.1
+      gamma: 0
+    - id: XGB05
+      capacity: C1
+      regularization: R5
+      n_estimators: 50
+      max_depth: 1
+      learning_rate: 0.1
+      min_child_weight: 1
+      reg_lambda: 1
+      reg_alpha: 0
+      gamma: 0.01
+    - id: XGB06
+      capacity: C2
+      regularization: R1
+      n_estimators: 100
+      max_depth: 2
+      learning_rate: 0.05
+      min_child_weight: 1
+      reg_lambda: 1
+      reg_alpha: 0
+      gamma: 0
+    - id: XGB07
+      capacity: C2
+      regularization: R2
+      n_estimators: 100
+      max_depth: 2
+      learning_rate: 0.05
+      min_child_weight: 5
+      reg_lambda: 1
+      reg_alpha: 0
+      gamma: 0
+    - id: XGB08
+      capacity: C2
+      regularization: R3
+      n_estimators: 100
+      max_depth: 2
+      learning_rate: 0.05
+      min_child_weight: 1
+      reg_lambda: 10
+      reg_alpha: 0
+      gamma: 0
+    - id: XGB09
+      capacity: C2
+      regularization: R4
+      n_estimators: 100
+      max_depth: 2
+      learning_rate: 0.05
+      min_child_weight: 1
+      reg_lambda: 1
+      reg_alpha: 0.1
+      gamma: 0
+    - id: XGB10
+      capacity: C2
+      regularization: R5
+      n_estimators: 100
+      max_depth: 2
+      learning_rate: 0.05
+      min_child_weight: 1
+      reg_lambda: 1
+      reg_alpha: 0
+      gamma: 0.01
+    - id: XGB11
+      capacity: C3
+      regularization: R1
+      n_estimators: 200
+      max_depth: 2
+      learning_rate: 0.025
+      min_child_weight: 1
+      reg_lambda: 1
+      reg_alpha: 0
+      gamma: 0
+    - id: XGB12
+      capacity: C3
+      regularization: R2
+      n_estimators: 200
+      max_depth: 2
+      learning_rate: 0.025
+      min_child_weight: 5
+      reg_lambda: 1
+      reg_alpha: 0
+      gamma: 0
+    - id: XGB13
+      capacity: C3
+      regularization: R3
+      n_estimators: 200
+      max_depth: 2
+      learning_rate: 0.025
+      min_child_weight: 1
+      reg_lambda: 10
+      reg_alpha: 0
+      gamma: 0
+    - id: XGB14
+      capacity: C3
+      regularization: R4
+      n_estimators: 200
+      max_depth: 2
+      learning_rate: 0.025
+      min_child_weight: 1
+      reg_lambda: 1
+      reg_alpha: 0.1
+      gamma: 0
+    - id: XGB15
+      capacity: C3
+      regularization: R5
+      n_estimators: 200
+      max_depth: 2
+      learning_rate: 0.025
+      min_child_weight: 1
+      reg_lambda: 1
+      reg_alpha: 0
+      gamma: 0.01
+    - id: XGB16
+      capacity: C4
+      regularization: R1
+      n_estimators: 250
+      max_depth: 3
+      learning_rate: 0.02
+      min_child_weight: 1
+      reg_lambda: 1
+      reg_alpha: 0
+      gamma: 0
+    - id: XGB17
+      capacity: C4
+      regularization: R2
+      n_estimators: 250
+      max_depth: 3
+      learning_rate: 0.02
+      min_child_weight: 5
+      reg_lambda: 1
+      reg_alpha: 0
+      gamma: 0
+    - id: XGB18
+      capacity: C4
+      regularization: R3
+      n_estimators: 250
+      max_depth: 3
+      learning_rate: 0.02
+      min_child_weight: 1
+      reg_lambda: 10
+      reg_alpha: 0
+      gamma: 0
+    - id: XGB19
+      capacity: C4
+      regularization: R4
+      n_estimators: 250
+      max_depth: 3
+      learning_rate: 0.02
+      min_child_weight: 1
+      reg_lambda: 1
+      reg_alpha: 0.1
+      gamma: 0
+    - id: XGB20
+      capacity: C4
+      regularization: R5
+      n_estimators: 250
+      max_depth: 3
+      learning_rate: 0.02
+      min_child_weight: 1
+      reg_lambda: 1
+      reg_alpha: 0
+      gamma: 0.01
+  LSTM-BEKK:
+    fixed:
+      hidden_size: N
+      dtype: float64
+      device: cpu
+      full_bptt: true
+      early_stopping: false
+      inner_validation_split: false
+      learning_rate_scheduler: false
+      optimizer: RMSprop
+      rmsprop_alpha: 0.99
+      rmsprop_eps: 1.0e-08
+      rmsprop_momentum: 0.0
+      rmsprop_centered: false
+      weight_decay: 0.0
+      seeds_are_not_configurations: true
+    grid:
+    - id: LSTM01
+      architecture: A1
+      optimizer: O1
+      num_layers: 3
+      dropout: 0.0
+      max_epochs: 25
+      learning_rate: 0.0001
+      gradient_clip_norm: 1
+    - id: LSTM02
+      architecture: A1
+      optimizer: O2
+      num_layers: 3
+      dropout: 0.0
+      max_epochs: 25
+      learning_rate: 0.0003
+      gradient_clip_norm: 1
+    - id: LSTM03
+      architecture: A1
+      optimizer: O3
+      num_layers: 3
+      dropout: 0.0
+      max_epochs: 25
+      learning_rate: 0.001
+      gradient_clip_norm: 1
+    - id: LSTM04
+      architecture: A1
+      optimizer: O4
+      num_layers: 3
+      dropout: 0.0
+      max_epochs: 25
+      learning_rate: 0.0003
+      gradient_clip_norm: 5
+    - id: LSTM05
+      architecture: A2
+      optimizer: O1
+      num_layers: 3
+      dropout: 0.1
+      max_epochs: 50
+      learning_rate: 0.0001
+      gradient_clip_norm: 1
+    - id: LSTM06
+      architecture: A2
+      optimizer: O2
+      num_layers: 3
+      dropout: 0.1
+      max_epochs: 50
+      learning_rate: 0.0003
+      gradient_clip_norm: 1
+    - id: LSTM07
+      architecture: A2
+      optimizer: O3
+      num_layers: 3
+      dropout: 0.1
+      max_epochs: 50
+      learning_rate: 0.001
+      gradient_clip_norm: 1
+    - id: LSTM08
+      architecture: A2
+      optimizer: O4
+      num_layers: 3
+      dropout: 0.1
+      max_epochs: 50
+      learning_rate: 0.0003
+      gradient_clip_norm: 5
+    - id: LSTM09
+      architecture: A3
+      optimizer: O1
+      num_layers: 4
+      dropout: 0.1
+      max_epochs: 50
+      learning_rate: 0.0001
+      gradient_clip_norm: 1
+    - id: LSTM10
+      architecture: A3
+      optimizer: O2
+      num_layers: 4
+      dropout: 0.1
+      max_epochs: 50
+      learning_rate: 0.0003
+      gradient_clip_norm: 1
+    - id: LSTM11
+      architecture: A3
+      optimizer: O3
+      num_layers: 4
+      dropout: 0.1
+      max_epochs: 50
+      learning_rate: 0.001
+      gradient_clip_norm: 1
+    - id: LSTM12
+      architecture: A3
+      optimizer: O4
+      num_layers: 4
+      dropout: 0.1
+      max_epochs: 50
+      learning_rate: 0.0003
+      gradient_clip_norm: 5
+    - id: LSTM13
+      architecture: A4
+      optimizer: O1
+      num_layers: 4
+      dropout: 0.2
+      max_epochs: 75
+      learning_rate: 0.0001
+      gradient_clip_norm: 1
+    - id: LSTM14
+      architecture: A4
+      optimizer: O2
+      num_layers: 4
+      dropout: 0.2
+      max_epochs: 75
+      learning_rate: 0.0003
+      gradient_clip_norm: 1
+    - id: LSTM15
+      architecture: A4
+      optimizer: O3
+      num_layers: 4
+      dropout: 0.2
+      max_epochs: 75
+      learning_rate: 0.001
+      gradient_clip_norm: 1
+    - id: LSTM16
+      architecture: A4
+      optimizer: O4
+      num_layers: 4
+      dropout: 0.2
+      max_epochs: 75
+      learning_rate: 0.0003
+      gradient_clip_norm: 5
+    - id: LSTM17
+      architecture: A5
+      optimizer: O1
+      num_layers: 5
+      dropout: 0.2
+      max_epochs: 75
+      learning_rate: 0.0001
+      gradient_clip_norm: 1
+    - id: LSTM18
+      architecture: A5
+      optimizer: O2
+      num_layers: 5
+      dropout: 0.2
+      max_epochs: 75
+      learning_rate: 0.0003
+      gradient_clip_norm: 1
+    - id: LSTM19
+      architecture: A5
+      optimizer: O3
+      num_layers: 5
+      dropout: 0.2
+      max_epochs: 75
+      learning_rate: 0.001
+      gradient_clip_norm: 1
+    - id: LSTM20
+      architecture: A5
+      optimizer: O4
+      num_layers: 5
+      dropout: 0.2
+      max_epochs: 75
+      learning_rate: 0.0003
+      gradient_clip_norm: 5

@@ -1,4 +1,4 @@
-"""Leak-proof temporal protocol tests on synthetic calendars only."""
+"""Chronological temporal protocol tests on synthetic calendars only."""
 
 from __future__ import annotations
 

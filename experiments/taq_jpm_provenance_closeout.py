@@ -377,7 +377,7 @@ def main() -> dict[str, object]:
         "coverage": coverage_from_production_sync(ticks),
         "existing_epps_matrix_diagnostics": existing_epps_matrix_diagnostics(),
         "repository_checks": {
-            "benchmark_plan_exists": (REPO_ROOT / "BENCHMARK_IMPLEMENTATION_PLAN.md").exists(),
+            "benchmark_plan_exists": (REPO_ROOT / "INITIAL_CORE_BENCHMARK_PLAN.md").exists(),
             "old_demo_plan_exists": (REPO_ROOT / "DEMO_IMPLEMENTATION_PLAN.md").exists(),
         },
     }

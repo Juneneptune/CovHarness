@@ -1,14 +1,16 @@
 # Project state
 
-Last updated 2026-09-16.
+Last updated 2026-09-21.
 
 Project conda environment is `covharness` (Python 3.11). Recreate with `conda env create -f environment.yml` from the repository root.
 
 ## Current milestone
 
-Candidate recentered stationary-bootstrap pairwise mean test, under synthetic calibration. Conventional Bartlett / Newey-West Diebold-Mariano remains the unchanged baseline. The companion has not been adopted for confirmatory reporting. No empirical fitting occurred. The DATA GATE remains closed. LSTM-BEKK-RC and GHAR were not begun.
+Binance open-data SCREEN execution and Stage-2 finalist selection. VALIDATION configurations are frozen. SCREEN forecasts, SPA, MCS, and the median-rank econometric finalist exist. Those SCREEN quantities are selection data, not confirmation. CONFIRM remains locked. The U.S.-equity DATA GATE remains closed. LSTM-BEKK-RC and GHAR were not begun.
 
-`BENCHMARK_IMPLEMENTATION_PLAN.md` is organized by blocks and parts. It does not use writing-day or resume framing. Forecast-horizon and rolling-window lengths in trading days are unchanged.
+The public research narrative is `README.md`. Exact model contracts are in `docs/MODEL_IMPLEMENTATION.md`. Inference implementation is in `docs/INFERENCE_METHODS.md`. The U.S.-equity quote path is in `docs/EQUITY_MEASUREMENT.md`. Frozen scientific artifacts were not rewritten.
+
+`INITIAL_CORE_BENCHMARK_PLAN.md` is the initial core plan. It is organized by blocks and parts. It is not a locked roster or a final evaluation specification. It does not use writing-day or resume framing. Forecast-horizon and rolling-window lengths in trading days are unchanged.
 
 ## Completed
 
@@ -52,7 +54,7 @@ Proxy-robustness demonstration. `S=u\Sigma` with `u\sim\mathrm{Exp}(1)`, so $\ma
 
 `M/N` is reported by `matrix_eigen_diagnostics` when `n_returns` is supplied, and as `FrequencyEppsResult.m_over_n`. The TAQ measurement investigation was not rerun.
 
-`BENCHMARK_IMPLEMENTATION_PLAN.md` no longer states that `M>N` is required for QLIKE evaluation. Kernels remain in the broader plan as alternative proxies.
+`INITIAL_CORE_BENCHMARK_PLAN.md` no longer states that `M>N` is required for QLIKE evaluation. Kernels remain in the broader plan as alternative proxies.
 
 Block 2B temporal protocol is implemented in `covharness.protocol`.
 
@@ -307,7 +309,7 @@ Synthetic validation, seed 20260914. These are validation demonstrations, not em
 - `PREREGISTRATION_DRAFT.md`
 - `README.md`
 - `docs/PROJECT_STATE.md`
-- `BENCHMARK_IMPLEMENTATION_PLAN.md`
+- `INITIAL_CORE_BENCHMARK_PLAN.md`
 - `pyproject.toml`
 
 ## Tests run
@@ -818,6 +820,218 @@ Full suite after the comparison-figure helper filter, same interpreter.
 593 passed, 3 warnings in 52.99s
 ```
 
+Bounded empirical-data feasibility audit on 2026-09-20. Local inventory, Block 1 measurement-compatibility review, and an Alpaca credential check. No new WRDS extraction. No Alpaca HTTP request. No model code changed. Tests were not rerun.
+
+Local cache. `data/cache/taq_five_stock_single_exchange_cleaned_20090213.pkl` is 697588 cleaned midquote ticks for AAPL, IBM, JPM, MSFT, and XOM on 2009-02-13, naive exchange-local timestamps. One session per name. No local multi-day RCov, daily-return, or RQ panel.
+
+WRDS inventory reused from 2026-09-14. Sample `taqmsamp_all.cqm_20090213` was previously SELECT-successful and extracted. Production `taqmsec` / `taqm_YYYY` remain catalog-visible without verified SELECT. Three stored production `SELECT 1` attempts failed with schema permission denied. `crsp.dsf` and `crsp.stocknames` remain constant-only SELECT successes without local extracts.
+
+Alpaca. Official historical bars and quotes documentation was read. `feed=sip` would have been required. Credentials `APCA-API-KEY-ID` / `APCA-API-SECRET-KEY` (and `ALPACA_*` aliases) are absent, so the SIP probe was skipped. Untested access is not available.
+
+Files created. `docs/EMPIRICAL_DATA_FEASIBILITY.md`. Files changed. `docs/PROJECT_STATE.md` and `README.md` (repository-layout entry and current-status pointer). `AGENTS.md` was not modified. Final `PREREGISTRATION.md` was not created.
+
+Bounded open-data feasibility audit on 2026-09-21. Official M6 file and official Binance public klines only. No WRDS. No yfinance. No paid API. No model code changed. Tests were not rerun. No empirical fit.
+
+M6. `data/cache/open_data/m6/assets_m6.csv` retrieved 2026-09-21T02:38:13Z from `https://raw.githubusercontent.com/Mcompetitions/M6-methods/main/assets_m6.csv`. SHA-256 `48c67aa0976ae63de3a6d7a42228ef374d39221734a433c9391572d01e85b20a`. 590752 bytes. 26446 rows. 100 unique symbols verified from the file. Dates 2022-01-31 through 2023-02-17. Union 273 dates. All-100 intersection 201 dates (200 successive log returns). Coverage-only 5-name maximum intersection 265 dates. No subset reaches 1,250 or 1,500 common dates. Daily-return models could consume the panel under the present API. RCov and HARQ models could not. Daily outer products are not the high-frequency RCov target.
+
+Binance. Official S3 listings for 12 USDT pairs × {1m, 5m}. Interior missing months 0. Coverage-only 5-name 1m/5m common listed span 2018-04 through 2026-08 (3075 days). Coverage-only 10-name span 2019-01 through 2026-08 (2800 days). Sample 2025-02 1m and 5m for BTCUSDT, ETHUSDT, and BNBUSDT, plus BTCUSDT 5m 2024-12 control. All checksums verified. 2025-02 timestamps are microseconds and every UTC day is complete (1440 1m bars, 288 5m bars). 2024-12 timestamps are milliseconds. Bytes downloaded in the listing-plus-sample script 8640819. Bulk download was not started. Usable 1,500-day coverage remains unverified.
+
+Files created. `docs/OPEN_DATA_FEASIBILITY.md` and `results/open_data_feasibility.json`. Files changed. `docs/PROJECT_STATE.md`. `README.md` was not modified. `AGENTS.md` was not modified. Final `PREREGISTRATION.md` was not created.
+
+Bounded Binance five-asset 1m coverage audit on 2026-09-21. Official `data.binance.vision` monthly ZIPs only. Coverage-audit universe BTCUSDT, ETHUSDT, BNBUSDT, LTCUSDT, ADAUSDT. Months 2022-01 through 2026-08. 280 ZIPs requested, 280 SHA-256 verified, 0 absent, 0 mismatches. Compressed 512308203 bytes. Parsed from ZIP without retaining CSVs. 12268400 rows. Download 90.672 s. Parse and audit 57.422 s. No model code changed. Tests were not rerun. No empirical fit. No RCov or RQ production.
+
+Each name has 1,703 complete UTC days of 1,440 bars. Five-way intersection 1,703 of 1,704 requested dates (2022-01-01 through 2026-08-31). Sole exclusion 2023-03-24, 80 missing minutes on every name, not forward-filled. Longest common complete streak 1,256 dates from 2023-03-25 through 2026-08-31. Timestamp units milliseconds through 2024-12 and microseconds from 2025-01, with no documented-cut anomalies. Synchronized closes on common complete dates have identical 1,440-minute support and finite within-day log returns. Production return convention was not chosen.
+
+preferred_full_design (≥1500) yes. minimum_confirmatory_design (≥1250) yes. `common_complete_dates - 250 = 1453`. No VALIDATION/SCREEN/CONFIRM split was allocated. Binance empirical DATA GATE not fully passed.
+
+Files created. `results/binance_five_asset_calendar_audit.json` and `results/binance_five_asset_calendar_complete_dates.csv.gz`. Files changed. `docs/OPEN_DATA_FEASIBILITY.md` and `docs/PROJECT_STATE.md`. `README.md` was not modified. `AGENTS.md` was not modified. Final `PREREGISTRATION.md` was not created.
+
+Binance measurement-specification freeze on 2026-09-21. No model fit. No RCov/RQ production. Tests were not rerun. Official 2023-03 monthly 1m ZIPs were re-read only for 2023-03-24 missing-minute forensics. All five names miss 12:40–13:59 UTC (80 contiguous minutes). 23:59 exists. Announced Binance spot resume 14:00 UTC matches the first post-hole bar. Recommended treatment is exclusion of that UTC day as origin and target, retaining 23:59 as the 2023-03-25 anchor. Packed versus calendar one-day lags remain unresolved. Complete Binance empirical DATA GATE has not passed.
+
+Files created. `docs/BINANCE_OPEN_DATA_MEASUREMENT_SPEC.md` and `results/binance_20230324_halt_forensics.json`. Files changed. `docs/OPEN_DATA_FEASIBILITY.md` and `docs/PROJECT_STATE.md`. `README.md` was not modified because the TAQ public measurement definition is unchanged and the Binance arrays are not yet implemented. `AGENTS.md` was not modified. Final `PREREGISTRATION.md` was not created.
+
+Binance segmented calendar freeze and production panel on 2026-09-21. No model fit. No SCREEN. No CONFIRM. Generic `TemporalProtocol` was not modified. TAQ, loss, and inference mathematics were not changed. Official November and December 2021 1m ZIP+CHECKSUM files for BTCUSDT, ETHUSDT, BNBUSDT, LTCUSDT, and ADAUSDT were downloaded from `https://data.binance.vision` and SHA-256 verified. Existing 2022-01 through 2026-08 archives were reused.
+
+Frozen UTC segments, independently counted before construction. HISTORY_A 2021-11-09 through 2022-07-16 (250). VALIDATION 2022-07-17 through 2023-03-23 (250). Halt 2023-03-24 excluded. HISTORY_B 2023-03-25 through 2023-11-29 (250). SCREEN 2023-11-30 through 2025-04-12 (500). CONFIRM 2025-04-13 through 2026-08-25 (500). Unused tail 2026-08-26 through 2026-08-31. Packed complete-day lags rejected so that no HAR/EWMA/DCC/LSTM state crosses the halt.
+
+Production artifact `data/processed/binance_five_asset_panel.npz`, SHA-256 `2b7358107a10f77c3879524e1d9b1389c2c66db4a444af89c2cdf59aa186640a`, 359563 bytes. Sidecar `data/processed/binance_five_asset_panel.json`, SHA-256 `38ed1d4843ea6138d7f87fc0405b668b1ee2fd7403d4cddfba0ca49160737394`. Built $T=1750$, $N=5$. RCov rank 5 on every date. PSD failures 0. Symmetry failures 0. Nonfinite entries 0. Invalid production dates none. 2023-03-25 uses the valid 2023-03-24 23:59 anchor. Raw minute bars are not stored. Raw ZIPs remain gitignored.
+
+Focused tests on 2026-09-21, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_binance_measurement.py`.
+
+```
+13 passed in 0.34s
+```
+
+Files created. `src/covharness/data/binance_calendar.py`, `src/covharness/data/binance_klines.py`, `src/covharness/realized/binance_panel.py`, `tests/unit/test_binance_measurement.py`, `docs/BINANCE_OPEN_DATA_PANEL.md`, `data/processed/binance_five_asset_panel.json`, and `results/binance_five_asset_panel_validation.json`. Files changed. `docs/BINANCE_OPEN_DATA_MEASUREMENT_SPEC.md`, `docs/OPEN_DATA_FEASIBILITY.md`, `docs/PROJECT_STATE.md`, and `README.md` (repository-structure comments only). `AGENTS.md` was not modified. `PREREGISTRATION_DRAFT.md` was not modified. Final `PREREGISTRATION.md` was not created.
+
+Binance first-stage protocol freeze on 2026-09-21. No model fit. No VALIDATION execution. No SCREEN. No CONFIRM. Generic `TemporalProtocol` was not modified. TAQ, loss, and inference mathematics were not changed.
+
+Branch-specific schedule `covharness.protocol.binance.BinanceSegmentedProtocol`. VALIDATION uses HISTORY_A plus VALIDATION only. SCREEN and CONFIRM use HISTORY_B plus SCREEN plus CONFIRM only. Packed lags across 2023-03-24 are rejected. First origin in each evaluation block is a refit. Cadence 21 resets per block. VALIDATION 250 targets, 12 refits. SCREEN 500 targets, 24 refits. CONFIRM 500 targets, 24 refits, first window the last 250 SCREEN dates. Default CONFIRM access raises `ConfirmLockedError`.
+
+Core roster RW, EWMA, HAR-DRD, HARQ-DRD, LW-linear, LW-NL, DCC, DCC-NL, Ridge-DRD, XGBoost-DRD, LSTM-BEKK. EWMA, Ridge, XGBoost, and LSTM each have 20 frozen candidates. The other seven families have one frozen definition each. LSTM seeds $0,1,2,3,4$ live at the experiment layer. The candidate forecast is the equal-weight seed ensemble. Primary selection is mean VALIDATION reduced QLIKE on complete 250-target support. Exact ties use the lexicographically smaller configuration ID. Incomplete candidates are invalid rather than shortened.
+
+Configuration artifact `configs/binance_open_data_core.yaml`, SHA-256 `8d63eacacf13a876651f9c4eb5399a8527d8458278974ff069dd0701dd5cbf07`. LSTM dropout constructor bound expanded from $[0.1,0.2]$ to $[0,0.2]$ so that frozen A1 (`dropout=0`) is constructible. The BEKK recursion is unchanged.
+
+Focused tests on 2026-09-21, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_binance_protocol.py`.
+
+```
+19 passed in 3.99s
+```
+
+Full suite, same interpreter, `python -m pytest -q`.
+
+```
+625 passed, 3 warnings in 55.03s
+```
+
+No tests were skipped. The three warnings are the Block 3A non-finite HAC overflow, the Block 3C non-finite GW Omega overflow, and the `nonlinshrink` `numpy.matlib` pending deprecation. Warnings were not suppressed. No forecasting model was fit on market data.
+
+Files created. `src/covharness/protocol/binance.py`, `tests/unit/test_binance_protocol.py`, `configs/binance_open_data_core.yaml`, and `docs/BINANCE_OPEN_DATA_PROTOCOL.md`. Files changed. `src/covharness/protocol/__init__.py`, `src/covharness/models/lstm_bekk.py`, `tests/unit/test_models_lstm_bekk.py`, `docs/PROJECT_STATE.md`, `docs/BINANCE_OPEN_DATA_PANEL.md`, and `README.md` (repository-structure entry for `configs/`). `AGENTS.md` was not modified. `PREREGISTRATION_DRAFT.md` was not modified. Final `PREREGISTRATION.md` was not created.
+
+Binance open-data VALIDATION fitting on 2026-09-21. SCREEN was not requested. CONFIRM remained locked. No Diebold–Mariano, SPA, MCS, Giacomini–White, Mincer–Zarnowitz, Giacomini–Rossi, or portfolio evaluation was run. Frozen grids were not retuned. Model mathematics were not changed. `configs/binance_open_data_core.yaml` was not rewritten with results.
+
+Preflight hashes matched the freeze. Production panel SHA-256 `2b7358107a10f77c3879524e1d9b1389c2c66db4a444af89c2cdf59aa186640a`. Configuration SHA-256 `8d63eacacf13a876651f9c4eb5399a8527d8458278974ff069dd0701dd5cbf07`. Asset order BTCUSDT, ETHUSDT, BNBUSDT, LTCUSDT, ADAUSDT. VALIDATION schedule 250 targets, first origin 2022-07-16, last target 2023-03-23, halt 2023-03-24 absent. Maximum model-observable date 2023-03-22. Maximum scoring target 2023-03-23. SCREEN and CONFIRM rows in the source NPZ were omitted from the experiment view.
+
+Orchestrator `src/covharness/protocol/binance_validation.py` with CLI `scripts/run_binance_validation.py`. Candidates are read from the frozen YAML. Checkpoints are written after each deterministic candidate and each LSTM seed. Partial checkpoints are not reused as complete. LSTM candidate scores use the equal-weight mean of five seed covariance forecasts, then reduced QLIKE. Seed QLIKE averages are not used for selection.
+
+Focused tests on 2026-09-21, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_binance_validation.py`.
+
+```
+14 passed in 2.87s
+```
+
+Full suite before the market-data run, same interpreter, `python -m pytest -q`.
+
+```
+639 passed, 3 warnings in 57.58s
+```
+
+Empirical command from the repository root.
+
+```
+PYTHONUNBUFFERED=1 /local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -u scripts/run_binance_validation.py
+```
+
+Wall runtime 31736.848 s. Manifest `runtime_seconds_total` 31730.483 s. Family runtimes in seconds. RW 0.166. HAR-DRD 4.173. HARQ-DRD 4.198. LW-linear 0.095. LW-NL 0.101. DCC 5.626. DCC-NL 4.866. EWMA 3.519. Ridge-DRD 84.122. XGBoost-DRD 113.333. LSTM-BEKK 31502.872.
+
+Completion. Seven fixed configurations, 20 EWMA, 20 Ridge-DRD, 20 XGBoost-DRD, 100 LSTM seeds, and 20 LSTM ensembles all have complete 250-target primary-loss support. Failures none. Repair and fallback counts zero on every candidate. QLIKE failures 0. Frobenius failures 0. Nonfinite forecasts 0. Fit failures 0.
+
+Within-family VALIDATION selection, primary score mean reduced QLIKE on 250 targets, exact ties by lexicographically smaller ID. These are development-set results.
+
+EWMA `EWMA01`, mean QLIKE $-32.73154867789014$, mean squared Frobenius $4.263040744795783\times 10^{-5}$.
+
+Ridge-DRD `RIDGE01`, mean QLIKE $-32.84554386201314$, mean squared Frobenius $3.0331065954931998\times 10^{-5}$. `RIDGE01` is $\lambda=0$ and therefore nests HAR-DRD. The two scores agree to the recorded precision.
+
+XGBoost-DRD `XGB08`, mean QLIKE $-32.78193966002438$, mean squared Frobenius $3.1641912477168996\times 10^{-5}$.
+
+LSTM-BEKK `LSTM19` ensemble, mean QLIKE $-32.285398774051586$, mean squared Frobenius $4.612462237757348\times 10^{-5}$. Seed-level descriptive QLIKE on that configuration ranges from $-32.295177791360466$ (seed 4) to $-32.034444970669604$ (seed 0). The best seed was not selected.
+
+Fixed families recorded without search. RW `RW01`. HAR-DRD `HARDRD01`. HARQ-DRD `HARQDRD01`. LW-linear `LWLIN01`. LW-NL `LWNL01`. DCC `DCC01`. DCC-NL `DCCNL01`.
+
+Result artifacts.
+
+`results/binance_validation_manifest.json` SHA-256 `6255533b64fefe371efb175f3dae20fb81b7a39cdb4f8f8a1441afeeb6733d3c`.
+
+`results/binance_validation_selection.json` SHA-256 `f6d9830302b03afa2f3f45cd15576d70fbae4b96482af5c71d935822bc132f4b`.
+
+`results/binance_validation_failures.json` SHA-256 `37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570`.
+
+`results/binance_validation_candidate_summary.csv` SHA-256 `cf525c217379496a38ccc4e4f0f9a2e6dd8bbca02d6cf898ab3b1fbef3866cb0`.
+
+`results/binance_validation_development_table.csv` SHA-256 `04822c1a1cbea425a80f5e555ca210bf3a365210d10d6d29b7bc636c3f398eab`.
+
+`results/binance_validation_diagnostics.json` SHA-256 `cf21d4d11c03ca300517e35deea495f868255fd0fcc11c1a08871a37365398c6`.
+
+`results/binance_validation_forecasts.npz` SHA-256 `564afb691b138af0dba44fc1009f1e30c8f1887670e02254773957d9a77a9773`.
+
+Files created. `src/covharness/protocol/binance_validation.py`, `tests/unit/test_binance_validation.py`, `scripts/run_binance_validation.py`, and the result artifacts listed above. Files changed. `docs/PROJECT_STATE.md`, `docs/BINANCE_OPEN_DATA_PROTOCOL.md`, `docs/BINANCE_OPEN_DATA_PANEL.md`, and `README.md` (factual VALIDATION status and scripts layout only). `AGENTS.md` was not modified. `PREREGISTRATION_DRAFT.md` was not modified. Final `PREREGISTRATION.md` was not created. The frozen YAML was not rewritten.
+
+Binance open-data SCREEN on 2026-09-21. VALIDATION grids were not rerun. Selected IDs were not replaced. CONFIRM remained locked. No Diebold–Mariano, Clark–West, Giacomini–White, Mincer–Zarnowitz, Giacomini–Rossi, or GMV significance test was run. Model mathematics were not changed. `configs/binance_open_data_core.yaml` was not rewritten. `configs/binance_open_data_screen.yaml` was not rewritten with SCREEN results.
+
+Preflight hashes matched the freeze. Production panel SHA-256 `2b7358107a10f77c3879524e1d9b1389c2c66db4a444af89c2cdf59aa186640a`. Core configuration SHA-256 `8d63eacacf13a876651f9c4eb5399a8527d8458278974ff069dd0701dd5cbf07`. VALIDATION selection SHA-256 `f6d9830302b03afa2f3f45cd15576d70fbae4b96482af5c71d935822bc132f4b`. SCREEN configuration SHA-256 `b07011a798c36fc25e117b69d71f6c8eb5eb1ed756e97c39c19e29542af6203c`. Selected IDs EWMA01, RIDGE01, XGB08, and LSTM19, each with complete 250-target VALIDATION support. LSTM19 seeds 0, 1, 2, 3, and 4 completed on VALIDATION. Primary VALIDATION criterion was mean reduced QLIKE. Frobenius did not select or break ties. EWMA01 is the smallest-lambda grid point and was retained. RIDGE01 has $\lambda=0$ and nests HAR-DRD under the existing implementation and was retained.
+
+SCREEN view is HISTORY_B plus SCREEN only. CONFIRM rows were omitted. Schedule 500 targets from 2023-11-30 through 2025-04-12, first origin 2023-11-29, first window 2023-03-25 through 2023-11-29, 24 refits at positions $0,21,\ldots,483$. Maximum model-observable date 2025-04-11. Maximum scoring target 2025-04-12. No observation dated 2025-04-13 or later entered a fit, update, feature, or SCREEN loss. Packed lags across 2023-03-24 remain rejected.
+
+Orchestrator `src/covharness/protocol/binance_screen.py` with CLI `scripts/run_binance_screen.py`. Eleven frozen representatives. LSTM19 uses seeds $0,1,2,3,4$ with the equal-weight covariance ensemble as the LSTM column. The best seed is not selected. Checkpoints are written after each deterministic representative and each LSTM seed. Incomplete checkpoints are not reused as complete.
+
+Focused tests on 2026-09-21, using `/local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -m pytest -q tests/unit/test_binance_screen.py`.
+
+```
+18 passed in 3.52s
+```
+
+Full suite after the incomplete-family orchestrator fix and before the empirical resume, same interpreter, `python -m pytest -q`.
+
+```
+657 passed, 3 warnings in 57.00s
+```
+
+Empirical command from the repository root.
+
+```
+PYTHONUNBUFFERED=1 /local/scratch/a/lim316/miniconda3/envs/covharness/bin/python -u scripts/run_binance_screen.py
+```
+
+Family forecast runtimes from checkpoints, in seconds. RW 0.351. EWMA 0.374. HAR-DRD 8.593. HARQ-DRD 8.560. LW-linear 0.215. LW-NL 0.218. DCC 0.860. DCC-NL 0.526. Ridge-DRD 8.663. XGBoost-DRD 20.010. LSTM-BEKK 4919.511. Sequential family total about 4968 s. Artifact-writing resume after checkpoints, including SPA and MCS, had manifest `runtime_seconds_total` 2.977 s.
+
+Completion. Nine of eleven representatives have complete 500-target support. DCC and DCC-NL failed at origin 2023-12-20, the second SCREEN refit, because ZeroMean GARCH(1,1) for asset 1 returned $\omega\approx 4.97\times 10^{-12}$, $a=0$, $b=1$, which violates the project IGARCH contract $a+b<1$. Those failures were preserved. No second VALIDATION configuration was substituted. SPA and MCS used the nine complete columns. Loss panels remain $500\times 11$ with NaN columns for the two failures.
+
+Repair counts. HARQ-DRD recorded 2 estimation-window-mean fallbacks. All other complete representatives recorded 0. Evaluation-time repair was not used. QLIKE failures 0 on complete models. Nonfinite forecasts 0 on complete models.
+
+LSTM19 seeds 0 through 4 all completed. Seed-level mean QLIKE ranged from $-31.351885218861142$ to $-31.211140652888883$. Ensemble mean QLIKE $-31.408752391639815$. The ensemble, not a seed, is the LSTM SCREEN column.
+
+Primary SCREEN ranking channel is reduced QLIKE. Squared Frobenius is the complementary robustness channel. The two losses were not averaged.
+
+Hansen SPA versus HAR-DRD, $B=5000$, seed $20260913$, $\ell=\max(2,\lfloor T^{1/3}\rfloor)=7$, consistent recentering primary. RIDGE01 is an exact zero benchmark differential on both losses and is labeled `exact_benchmark_tie`. It remains in descriptive tables and MCS. It is excluded only from SPA studentization. Nonzero constant differentials did not occur.
+
+SPA reduced QLIKE. Universe 9. Statistic 3.0010295525346193. Consistent p-value 0.0016. Exact ties Ridge-DRD. Studentized HARQ-DRD 3.0010295525346193.
+
+SPA squared Frobenius. Universe 9. Statistic 0.01017192672629011. Consistent p-value 0.8792. Exact ties Ridge-DRD.
+
+Primary QLIKE MCS $(T_R,e_R)$, $\alpha=0.10$, $B=5000$, seed $20260913$. Membership at 0.10 is EWMA and HARQ-DRD. p-values. RW 0.0002. EWMA 0.3154. HAR-DRD 0.0124. HARQ-DRD 1.0. LW-linear 0.0002. LW-NL 0.0004. Ridge-DRD 0.0124. XGBoost-DRD 0.0124. LSTM-BEKK 0.001. Companion $(T_{\max},e_{\max})$ at 0.10 retains EWMA, HAR-DRD, HARQ-DRD, Ridge-DRD, and XGBoost-DRD.
+
+Primary Frobenius MCS at $\alpha=0.10$. Membership is RW, EWMA, HAR-DRD, HARQ-DRD, Ridge-DRD, XGBoost-DRD, and LSTM-BEKK. p-values. RW 0.1084. EWMA 0.286. HAR-DRD 0.9932. HARQ-DRD 1.0. LW-linear 0.011. LW-NL 0.0112. Ridge-DRD 0.9932. XGBoost-DRD 0.46. LSTM-BEKK 0.1244.
+
+Stage-2 paradigm membership was frozen before ranks. Econometric eligible set RW, EWMA, HAR-DRD, HARQ-DRD, LW-linear, LW-NL, DCC, DCC-NL. Shallow-ML Ridge-DRD and XGBoost-DRD participate in SPA, MCS, and tables and cannot occupy the econometric headline slot. Deep-learning eligible set is LSTM-BEKK only, so LSTM19 is the DL finalist by construction.
+
+Econometric finalist rule uses primary QLIKE only. Four chronological 125-target blocks. Rank eight econometric models within each complete block, lower loss better, exact block-mean ties receive average ranks. Select lowest median of the four block ranks, then lowest mean of those ranks, then lexicographically smaller family ID. Full-SCREEN mean QLIKE is robustness only. Frobenius does not select. MCS membership does not replace a finalist.
+
+DCC and DCC-NL have no complete SCREEN losses, so the econometric ranking used the six complete econometric families. Block ranks for HARQ-DRD are 2, 1, 2, 2. Median rank 2.0. Mean rank 1.75. EWMA also has median rank 2.0 and mean rank 2.0. HARQ-DRD is the econometric finalist by the mean-rank tie-break. Full-SCREEN mean-QLIKE robustness leader among complete econometric models is also HARQ-DRD. The headline was not replaced by that robustness check.
+
+Finalists. DL LSTM-BEKK configuration LSTM19. Econometric HARQ-DRD configuration HARQDRD01. Primary QLIKE MCS at 0.10 contains HARQ-DRD (p-value 1.0) and does not contain LSTM-BEKK (p-value 0.001). Primary Frobenius MCS at 0.10 contains both (HARQ-DRD p-value 1.0, LSTM-BEKK p-value 0.1244). MCS did not replace either finalist.
+
+These SCREEN numbers are not a confirmatory ranking and are not a superiority claim. CONFIRM remains locked.
+
+Result artifacts.
+
+`results/binance_screen_manifest.json` SHA-256 `dc54b52b245279f1b36a69d16ae1d3f88f8424dc6e1c4078124fe1755d12ea36`.
+
+`results/binance_screen_model_summary.csv` SHA-256 `eed72b6ce306bcfbdb34d36cfd51e0ee035c01e4f077d17b1b4592c2ceef8354`.
+
+`results/binance_screen_spa.json` SHA-256 `992dd16cb0d9cdf3d2511b39c093c1f1daf4d0062fc9852c74c6f0fc41e46420`.
+
+`results/binance_screen_mcs_qlike.json` SHA-256 `234f195c5c74d3b1b42de921bd545895e9ac37cf7d39ede59c2f9a7ade59cefb`.
+
+`results/binance_screen_mcs_frobenius.json` SHA-256 `ef1e2fd798b0d3ec82a23033100e9b23bbc03e2a8b618aecb8e1b792f820735d`.
+
+`results/binance_screen_subblock_ranks.csv` SHA-256 `fb2decc2c158171ab22d8ac2df23c53096fd5d3c6e9afedf634cf96338578514`.
+
+`results/binance_screen_finalists.json` SHA-256 `cefe5b389878552d3fc186a0137065dfbd1a71b4cd6cd131cde376c8ba3cc5ca`.
+
+`results/binance_screen_failures.json` SHA-256 `ef62dfb8ffd16f010ded4ab63cef410a4de09cccb025da91acfa1f2ff8d9687a`.
+
+`results/binance_screen_losses_qlike.npz` SHA-256 `3fa68921871277b52e60412bae9fb23f31e7b26e39bec446d1051f7f6e8af61d`.
+
+`results/binance_screen_losses_frobenius.npz` SHA-256 `63a4de10db499b5527e5f1c276c17460481d85a7c3699a7a6226a97819729713`.
+
+`results/binance_screen_forecasts.npz` SHA-256 `118f9eb4f5cfc8f2ffa1b1e73128358725aa179d91ebea8149c1f997a89e6c94`.
+
+`results/binance_screen_diagnostics.json` SHA-256 `a77537bccc7a40a54b33ff41dbdba75f2cdedaab659874463aab6665bf2631e3`.
+
+Files created. `src/covharness/protocol/binance_screen.py`, `tests/unit/test_binance_screen.py`, `scripts/run_binance_screen.py`, `configs/binance_open_data_screen.yaml`, and the result artifacts listed above. Files changed. `docs/PROJECT_STATE.md`, `docs/BINANCE_OPEN_DATA_PROTOCOL.md`, `docs/BINANCE_OPEN_DATA_PANEL.md`, and `README.md` (factual SCREEN status and layout comments only). `AGENTS.md` was not modified. `PREREGISTRATION_DRAFT.md` was not modified. Final `PREREGISTRATION.md` was not created. The SCREEN YAML was not rewritten with results.
+
+Binance SCREEN descriptive interpretation on 2026-09-21. No refit. No SPA or MCS rerun. No CONFIRM access. Mean loss differentials were computed from the saved 500-by-11 loss panels. HAR-DRD and Ridge-DRD series are identical. HARQ-DRD repair flags in the existing SCREEN checkpoint mark targets 2024-12-10 and 2025-03-03. Artifacts `results/binance_screen_interpretation.md` and `results/binance_screen_effect_sizes.csv`. Cumulative-differential figures `results/binance_screen_cumulative_qlike_harq_minus_lstm.png` and `results/binance_screen_cumulative_frobenius_harq_minus_lstm.png`. These files are SCREEN descriptive analysis. They are not confirmatory inference and do not change the frozen finalists.
+
 ## Methodological decisions already in code
 
 - Reduced QLIKE is the primary ranking loss. Full Stein is the SPD-proxy form.
@@ -830,6 +1044,7 @@ Full suite after the comparison-figure helper filter, same interpreter.
 - Rolling $m=250$ is the estimation window. The 21-origin cadence is parameter and estimator refit, not forecast cadence.
 - Parameter refit, daily observable-state update, and forecast formation are distinct.
 - CONFIRM is locked unless `unlock_confirm=True` is passed.
+- The Binance branch uses a segmented protocol with a hard 2023-03-24 break. Generic `TemporalProtocol` remains the single-HISTORY allocator.
 - Stochastic seeds and the configuration budget are protocol metadata, not later model-local choices.
 - Statistical evaluation is open-to-close. Later economic GMV includes overnight.
 - Pairwise tests use $d_t=L_{A,t}-L_{B,t}$ and Bartlett / Newey-West HAC. Harvey-Leybourne-Newbold is not applied.
@@ -903,25 +1118,32 @@ Full suite after the comparison-figure helper filter, same interpreter.
 ## Known problems or limitations
 
 - Realized kernels are not implemented.
-- The long historical empirical panel is unresolved. The DATA GATE remains closed. Empirical Block-4 fitting is blocked until that source is committed and verified.
+- The long historical U.S.-equity panel remains unresolved. The U.S.-equity DATA GATE remains closed. The Binance first-stage panel is committed and was used for VALIDATION and SCREEN. CONFIRM remains locked.
+- Local equity ticks are a one-session cache. `data/cache/taq_five_stock_single_exchange_cleaned_20090213.pkl` holds 697588 cleaned midquote ticks for AAPL, IBM, JPM, MSFT, and XOM on 2009-02-13 only. No multi-day RCov cube, matched daily-return panel, or RQ panel is stored.
+- Official M6 `assets_m6.csv` is a 100-asset daily price file from 2022-01-31 through 2023-02-17. Maximum coverage-only common intersection among 5 names is 265 dates. It cannot support a 1,250- or 1,500-day daily-return auxiliary under the confirmatory allocation. It is not a high-frequency RCov source.
+- Official Binance monthly spot 1m archives for the first empirical universe BTCUSDT, ETHUSDT, BNBUSDT, LTCUSDT, and ADAUSDT support a 1,750-date segmented production panel from 2021-11-09 through 2026-08-25. Measurement, hard-break calendar, production arrays, segmented schedule, eleven-model roster, and VALIDATION grids are frozen. Binance VALIDATION fitting completed on 2026-09-21 as a development-set exercise. Binance SCREEN completed on 2026-09-21 as selection data. CONFIRM remains locked. Klines remain distinct from TAQ midquotes. U.S.-equity DATA GATE remains closed.
+- Production WRDS Daily TAQ (`taqmsec` / `taqm_YYYY`) remains catalog-visible without verified SELECT. The 2026-09-14 inventory recorded `SELECT 1` failures on three production CQM dates with permission denied for the underlying year schemas. That probe was not rerun.
+- `crsp.dsf` and `crsp.stocknames` passed constant-only SELECT in that inventory. They are not local extracts and cannot replace quote-based RCov.
+- Alpaca historical SIP was not probed. No `APCA-*` / `ALPACA-*` credentials exist in the environment or project configuration. Untested SIP access is not available.
+- A 5–10 asset, approximately 500-session exploratory panel is not assembled. Confirmatory allocation still requires `T-m>=1000`. A separate pilot protocol amendment is required before exploratory fitting.
 - The graph-neural deep-learning specification is unresolved. Final `PREREGISTRATION.md` cannot be written yet.
 - Blocks 3A, 3B, and 3C are accepted as closed. The bounded synthetic DM size-sensitivity study has been run. The current automatic lag remains the baseline. Confirmatory DM use still awaits review of that evidence. No additional robustness procedure has been implemented.
 - The BNS jump indicator can miss an idiosyncratic jump that is small in the equal-weight market average, and a common jump can be flagged even if some names did not jump.
 - Random-walk and EWMA forecasts that remain singular PSD are not QLIKE-evaluable. That is a model-output limitation, not a license to repair $H$.
-- HAR-DRD repair frequency is unknown on market data. The model has not been fit empirically.
-- HARQ-DRD likewise has no empirical RQ panel. The $(T,N)$ input is a model contract. TAQ-to-RQ assembly is not implemented in this block.
+- HAR-DRD, HARQ-DRD, Ridge-DRD, and XGBoost-DRD recorded zero VALIDATION repair/fallback events on the 250 development targets. On SCREEN, HARQ-DRD recorded 2 estimation-window-mean fallbacks. Those counts are specific to this panel and block. They are not CONFIRM results.
+- HARQ-DRD on Binance VALIDATION used the production per-asset RQ panel. TAQ-to-RQ assembly remains unimplemented.
 - LW-NL requires $T\ge 13$ because the pinned `nonlinshrink` reference rejects $n_{\mathrm{eff}}<12$. Linear shrinkage has no such extra floor beyond $T\ge 2$.
 - DCC-NL requires $T\ge 12$ because the same reference with $k=0$ uses $n_{\mathrm{eff}}=T$.
 - Plain DCC sample targeting is unsupported when $N>T$. At $N\le T$, rank is not inferred from dimensions.
-- Univariate GARCH QMLE can land on the IGARCH boundary $a+b=1$, which `arch` allows and the project rejects. That is a surfaced fit failure, not a silent repair.
+- Univariate GARCH QMLE can land on the IGARCH boundary $a+b=1$, which `arch` allows and the project rejects. That is a surfaced fit failure, not a silent repair. On this SCREEN panel DCC and DCC-NL both failed at origin 2023-12-20 with $a=0$, $b=1$ for asset 1. They were not replaced.
 - Importing `nonlinshrink` emits NumPy's `PendingDeprecationWarning` for `numpy.matlib`. The warning is from the pinned reference, not from project code. It is not suppressed.
-- Ridge-DRD $\lambda$ is an explicit untuned hyperparameter. The 20-point VALIDATION grid has not been frozen or run.
+- Ridge-DRD $\lambda$ is an explicit hyperparameter. Binance VALIDATION selected `RIDGE01` ($\lambda=0$), which nests HAR-DRD. That selection is a development-set outcome.
 - LSTM-BEKK-RC, GHAR, and the graph-neural slot are not implemented. Portfolio evaluation is not implemented. cDCC is not implemented.
-- XGBoost-DRD constructor hyperparameters are explicit and untuned. The 20-point VALIDATION grid has not been frozen or run.
+- XGBoost-DRD constructor hyperparameters are explicit. Binance VALIDATION selected `XGB08`. That selection is a development-set outcome.
 - Pooled XGBoost-DRD correlation training at $N=200$ has roughly $4.5$ million refit rows. Pair subsampling is not implemented. That remains a computing limitation.
 - LSTM-BEKK rolling fits at $N=100$ or $N=200$ with $T=250$ remain a computing and overparameterization limitation. The source paper's longer panels are not this protocol.
-- The LSTM 20-configuration training grid is not frozen. Constructor hyperparameters are explicit and untuned.
-- The serial synthetic runner generates forecasts only. It has not been used on market data.
+- The LSTM 20-configuration Binance training grid was run on VALIDATION. The selected ensemble configuration is `LSTM19`. Dropout $0$ remains the no-dropout stacked-LSTM setting. Seed-level scores were retained and were not used for selection.
+- The serial synthetic runner generates forecasts only. The Binance VALIDATION and SCREEN orchestrators reuse that private fit and advance dispatch on their respective calendars. CONFIRM is not requested by either orchestrator.
 - The synthetic evaluation adapter and demonstration script have been used on synthetic panels only. They are not an empirical benchmark.
 - A full production `TemporalProtocol` allocation still requires $T-m\ge 1000$. The demonstration therefore uses a short `build_schedule` rather than VALIDATION/SCREEN/CONFIRM lengths.
 - Daily-moving-window Ledoit-Wolf is not implemented. The headline LW cadence holds the estimator between 21-origin refits.
@@ -929,10 +1151,19 @@ Full suite after the comparison-figure helper filter, same interpreter.
 - The Newey-West 1994 lag is short relative to a highly persistent AR(1). Under the current automatic lag, two-sided 5 percent rejection at $T=250$ is $0.0558$ for $\rho=0$ and $0.1228$ for $\rho=0.6$, rising to $0.3818$ for $\rho=0.9$. Larger $T$ reduces but does not remove the high-persistence distortion. Mean $\hat\omega/\omega_{\mathrm{true}}$ falls with $\rho$. This is recorded finite-sample behavior of the current procedure, not a coding defect and not a selected new default.
 - The candidate recentered stationary-bootstrap mean test remains oversized at high persistence. Stage 2 at $T=250$, $\rho=0.9$ rejects at $0.253$ versus stored automatic NW $0.3818$. Closer numerical size in some cells is not an adoption decision.
 - MCS may retain a large set when forecasts are highly correlated. That is a feature of the procedure, not a code failure.
-- Hansen SPA assumes positive differential variance. Exact-constant alternatives are rejected rather than studentized.
+- Hansen SPA assumes positive differential variance. Exact-constant alternatives are rejected rather than studentized. The SCREEN wrapper labels an identically zero benchmark differential `exact_benchmark_tie`, keeps that model in the universe and MCS, and excludes only that column from SPA studentization. RIDGE01 versus HAR-DRD is that case on this SCREEN panel.
 - Approximate PS21 weighting is a named approximation to Patton–Sheppard equation 21. It does not recover the unknown conditional proxy-error variance.
 - Bartlett Newey-West long-run variance is positive semi-definite, so a non-roundoff negative Giacomini–Rossi LRV is not constructible without changing the estimator.
 
+- SCREEN SPA, MCS, and median-rank finalists are selection evidence on 2023-11-30 through 2025-04-12. They are not confirmatory rankings. LSTM-BEKK remains the DL finalist by construction even though it is outside the primary QLIKE MCS at $\alpha=0.10$.
+- The headline SCREEN comparison is HARQ-DRD versus LSTM-BEKK. That pair is frozen for a later CONFIRM authorization decision. CONFIRM has not been authorized and has not been run.
+- Descriptive SCREEN ranks in `results/binance_screen_model_summary.csv` use `np.argsort(np.argsort(...))`. HAR-DRD and RIDGE01 have identical saved losses and still receive distinct ordinal ranks. That display artifact is not evidence of different performance. Finalist selection uses a separate average-rank helper. The frozen CSV was not rewritten.
+- HARQ-DRD SCREEN diagnostics record `repair_count=2`. Checkpoint flags locate targets 2024-12-10 and 2025-03-03. The failed raw-forecast validity checks were not stored. No eigenvalue or optimization explanation was invented.
+- Confirmatory pairwise inference remains unresolved. The Newey–West Diebold–Mariano calibration and the calibrated-but-unadopted bootstrap companion are not a settled CONFIRM default. Pairwise Diebold–Mariano was not run on Binance SCREEN.
+- HARQ-DRD consumes realized covariance and per-asset RQ. LSTM-BEKK consumes daily returns only. Those information sets are not matched. SCREEN does not isolate architecture from information advantage.
+
 ## Next recommended task
 
-Review the synthetic calibration of the recentered stationary-bootstrap pairwise mean companion before any confirmatory adoption. Do not implement bootstrap-$t$, fixed-$b$, prewhitening, or self-normalization until that review. Conventional Bartlett / Newey-West DM remains the baseline. Remain synthetic/unit only. Do not begin LSTM-BEKK-RC, GHAR, or graph-neural implementation as part of this closeout. Do not begin empirical fitting. The DATA GATE remains closed. Final `PREREGISTRATION.md` remains absent.
+Review the frozen SCREEN finalists HARQ-DRD (`HARQDRD01`) and LSTM-BEKK (`LSTM19` equal-weight seed ensemble) and decide whether to authorize a separate CONFIRM execution. Do not run CONFIRM in that review. Do not unlock CONFIRM unless that review explicitly authorizes it. Do not retune. Do not reopen VALIDATION or SCREEN. Do not open the U.S.-equity DATA GATE. Do not add LSTM-BEKK-RC, GHAR, or a graph-neural model.
+
+The 2026-09-20 equity feasibility write-up remains `docs/EMPIRICAL_DATA_FEASIBILITY.md`. The open-data write-up is `docs/OPEN_DATA_FEASIBILITY.md`. The measurement specification is `docs/BINANCE_OPEN_DATA_MEASUREMENT_SPEC.md`. The production panel is `docs/BINANCE_OPEN_DATA_PANEL.md`. The protocol freeze is `docs/BINANCE_OPEN_DATA_PROTOCOL.md`. Model contracts are `docs/MODEL_IMPLEMENTATION.md`. Inference implementation is `docs/INFERENCE_METHODS.md`. The U.S.-equity quote path is `docs/EQUITY_MEASUREMENT.md`. VALIDATION and SCREEN artifacts are listed in the protocol document.

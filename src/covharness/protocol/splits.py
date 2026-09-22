@@ -80,7 +80,7 @@ class BlockAllocation:
 
 
 class TemporalProtocol:
-    """Leak-proof split, rolling schedule, and CONFIRM lock.
+    """Chronological split, rolling schedule, and CONFIRM lock.
 
     CONFIRM dates are not returned by public helpers unless
     ``unlock_confirm=True`` is passed to the method that retrieves them.

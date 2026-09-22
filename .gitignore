@@ -113,6 +113,9 @@ paper/**/*.synctex.gz
 paper/**/*.toc
 paper/**/*.vrb
 
+# Local notes (not part of the public tree)
+docs/REPOSITORY_CLEANUP_REPORT.md
+
 # Scratch / local junk
 *.tmp
 *.bak

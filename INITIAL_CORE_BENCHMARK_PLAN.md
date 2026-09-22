@@ -1,6 +1,18 @@
-# Covariance Benchmark — Consolidated Design (v4)
+# Initial core covariance benchmark plan
 
-Companion: `docs/project_ledger.md` (paper status + saved concepts). Protocol
+This file is the starting core plan. It is not a final specification. The
+first-stage roster and evaluation spine recorded here may later receive additional
+models and additional evaluation procedures. Adopted, implemented choices live in
+`README.md` and `docs/PROJECT_STATE.md`. Later models still enter the same
+interface, information set, tuning budget, and scoring rules unless a documented
+protocol amendment says otherwise.
+
+The executed Binance first-stage used $N=5$ assets and one unscaled five-minute
+realized-covariance proxy. TIER 1 below still records $N=30$ and two equity
+proxies. Those statements disagree. The executed branch does not replace the
+broader plan, and the plan does not rewrite what was actually run.
+
+Companion. `docs/project_ledger.md` (paper status and saved concepts). Protocol
 decisions currently live in `PREREGISTRATION_DRAFT.md`. Final
 `PREREGISTRATION.md` is created once, after the graph-neural specification and
 empirical dataset are frozen, and is never edited.
@@ -11,6 +23,7 @@ empirical dataset are frozen, and is never edited.
 covharness/
 ├── AGENTS.md
 ├── README.md
+├── INITIAL_CORE_BENCHMARK_PLAN.md  # starting core plan, not final
 ├── PREREGISTRATION_DRAFT.md
 ├── pyproject.toml
 ├── .gitignore
@@ -126,8 +139,8 @@ Ranked options:
 | Source | Cost | Notes |
 |---|---|---|
 | **WRDS / NYSE TAQ** | Free with university access | **Check this first.** What GHAR, SpotV2Net, Christensen et al. use. Trade-and-quote level, full history. Makes your results directly comparable to the papers you are refereeing. |
-| Databento | Pay-as-you-go, ~$100-500 for a one-off historical pull | Highest quality commercial option; clean API; MBP/trades. |
-| Polygon.io | ~$30-200/mo | Minute aggregates, full history on paid tiers. |
+| Databento | Pay-as-you-go, about 100-500 USD for a one-off historical pull | Highest quality commercial option; clean API; MBP/trades. |
+| Polygon.io | About 30-200 USD/mo | Minute aggregates, full history on paid tiers. |
 | Alpaca | Free tier | **Caution:** free tier is IEX-only, roughly 2-3% of consolidated volume. RCov from IEX-only prints is materially noisier and more Epps-affected than SIP data. Usable for pipeline development, not for headline results. |
 | FirstRate Data / Kibot | One-off purchase | Pre-cleaned minute bars; convenient, less transparent cleaning. |
 
@@ -176,7 +189,7 @@ Your covariance target would be measuring illiquidity, not co-movement.
 year Y-1:
 - listed and trading for all of Y-1
 - median daily dollar volume in the top 500
-- price > $5 throughout
+- price greater than 5 USD throughout
 - fewer than 5% zero-return 5-minute bars in Y-1 (the liquidity screen that actually matters for RCov)
 
 Take the top 200 survivors → `pool_Y`. This uses no future information.

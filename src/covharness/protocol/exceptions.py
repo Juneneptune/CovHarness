@@ -1,4 +1,4 @@
-"""Errors raised by the leak-proof temporal protocol."""
+"""Errors raised by the chronological temporal protocol."""
 
 from __future__ import annotations
 

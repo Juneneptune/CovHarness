@@ -4,7 +4,9 @@ This document records protocol decisions that are frozen for implementation. It 
 
 Final `PREREGISTRATION.md` is created once, after the exact graph-neural model specification and the empirical dataset are frozen, and before any Block-4 empirical model fitting begins. Once that file is created it is never edited. Later departures must be recorded separately as deviations.
 
-The graph-neural deep-learning slot is still unresolved. The long historical empirical panel is still unresolved. Any optional state-dependent threshold design is also not yet frozen. Therefore a final preregistration would be false.
+The graph-neural deep-learning slot is still unresolved. The long historical U.S.-equity panel is still unresolved. Any optional state-dependent threshold design is also not yet frozen. Therefore a final preregistration would be false.
+
+Status on 2026-09-21. A later Binance open-data first-stage implemented XGBoost-DRD and LSTM-BEKK, ran VALIDATION and SCREEN under `docs/BINANCE_OPEN_DATA_PROTOCOL.md`, and left CONFIRM locked. The U.S.-equity DATA GATE remains closed. Final `PREREGISTRATION.md` remains absent. Sections below retain the draft commitments as recorded. They are not rewritten as if the Binance branch had been the original preregistration.
 
 ---
 
@@ -73,6 +75,8 @@ GMV portfolios and overnight realized-covariance construction are not implemente
 The committed first-stage roster is random-walk realized covariance, EWMA, HAR-DRD, HARQ-DRD, Ledoit–Wolf linear shrinkage, Ledoit–Wolf nonlinear shrinkage, DCC, DCC-NL, and Ridge-DRD.
 
 XGBoost-DRD remains a planned shallow-learning control. It is not implemented here.
+
+Later status. XGBoost-DRD was subsequently implemented in `covharness.models.xgboost_drd` and selected as `XGB08` on Binance VALIDATION. The two sentences above are the original draft text. They are not a current implementation claim.
 
 ## Deep and structured extensions recorded as draft commitments
 
