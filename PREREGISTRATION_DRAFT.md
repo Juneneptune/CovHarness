@@ -165,7 +165,7 @@ Status values start as planned except for task 0, which is this documentation re
 | 0 | 0 | completed |  |  |
 | A1 | 1-2 | completed | `80612248ae6f772262c4eadc8b48c6a12a9887c0` | `084e3915656be4d326ac242fc8bc709d86e335b3` |
 | A1-addendum | A1 Wald check | completed | `0187bb1a5921bba53152f2610343cb0c8b4aaeb0` |  |
-| A2 | 3 | planned |  |  |
+| A2 | 3 | specified |  |  |
 | A3 | 4-5 | planned |  |  |
 | A4 | 6 | planned |  |  |
 | B1 | 14 | planned |  |  |
@@ -270,3 +270,21 @@ Placebo. For every reduced-QLIKE pair, all 21 time-rolls reject equal phase mean
 One-degree-of-freedom contrasts. Fresh-refit and linear-$k$ slopes are indistinguishable from zero at lags $5$ and $29$ for seven of eight pair-loss cells. The exception is HARQDRD01 minus EWMA01 reduced QLIKE. The $1\{k=0\}$ slope is $0.411$ with $p=0.0028$ at lag $5$ and $p=0.00084$ at lag $29$. Linear $k$ is not significant there. These contrasts do not select a lag.
 
 Influence. Dropping the ten largest $|d_t|$ dates does not remove the reduced-QLIKE equal-mean rejections. Quarticity QLIKE Wald increases. Headline squared Frobenius moves from $p=0.081$ to $p=0.0026$. Remaining dates are concatenated for HAC. That construction is a sensitivity, not a cleaning rule.
+
+### Task A2 spec. Pooled Mincer–Zarnowitz calibration on SCREEN
+
+Spec date 2026-10-28. This entry is written before any A2 empirical number is computed. The exercise is descriptive. It does not rank models. It does not recalibrate forecasts. It does not change any model. SCREEN ratios from this task will not set any recalibration constant. Task C3, if later run, fits such a constant on past data only.
+
+CONFIRM is not read. Production-panel realized covariance is copied only for SCREEN target dates 2023-11-30 through 2025-04-12. Dates after 2025-04-12 are not copied. The SCREEN forecast NPZ remains read-only.
+
+Roster. The nine complete SCREEN columns are RW, EWMA, HAR-DRD, HARQ-DRD, LW-linear, LW-NL, Ridge-DRD, XGBoost-DRD, and LSTM-BEKK. LSTM19 is the stored five-seed equal-weight covariance ensemble. The five LSTM19 seeds are reported in an appendix table only. DCC01 and DCCNL01 are listed as having no forecasts. They are not scored. Models are reported in roster order, not by $p$-value.
+
+Estimator. Reuse `mincer_zarnowitz_pooled_vech`. Do not write a new MZ estimator. OLS uses `weighting="none"`. Approximate PS21 uses `weighting="approximate_ps21"`. Unique entries are the $N(N+1)/2=15$ pairs $i\le j$ at $N=5$. Null $(\alpha,\beta)=(0,1)$. Daily-score Bartlett HAC uses the current automatic Newey–West 1994 lag, which is $5$ at $T=500$, and lag $29$ as a sensitivity. Neither lag is adopted as a new default. Diagonal-only and off-diagonal-only pooled coefficients are descriptive. Nine models are reported separately. This is not the confirmatory two-finalist Bonferroni family.
+
+Whitened ratio. For each date, $r_t=\mathrm{tr}(H_t^{-1}S_t)/N$ is computed from the same Cholesky solves already used by reduced QLIKE. `inv(H)` is not formed. Report the mean of $r_t$, a HAC $95$ percent interval for that mean at the automatic lag and at lag $29$, and the share of days with $r_t>1$. Under correct calibration and an unbiased proxy the mean should be near $1$. Log and square-root transforms of $S$ or $H$ are not used, because they are biased under a noisy proxy.
+
+HARQ-DRD fallbacks. Targets 2024-12-10 and 2025-03-03 remain in the sample and are flagged. They are not dropped.
+
+Implementation. The whitened-ratio helper uses the existing Cholesky path in `covharness.losses`. The entry script is `scripts/post_screen_mz.py`. Outputs go under `results/post_screen/A2/`.
+
+Tests, before the empirical run. Existing MZ tests must still pass. A new ratio test draws a synthetic proxy with $\mathrm{E}[S]=H$ and checks that the mean ratio is near $1$. Scaling $H$ by $2$ yields a mean ratio near $0.5$.
