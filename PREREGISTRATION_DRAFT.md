@@ -163,7 +163,7 @@ Status values start as planned except for task 0, which is this documentation re
 | Task ID | TODO items | Status | Spec commit | Result commit |
 | --- | --- | --- | --- | --- |
 | 0 | 0 | completed |  |  |
-| A1 | 1-2 | planned |  |  |
+| A1 | 1-2 | specified |  |  |
 | A2 | 3 | planned |  |  |
 | A3 | 4-5 | planned |  |  |
 | A4 | 6 | planned |  |  |
@@ -206,3 +206,38 @@ Inventory date 2026-10-28. Files were hashed on disk. Numpy arrays were not load
 SCREEN DCC and DCC-NL checkpoints are JSON diagnostics only. They have no NPZ because those families failed at origin 2023-12-20. The SCREEN NPZ set is the nine complete representatives, with LSTM-BEKK stored as five seed files.
 
 The SCREEN manifest file itself hashes to `dc54b52b245279f1b36a69d16ae1d3f88f8424dc6e1c4078124fe1755d12ea36`, matching the 2026-09-21 record. The tracked core YAML remains `8d63eacacf13a876651f9c4eb5399a8527d8458278974ff069dd0701dd5cbf07`. The VALIDATION selection file remains `f6d9830302b03afa2f3f45cd15576d70fbae4b96482af5c71d935822bc132f4b`.
+
+### Task A1 spec. Persistence of SCREEN loss differentials and refit-cycle pattern
+
+Spec date 2026-10-28. This entry is written before any A1 empirical number is computed. The 2026-09-21 SCREEN loss and forecast NPZ files remain read-only. CONFIRM is not read. The analysis is descriptive. It does not choose a Diebold–Mariano lag, a bootstrap block length, or a confirmatory default. Diebold–Mariano, SPA, and MCS are not run.
+
+Sign convention. $d_t=L_{A,t}-L_{B,t}$. Then $d_t<0$ means A has lower loss on SCREEN target $t$.
+
+Pairs, frozen now.
+
+| Pair ID | A | B | Role |
+| --- | --- | --- | --- |
+| headline | HARQDRD01 | LSTM19 | SCREEN headline comparison. LSTM19 is the stored equal-weight five-seed covariance ensemble column |
+| quarticity | HARQDRD01 | HARDRD01 | realized-quarticity ladder |
+| nonlinear | HARDRD01 | XGB08 | nonlinear HAR-DRD ladder |
+| qlike_mcs | HARQDRD01 | EWMA01 | primary reduced-QLIKE MCS pair at $\alpha=0.10$ |
+
+Losses. Reduced multivariate QLIKE and squared Frobenius, each as the stored SCREEN loss panel. Both losses are scored for every pair. The two losses are never averaged.
+
+Inputs. `results/binance_screen_losses_qlike.npz` and `results/binance_screen_losses_frobenius.npz`, whose 2026-09-21 hashes are recorded in Task 0. Column identities are the stored SCREEN model keys that correspond to those configuration IDs. Refit-phase labels come from the SCREEN schedule. The first SCREEN origin is a refit. Later refits occur every 21 forecast origins. The same $k$ sequence can be recovered from stored SCREEN `refit` flags. Those flags are not rewritten. Dates after 2025-04-12 are not read.
+
+Persistence quantities, for each pair and each loss.
+
+Sample ACF of $d_t$ at lags $1,\ldots,30$, using the existing $1/T$ autocovariance divisor already implemented in `covharness.inference.hac.sample_autocovariances`. $\hat\rho$ is the lag-1 ACF.
+
+The AR(1) effective-sample approximation is $T_{\mathrm{eff,AR1}}=T(1-\hat\rho)/(1+\hat\rho)$. It is labeled as an AR(1) approximation. It is undefined when $|\hat\rho|\ge 1$ or when $1+\hat\rho=0$. It is not used to select a lag.
+
+The existing $\kappa$-based $T_{\mathrm{eff}}$ is taken from `loss_differential_diagnostics` with its default Newey–West 1994 HAC lag. $\kappa=\hat\omega/\hat\gamma_0$ and $T_{\mathrm{eff}}=T/\kappa$ when those ratios are defined. $T_{\mathrm{eff}}$ is not clipped.
+
+Bartlett long-run variance of $d_t$ is reported at four frozen lags. Newey–West 1994 automatic lag, which is $5$ at $T=500$. Twice that automatic lag, $10$. Four times that automatic lag, $20$. $\lfloor 1.3\sqrt{T}\rfloor=29$. Those lags are not chosen from the ACF. Reporting them does not adopt a new Diebold–Mariano default.
+
+Refit cycle. Let $k$ be days since the last SCREEN refit, with $k=0$ on a refit origin and $k\in\{0,\ldots,20\}$ inside a complete 21-origin cycle. The SCREEN target count is $500=23\times 21+17$. The final cycle is therefore partial and occupies $k=0,\ldots,16$ only. Occupancy of $k=0,\ldots,16$ is $24$. Occupancy of $k=17,\ldots,20$ is $23$. For each pair and loss, report the mean of $d_t$ by $k$ together with the count. One descriptive Wald test asks whether those $k$-means are equal. The regression is $d_t$ on a full set of occupied $k$ dummies with no intercept. The null is that all dummy coefficients are equal, implemented as $20$ contrasts against $k=0$ when every $k$ is occupied, otherwise as occupied-count minus one. The sandwich uses the existing Bartlett daily-score HAC at lag $29$. The test is descriptive. It is not a confirmatory Diebold–Mariano test and does not select a lag.
+
+Implementation. Helpers extend `src/covharness/inference/diagnostics.py`. The entry script is `scripts/post_screen_loss_dependence.py`. Outputs go under `results/post_screen/A1/` as JSON, CSV, and PNG. PNG files are ACF plots and mean-$d_t$-by-$k$ plots. SCREEN arrays are read only. New candidates are not created.
+
+Tests, before the empirical run. Sample ACF on a synthetic AR(1) recovers $\rho$ within a fixed-seed Monte Carlo tolerance. The $T_{\mathrm{eff,AR1}}$ formula is checked on known $(\rho,T)$ values. Refit-phase labels are checked on a synthetic schedule that includes a partial final cycle of length $17$ after $23$ complete cycles of length $21$.
