@@ -125,3 +125,84 @@ The long historical dataset is unresolved. This draft does not choose one.
 ---
 
 Simulation is required to validate estimators, losses, and inference against known truth before relying on market data. Simulation never substitutes for the project's final empirical finding.
+
+---
+
+## Post-SCREEN amendment register
+
+This section is the written record for work proposed after the Binance selection period was seen. It does not rewrite the earlier draft commitments. It is not the final preregistration.
+
+SCREEN results on targets 2023-11-30 through 2025-04-12 were seen on 2026-09-21. Every entry below was proposed after that date. Those SCREEN quantities remain selection data. They are not confirmatory rankings. Confirmatory claims rest on CONFIRM only. CONFIRM targets 2025-04-13 through 2026-08-25 remain locked.
+
+A later task may be added only by appending a dated spec to this register and committing that spec before any run that produces empirical numbers. The report for that run records the spec-commit hash.
+
+### Standing rules
+
+The following rules bind every post-SCREEN task.
+
+CONFIRM stays locked until gate G1 records an authorization decision. No task reads CONFIRM-dated measurements, forecasts, or losses. Data-only diagnostics stop at 2025-04-12. Callers must not pass `unlock_confirm=True`.
+
+The 2026-09-21 VALIDATION and SCREEN artifacts are read-only. New outputs go under `results/post_screen/<task_id>/`. New candidates receive new IDs. Existing IDs are not reused for a different specification.
+
+Specification precedes results. Each task writes its spec as a dated entry in this register and commits that entry before any run that produces empirical numbers. The corresponding report records that commit hash.
+
+Every variant tried is reported, including failures. Stochastic methods use seeds $(0,1,2,3,4)$. Aggregation is the equal-weight covariance ensemble. Best-seed selection is forbidden.
+
+Equal treatment is required. The rolling window remains $m=250$. Parameters are refit every 21 origins. Daily state updates, the same targets, and the same losses are reused. A search budget above 20 configurations for any family is recorded with the true total, and parity extensions are applied where the same edge problem exists.
+
+One estimation-failure policy applies to all likelihood-estimated models. That policy is fixed in task C1 and reused by later tasks.
+
+SCREEN-based outputs are labeled descriptive or selection, never confirmatory. Recursive state and statistical lags must not pack across the 2023-03-24 halt.
+
+Reusable code goes in the existing `src/covharness` package that owns it. Scripts remain thin entry points.
+
+### Planned entries
+
+Status values start as planned except for task 0, which is this documentation record. Spec-commit and result-commit cells remain blank until the corresponding git hashes exist.
+
+| Task ID | TODO items | Status | Spec commit | Result commit |
+| --- | --- | --- | --- | --- |
+| 0 | 0 | completed |  |  |
+| A1 | 1-2 | planned |  |  |
+| A2 | 3 | planned |  |  |
+| A3 | 4-5 | planned |  |  |
+| A4 | 6 | planned |  |  |
+| B1 | 14 | planned |  |  |
+| B2 | 15 | planned |  |  |
+| C1 | 8 | planned |  |  |
+| C2 | 7 | planned |  |  |
+| C3 | 12 | planned |  |  |
+| D1 | 13 | planned |  |  |
+| D2 | 9 | planned |  |  |
+| D3a | 10 | planned |  |  |
+| D3b | 10 | planned |  |  |
+| D4 | 11 | planned |  |  |
+| E1 | 16 | planned |  |  |
+| G1 |  | planned |  |  |
+| F1 | 17 | planned |  |  |
+
+G1 is the CONFIRM authorization gate. It has no numbered TODO item in the source list. Recording the gate in this table does not unlock CONFIRM.
+
+### Task 0 artifact inventory
+
+Inventory date 2026-10-28. Files were hashed on disk. Numpy arrays were not loaded. CONFIRM-dated slices were not read. The 2026-09-21 VALIDATION and SCREEN artifacts were not rewritten.
+
+| Artifact | Path | Bytes | SHA-256 | Manifest match |
+| --- | --- | --- | --- | --- |
+| Production panel NPZ | `data/processed/binance_five_asset_panel.npz` | 359563 | `2b7358107a10f77c3879524e1d9b1389c2c66db4a444af89c2cdf59aa186640a` | match with core YAML, VALIDATION manifest, and SCREEN manifest |
+| Production panel sidecar JSON | `data/processed/binance_five_asset_panel.json` | 29810 | `38ed1d4843ea6138d7f87fc0405b668b1ee2fd7403d4cddfba0ca49160737394` | match with the 2026-09-21 panel record in `docs/PROJECT_STATE.md` |
+| VALIDATION forecasts NPZ | `results/binance_validation_forecasts.npz` | 6693176 | `564afb691b138af0dba44fc1009f1e30c8f1887670e02254773957d9a77a9773` | match with VALIDATION manifest `forecasts_sha256` |
+| VALIDATION QLIKE losses NPZ | `results/binance_validation_losses_qlike.npz` |  |  | absent. VALIDATION did not store a loss NPZ |
+| VALIDATION Frobenius losses NPZ | `results/binance_validation_losses_frobenius.npz` |  |  | absent. VALIDATION did not store a loss NPZ |
+| SCREEN forecasts NPZ | `results/binance_screen_forecasts.npz` | 907754 | `118f9eb4f5cfc8f2ffa1b1e73128358725aa179d91ebea8149c1f997a89e6c94` | match with SCREEN manifest `forecasts_sha256` |
+| SCREEN QLIKE losses NPZ | `results/binance_screen_losses_qlike.npz` | 33884 | `3fa68921871277b52e60412bae9fb23f31e7b26e39bec446d1051f7f6e8af61d` | match with SCREEN manifest `losses_qlike_sha256` |
+| SCREEN Frobenius losses NPZ | `results/binance_screen_losses_frobenius.npz` | 34731 | `63a4de10db499b5527e5f1c276c17460481d85a7c3699a7a6226a97819729713` | match with SCREEN manifest `losses_frobenius_sha256` |
+| VALIDATION checkpoints | `results/binance_validation_checkpoints/` | 6883173 | directory of 167 NPZ files and 167 JSON files | no directory hash in the manifests |
+| SCREEN checkpoints | `results/binance_screen_checkpoints/` | 873212 | directory of 13 NPZ files and 15 JSON files | no directory hash in the manifests |
+| SCREEN HARQ-DRD checkpoint NPZ | `results/binance_screen_checkpoints/HARQ-DRD_HARQDRD01.npz` | 75428 | `d2232e6e3e6aa013ff705ff4519312c3dd72cdfcd0e34eed9d50b714eaa0cc14` | not a manifest field. Recorded here for later repair diagnostics |
+| SCREEN HARQ-DRD checkpoint JSON | `results/binance_screen_checkpoints/HARQ-DRD_HARQDRD01.json` | 874 | `9810a5cd63c7f97a2956fca0d4a63891f18f20dc0704369ac262ad1bf6704e5f` | not a manifest field. Recorded here for later repair diagnostics |
+| Binance 1-minute kline cache | `data/cache/open_data/binance/spot/monthly/klines/1m/` | 531001620 | directory of 290 ZIP files and 290 CHECKSUM files for BTCUSDT, ETHUSDT, BNBUSDT, LTCUSDT, and ADAUSDT, months 2021-11 through 2026-08 | no cache hash in the manifests |
+
+SCREEN DCC and DCC-NL checkpoints are JSON diagnostics only. They have no NPZ because those families failed at origin 2023-12-20. The SCREEN NPZ set is the nine complete representatives, with LSTM-BEKK stored as five seed files.
+
+The SCREEN manifest file itself hashes to `dc54b52b245279f1b36a69d16ae1d3f88f8424dc6e1c4078124fe1755d12ea36`, matching the 2026-09-21 record. The tracked core YAML remains `8d63eacacf13a876651f9c4eb5399a8527d8458278974ff069dd0701dd5cbf07`. The VALIDATION selection file remains `f6d9830302b03afa2f3f45cd15576d70fbae4b96482af5c71d935822bc132f4b`.
