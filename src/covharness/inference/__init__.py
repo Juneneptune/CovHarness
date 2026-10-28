@@ -28,14 +28,18 @@ from covharness.inference.bootstrap_mean import (
 from covharness.inference.clark_west import ClarkWestResult, clark_west_squared_error
 from covharness.inference.diagnostics import (
     EqualPhaseMeanWaldResult,
+    InterceptSlopeWaldResult,
     LossDifferentialDiagnostic,
     RefitCycleMeanResult,
     ar1_effective_sample_size,
     equal_refit_phase_means_wald,
+    intercept_slope_wald,
+    largest_absolute_indices,
     loss_differential_diagnostics,
     refit_cycle_means,
     refit_phase_from_flags,
     refit_phase_index,
+    roll_refit_phase,
     sample_acf,
 )
 from covharness.inference.differentials import (
@@ -163,6 +167,7 @@ __all__ = [
     "GW_FAMILY_SIZE",
     "HACResult",
     "HACSizePowerResult",
+    "InterceptSlopeWaldResult",
     "INFERENCE_DETERMINISTIC_ALTERNATIVE",
     "INFERENCE_DETERMINISTIC_NULL",
     "INFERENCE_REGULAR",
@@ -192,6 +197,8 @@ __all__ = [
     "diebold_mariano",
     "diebold_mariano_from_losses",
     "equal_refit_phase_means_wald",
+    "intercept_slope_wald",
+    "largest_absolute_indices",
     "giacomini_rossi_fluctuation",
     "giacomini_white",
     "giacomini_white_two_specifications",
@@ -202,6 +209,7 @@ __all__ = [
     "refit_cycle_means",
     "refit_phase_from_flags",
     "refit_phase_index",
+    "roll_refit_phase",
     "sample_acf",
     "market_state_instruments",
     "measurement_stress_instruments",

@@ -164,7 +164,7 @@ Status values start as planned except for task 0, which is this documentation re
 | --- | --- | --- | --- | --- |
 | 0 | 0 | completed |  |  |
 | A1 | 1-2 | completed | `80612248ae6f772262c4eadc8b48c6a12a9887c0` | `084e3915656be4d326ac242fc8bc709d86e335b3` |
-| A1-addendum | A1 Wald check | specified |  |  |
+| A1-addendum | A1 Wald check | completed | `0187bb1a5921bba53152f2610343cb0c8b4aaeb0` |  |
 | A2 | 3 | planned |  |  |
 | A3 | 4-5 | planned |  |  |
 | A4 | 6 | planned |  |  |
@@ -262,3 +262,11 @@ Influence sensitivity. Identify the ten SCREEN dates with the largest $|d_t|$. R
 Implementation. Helpers extend `src/covharness/inference/diagnostics.py`. The entry script is `scripts/post_screen_refit_wald_check.py`. New outputs go under `results/post_screen/A1/` with the prefix `a1_addendum_`. Existing A1 JSON, CSV, and PNG files are not rewritten.
 
 Tests, before the empirical run. A time-roll of synthetic phase labels changes the Wald when $d_t$ has a $k=0$ mean shift, while adding a constant to $k$ modulo the cadence does not. The one-degree-of-freedom slope Wald rejects a known intercept-plus-dummy mean shift and a known linear $k$ effect under a fixed seed. Dropping ten planted outliers changes the equal-mean Wald relative to the full sample.
+
+A1-addendum empirical run date 2026-10-28. Spec commit `0187bb1a5921bba53152f2610343cb0c8b4aaeb0`. `tests/unit/test_inference_a1_addendum.py` and `tests/unit/test_inference_diagnostics_a1.py` were run first. 10 passed. Committed A1 `a1_summary.json` hash `58e4484211573c071435d38e79c77c9d35056f8999de667e57321f0bc5805cb9` was unchanged after the run. CONFIRM was not read. Diebold–Mariano was not run. No lag was adopted. New files use the prefix `a1_addendum_`.
+
+Placebo. For every reduced-QLIKE pair, all 21 time-rolls reject equal phase means at $5$ percent. The true SCREEN alignment is not the largest statistic except that it is near the middle or the smallest. Headline QLIKE rank from largest is $5$. Quarticity $13$. Nonlinear $21$. HARQ–EWMA $14$. That pattern is not a distinctive refit-calendar lock. It is consistent with the 21-dummy Wald rejecting under this $d_t$ dependence for almost any roll of the same occupancy path. Headline squared Frobenius has rank $2$ and $0$ of $21$ rolls with $p<0.05$. Quarticity squared Frobenius has all $21$ rolls below $0.05$, with true rank $19$.
+
+One-degree-of-freedom contrasts. Fresh-refit and linear-$k$ slopes are indistinguishable from zero at lags $5$ and $29$ for seven of eight pair-loss cells. The exception is HARQDRD01 minus EWMA01 reduced QLIKE. The $1\{k=0\}$ slope is $0.411$ with $p=0.0028$ at lag $5$ and $p=0.00084$ at lag $29$. Linear $k$ is not significant there. These contrasts do not select a lag.
+
+Influence. Dropping the ten largest $|d_t|$ dates does not remove the reduced-QLIKE equal-mean rejections. Quarticity QLIKE Wald increases. Headline squared Frobenius moves from $p=0.081$ to $p=0.0026$. Remaining dates are concatenated for HAC. That construction is a sensitivity, not a cleaning rule.

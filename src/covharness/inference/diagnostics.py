@@ -341,3 +341,92 @@ def equal_refit_phase_means_wald(
         occupied_phases=occupied,
         notes="",
     )
+
+
+def roll_refit_phase(phase: ArrayLike, shift: int) -> NDArray[np.int_]:
+    """Circularly shift phase labels in time. ``shift=0`` is the original path."""
+    labels = np.asarray(phase, dtype=int)
+    if labels.ndim != 1:
+        raise ValueError("phase labels must be a one-dimensional array")
+    if labels.size < 1:
+        raise ValueError("phase labels must contain at least one origin")
+    return np.roll(labels, int(shift))
+
+
+@dataclass(frozen=True)
+class InterceptSlopeWaldResult:
+    """Descriptive one-slope Wald from intercept-plus-regressor OLS with HAC."""
+
+    intercept: float
+    slope: float
+    statistic: float | None
+    df: int
+    p_value: float | None
+    hac_maxlags: int
+    notes: str
+
+
+def intercept_slope_wald(
+    response: ArrayLike,
+    regressor: ArrayLike,
+    *,
+    maxlags: int,
+) -> InterceptSlopeWaldResult:
+    """Test that the slope is zero in ``y = a + b x + e`` with Bartlett HAC."""
+    y_series = as_1d_finite(response, "response")
+    x_series = as_1d_finite(regressor, "regressor")
+    if x_series.shape != y_series.shape:
+        raise ValueError("regressor must match the response length")
+    n_obs = int(y_series.shape[0])
+    lag, _ = resolve_hac_lag(n_obs, maxlags)
+    if np.all(x_series == x_series[0]):
+        return InterceptSlopeWaldResult(
+            intercept=float(y_series.mean()),
+            slope=0.0,
+            statistic=None,
+            df=1,
+            p_value=None,
+            hac_maxlags=lag,
+            notes="regressor has no variation, so the slope Wald is undefined",
+        )
+
+    # Fit intercept and slope by OLS. The Wald tests the slope only.
+    design = np.column_stack([np.ones(n_obs), x_series])
+    gram = design.T @ design
+    coefficients = np.linalg.solve(gram, design.T @ y_series)
+    residuals = y_series - design @ coefficients
+    scores = design * residuals[:, np.newaxis]
+    omega = _bartlett_score_long_run_covariance(scores, maxlags=lag)
+    covariance = np.linalg.solve(gram, np.linalg.solve(gram, n_obs * omega).T).T
+    slope_variance = float(covariance[1, 1])
+    if not np.isfinite(slope_variance) or slope_variance <= 0.0:
+        return InterceptSlopeWaldResult(
+            intercept=float(coefficients[0]),
+            slope=float(coefficients[1]),
+            statistic=None,
+            df=1,
+            p_value=None,
+            hac_maxlags=lag,
+            notes="HAC slope variance is not a positive finite value. No repair was applied.",
+        )
+    statistic = float(coefficients[1] ** 2 / slope_variance)
+    return InterceptSlopeWaldResult(
+        intercept=float(coefficients[0]),
+        slope=float(coefficients[1]),
+        statistic=statistic,
+        df=1,
+        p_value=float(chi2.sf(statistic, df=1)),
+        hac_maxlags=lag,
+        notes="",
+    )
+
+
+def largest_absolute_indices(values: ArrayLike, n_keep: int) -> NDArray[np.int_]:
+    """Return indices of the ``n_keep`` largest absolute entries, largest first."""
+    series = as_1d_finite(values, "values")
+    if n_keep < 1:
+        raise ValueError("n_keep must be at least 1")
+    if n_keep > series.size:
+        raise ValueError("n_keep cannot exceed the sample length")
+    order = np.argsort(np.abs(series), kind="mergesort")
+    return np.asarray(order[-n_keep:][::-1], dtype=int)
