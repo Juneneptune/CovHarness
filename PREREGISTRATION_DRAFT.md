@@ -163,7 +163,8 @@ Status values start as planned except for task 0, which is this documentation re
 | Task ID | TODO items | Status | Spec commit | Result commit |
 | --- | --- | --- | --- | --- |
 | 0 | 0 | completed |  |  |
-| A1 | 1-2 | completed | `80612248ae6f772262c4eadc8b48c6a12a9887c0` |  |
+| A1 | 1-2 | completed | `80612248ae6f772262c4eadc8b48c6a12a9887c0` | `084e3915656be4d326ac242fc8bc709d86e335b3` |
+| A1-addendum | A1 Wald check | specified |  |  |
 | A2 | 3 | planned |  |  |
 | A3 | 4-5 | planned |  |  |
 | A4 | 6 | planned |  |  |
@@ -243,3 +244,21 @@ Implementation. Helpers extend `src/covharness/inference/diagnostics.py`. The en
 Tests, before the empirical run. Sample ACF on a synthetic AR(1) recovers $\rho$ within a fixed-seed Monte Carlo tolerance. The $T_{\mathrm{eff,AR1}}$ formula is checked on known $(\rho,T)$ values. Refit-phase labels are checked on a synthetic schedule that includes a partial final cycle of length $17$ after $23$ complete cycles of length $21$.
 
 A1 empirical run date 2026-10-28. Spec commit `80612248ae6f772262c4eadc8b48c6a12a9887c0`. `tests/unit/test_inference_diagnostics_a1.py` and `tests/unit/test_inference.py` were run first. 27 passed, 1 existing overflow warning. The SCREEN loss NPZs matched the Task 0 hashes. Dates were 2023-11-30 through 2025-04-12. CONFIRM was not read. Diebold–Mariano, SPA, and MCS were not run. No lag or block length was adopted. Outputs are under `results/post_screen/A1/` and are SCREEN descriptive diagnostics.
+
+### Task A1-addendum spec. Check the refit-phase Wald result
+
+Spec date 2026-10-28. This entry is written before any addendum empirical number is computed. It does not rewrite A1 committed files or numbers. CONFIRM is not read. Diebold–Mariano is not run. No lag is adopted. The exercise remains descriptive SCREEN diagnostics for the same four pairs and two losses as A1.
+
+Placebo. The A1 equal-mean Wald is invariant to permuting dummy names, so adding a constant to $k$ modulo $21$ is not a placebo. The placebo circularly shifts the phase series in time. For shift $r=0,1,\ldots,20$, replace the label path by `roll(k, r)` and recompute the A1 Wald at HAC lag $29$, leaving $d_t$ unchanged. $r=0$ is the true SCREEN refit calendar. Report the true statistic, the 20 shifted statistics, the rank of the true statistic among the 21 values, from largest to smallest, and how many of the 21 have $p<0.05$. A calendar-locked refit pattern should place the true statistic among the largest. Widespread small placebo $p$-values would indicate size distortion rather than a distinctive refit alignment.
+
+One-degree-of-freedom contrasts. Candidate B1 HAC lags are $5$ and $29$. Both are reported. Neither is selected. Each contrast is OLS of $d_t$ on an intercept and one regressor, with the same Bartlett daily-score sandwich as A1, and a Wald test that the slope is zero.
+
+Fresh-refit effect. The regressor is $1\{k=0\}$.
+
+Linear staleness. The regressor is $k$ itself.
+
+Influence sensitivity. Identify the ten SCREEN dates with the largest $|d_t|$. Report those dates, their $k$, and $d_t$. Recompute the A1 equal-mean Wald at lag $29$ after dropping those ten dates. Occupancy of $k$ is allowed to change. This is a sensitivity. It is not a cleaning rule and does not revise A1.
+
+Implementation. Helpers extend `src/covharness/inference/diagnostics.py`. The entry script is `scripts/post_screen_refit_wald_check.py`. New outputs go under `results/post_screen/A1/` with the prefix `a1_addendum_`. Existing A1 JSON, CSV, and PNG files are not rewritten.
+
+Tests, before the empirical run. A time-roll of synthetic phase labels changes the Wald when $d_t$ has a $k=0$ mean shift, while adding a constant to $k$ modulo the cadence does not. The one-degree-of-freedom slope Wald rejects a known intercept-plus-dummy mean shift and a known linear $k$ effect under a fixed seed. Dropping ten planted outliers changes the equal-mean Wald relative to the full sample.
