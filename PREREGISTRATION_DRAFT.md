@@ -163,7 +163,7 @@ Status values start as planned except for task 0, which is this documentation re
 | Task ID | TODO items | Status | Spec commit | Result commit |
 | --- | --- | --- | --- | --- |
 | 0 | 0 | completed |  |  |
-| A1 | 1-2 | specified |  |  |
+| A1 | 1-2 | completed | `80612248ae6f772262c4eadc8b48c6a12a9887c0` |  |
 | A2 | 3 | planned |  |  |
 | A3 | 4-5 | planned |  |  |
 | A4 | 6 | planned |  |  |
@@ -241,3 +241,5 @@ Refit cycle. Let $k$ be days since the last SCREEN refit, with $k=0$ on a refit 
 Implementation. Helpers extend `src/covharness/inference/diagnostics.py`. The entry script is `scripts/post_screen_loss_dependence.py`. Outputs go under `results/post_screen/A1/` as JSON, CSV, and PNG. PNG files are ACF plots and mean-$d_t$-by-$k$ plots. SCREEN arrays are read only. New candidates are not created.
 
 Tests, before the empirical run. Sample ACF on a synthetic AR(1) recovers $\rho$ within a fixed-seed Monte Carlo tolerance. The $T_{\mathrm{eff,AR1}}$ formula is checked on known $(\rho,T)$ values. Refit-phase labels are checked on a synthetic schedule that includes a partial final cycle of length $17$ after $23$ complete cycles of length $21$.
+
+A1 empirical run date 2026-10-28. Spec commit `80612248ae6f772262c4eadc8b48c6a12a9887c0`. `tests/unit/test_inference_diagnostics_a1.py` and `tests/unit/test_inference.py` were run first. 27 passed, 1 existing overflow warning. The SCREEN loss NPZs matched the Task 0 hashes. Dates were 2023-11-30 through 2025-04-12. CONFIRM was not read. Diebold–Mariano, SPA, and MCS were not run. No lag or block length was adopted. Outputs are under `results/post_screen/A1/` and are SCREEN descriptive diagnostics.

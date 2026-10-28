@@ -228,7 +228,7 @@ d_t = L_{A,t} - L_{B,t},\qquad
 \mathrm{DM}=\frac{\bar d}{\widehat{\mathrm{se}}_{\mathrm{HAC}}(\bar d)}.
 ```
 
-The current baseline uses Bartlett / Newey–West HAC standard errors and an $N(0,1)$ reference. It is a forecast-comparison statement, not a proof that one population model is true. A candidate recentered stationary-bootstrap mean test is implemented and remains under synthetic calibration. It has not been adopted for confirmatory reporting. Clark–West is restricted to nested scalar squared-error forecasts.
+The current baseline uses Bartlett / Newey–West HAC standard errors and an $N(0,1)$ reference. It is a forecast-comparison statement, not a proof that one population model is true. A candidate recentered stationary-bootstrap mean test is implemented and remains under synthetic calibration. It has not been adopted for confirmatory reporting. Clark–West is restricted to nested scalar squared-error forecasts. A later descriptive SCREEN exercise measures ACF, two $T_{\mathrm{eff}}$ approximations, Bartlett long-run variance at frozen lags, and mean loss gaps by days since the last 21-origin refit. Those quantities are in [`results/post_screen/A1/`](results/post_screen/A1/). They remain selection-period diagnostics. They do not choose a confirmatory lag or block length.
 
 ### Multiple-model screening
 
@@ -349,6 +349,8 @@ python scripts/run_binance_screen.py
 ```
 
 Those script names retain the implementation labels. Do not include holdout unlocking in routine use. There is no authorized confirmatory runner in the default path.
+
+Descriptive selection-period dependence summaries, when the SCREEN loss NPZs are present locally, are produced by `python scripts/post_screen_loss_dependence.py`. That command does not unlock the final holdout and does not run Diebold–Mariano, SPA, or MCS.
 
 ---
 

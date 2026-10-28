@@ -27,8 +27,16 @@ from covharness.inference.bootstrap_mean import (
 )
 from covharness.inference.clark_west import ClarkWestResult, clark_west_squared_error
 from covharness.inference.diagnostics import (
+    EqualPhaseMeanWaldResult,
     LossDifferentialDiagnostic,
+    RefitCycleMeanResult,
+    ar1_effective_sample_size,
+    equal_refit_phase_means_wald,
     loss_differential_diagnostics,
+    refit_cycle_means,
+    refit_phase_from_flags,
+    refit_phase_index,
+    sample_acf,
 )
 from covharness.inference.differentials import (
     ALTERNATIVE_A_BETTER,
@@ -173,6 +181,9 @@ __all__ = [
     "StationaryBootstrapMeanResult",
     "WEIGHTING_APPROXIMATE_PS21",
     "WEIGHTING_NONE",
+    "EqualPhaseMeanWaldResult",
+    "RefitCycleMeanResult",
+    "ar1_effective_sample_size",
     "ar1_true_long_run_variance",
     "bartlett_weights",
     "calibration_hac_lag",
@@ -180,6 +191,7 @@ __all__ = [
     "default_block_length",
     "diebold_mariano",
     "diebold_mariano_from_losses",
+    "equal_refit_phase_means_wald",
     "giacomini_rossi_fluctuation",
     "giacomini_white",
     "giacomini_white_two_specifications",
@@ -187,6 +199,10 @@ __all__ = [
     "hansen_lil_threshold",
     "loss_differential",
     "loss_differential_diagnostics",
+    "refit_cycle_means",
+    "refit_phase_from_flags",
+    "refit_phase_index",
+    "sample_acf",
     "market_state_instruments",
     "measurement_stress_instruments",
     "mincer_zarnowitz_pooled_vech",

@@ -32,6 +32,8 @@ A fixed-seed demonstration of naive $t$-test over-rejection versus HAC DM is in 
 
 Diagnostics for a headline pair are the cumulative sum $C_t=\sum_{s\le t}d_s$, the sample ACF of $d_t$, the HAC inflation $\kappa=\hat\omega/\hat\gamma_0$, and $T_{\mathrm{eff}}=T/\kappa$ when those ratios are defined. $T_{\mathrm{eff}}$ is not clipped into $[1,T]$. Under negative serial correlation $\kappa$ can be below one and $T_{\mathrm{eff}}$ can exceed $T$.
 
+Post-SCREEN task A1 extends those diagnostics in `covharness.inference.diagnostics`. It reports lag-1 through lag-30 ACF, the AR(1) approximation $T_{\mathrm{eff,AR1}}=T(1-\hat\rho)/(1+\hat\rho)$, $\kappa$-based $T_{\mathrm{eff}}$ at the Newey–West 1994 lag, Bartlett long-run variance at frozen lags $\{5,10,20,29\}$ when $T=500$, and a descriptive Wald test of equal mean $d_t$ across the 21-origin refit phase $k$. The SCREEN run is recorded in `results/post_screen/A1/`. Those quantities describe serial dependence. They do not choose a Diebold–Mariano lag, a bootstrap block length, or a confirmatory default.
+
 ---
 
 ## Stationary-bootstrap pairwise companion
