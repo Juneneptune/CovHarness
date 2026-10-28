@@ -137,7 +137,7 @@ L_Q(S,H)
 =\log\det(H)+\mathrm{tr}(H^{-1}S).
 ```
 
-$S$ must be square, finite, symmetric, and PSD. It may be singular. $H$ must be strictly PD. The implementation factorizes $H=LL^{\top}$ by Cholesky and uses that same factor for $`\log\det(H)=2\sum_i\log L_{ii}`$ and for the solves that compute $`\mathrm{tr}(H^{-1}S)`$. It does not form $H^{-1}$. A failed Cholesky is the positive-definiteness failure. The loss does not repair a forecast.
+$S$ must be square, finite, symmetric, and PSD. It may be singular. $H$ must be strictly PD. The implementation factorizes $H=LL^{\top}$ by Cholesky and uses that same factor for $`\log\det(H)=2\sum_i\log L_{ii}`$ and for the solves that compute $`\mathrm{tr}(H^{-1}S)`$. It does not form $H^{-1}$. A failed Cholesky is the positive-definiteness failure. The loss does not repair a forecast. The same Cholesky path supplies the calibration ratio $r_t=\mathrm{tr}(H_t^{-1}S_t)/N$. That ratio is not a ranking loss.
 
 When both $S$ and $H$ are SPD,
 
@@ -350,7 +350,7 @@ python scripts/run_binance_screen.py
 
 Those script names retain the implementation labels. Do not include holdout unlocking in routine use. There is no authorized confirmatory runner in the default path.
 
-Descriptive selection-period dependence summaries, when the SCREEN loss NPZs are present locally, are produced by `python scripts/post_screen_loss_dependence.py`. That command does not unlock the final holdout and does not run Diebold–Mariano, SPA, or MCS.
+Descriptive selection-period dependence summaries, when the SCREEN loss NPZs are present locally, are produced by `python scripts/post_screen_loss_dependence.py`. Descriptive pooled Mincer–Zarnowitz calibration and whitened trace ratios, when the SCREEN forecast NPZ and production panel are present locally, are produced by `python scripts/post_screen_mz.py`. Those commands do not unlock the final holdout, do not recalibrate forecasts, and do not run Diebold–Mariano, SPA, or MCS.
 
 ---
 

@@ -15,6 +15,8 @@ from covharness.losses import (
     reduced_qlike_loss,
     squared_frobenius_loss,
     unsquared_frobenius_loss,
+    whitened_trace_ratio,
+    whitened_trace_ratio_panel,
 )
 
 IDENTITY_2 = np.eye(2)
@@ -179,6 +181,26 @@ def test_localization_rejects_nonpositive_diagonal() -> None:
     singular_diag = np.array([[0.0, 0.0], [0.0, 1.0]])
     with pytest.raises(InvalidCovarianceMatrixError, match="nonpositive diagonal"):
         covariance_localization_diagnostic(singular_diag, IDENTITY_2)
+
+
+def test_whitened_trace_ratio_is_one_when_proxy_equals_forecast() -> None:
+    np.testing.assert_allclose(whitened_trace_ratio(SPD_H, SPD_H), 1.0)
+
+
+def test_whitened_trace_ratio_panel_mean_near_one_when_expectation_matches() -> None:
+    rng = np.random.default_rng(19)
+    n_obs = 400
+    n_assets = 5
+    # Fixed PD scale. Multiplicative mean-one noise keeps E[S] = H.
+    scale = np.eye(n_assets) + 0.2 * np.ones((n_assets, n_assets))
+    forecast = np.broadcast_to(scale, (n_obs, n_assets, n_assets)).copy()
+    multipliers = rng.exponential(scale=1.0, size=n_obs)
+    proxy = multipliers[:, None, None] * forecast
+    ratios = whitened_trace_ratio_panel(proxy, forecast)
+    np.testing.assert_allclose(np.mean(ratios), 1.0, atol=0.08)
+    doubled = whitened_trace_ratio_panel(proxy, 2.0 * forecast)
+    np.testing.assert_allclose(np.mean(doubled), 0.5, atol=0.04)
+    np.testing.assert_allclose(doubled, 0.5 * ratios)
 
 
 def test_matrix_diagnostic_reports_m_over_n() -> None:

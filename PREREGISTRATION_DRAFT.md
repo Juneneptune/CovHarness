@@ -164,8 +164,8 @@ Status values start as planned except for task 0, which is this documentation re
 | --- | --- | --- | --- | --- |
 | 0 | 0 | completed |  |  |
 | A1 | 1-2 | completed | `80612248ae6f772262c4eadc8b48c6a12a9887c0` | `084e3915656be4d326ac242fc8bc709d86e335b3` |
-| A1-addendum | A1 Wald check | completed | `0187bb1a5921bba53152f2610343cb0c8b4aaeb0` |  |
-| A2 | 3 | specified |  |  |
+| A1-addendum | A1 Wald check | completed | `0187bb1a5921bba53152f2610343cb0c8b4aaeb0` | `e0447f94ebbaa2e6b35799b8ae6660398e83f5ba` |
+| A2 | 3 | completed | `75240e13873322df8d93f4dfb3bb4a76626a3bb4` |  |
 | A3 | 4-5 | planned |  |  |
 | A4 | 6 | planned |  |  |
 | B1 | 14 | planned |  |  |
@@ -288,3 +288,35 @@ HARQ-DRD fallbacks. Targets 2024-12-10 and 2025-03-03 remain in the sample and a
 Implementation. The whitened-ratio helper uses the existing Cholesky path in `covharness.losses`. The entry script is `scripts/post_screen_mz.py`. Outputs go under `results/post_screen/A2/`.
 
 Tests, before the empirical run. Existing MZ tests must still pass. A new ratio test draws a synthetic proxy with $\mathrm{E}[S]=H$ and checks that the mean ratio is near $1$. Scaling $H$ by $2$ yields a mean ratio near $0.5$.
+
+### Task A2 results. Pooled Mincer–Zarnowitz calibration on SCREEN
+
+Result date 2026-10-28. Spec commit `75240e13873322df8d93f4dfb3bb4a76626a3bb4`. The estimator is the existing `mincer_zarnowitz_pooled_vech`. No new MZ estimator was written. Tests `tests/unit/test_inference_mz.py` and `tests/unit/test_losses.py` 48 passed before the SCREEN run. The whitened-ratio helper is `covharness.losses.qlike.whitened_trace_ratio`. Entry script `scripts/post_screen_mz.py`. Outputs `results/post_screen/A2/`. Production-panel realized covariance was copied only for SCREEN targets 2023-11-30 through 2025-04-12 and matched the stored SCREEN `proxy_rcov` cube exactly. Dates after 2025-04-12 were not copied. CONFIRM remained locked. Forecasts were not recalibrated. Models were not changed. Models were not ranked.
+
+DCC01 and DCCNL01 have no forecasts.
+
+Nine complete SCREEN columns, roster order, $T=500$, $N=5$, $15$ unique entries. Null $(\alpha,\beta)=(0,1)$. Automatic HAC lag $5$. Headline OLS and approximate PS21 Wald $p$-values use that lag. The mean whitened ratio $r_t=\mathrm{tr}(H_t^{-1}S_t)/N$ is reported with a HAC $95$ percent interval at the same lag.
+
+| Model | Config | $\alpha$ OLS | $\beta$ OLS | Wald $p$ OLS | Wald $p$ PS21 | Mean $r$ | Mean $r$ interval |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| RW | RW01 | $0.000704$ | $0.435$ | $6.21\times 10^{-24}$ | $2.55\times 10^{-17}$ | $1.498$ | $[1.401,1.595]$ |
+| EWMA | EWMA01 | $0.000303$ | $0.764$ | $6.98\times 10^{-4}$ | $1.84\times 10^{-3}$ | $1.148$ | $[1.041,1.255]$ |
+| HAR-DRD | HARDRD01 | $0.000165$ | $0.943$ | $0.188$ | $0.340$ | $1.073$ | $[0.964,1.182]$ |
+| HARQ-DRD | HARQDRD01 | $0.000142$ | $0.954$ | $0.243$ | $0.351$ | $1.062$ | $[0.962,1.161]$ |
+| LW-linear | LWLIN01 | $0.000184$ | $1.379$ | $9.51\times 10^{-6}$ | $3.99\times 10^{-6}$ | $1.391$ | $[1.158,1.624]$ |
+| LW-NL | LWNL01 | $0.000183$ | $1.339$ | $2.76\times 10^{-5}$ | $1.01\times 10^{-5}$ | $1.473$ | $[1.229,1.716]$ |
+| Ridge-DRD | RIDGE01 | $0.000165$ | $0.943$ | $0.188$ | $0.340$ | $1.073$ | $[0.964,1.182]$ |
+| XGBoost-DRD | XGB08 | $0.000338$ | $0.764$ | $6.94\times 10^{-3}$ | $0.209$ | $1.098$ | $[0.998,1.198]$ |
+| LSTM-BEKK | LSTM19 | $0.000498$ | $0.764$ | $9.40\times 10^{-5}$ | $0.0280$ | $1.066$ | $[0.947,1.185]$ |
+
+Ridge-DRD matches HAR-DRD exactly, as on the stored SCREEN losses.
+
+HAR-DRD and HARQ-DRD do not reject $(\alpha,\beta)=(0,1)$ at $5$ percent under OLS or approximate PS21, at lag $5$ or lag $29$. Their mean-ratio intervals include $1$. HARQ-DRD fallback targets remain in the sample. On 2024-12-10, $r_t=2.353$. On 2025-03-03, $r_t=2.899$. Those two dates are flagged, not dropped.
+
+LSTM19 is the stored five-seed covariance ensemble. OLS rejects $(0,1)$ with slope $0.764$. Approximate PS21 also rejects at lag $5$ ($p=0.028$). The mean whitened ratio is $1.066$ and its interval includes $1$. The OLS slope and the quadratic-form size therefore disagree. That is a calibration description. It is not a ranking. Lag $29$ does not reverse the OLS rejection. The five seeds are in `results/post_screen/A2/a2_appendix_lstm_seeds.csv`. All five reject OLS $(0,1)$. Seed 2 is the only seed whose mean-ratio interval excludes $1$.
+
+XGBoost-DRD rejects OLS $(0,1)$ at lag $5$ ($p=0.00694$) and does not reject approximate PS21 ($p=0.209$). At lag $29$ the OLS $p$-value is $0.0587$. The mean-ratio interval includes $1$. RW, EWMA, LW-linear, and LW-NL reject both OLS and PS21 at both lags. Their mean-ratio intervals lie above $1$.
+
+Diagonal-only and off-diagonal-only coefficients are in `results/post_screen/A2/a2_sensitivity.csv`. They are descriptive.
+
+SCREEN ratios from this task do not set any recalibration constant. Task C3, if later run, fits such a constant on past data only. Log and square-root transforms were not used.

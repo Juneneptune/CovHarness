@@ -1,0 +1,2261 @@
+{
+  "task": "A2",
+  "label": "descriptive SCREEN pooled Mincer-Zarnowitz calibration",
+  "spec_commit": "75240e13873322df8d93f4dfb3bb4a76626a3bb4",
+  "screen_start": "2023-11-30",
+  "screen_end": "2025-04-12",
+  "n_observations": 500,
+  "n_assets": 5,
+  "n_unique_entries": 15,
+  "null": {
+    "alpha": 0.0,
+    "beta": 1.0
+  },
+  "weighting": [
+    "none",
+    "approximate_ps21"
+  ],
+  "hac_lags": {
+    "automatic": 5,
+    "sensitivity": 29
+  },
+  "recalibration": "SCREEN ratios from this task do not set any recalibration constant. Task C3, if later run, fits such a constant on past data only.",
+  "log_or_sqrt_transforms": false,
+  "panel_sha256": "2b7358107a10f77c3879524e1d9b1389c2c66db4a444af89c2cdf59aa186640a",
+  "forecasts_sha256": "118f9eb4f5cfc8f2ffa1b1e73128358725aa179d91ebea8149c1f997a89e6c94",
+  "harq_checkpoint_sha256": "d2232e6e3e6aa013ff705ff4519312c3dd72cdfcd0e34eed9d50b714eaa0cc14",
+  "harq_fallback_dates": [
+    "2024-12-10",
+    "2025-03-03"
+  ],
+  "missing_models": [
+    {
+      "family": "DCC",
+      "config_id": "DCC01",
+      "status": "no forecasts"
+    },
+    {
+      "family": "DCC-NL",
+      "config_id": "DCCNL01",
+      "status": "no forecasts"
+    }
+  ],
+  "complete_models": [
+    {
+      "family": "RW",
+      "config_id": "RW01",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0007037761114267055,
+        "beta": 0.43544198877265955,
+        "wald_statistic": 106.8708134132489,
+        "wald_df": 2,
+        "p_value": 6.2129481474571e-24,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0008989734270150601,
+          "beta": 0.45831295404221933,
+          "wald_statistic": 117.65555416674677,
+          "wald_df": 2,
+          "p_value": 2.827619903990792e-26
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.0006524485185877225,
+          "beta": 0.3726682856088033,
+          "wald_statistic": 108.21775417454683,
+          "wald_df": 2,
+          "p_value": 3.1682048831854933e-24
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0007037761114267055,
+        "beta": 0.43544198877265955,
+        "wald_statistic": 108.03158733564315,
+        "wald_df": 2,
+        "p_value": 3.477273688952085e-24,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0008989734270150601,
+          "beta": 0.45831295404221933,
+          "wald_statistic": 113.47619963183679,
+          "wald_df": 2,
+          "p_value": 2.285369022075223e-25
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.0006524485185877225,
+          "beta": 0.3726682856088033,
+          "wald_statistic": 117.02561038606068,
+          "wald_df": 2,
+          "p_value": 3.874463589917581e-26
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0002515241047332466,
+        "beta": 0.9309484910850753,
+        "wald_statistic": 76.4170423857292,
+        "wald_df": 2,
+        "p_value": 2.548297242362589e-17,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.00026454298043499495,
+          "beta": 0.9891332579568504,
+          "wald_statistic": 87.55149727169675,
+          "wald_df": 2,
+          "p_value": 9.737196319722864e-20
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00024832619341217803,
+          "beta": 0.8543277414525494,
+          "wald_statistic": 66.19439295350577,
+          "wald_df": 2,
+          "p_value": 4.227369441458416e-15
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0002515241047332466,
+        "beta": 0.9309484910850753,
+        "wald_statistic": 90.92886205175986,
+        "wald_df": 2,
+        "p_value": 1.7990717438101514e-20,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.00026454298043499495,
+          "beta": 0.9891332579568504,
+          "wald_statistic": 112.79904020258398,
+          "wald_df": 2,
+          "p_value": 3.2062666520944433e-25
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00024832619341217803,
+          "beta": 0.8543277414525494,
+          "wald_statistic": 76.48101950595652,
+          "wald_df": 2,
+          "p_value": 2.4680708866113487e-17
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.4979649804725983,
+        "share_above_one": 0.61,
+        "n_above_one": 305,
+        "automatic": {
+          "mean": 1.4979649804725983,
+          "standard_error": 0.04945877407139504,
+          "ci_low": 1.401025783292664,
+          "ci_high": 1.5949041776525326,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.4979649804725983,
+          "standard_error": 0.04576056024371414,
+          "ci_low": 1.4082742823949186,
+          "ci_high": 1.587655678550278,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      }
+    },
+    {
+      "family": "EWMA",
+      "config_id": "EWMA01",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0003031185731420395,
+        "beta": 0.7639372731333758,
+        "wald_statistic": 14.534909955164073,
+        "wald_df": 2,
+        "p_value": 0.0006978858707102668,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0003617650689090027,
+          "beta": 0.7881826183355726,
+          "wald_statistic": 11.745229717675645,
+          "wald_df": 2,
+          "p_value": 0.0028155015610031044
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.0003492811750551498,
+          "beta": 0.6711633148085199,
+          "wald_statistic": 22.700257160818364,
+          "wald_df": 2,
+          "p_value": 1.1767976396427756e-05
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0003031185731420395,
+        "beta": 0.7639372731333758,
+        "wald_statistic": 21.44002672422743,
+        "wald_df": 2,
+        "p_value": 2.209822295137299e-05,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0003617650689090027,
+          "beta": 0.7881826183355726,
+          "wald_statistic": 20.09846879325386,
+          "wald_df": 2,
+          "p_value": 4.321882487535258e-05
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.0003492811750551498,
+          "beta": 0.6711633148085199,
+          "wald_statistic": 27.059759490192974,
+          "wald_df": 2,
+          "p_value": 1.3306011237482422e-06
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.00018529009961215266,
+        "beta": 0.8776827167611821,
+        "wald_statistic": 12.596651847045097,
+        "wald_df": 2,
+        "p_value": 0.0018393814662495472,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.00020851332226458076,
+          "beta": 0.899341978840009,
+          "wald_statistic": 13.779253705403852,
+          "wald_df": 2,
+          "p_value": 0.001018293743670298
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.0001920368422298583,
+          "beta": 0.820002634867705,
+          "wald_statistic": 11.768330274905257,
+          "wald_df": 2,
+          "p_value": 0.0027831688190775
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.00018529009961215266,
+        "beta": 0.8776827167611821,
+        "wald_statistic": 16.380445003561057,
+        "wald_df": 2,
+        "p_value": 0.00027735216602389984,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.00020851332226458076,
+          "beta": 0.899341978840009,
+          "wald_statistic": 19.312217399801632,
+          "wald_df": 2,
+          "p_value": 6.403321019460197e-05
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.0001920368422298583,
+          "beta": 0.820002634867705,
+          "wald_statistic": 14.66570186536676,
+          "wald_df": 2,
+          "p_value": 0.0006537072526209191
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.1482896785261134,
+        "share_above_one": 0.416,
+        "n_above_one": 208,
+        "automatic": {
+          "mean": 1.1482896785261134,
+          "standard_error": 0.05451324289582376,
+          "ci_low": 1.0414437224502988,
+          "ci_high": 1.255135634601928,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.1482896785261134,
+          "standard_error": 0.042254759914029424,
+          "ci_low": 1.0654703490946158,
+          "ci_high": 1.231109007957611,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      }
+    },
+    {
+      "family": "HAR-DRD",
+      "config_id": "HARDRD01",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.00016519599893876228,
+        "beta": 0.9428530599245257,
+        "wald_statistic": 3.3418632772089376,
+        "wald_df": 2,
+        "p_value": 0.1880717690744221,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0002069523067436668,
+          "beta": 0.9474330274362801,
+          "wald_statistic": 3.7399742728760783,
+          "wald_df": 2,
+          "p_value": 0.1541256444071564
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00017731467034272727,
+          "beta": 0.90456133348892,
+          "wald_statistic": 3.3444181800726613,
+          "wald_df": 2,
+          "p_value": 0.18783166991388447
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.00016519599893876228,
+        "beta": 0.9428530599245257,
+        "wald_statistic": 3.2161074905354203,
+        "wald_df": 2,
+        "p_value": 0.2002770251135815,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0002069523067436668,
+          "beta": 0.9474330274362801,
+          "wald_statistic": 3.2624892600068245,
+          "wald_df": 2,
+          "p_value": 0.19568586599508248
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00017731467034272727,
+          "beta": 0.90456133348892,
+          "wald_statistic": 3.25003104137533,
+          "wald_df": 2,
+          "p_value": 0.19690861902330267
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -2.3478675372764825e-05,
+        "beta": 1.1170644239881766,
+        "wald_statistic": 2.159370289716883,
+        "wald_df": 2,
+        "p_value": 0.3397024658766961,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -2.556774239163293e-05,
+          "beta": 1.1132772929000283,
+          "wald_statistic": 2.2844550694331964,
+          "wald_df": 2,
+          "p_value": 0.3191074067101041
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -2.798472414560351e-05,
+          "beta": 1.1293431678819048,
+          "wald_statistic": 1.9169407036524713,
+          "wald_df": 2,
+          "p_value": 0.3834790255582742
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -2.3478675372764825e-05,
+        "beta": 1.1170644239881766,
+        "wald_statistic": 2.297418419977161,
+        "wald_df": 2,
+        "p_value": 0.3170457448521595,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -2.556774239163293e-05,
+          "beta": 1.1132772929000283,
+          "wald_statistic": 1.9333338755657543,
+          "wald_df": 2,
+          "p_value": 0.3803486534705591
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -2.798472414560351e-05,
+          "beta": 1.1293431678819048,
+          "wald_statistic": 2.446266408043777,
+          "wald_df": 2,
+          "p_value": 0.2943065981978023
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.0731165288729834,
+        "share_above_one": 0.356,
+        "n_above_one": 178,
+        "automatic": {
+          "mean": 1.0731165288729834,
+          "standard_error": 0.05569668301343623,
+          "ci_low": 0.9639510301666484,
+          "ci_high": 1.1822820275793184,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.0731165288729834,
+          "standard_error": 0.07551970726912563,
+          "ci_low": 0.9250979026254971,
+          "ci_high": 1.2211351551204697,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      }
+    },
+    {
+      "family": "HARQ-DRD",
+      "config_id": "HARQDRD01",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0001421819879130086,
+        "beta": 0.9543464021043503,
+        "wald_statistic": 2.8271783386792104,
+        "wald_df": 2,
+        "p_value": 0.24326858223093958,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.00014609808559456035,
+          "beta": 0.978368524954676,
+          "wald_statistic": 2.6538018664968486,
+          "wald_df": 2,
+          "p_value": 0.26529816534807565
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00018663081876516365,
+          "beta": 0.8867992919145645,
+          "wald_statistic": 3.7708292749047,
+          "wald_df": 2,
+          "p_value": 0.15176611846477847
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0001421819879130086,
+        "beta": 0.9543464021043503,
+        "wald_statistic": 2.908864159429767,
+        "wald_df": 2,
+        "p_value": 0.23353295434920318,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.00014609808559456035,
+          "beta": 0.978368524954676,
+          "wald_statistic": 2.4376775416523633,
+          "wald_df": 2,
+          "p_value": 0.29557319593593917
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00018663081876516365,
+          "beta": 0.8867992919145645,
+          "wald_statistic": 3.9966632322314215,
+          "wald_df": 2,
+          "p_value": 0.13556126290013684
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -8.955705987405932e-06,
+        "beta": 1.0936309540115265,
+        "wald_statistic": 2.094747436989674,
+        "wald_df": 2,
+        "p_value": 0.3508579920291454,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -3.234462759893446e-06,
+          "beta": 1.0835200610919866,
+          "wald_statistic": 2.268834898504153,
+          "wald_df": 2,
+          "p_value": 0.32160942058193526
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -1.691212390438204e-05,
+          "beta": 1.1092353731107099,
+          "wald_statistic": 1.931422126550217,
+          "wald_df": 2,
+          "p_value": 0.38071239286938957
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -8.955705987405932e-06,
+        "beta": 1.0936309540115265,
+        "wald_statistic": 2.1264413658697907,
+        "wald_df": 2,
+        "p_value": 0.34534178094471396,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -3.234462759893446e-06,
+          "beta": 1.0835200610919866,
+          "wald_statistic": 1.7940831909626402,
+          "wald_df": 2,
+          "p_value": 0.40777423819575154
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -1.691212390438204e-05,
+          "beta": 1.1092353731107099,
+          "wald_statistic": 2.342184208849544,
+          "wald_df": 2,
+          "p_value": 0.31002817317436215
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.0617607725055287,
+        "share_above_one": 0.362,
+        "n_above_one": 181,
+        "automatic": {
+          "mean": 1.0617607725055287,
+          "standard_error": 0.05086994141074411,
+          "ci_low": 0.9620556873404702,
+          "ci_high": 1.1614658576705872,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.0617607725055287,
+          "standard_error": 0.06507021213961889,
+          "ci_low": 0.9342231567118757,
+          "ci_high": 1.1892983882991817,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": [
+          {
+            "date": "2024-12-10",
+            "index": 376,
+            "ratio": 2.3534351304532057
+          },
+          {
+            "date": "2025-03-03",
+            "index": 459,
+            "ratio": 2.8990588996617155
+          }
+        ]
+      }
+    },
+    {
+      "family": "LW-linear",
+      "config_id": "LWLIN01",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0001837805846945719,
+        "beta": 1.3787188474061107,
+        "wald_statistic": 23.125864256688644,
+        "wald_df": 2,
+        "p_value": 9.51223086124328e-06,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.00010167599674347282,
+          "beta": 1.4334411987946287,
+          "wald_statistic": 19.451654775368716,
+          "wald_df": 2,
+          "p_value": 5.972096732903924e-05
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00021645347902397294,
+          "beta": 1.3438801829190936,
+          "wald_statistic": 23.752239527401095,
+          "wald_df": 2,
+          "p_value": 6.954512950672767e-06
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0001837805846945719,
+        "beta": 1.3787188474061107,
+        "wald_statistic": 13.44764003980098,
+        "wald_df": 2,
+        "p_value": 0.0012019380060070408,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.00010167599674347282,
+          "beta": 1.4334411987946287,
+          "wald_statistic": 9.149654675384449,
+          "wald_df": 2,
+          "p_value": 0.010308078841037382
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00021645347902397294,
+          "beta": 1.3438801829190936,
+          "wald_statistic": 15.472670556253277,
+          "wald_df": 2,
+          "p_value": 0.00043666891651473506
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0002640838374546409,
+        "beta": 1.2309112338725774,
+        "wald_statistic": 24.86240917630407,
+        "wald_df": 2,
+        "p_value": 3.992054336930983e-06,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.00012539927679675988,
+          "beta": 1.3905649614362783,
+          "wald_statistic": 21.692886735307987,
+          "wald_df": 2,
+          "p_value": 1.947374582221468e-05
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00037764348754085577,
+          "beta": 1.0209362482042033,
+          "wald_statistic": 26.158735477032888,
+          "wald_df": 2,
+          "p_value": 2.0878666842606784e-06
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0002640838374546409,
+        "beta": 1.2309112338725774,
+        "wald_statistic": 13.824659414292434,
+        "wald_df": 2,
+        "p_value": 0.0009954360185970446,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.00012539927679675988,
+          "beta": 1.3905649614362783,
+          "wald_statistic": 10.403657157355024,
+          "wald_df": 2,
+          "p_value": 0.005506486165937008
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00037764348754085577,
+          "beta": 1.0209362482042033,
+          "wald_statistic": 16.301847591523906,
+          "wald_df": 2,
+          "p_value": 0.0002884687502919004
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.39145886680255,
+        "share_above_one": 0.43,
+        "n_above_one": 215,
+        "automatic": {
+          "mean": 1.39145886680255,
+          "standard_error": 0.11888097265028044,
+          "ci_low": 1.1584521604080005,
+          "ci_high": 1.6244655731970996,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.39145886680255,
+          "standard_error": 0.19198561646827553,
+          "ci_low": 1.0151670585247299,
+          "ci_high": 1.7677506750803702,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      }
+    },
+    {
+      "family": "LW-NL",
+      "config_id": "LWNL01",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.00018325343067957764,
+        "beta": 1.3386196440295859,
+        "wald_statistic": 20.992644182164213,
+        "wald_df": 2,
+        "p_value": 2.7637912373884095e-05,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0001799576670570323,
+          "beta": 1.351864880186692,
+          "wald_statistic": 19.69953863832911,
+          "wald_df": 2,
+          "p_value": 5.2759362185609237e-05
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00023075487575821666,
+          "beta": 1.2561656593225787,
+          "wald_statistic": 20.608190234780388,
+          "wald_df": 2,
+          "p_value": 3.349564534144763e-05
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.00018325343067957764,
+        "beta": 1.3386196440295859,
+        "wald_statistic": 12.185360918352995,
+        "wald_df": 2,
+        "p_value": 0.002259344709758006,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0001799576670570323,
+          "beta": 1.351864880186692,
+          "wald_statistic": 9.210499250699726,
+          "wald_df": 2,
+          "p_value": 0.009999205637934511
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00023075487575821666,
+          "beta": 1.2561656593225787,
+          "wald_statistic": 13.393658083342007,
+          "wald_df": 2,
+          "p_value": 0.0012348212679650266
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0002477154722817758,
+        "beta": 1.2242066008579133,
+        "wald_statistic": 23.014627205429203,
+        "wald_df": 2,
+        "p_value": 1.0056276382517145e-05,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0001554035388843977,
+          "beta": 1.3547283652122943,
+          "wald_statistic": 22.16631880216846,
+          "wald_df": 2,
+          "p_value": 1.5368979455577837e-05
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.000373455247231423,
+          "beta": 0.9762067246882915,
+          "wald_statistic": 22.91783364540831,
+          "wald_df": 2,
+          "p_value": 1.0554937239732639e-05
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0002477154722817758,
+        "beta": 1.2242066008579133,
+        "wald_statistic": 12.784975282930247,
+        "wald_df": 2,
+        "p_value": 0.001674086490197106,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0001554035388843977,
+          "beta": 1.3547283652122943,
+          "wald_statistic": 10.664127152761202,
+          "wald_df": 2,
+          "p_value": 0.0048340842105615515
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.000373455247231423,
+          "beta": 0.9762067246882915,
+          "wald_statistic": 14.275793162269443,
+          "wald_df": 2,
+          "p_value": 0.0007944213411265733
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.4725140447292153,
+        "share_above_one": 0.45,
+        "n_above_one": 225,
+        "automatic": {
+          "mean": 1.4725140447292153,
+          "standard_error": 0.1244659851070426,
+          "ci_low": 1.228560713919412,
+          "ci_high": 1.7164673755390187,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.4725140447292153,
+          "standard_error": 0.2013796132540282,
+          "ci_low": 1.07781000275132,
+          "ci_high": 1.8672180867071106,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      }
+    },
+    {
+      "family": "Ridge-DRD",
+      "config_id": "RIDGE01",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.00016519599893876228,
+        "beta": 0.9428530599245257,
+        "wald_statistic": 3.3418632772089376,
+        "wald_df": 2,
+        "p_value": 0.1880717690744221,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0002069523067436668,
+          "beta": 0.9474330274362801,
+          "wald_statistic": 3.7399742728760783,
+          "wald_df": 2,
+          "p_value": 0.1541256444071564
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00017731467034272727,
+          "beta": 0.90456133348892,
+          "wald_statistic": 3.3444181800726613,
+          "wald_df": 2,
+          "p_value": 0.18783166991388447
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.00016519599893876228,
+        "beta": 0.9428530599245257,
+        "wald_statistic": 3.2161074905354203,
+        "wald_df": 2,
+        "p_value": 0.2002770251135815,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0002069523067436668,
+          "beta": 0.9474330274362801,
+          "wald_statistic": 3.2624892600068245,
+          "wald_df": 2,
+          "p_value": 0.19568586599508248
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00017731467034272727,
+          "beta": 0.90456133348892,
+          "wald_statistic": 3.25003104137533,
+          "wald_df": 2,
+          "p_value": 0.19690861902330267
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -2.3478675372764825e-05,
+        "beta": 1.1170644239881766,
+        "wald_statistic": 2.159370289716883,
+        "wald_df": 2,
+        "p_value": 0.3397024658766961,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -2.556774239163293e-05,
+          "beta": 1.1132772929000283,
+          "wald_statistic": 2.2844550694331964,
+          "wald_df": 2,
+          "p_value": 0.3191074067101041
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -2.798472414560351e-05,
+          "beta": 1.1293431678819048,
+          "wald_statistic": 1.9169407036524713,
+          "wald_df": 2,
+          "p_value": 0.3834790255582742
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -2.3478675372764825e-05,
+        "beta": 1.1170644239881766,
+        "wald_statistic": 2.297418419977161,
+        "wald_df": 2,
+        "p_value": 0.3170457448521595,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -2.556774239163293e-05,
+          "beta": 1.1132772929000283,
+          "wald_statistic": 1.9333338755657543,
+          "wald_df": 2,
+          "p_value": 0.3803486534705591
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -2.798472414560351e-05,
+          "beta": 1.1293431678819048,
+          "wald_statistic": 2.446266408043777,
+          "wald_df": 2,
+          "p_value": 0.2943065981978023
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.0731165288729834,
+        "share_above_one": 0.356,
+        "n_above_one": 178,
+        "automatic": {
+          "mean": 1.0731165288729834,
+          "standard_error": 0.05569668301343623,
+          "ci_low": 0.9639510301666484,
+          "ci_high": 1.1822820275793184,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.0731165288729834,
+          "standard_error": 0.07551970726912563,
+          "ci_low": 0.9250979026254971,
+          "ci_high": 1.2211351551204697,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      }
+    },
+    {
+      "family": "XGBoost-DRD",
+      "config_id": "XGB08",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0003384163487950846,
+        "beta": 0.7640831575570156,
+        "wald_statistic": 9.9412620083795,
+        "wald_df": 2,
+        "p_value": 0.00693876826121918,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0005093165283997608,
+          "beta": 0.7205757573624049,
+          "wald_statistic": 11.544388623854232,
+          "wald_df": 2,
+          "p_value": 0.003112919298375022
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00025065723517377514,
+          "beta": 0.8016861355608429,
+          "wald_statistic": 9.211696385284258,
+          "wald_df": 2,
+          "p_value": 0.009993222231405367
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0003384163487950846,
+        "beta": 0.7640831575570156,
+        "wald_statistic": 5.671347084295191,
+        "wald_df": 2,
+        "p_value": 0.05867898974798324,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0005093165283997608,
+          "beta": 0.7205757573624049,
+          "wald_statistic": 5.934218431898512,
+          "wald_df": 2,
+          "p_value": 0.05145183169133732
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00025065723517377514,
+          "beta": 0.8016861355608429,
+          "wald_statistic": 6.182107885121132,
+          "wald_df": 2,
+          "p_value": 0.04545402322107956
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 1.3769896091368647e-05,
+        "beta": 1.0665111434257368,
+        "wald_statistic": 3.1350554490471847,
+        "wald_df": 2,
+        "p_value": 0.20856016368489694,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 2.6538858768780848e-05,
+          "beta": 1.061138552257915,
+          "wald_statistic": 4.32788849027625,
+          "wald_df": 2,
+          "p_value": 0.11487114637233133
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 1.00349397476004e-05,
+          "beta": 1.0634039976555683,
+          "wald_statistic": 2.3720954196857496,
+          "wald_df": 2,
+          "p_value": 0.30542601396660624
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 1.3769896091368647e-05,
+        "beta": 1.0665111434257368,
+        "wald_statistic": 2.603187613916791,
+        "wald_df": 2,
+        "p_value": 0.2720977759275081,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 2.6538858768780848e-05,
+          "beta": 1.061138552257915,
+          "wald_statistic": 2.9580704009533267,
+          "wald_df": 2,
+          "p_value": 0.22785741909805857
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 1.00349397476004e-05,
+          "beta": 1.0634039976555683,
+          "wald_statistic": 2.2905886363479366,
+          "wald_df": 2,
+          "p_value": 0.3181302724894548
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.098156775284893,
+        "share_above_one": 0.38,
+        "n_above_one": 190,
+        "automatic": {
+          "mean": 1.098156775284893,
+          "standard_error": 0.050931810016431704,
+          "ci_low": 0.998330427652687,
+          "ci_high": 1.1979831229170992,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.098156775284893,
+          "standard_error": 0.06483471157958359,
+          "ci_low": 0.9710807405889093,
+          "ci_high": 1.225232809980877,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      }
+    },
+    {
+      "family": "LSTM-BEKK",
+      "config_id": "LSTM19",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0004984854007047826,
+        "beta": 0.7638953668215355,
+        "wald_statistic": 18.54373412607824,
+        "wald_df": 2,
+        "p_value": 9.403278470547276e-05,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0006592851371998605,
+          "beta": 0.6855126794959295,
+          "wald_statistic": 14.187763687936233,
+          "wald_df": 2,
+          "p_value": 0.0008301685180656941
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00019500631810720376,
+          "beta": 1.14311930825179,
+          "wald_statistic": 17.157885630724547,
+          "wald_df": 2,
+          "p_value": 0.00018802364808433983
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0004984854007047826,
+        "beta": 0.7638953668215355,
+        "wald_statistic": 12.779237059485801,
+        "wald_df": 2,
+        "p_value": 0.0016788965283389475,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0006592851371998605,
+          "beta": 0.6855126794959295,
+          "wald_statistic": 9.057136198578995,
+          "wald_df": 2,
+          "p_value": 0.010796123987772136
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00019500631810720376,
+          "beta": 1.14311930825179,
+          "wald_statistic": 14.727348441197345,
+          "wald_df": 2,
+          "p_value": 0.000633865215105883
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -4.625862725969145e-05,
+        "beta": 1.2579245069256095,
+        "wald_statistic": 7.149860802749038,
+        "wald_df": 2,
+        "p_value": 0.028017375677202458,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -0.00012728582592629083,
+          "beta": 1.2790104327593275,
+          "wald_statistic": 5.676786242493357,
+          "wald_df": 2,
+          "p_value": 0.05851962439547387
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -8.507313447969092e-05,
+          "beta": 1.4024946077775478,
+          "wald_statistic": 9.266278167231906,
+          "wald_df": 2,
+          "p_value": 0.009724186108564226
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -4.625862725969145e-05,
+        "beta": 1.2579245069256095,
+        "wald_statistic": 8.655974453435324,
+        "wald_df": 2,
+        "p_value": 0.013194077468320752,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -0.00012728582592629083,
+          "beta": 1.2790104327593275,
+          "wald_statistic": 6.784826455960664,
+          "wald_df": 2,
+          "p_value": 0.033627428252483084
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -8.507313447969092e-05,
+          "beta": 1.4024946077775478,
+          "wald_statistic": 11.299505898877836,
+          "wald_df": 2,
+          "p_value": 0.00351838588675785
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.0661954502670368,
+        "share_above_one": 0.344,
+        "n_above_one": 172,
+        "automatic": {
+          "mean": 1.0661954502670368,
+          "standard_error": 0.06073537727593779,
+          "ci_low": 0.9471541108061987,
+          "ci_high": 1.1852367897278748,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.0661954502670368,
+          "standard_error": 0.06496557177799421,
+          "ci_low": 0.9388629295821681,
+          "ci_high": 1.1935279709519053,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      }
+    }
+  ],
+  "lstm_seeds": [
+    {
+      "family": "LSTM-BEKK",
+      "config_id": "LSTM19_seed0",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0004965919715540646,
+        "beta": 0.7818077263501445,
+        "wald_statistic": 17.871676673135493,
+        "wald_df": 2,
+        "p_value": 0.00013158752524099624,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0006867700385935283,
+          "beta": 0.6916217761551704,
+          "wald_statistic": 15.160475948057897,
+          "wald_df": 2,
+          "p_value": 0.0005104397371589689
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00018009950735520307,
+          "beta": 1.169131544480909,
+          "wald_statistic": 16.645423764561837,
+          "wald_df": 2,
+          "p_value": 0.00024293615584775857
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0004965919715540646,
+        "beta": 0.7818077263501445,
+        "wald_statistic": 11.678489832040942,
+        "wald_df": 2,
+        "p_value": 0.0029110398757280116,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0006867700385935283,
+          "beta": 0.6916217761551704,
+          "wald_statistic": 8.902948972573446,
+          "wald_df": 2,
+          "p_value": 0.011661359772555165
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00018009950735520307,
+          "beta": 1.169131544480909,
+          "wald_statistic": 13.90193195845719,
+          "wald_df": 2,
+          "p_value": 0.0009577095791626087
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -7.132104672046722e-05,
+        "beta": 1.3204507625005442,
+        "wald_statistic": 8.353564730140883,
+        "wald_df": 2,
+        "p_value": 0.015347811858109404,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -0.00016346087771753457,
+          "beta": 1.3499585202473068,
+          "wald_statistic": 7.2122641779612096,
+          "wald_df": 2,
+          "p_value": 0.027156683621857806
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -0.00010308764294959004,
+          "beta": 1.4558030568861253,
+          "wald_statistic": 10.23477589861201,
+          "wald_df": 2,
+          "p_value": 0.005991652974148955
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -7.132104672046722e-05,
+        "beta": 1.3204507625005442,
+        "wald_statistic": 8.336013027797275,
+        "wald_df": 2,
+        "p_value": 0.015483094713652858,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -0.00016346087771753457,
+          "beta": 1.3499585202473068,
+          "wald_statistic": 6.656233921707615,
+          "wald_df": 2,
+          "p_value": 0.03586056838375956
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -0.00010308764294959004,
+          "beta": 1.4558030568861253,
+          "wald_statistic": 10.621745708228776,
+          "wald_df": 2,
+          "p_value": 0.004937615018627167
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.1301288428000211,
+        "share_above_one": 0.356,
+        "n_above_one": 178,
+        "automatic": {
+          "mean": 1.1301288428000211,
+          "standard_error": 0.0694124333504194,
+          "ci_low": 0.9940804734331992,
+          "ci_high": 1.266177212166843,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.1301288428000211,
+          "standard_error": 0.07880774404849539,
+          "ci_low": 0.9756656644649702,
+          "ci_high": 1.284592021135072,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      },
+      "seed": 0
+    },
+    {
+      "family": "LSTM-BEKK",
+      "config_id": "LSTM19_seed1",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0005490277358436957,
+        "beta": 0.7271001891174973,
+        "wald_statistic": 23.310938458942232,
+        "wald_df": 2,
+        "p_value": 8.67149603092229e-06,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0006892532088735706,
+          "beta": 0.6621244928232161,
+          "wald_statistic": 16.336282838507437,
+          "wald_df": 2,
+          "p_value": 0.0002835445174012399
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.0002637835503111149,
+          "beta": 1.099290017808098,
+          "wald_statistic": 20.364806477129513,
+          "wald_df": 2,
+          "p_value": 3.7830184639396344e-05
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0005490277358436957,
+        "beta": 0.7271001891174973,
+        "wald_statistic": 14.717793418963186,
+        "wald_df": 2,
+        "p_value": 0.0006369007586154564,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0006892532088735706,
+          "beta": 0.6621244928232161,
+          "wald_statistic": 10.088800671678836,
+          "wald_df": 2,
+          "p_value": 0.0064453242351693975
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.0002637835503111149,
+          "beta": 1.099290017808098,
+          "wald_statistic": 15.433221878253699,
+          "wald_df": 2,
+          "p_value": 0.0004453674264230707
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -6.045236040567916e-06,
+        "beta": 1.2284064165215183,
+        "wald_statistic": 8.131778136340905,
+        "wald_df": 2,
+        "p_value": 0.017147736987295503,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -7.570165200376571e-05,
+          "beta": 1.24800554175951,
+          "wald_statistic": 5.986976773300285,
+          "wald_df": 2,
+          "p_value": 0.05011232031510647
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -3.7608724192504626e-05,
+          "beta": 1.3509655160325784,
+          "wald_statistic": 9.914442134024048,
+          "wald_df": 2,
+          "p_value": 0.007032443392739613
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -6.045236040567916e-06,
+        "beta": 1.2284064165215183,
+        "wald_statistic": 8.903487583077906,
+        "wald_df": 2,
+        "p_value": 0.011658219729954242,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -7.570165200376571e-05,
+          "beta": 1.24800554175951,
+          "wald_statistic": 7.015629497177317,
+          "wald_df": 2,
+          "p_value": 0.029962318147142415
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -3.7608724192504626e-05,
+          "beta": 1.3509655160325784,
+          "wald_statistic": 10.592541191561184,
+          "wald_df": 2,
+          "p_value": 0.005010244334162715
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.1057630111989856,
+        "share_above_one": 0.366,
+        "n_above_one": 183,
+        "automatic": {
+          "mean": 1.1057630111989856,
+          "standard_error": 0.06323771113475547,
+          "ci_low": 0.9818170973748649,
+          "ci_high": 1.2297089250231064,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.1057630111989856,
+          "standard_error": 0.06667602432198547,
+          "ci_low": 0.9750780035278941,
+          "ci_high": 1.236448018870077,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      },
+      "seed": 1
+    },
+    {
+      "family": "LSTM-BEKK",
+      "config_id": "LSTM19_seed2",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0005955107576519722,
+        "beta": 0.678927634344823,
+        "wald_statistic": 23.632860886778772,
+        "wald_df": 2,
+        "p_value": 7.382262139231244e-06,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0008339565801471454,
+          "beta": 0.5925470746492547,
+          "wald_statistic": 22.98862311855628,
+          "wald_df": 2,
+          "p_value": 1.0187882243384745e-05
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00032123802141805104,
+          "beta": 0.9691885523400061,
+          "wald_statistic": 20.188694031288247,
+          "wald_df": 2,
+          "p_value": 4.131243492081068e-05
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0005955107576519722,
+        "beta": 0.678927634344823,
+        "wald_statistic": 14.027972855097651,
+        "wald_df": 2,
+        "p_value": 0.0008992167713838022,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0008339565801471454,
+          "beta": 0.5925470746492547,
+          "wald_statistic": 12.456560353778793,
+          "wald_df": 2,
+          "p_value": 0.001972841919811281
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00032123802141805104,
+          "beta": 0.9691885523400061,
+          "wald_statistic": 14.121973913708493,
+          "wald_df": 2,
+          "p_value": 0.0008579309351715728
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -7.519695023508344e-05,
+        "beta": 1.3523608450234905,
+        "wald_statistic": 9.737495827697666,
+        "wald_df": 2,
+        "p_value": 0.007682979019659542,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -0.00018957927205148312,
+          "beta": 1.4173571022858167,
+          "wald_statistic": 9.187165973358049,
+          "wald_df": 2,
+          "p_value": 0.01011654590944886
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -7.340034383366901e-05,
+          "beta": 1.4191151131010789,
+          "wald_statistic": 11.21213634577241,
+          "wald_df": 2,
+          "p_value": 0.00367549238534195
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -7.519695023508344e-05,
+        "beta": 1.3523608450234905,
+        "wald_statistic": 8.911229963957462,
+        "wald_df": 2,
+        "p_value": 0.011613175784289522,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -0.00018957927205148312,
+          "beta": 1.4173571022858167,
+          "wald_statistic": 7.825634433930991,
+          "wald_df": 2,
+          "p_value": 0.019984122075303114
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -7.340034383366901e-05,
+          "beta": 1.4191151131010789,
+          "wald_statistic": 10.2191826526983,
+          "wald_df": 2,
+          "p_value": 0.006038550215769096
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.1925641021798317,
+        "share_above_one": 0.392,
+        "n_above_one": 196,
+        "automatic": {
+          "mean": 1.1925641021798317,
+          "standard_error": 0.07372429097484903,
+          "ci_low": 1.0480644918691275,
+          "ci_high": 1.3370637124905358,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.1925641021798317,
+          "standard_error": 0.08894106110302487,
+          "ci_low": 1.018239622417903,
+          "ci_high": 1.3668885819417604,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      },
+      "seed": 2
+    },
+    {
+      "family": "LSTM-BEKK",
+      "config_id": "LSTM19_seed3",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0004526480093669183,
+        "beta": 0.7943460565792851,
+        "wald_statistic": 16.54546905034143,
+        "wald_df": 2,
+        "p_value": 0.0002553859761654672,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0005845284194843428,
+          "beta": 0.7249364642201591,
+          "wald_statistic": 11.598133241258742,
+          "wald_df": 2,
+          "p_value": 0.0030303819217273884
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00021753829082649077,
+          "beta": 1.0856392730736344,
+          "wald_statistic": 16.580306576087686,
+          "wald_df": 2,
+          "p_value": 0.000250975988176565
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.0004526480093669183,
+        "beta": 0.7943460565792851,
+        "wald_statistic": 12.02224622907488,
+        "wald_df": 2,
+        "p_value": 0.002451333505499614,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0005845284194843428,
+          "beta": 0.7249364642201591,
+          "wald_statistic": 7.881019000150863,
+          "wald_df": 2,
+          "p_value": 0.01943830840236117
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00021753829082649077,
+          "beta": 1.0856392730736344,
+          "wald_statistic": 14.483516406465704,
+          "wald_df": 2,
+          "p_value": 0.0007160516883094857
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -2.494267742382759e-05,
+        "beta": 1.2230780251632427,
+        "wald_statistic": 6.917395813488845,
+        "wald_df": 2,
+        "p_value": 0.03147071315482965,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -8.107296078448967e-05,
+          "beta": 1.2275997876694251,
+          "wald_statistic": 4.8203079283480434,
+          "wald_df": 2,
+          "p_value": 0.089801467299084
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -6.0700146093791935e-05,
+          "beta": 1.3502097571410556,
+          "wald_statistic": 8.856672163919898,
+          "wald_df": 2,
+          "p_value": 0.011934330909612394
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": -2.494267742382759e-05,
+        "beta": 1.2230780251632427,
+        "wald_statistic": 8.342095367366497,
+        "wald_df": 2,
+        "p_value": 0.015436079520665426,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": -8.107296078448967e-05,
+          "beta": 1.2275997876694251,
+          "wald_statistic": 6.300453059490247,
+          "wald_df": 2,
+          "p_value": 0.04284242068507397
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": -6.0700146093791935e-05,
+          "beta": 1.3502097571410556,
+          "wald_statistic": 11.014304691892972,
+          "wald_df": 2,
+          "p_value": 0.004057645718108882
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.0851160144133134,
+        "share_above_one": 0.364,
+        "n_above_one": 182,
+        "automatic": {
+          "mean": 1.0851160144133134,
+          "standard_error": 0.06369700173461953,
+          "ci_low": 0.960269891013459,
+          "ci_high": 1.2099621378131677,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.0851160144133134,
+          "standard_error": 0.0682997012950149,
+          "ci_low": 0.9512485998750841,
+          "ci_high": 1.2189834289515427,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      },
+      "seed": 3
+    },
+    {
+      "family": "LSTM-BEKK",
+      "config_id": "LSTM19_seed4",
+      "status": "complete",
+      "ols_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.000514235109213664,
+        "beta": 0.7182697006034822,
+        "wald_statistic": 20.674810358921775,
+        "wald_df": 2,
+        "p_value": 3.239828141042643e-05,
+        "hac_lags": 5,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0006547492887775233,
+          "beta": 0.6491811841980365,
+          "wald_statistic": 15.060827072130902,
+          "wald_df": 2,
+          "p_value": 0.0005365163419466452
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00020842159784253996,
+          "beta": 1.1010311821225585,
+          "wald_statistic": 16.34170644018556,
+          "wald_df": 2,
+          "p_value": 0.0002827766427731404
+        }
+      },
+      "ols_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 0.000514235109213664,
+        "beta": 0.7182697006034822,
+        "wald_statistic": 14.130530605803632,
+        "wald_df": 2,
+        "p_value": 0.000854268250449235,
+        "hac_lags": 29,
+        "weighting_rule": "none",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 0.0006547492887775233,
+          "beta": 0.6491811841980365,
+          "wald_statistic": 10.147564701182144,
+          "wald_df": 2,
+          "p_value": 0.006258702707367853
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 0.00020842159784253996,
+          "beta": 1.1010311821225585,
+          "wald_statistic": 14.055310828977113,
+          "wald_df": 2,
+          "p_value": 0.0008870090130001557
+        }
+      },
+      "ps21_automatic": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 4.20964135561651e-05,
+        "beta": 1.1268791413690293,
+        "wald_statistic": 7.294525555639805,
+        "wald_df": 2,
+        "p_value": 0.026062369729609347,
+        "hac_lags": 5,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 1.5676736273788266e-05,
+          "beta": 1.1182322468097932,
+          "wald_statistic": 4.915012185711516,
+          "wald_df": 2,
+          "p_value": 0.08564828370735893
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 7.906864434499911e-06,
+          "beta": 1.2298682124574014,
+          "wald_statistic": 8.8588619777632,
+          "wald_df": 2,
+          "p_value": 0.011921271079048328
+        }
+      },
+      "ps21_lag_29": {
+        "n_observations": 500,
+        "n_assets": 5,
+        "n_unique_entries": 15,
+        "alpha": 4.20964135561651e-05,
+        "beta": 1.1268791413690293,
+        "wald_statistic": 6.727661924742744,
+        "wald_df": 2,
+        "p_value": 0.034602444041645065,
+        "hac_lags": 29,
+        "weighting_rule": "approximate_ps21",
+        "inference_case": "regular",
+        "covariance_degenerate": false,
+        "diagonal": {
+          "subset": "diagonal",
+          "n_entries": 5,
+          "alpha": 1.5676736273788266e-05,
+          "beta": 1.1182322468097932,
+          "wald_statistic": 4.32558447524382,
+          "wald_df": 2,
+          "p_value": 0.11500355504960068
+        },
+        "off_diagonal": {
+          "subset": "off_diagonal",
+          "n_entries": 10,
+          "alpha": 7.906864434499911e-06,
+          "beta": 1.2298682124574014,
+          "wald_statistic": 9.753985393430224,
+          "wald_df": 2,
+          "p_value": 0.007619894940495996
+        }
+      },
+      "whitened_ratio": {
+        "mean": 1.0782795606189721,
+        "share_above_one": 0.36,
+        "n_above_one": 180,
+        "automatic": {
+          "mean": 1.0782795606189721,
+          "standard_error": 0.06010797923168659,
+          "ci_low": 0.9604679213248664,
+          "ci_high": 1.1960911999130779,
+          "maxlags": 5,
+          "lag_rule": "newey_west_1994",
+          "degenerate": false
+        },
+        "lag_29": {
+          "mean": 1.0782795606189721,
+          "standard_error": 0.06795928428721605,
+          "ci_low": 0.9450793634160286,
+          "ci_high": 1.2114797578219156,
+          "maxlags": 29,
+          "lag_rule": "user",
+          "degenerate": false
+        },
+        "fallback_dates": []
+      },
+      "seed": 4
+    }
+  ]
+}

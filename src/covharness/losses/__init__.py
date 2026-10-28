@@ -17,7 +17,12 @@ from covharness.losses.localization import (
     CovarianceLocalizationDiagnostic,
     covariance_localization_diagnostic,
 )
-from covharness.losses.qlike import full_stein_loss, reduced_qlike_loss
+from covharness.losses.qlike import (
+    full_stein_loss,
+    reduced_qlike_loss,
+    whitened_trace_ratio,
+    whitened_trace_ratio_panel,
+)
 from covharness.losses.robustness import (
     AnalyticExpectedLosses,
     RobustnessMonteCarloResult,
@@ -42,5 +47,7 @@ __all__ = [
     "plot_proxy_robustness",
     "reduced_qlike_loss",
     "squared_frobenius_loss",
+    "whitened_trace_ratio",
+    "whitened_trace_ratio_panel",
     "unsquared_frobenius_loss",
 ]
