@@ -1,5 +1,7 @@
 # Initial core covariance benchmark plan
 
+Editorial revision on 2026-10-28. Wording only; no design commitment changed. The original text is in git history at commit `913df10b236ffebeab463f20c2df8376bf8f8ff2`.
+
 This file is the starting core plan. It is not a final specification. The
 first-stage roster and evaluation spine recorded here may later receive additional
 models and additional evaluation procedures. Adopted, implemented choices live in
@@ -12,8 +14,7 @@ realized-covariance proxy. TIER 1 below still records $N=30$ and two equity
 proxies. Those statements disagree. The executed branch does not replace the
 broader plan, and the plan does not rewrite what was actually run.
 
-Companion. `docs/project_ledger.md` (paper status and saved concepts). Protocol
-decisions currently live in `PREREGISTRATION_DRAFT.md`. Final
+Protocol decisions currently live in `PREREGISTRATION_DRAFT.md`. Final
 `PREREGISTRATION.md` is created once, after the graph-neural specification and
 empirical dataset are frozen, and is never edited.
 
@@ -29,8 +30,7 @@ covharness/
 ├── .gitignore
 ├── configs/
 ├── docs/
-│   ├── PROJECT_STATE.md     # persistent working memory
-│   └── project_ledger.md
+│   └── PROJECT_STATE.md     # persistent working memory
 ├── data/                    # raw / processed data (not committed)
 ├── src/
 │   └── covharness/
@@ -55,7 +55,7 @@ covharness/
 
 ---
 
-# PART -1 — SCOPE TIERS (read this first)
+# Scope tiers
 
 The rest of this document describes the full project. Work is organized as blocks and parts, not calendar days. Block 1 is measurement. Block 2 is losses and the temporal protocol. Block 3 is inference. Block 4 is models and empirical evaluation after the DATA GATE.
 
@@ -114,38 +114,23 @@ The research question is whether later methods outperform strong econometric cov
 
 ## 0.1 The two blocking risks
 
-**Risk A: data acquisition.** Free intraday equity data is the single most likely empirical
-blocker. Oxford-Man Realized Library is discontinued. Options in order of preference:
-- **Alpaca** free API — historical minute bars, generous history, clean API. Best default.
-- **Polygon.io** free/starter tier — minute aggregates.
-- **Databento** — paid but cheap for a one-off pull; highest quality.
-- **Fallback:** if vendor access is not settled, build the entire harness on
-  **simulated data from a known DCC-NL process**. Simulation
-  is required to validate estimators, losses, and inference against known truth before relying on
-  market data. Simulation never substitutes for the project's final empirical finding. Swap in
-  real data when it arrives.
+**Risk A. Data acquisition.** Intraday equity history is the main empirical blocker. The Oxford-Man Realized Library is discontinued. Sources considered, in order of preference, are Alpaca minute bars, Polygon.io minute aggregates, and Databento. If vendor access is not settled, the harness is built on simulated data from a known DCC-NL process. Simulation is required to validate estimators, losses, and inference against known truth before relying on market data. Simulation never substitutes for the project's final empirical finding. Real data replace the simulation when they arrive.
 
-**Risk B: reading gap.** Read **Liu, Patton & Sheppard (2015)** (`H14`) before writing the RCov
-pipeline. It tells you which realized measure actually wins and why 5-min is the default.
-Skim **Archakov & Hansen (2021)** (`M13`) before matrix-transform or LSTM-BEKK work.
+**Risk B. Reading before the pipeline.** Liu, Patton, and Sheppard (2015) (`H14`) are read before the realized-covariance pipeline is written, because that paper compares realized measures and is the reason five-minute sampling is the default in this plan. Archakov and Hansen (2021) (`M13`) are read before matrix-transform or LSTM-BEKK work.
 
-## 0.2 Acquisition: what actually works
+## 0.2 Acquisition sources that were considered
 
-**Yahoo / yfinance is not viable.** Intraday history is capped at roughly 60 days for 5-minute
-bars and 7-30 days for 1-minute. You need 8-15 years. Rule it out now.
+Yahoo and yfinance are not viable. Intraday history there is capped at roughly 60 days for 5-minute bars and 7 to 30 days for 1-minute bars. The plan requires 8 to 15 years, so those sources are ruled out.
 
-Ranked options:
+Sources considered, and why.
 
-| Source | Cost | Notes |
-|---|---|---|
-| **WRDS / NYSE TAQ** | Free with university access | **Check this first.** What GHAR, SpotV2Net, Christensen et al. use. Trade-and-quote level, full history. Makes your results directly comparable to the papers you are refereeing. |
-| Databento | Pay-as-you-go, about 100-500 USD for a one-off historical pull | Highest quality commercial option; clean API; MBP/trades. |
-| Polygon.io | About 30-200 USD/mo | Minute aggregates, full history on paid tiers. |
-| Alpaca | Free tier | **Caution:** free tier is IEX-only, roughly 2-3% of consolidated volume. RCov from IEX-only prints is materially noisier and more Epps-affected than SIP data. Usable for pipeline development, not for headline results. |
-| FirstRate Data / Kibot | One-off purchase | Pre-cleaned minute bars; convenient, less transparent cleaning. |
+- WRDS and NYSE TAQ are checked first. University access provides trade-and-quote history. GHAR, SpotV2Net, and Christensen, Siggaard, and Veliyev use that class of data, so a TAQ panel is comparable with those papers.
+- Databento is the commercial tick and market-by-price alternative if WRDS is unavailable.
+- Polygon.io provides minute aggregates with a longer paid history than the free retail endpoints.
+- Alpaca's free tier is IEX-only, roughly 2 to 3 percent of consolidated volume. Realized covariance from IEX-only prints is noisier and more exposed to the Epps effect than SIP data. It can support pipeline development. It is not a headline panel.
+- FirstRate Data and Kibot supply pre-cleaned minute bars. Cleaning is less transparent than a quote-level build.
 
-**Decision rule:** try WRDS first. If unavailable, buy one Databento pull for
-N=50 tickers over 10 years and move on. Do not spend unbounded effort on free-data archaeology.
+Decision rule. Try WRDS first. If it is unavailable, use one Databento historical pull for N=50 tickers over 10 years. Do not spend unbounded effort searching for a free substitute.
 
 **Fallback that keeps model engineering unblocked:** build and validate the entire harness on **simulated data
 from a known DCC-NL process**. Simulation is required to validate estimators, losses, and
@@ -170,9 +155,9 @@ Do not choose a dataset in order to start Block 4 early. The unresolved long his
 dataset remains explicit until that verification exists. A one-day TAQ demonstration panel
 does not satisfy this gate.
 
-## 0.3 Universe selection — why "random" needs restructuring, and how to make it a strength
+## 0.3 Universe selection
 
-Your instinct to randomize is right; the framing needs two fixes.
+Random universe selection is retained with two restrictions.
 
 **Leak 1: survivorship.** Selecting stocks "continuously listed 2012-2024" conditions on survival.
 Firms that were acquired, delisted, or blew up are exactly the ones with interesting covariance
@@ -180,8 +165,8 @@ behavior. This biases every model, but plausibly biases them *unequally* — a m
 gains less when nothing ever breaks.
 
 **Leak 2: liquidity.** A uniformly random draw from all listed equities pulls in names where
-5-minute RCov is close to meaningless: stale prices, many zero returns, severe Epps attenuation.
-Your covariance target would be measuring illiquidity, not co-movement.
+5-minute RCov is close to meaningless because of stale prices, many zero returns, and severe Epps attenuation.
+The covariance target would then measure illiquidity rather than co-movement.
 
 ### The protocol
 
@@ -198,13 +183,11 @@ Take the top 200 survivors → `pool_Y`. This uses no future information.
 - **(A) Headline, deterministic:** top N by liquidity in `pool_{Y0}`, fixed for the sample.
   Comparable to the DJIA-30 papers.
 - **(B) Random draw, seeded:** one random N-subset of `pool_{Y0}`, seed fixed and published.
-- **(C) Universe robustness — this is the contribution.** Draw **B = 20 independent N-subsets**
+- **(C) Universe robustness.** Draw **B = 20 independent N-subsets**
   from `pool_{Y0}` and run the entire benchmark on each. Report the **distribution of model
   rankings and loss ratios across universes**.
 
-Variant (C) answers a question no paper in your literature answers: *does the winner depend on
-which 30 stocks you happened to pick?* If DL wins on 4 of 20 universes, that is a finding — and it
-is the cross-sectional analogue of the temporal-streakiness diagnostic you already committed to.
+Variant (C) asks whether the ranking depends on which 30 names are drawn. If a deep-learning model wins on 4 of 20 universes, that distribution is a finding. It is the cross-sectional analogue of the temporal-streakiness diagnostic already committed in this plan.
 Cost: B times the compute, so run it with the cheap models first and only extend to the expensive
 ones if the pipeline is fast enough.
 
@@ -212,7 +195,7 @@ ones if the pipeline is fast enough.
 and, in a later part, add the annual-redraw version where the universe is refreshed each January and
 covariance models are re-initialized at the boundary.
 
-## 0.4 The dimension constraint nobody writes down
+## 0.4 The rank constraint on realized covariance
 
 RCov built from M synchronized intraday returns has rank at most min(M, N).
 That rank bound is a proxy-quality fact. It is not a mathematical gate on the
@@ -248,12 +231,9 @@ They are not required merely to make the primary loss mathematically defined.
 | 1-min | 390 | **130** | Noise-contaminated; needs subsampling or kernels |
 | 1-min subsampled / realized kernel | effective ~200-390 | 60-130 | A route to larger N and a quieter proxy |
 
-**Decision:** N = 30 headline with 5-min (M/N = 2.6, marginal but comparable to the literature),
-plus N = 50 secondary using 1-min subsampled and kernel proxies (M/N ~ 7). State the M/N ratio in
-the paper — this constraint is why the multivariate literature is stuck at small N, and naming it
-is itself a contribution to the discussion.
+Decision. The headline dimension is N = 30 with 5-minute sampling (M/N = 2.6). The secondary dimension is N = 50 using 1-minute subsampled and kernel proxies (M/N near 7). The paper states the M/N ratio. The rank bound is why this plan does not treat a large cross-section on a five-minute grid as free.
 
-## 0.5 Cleaning checklist (Barndorff-Nielsen et al., "Realized kernels in practice" [M])
+## 0.5 Cleaning checklist (Barndorff-Nielsen, Hansen, Lunde, and Shephard, "Realized kernels in practice" [M] (unverified))
 
 Apply in order, log the count removed at each step:
 1. Trading hours only (09:30-16:00 ET); handle NYSE early closes explicitly.
@@ -263,7 +243,7 @@ Apply in order, log the count removed at each step:
    rolling median of 50 neighbouring prints (k = 10 is standard).
 5. Corporate actions: split/dividend adjust, and verify no adjustment-induced jumps remain.
 
-## 0.6 The overnight decision (declare it, most papers hide it)
+## 0.6 The overnight return
 
 RCov from intraday returns is **open-to-close**. Portfolios hold overnight. Three options:
 - (a) open-to-close only — clean, but the GMV channel then evaluates a risk measure that excludes
@@ -274,8 +254,7 @@ RCov from intraday returns is **open-to-close**. Portfolios hold overnight. Thre
 
 **Pre-commit to (b) for the GMV channel and (a) for the statistical channel**, and report the
 other as a robustness check. This convention is now recorded in protocol metadata. GMV portfolios
-and overnight RCov construction are not implemented in Block 2B. This asymmetry is defensible
-and explicit; silence is not.
+and overnight RCov construction are not implemented in Block 2B. The asymmetry is stated here. GMV uses the overnight outer product. The statistical channel does not.
 
 ## 0.7 Proxy set (three, pre-declared)
 
@@ -370,8 +349,7 @@ primary loss, best config frozen. This applies to econometric models too:
 - `LW-NL` / `DCC` / `DCC-NL`: fewer natural knobs; spend the budget on window/targeting variants so
   the *opportunity* is equal even if the model does not need it. Document unused budget.
 
-Tuning the baselines with the same budget is the fairness move almost no DL paper makes. It is
-cheap, and it is the first thing a hostile referee checks.
+The constraint is that a deep model must not receive a larger search than the baselines. The choice is the same configuration budget for every family, with unused budget documented when a model has fewer knobs.
 
 ## 1.5 Inference sequence
 
@@ -432,17 +410,14 @@ H_t = C C'  +  C_t C_t'  +  a · r_{t-1} r_{t-1}'  +  b · H_{t-1}
 **Why PSD is free.** Every term is PSD — `CC'` and `C_tC_t'` are Gram matrices (PSD for *any*
 network output, which is the whole point of the lower-triangular parameterization),
 `r_{t-1}r_{t-1}'` is an outer product, `H_{t-1}` is PSD by induction — combined with nonnegative
-weights. This is exactly the argument you derived for DCC and for BEKK's quadratic sandwich. No
+weights. The same Gram-matrix argument applies to DCC and to BEKK's quadratic sandwich. No
 projection, no clipping, no eigenvalue repair.
 
 **Training** [V]: Gaussian negative log-likelihood, RMSprop, Cholesky for `logdet` and inverse
 (numerical stability), gradient clipping, dropout 0.1-0.2, 3-5 hidden layers with hidden size =
 input size, early stopping on validation NLL.
 
-**The information-set problem you must fix.** The paper uses **daily log returns only** — no
-intraday data. Compared head-to-head against your HAR-DRD (which consumes 5-min RCov), the DL model
-would be starved, and the comparison would confound architecture with information. This is your
-project's own critique running in reverse. **So run two variants:**
+**Information set.** The paper uses daily log returns only. It does not use intraday data. HAR-DRD consumes 5-minute realized covariance. A head-to-head comparison of those two inputs would confound architecture with information. The plan therefore runs two variants.
 
 - **`LSTM-BEKK`** — faithful replication, daily returns only. Answers: does the published model,
   as published, beat the econometric frontier?
@@ -450,9 +425,7 @@ project's own critique running in reverse. **So run two variants:**
   (log realized variances, average realized correlation, log realized quarticity). Answers: does
   the architecture win once given information parity?
 
-The gap between these two is a direct measurement of **how much of any DL gain is information
-versus architecture** — the single most valuable number your paper can report, and the axis your
-factorial exists to isolate.
+The gap between these two measures how much of any deep-learning difference is information rather than architecture. That contrast is why the factorial separates the two inputs.
 
 **Protocol deviation to declare.** The paper uses a fixed 70/15/15 split [V]. This protocol requires
 rolling re-estimation with fixed window `m` for GW validity. The project therefore re-estimates on the
@@ -478,10 +451,8 @@ constraining `a+b<1` (parameterize via sigmoid on a logit pair).
    Veliyev find regularized regressions and tree-based methods outperform the HAR lineage for
    univariate RV. Excluding trees means excluding the incumbent ML winner and inviting the obvious
    referee question.
-2. **It is the "did shallow ML already get the gain?" control.** If XGBoost captures most of any
-   LSTM-BEKK advantage, the deep-learning story collapses — and that is a headline finding in your
-   skeptical framing. You need this cell.
-3. **Its predicted failure mode is a live test of your diagnostic machinery.** The extrapolation
+2. **It is the shallow-machine-learning control.** If XGBoost captures most of any LSTM-BEKK advantage, the remaining deep-learning difference is small. That cell stays in the roster.
+3. **Its predicted failure mode is a check of the calibration diagnostics.** The extrapolation
    weakness should appear as **miscalibration in high-volatility regimes** in the augmented MZ-GLS
    test. Predicting a specific failure in advance and then detecting it validates the protocol.
    That is worth more than another model that merely performs.
@@ -493,8 +464,7 @@ DRD decomposition:
   Correlations are homogeneous across pairs in a way variances are not, so pooling is natural and
   cuts 435 models to one.
 
-31 fits, not 465. And the variance/correlation split matches your DRD evaluation decomposition, so
-you can report *where* trees help — which is the interesting question.
+31 fits, not 465. The variance and correlation split matches the DRD evaluation decomposition, so the report can locate where trees differ from the linear DRD fit.
 
 ## 2.4 The roster (12 models)
 
@@ -526,7 +496,7 @@ information fixed; `LSTM-BEKK → LSTM-BEKK-RC` isolates information with archit
 `GPVar` (GluonTS, but the
 MXNet backend is deprecated — budget environment work), `SpotV2Net`
 (no confirmed public code), `ReSPDNet` (Riemannian, highest bar). Do not half-replicate a
-competitor — that is precisely what you are criticizing others for. `iTransformer` is
+competitor. A partial replication is not used as a baseline. `iTransformer` is
 optional and not committed.
 
 ## 2.5 The re-estimation cadence decision
@@ -541,21 +511,21 @@ choice is defensible and pre-registered rather than convenient.
 
 ---
 
-## 2.6 Shrinkage: use analytical nonlinear shrinkage, not QuEST
+## 2.6 Analytical nonlinear shrinkage, not QuEST
 
 QuEST is not used. Important practical correction:
 
 - **QuEST** (Ledoit-Wolf 2015/2017) inverts the Marchenko-Pastur relation numerically —
   a nonconvex optimization per estimation date. Accurate, slow, fiddly.
 - **Analytical nonlinear shrinkage** (Ledoit-Wolf 2020) is a **kernel estimator with a closed
-  form** — orders of magnitude faster, essentially the same accuracy. [M]
+  form**. It is much faster. The claim that the accuracy is essentially the same is unverified against the papers. [M] (unverified)
 
 **Use the analytical version.** Reference code is published by the authors (MATLAB/R, with Python
 ports). Do not hand-write either one.
 
 Also run **linear** shrinkage (Ledoit-Wolf 2004, optimal delta) as a separate model. The comparison
 `LW-linear → LW-NL` isolates exactly what the nonlinear eigenvalue map buys, which is the same
-question your "could AI learn the shrinkage map" agenda item asks.
+question the learned-shrinkage candidate in Part 6 asks.
 
 **Validation before use:** simulate from a known Sigma, plot sample vs linear-shrunk vs
 nonlinear-shrunk vs true eigenvalues. The characteristic picture — sample spectrum over-dispersed,
@@ -577,8 +547,7 @@ would otherwise contaminate every forecast forever — which is why shrinking th
 more than shrinking each `H_t`.
 
 Composite likelihood is unnecessary at N = 30-50; note in the paper that it is required at the
-N = 1000 scale ELW demonstrate, and that your dimension therefore under-powers DCC-NL relative to
-its designed regime. **This is the most important honesty statement in your model section.**
+N = 1000 scale Engle, Ledoit, and Wolf demonstrate. At the headline dimension, DCC-NL is therefore under-powered relative to the regime for which it was designed. That limitation is stated with the model.
 
 ---
 
@@ -606,7 +575,7 @@ These are descriptive localization diagnostics. They are not an additive identit
 squared Frobenius or QLIKE, and they do not inherit the same proxy-ranking
 guarantee. Correlation normalization is nonlinear. Frobenius overweights large
 variances; a model that wins only on mega-cap variances is making a
-different claim from one that improves dependence structure. No paper in your list separates these.
+different claim from one that improves dependence structure. The variance and correlation reports are kept separate for that reason.
 
 **Rule, pre-committed:** a conclusion counts only if it holds under **both losses across all three
 proxies** (intersection, not union). Robust losses guarantee proxy-consistency, not agreement with
@@ -617,14 +586,11 @@ resolved by picking the favourable cell.
 tangent-space coordinates. Patton (2011) and LRV (2013) are the authority; proxy unbiasedness dies
 under the nonlinearity.
 
-## 3.2 Calibration — the MZ family (your addition, and it is a good one)
+## 3.2 Calibration. The Mincer–Zarnowitz family
 
-**This is a separate question from ranking, and treating it separately is the right instinct.**
-Ranking asks "who is closer"; calibration asks "is this forecast systematically biased, and where."
-A model can win on average loss while being badly miscalibrated in a specific regime — which is
-precisely the DL failure mode you suspect.
+Calibration is a separate question from ranking. Ranking asks which forecast is closer. Calibration asks whether a forecast is systematically biased, and where. A model can have a lower average loss and still be miscalibrated in a specific regime.
 
-**Implementation for matrices** (per Patton-Sheppard [M]): do not run MZ element-by-element.
+**Implementation for matrices** (Patton and Sheppard [M] (unverified)). Do not run Mincer–Zarnowitz element-by-element.
 Draw K = 100 fixed random portfolios `w_k` (seeded, published) plus the GMV and equal-weight
 portfolios, and run MZ on portfolio variances:
 
@@ -633,13 +599,12 @@ portfolios, and run MZ on portfolio variances:
 w_k' Sigma_proxy_t w_k  =  a + b * (w_k' Sigma_hat_t w_k) + e_t ,   H0: (a,b) = (0,1)
 ```
 
-**Augmented MZ** (your calm-regime hypothesis, formalized):
+**Augmented Mincer–Zarnowitz** (the calm-regime hypothesis, formalized).
 ```
 w_k' Sigma_proxy_t w_k  =  a + b * (w_k' Sigma_hat_t w_k) + c' z_{t-1} + e_t ,   H0: (a,b,c) = (0,1,0)
 ```
 with `z_{t-1}` the regime variables. Rejecting `c = 0` says: *known state information predicts this
-model's forecast errors* — i.e. the model is miscalibrated conditional on regime. Run it with a
-calm/turbulent indicator specifically, since that is your hypothesis.
+model's forecast errors. The model is then miscalibrated conditional on regime. The regression includes a calm or turbulent indicator, because that is the hypothesis this diagnostic is built to test.
 
 **Covariance-aware MZ-GLS (required final Block 3C extension):** the error variance scales strongly
 with the volatility level (heteroskedasticity is severe, not incidental), so OLS MZ can be inefficient.
@@ -655,9 +620,9 @@ what licenses the calibration claims.
 variance and reduces power, and non-robust MZ variants (e.g. MZ on log-variances) inherit the
 Patton problem. Keep MZ in variance space.
 
-## 3.3 Correlation-change diagnostic (your idea — but as a diagnostic, not a ranking loss)
+## 3.3 Correlation-change diagnostic (diagnostic only, not a ranking loss)
 
-**The motivation is sharp:** a model that simply predicts the historical average correlation scores
+A model that simply predicts the historical average correlation scores
 respectably on levels while being useless for dynamics. Levels-based losses partly hide this.
 
 **Why it cannot be a ranking loss:** differencing breaks the Patton robustness argument. The target
@@ -675,21 +640,17 @@ on the average pairwise correlation and on the vech of the correlation change. R
 - correlation between predicted and realized `Delta R`.
 
 A model with strong level performance and near-zero change-slope is capturing the unconditional
-correlation structure and nothing else. Exposing that is a genuine contribution — the DRD
-decomposition already separates variance from correlation, and this separates correlation *level*
-from correlation *dynamics*.
+correlation structure and nothing else. The DRD decomposition already separates variance from correlation. This diagnostic separates correlation level from correlation dynamics.
 
-## 3.4 Screening: SPA and MCS (both, they answer different questions)
+## 3.4 Screening with SPA and MCS
 
 - **SPA (Hansen 2005)** with `HAR-DRD` as the fixed benchmark: *does anything in the universe beat
-  the workhorse, accounting for having searched over all of them?* This is the direct descendant of
-  Hansen-Lunde's "nothing beats GARCH(1,1)" and it is the single most quotable headline your paper
-  can produce, in either direction.
+  the workhorse, accounting for having searched over all of them?* The question is the covariance analogue of Hansen and Lunde's comparison with GARCH(1,1). The result is reported in either direction.
 - **MCS (Hansen-Lunde-Nason 2011)**: *which models cannot be distinguished from the best?* This is
   the screening device feeding Stage 2.
 
 Use SPA's studentization and recentering — it is less conservative than White's Reality Check when
-the universe contains poor models, which yours does by construction (`RW` is in there).
+the universe contains poor models, which this roster does by construction. `RW` is included.
 
 Anticipate that MCS may retain a large set at N = 30 with correlated forecasts. That is honest, not
 a failure; say so in advance.
@@ -820,12 +781,9 @@ dependence where GW is not) are required known-truth checks of the scoring and i
 
 # PART 6 — WHERE SIMPLE AI IS WELL-POSED
 
-The framing that makes this publishable: rather than asking "can a big network beat econometrics,"
-identify **narrow sub-problems where the econometric solution is an explicit analytical map, so a
-learned map has a precise baseline and a precise constraint set.** Four candidates, ranked by how
-well-posed they are:
+The constraint is that a learned map needs an explicit analytical baseline and a precise constraint set. The choice is to study narrow sub-problems of that kind rather than an unrestricted network. Four candidates, ranked by how well-posed they are.
 
-**1. Learned nonlinear eigenvalue shrinkage. (Best candidate.)**
+**1. Learned nonlinear eigenvalue shrinkage. (First in the ranking above.)**
 Ledoit-Wolf's nonlinear shrinkage is a map
 `(lambda_1..lambda_N, N/T) -> (d_1..d_N)` derived under asymptotic assumptions (Marchenko-Pastur,
 no time-series dynamics, no fat tails). A learned map can condition on things the analytical
@@ -862,7 +820,7 @@ under the protocol.
 
 ---
 
-# PART 7 — CUT ORDER
+# Scope reduction rules
 
 1. Universe variant (C) → 2. `XGBoost-DRD` → 3. `LSTM-BEKK-RC` (keep the faithful one) →
 4. third proxy → 5. `LSTM-BEKK` entirely (keep the econometric and linear models, add the network in a later block) →
@@ -877,8 +835,7 @@ extension remains optional.
 
 # PART 8 — LIMITATIONS TO STATE
 
-- N = 30, 1-day horizon. **DCC-NL is under-powered at this dimension** — its advantage grows with
-  N, and ELW demonstrate at N = 1000. This is the most important honesty statement in the paper.
+- N = 30, 1-day horizon. DCC-NL is under-powered at this dimension. Its advantage grows with N, and Engle, Ledoit, and Wolf demonstrate the procedure at N = 1000.
 - `LSTM-BEKK` re-estimated on a rolling schedule, deviating from the paper's fixed 70/15/15 split.
 - `GHAR` is a Block-4 structured graph / econometric baseline, not a deep-learning model.
   No graph-neural DL specification is frozen yet. `SpotV2Net`, `GPVar`, and `ReSPDNet` are
