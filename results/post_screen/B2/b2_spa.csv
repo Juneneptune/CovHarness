@@ -1,0 +1,7 @@
+loss,block_length,p_value_lower,p_value_consistent,p_value_upper,statistic,exact_benchmark_ties
+qlike,7,0.0016,0.0016,0.0016,3.0010295525346193,Ridge-DRD
+qlike,14,0.003,0.003,0.0032,2.9706857342485145,Ridge-DRD
+qlike,30,0.002,0.0022,0.0022,3.017377050509572,Ridge-DRD
+frobenius,7,0.5692,0.8792,0.9634,0.01017192672629011,Ridge-DRD
+frobenius,14,0.5578,0.8574,0.9398,0.010852743021041198,Ridge-DRD
+frobenius,30,0.5526,0.8688,0.9092,0.012627303323340014,Ridge-DRD

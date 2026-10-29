@@ -169,7 +169,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A3 | 4-5 | completed | `c30b27a5739d803458006853c2d8bbc80c80d32b` | `af3d14a2dca15cdf589586151bb8414e0ed13ee1` |
 | A4 | 6 | completed | `d0d3f70547038bee845b2984c1ffdb2349f61650` | `71bdbc200c41224545116adfc0aef24ee0936690` |
 | B1 | 14 | planned |  |  |
-| B2 | 15 | specified |  |  |
+| B2 | 15 | completed | `8d0cbfb7184290f7db819e56c45e0da3548c831c` |  |
 | C1 | 8 | planned |  |  |
 | C2 | 7 | planned |  |  |
 | C3 | 12 | planned |  |  |
@@ -404,3 +404,15 @@ Implementation. Pass `block_length` through the existing `screen_spa` and `scree
 CONFIRM block length. It is not chosen here. It is not chosen by which of 7, 14, or 30 gives smaller p-values. The rule is decided at G1 and tied to B1's frozen bandwidth. G1 is not run in this task. B1 is not run in this task.
 
 Tests, before the empirical run. A wrapper call with an explicit block length records that length. The length-7 SCREEN run is compared with the saved SPA and MCS JSON after the script starts, and a mismatch stops the task.
+
+### Task B2 results. SCREEN SPA and MCS at longer bootstrap blocks
+
+Result date 2026-10-28. Spec commit `8d0cbfb7184290f7db819e56c45e0da3548c831c`. `tests/unit/test_post_screen_b2.py` passed before the SCREEN rerun. Entry script `scripts/post_screen_block_sensitivity.py` exited 0 in 6.5 seconds. Length 7 reproduced the saved SPA and MCS p-values exactly on both losses. RIDGE01 remained an exact benchmark tie and was excluded from the SPA statistic. The frozen JSON and sub-block rank files were not rewritten. Their hashes match the 2026-09-21 record.
+
+QLIKE consistent SPA p-values are 0.0016, 0.0030, and 0.0022 at lengths 7, 14, and 30. All three recenterings reject at 0.05 at every length. Frobenius consistent p-values are 0.8792, 0.8574, and 0.8688. None reject. Longer blocks do not change those conclusions.
+
+QLIKE range MCS at \(\alpha=0.10\) contains EWMA and HARQ-DRD at every length. The max companion also contains HAR-DRD, Ridge-DRD, and XGBoost-DRD at every length. LSTM-BEKK is outside both. Frobenius range membership changes in one place. RW is inside at length 7, with p-value 0.1084, and outside at lengths 14 and 30. The other Frobenius range members do not change. The max companion's 0.10 membership does not change with block length.
+
+The CONFIRM block length is not chosen. It remains a G1 decision tied to B1. The finalist rule is unchanged.
+
+Outputs are under `results/post_screen/B2/`. The result-commit cell is filled once that commit exists.

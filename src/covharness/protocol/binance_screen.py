@@ -964,8 +964,13 @@ def screen_spa(
     benchmark: str = SPA_BENCHMARK,
     n_boot: int = DEFAULT_N_BOOT,
     seed: int = BOOTSTRAP_SEED,
+    block_length: int | None = None,
 ) -> dict[str, object]:
-    """Hansen SPA with exact-zero benchmark ties excluded from studentization."""
+    """Hansen SPA with exact-zero benchmark ties excluded from studentization.
+
+    ``block_length`` is passed to the existing SPA bootstrap. ``None`` keeps
+    the cube-root default. An explicit length is a sensitivity, not a new test.
+    """
     labels = list(labels)
     if losses.shape[0] != REQUIRED_SCREEN_TARGETS or losses.shape[1] != len(labels):
         raise ValueError("SPA loss panel must be (500, n_models)")
@@ -992,6 +997,7 @@ def screen_spa(
         benchmark_label=benchmark,
         n_boot=n_boot,
         seed=seed,
+        block_length=block_length,
     )
     alternative_labels = [labels[index] for index in keep if index != bench_index]
     return {
@@ -1057,7 +1063,13 @@ def screen_mcs(
     *,
     n_boot: int = DEFAULT_N_BOOT,
     seed: int = BOOTSTRAP_SEED,
+    block_length: int | None = None,
 ) -> dict[str, object]:
+    """Range MCS and max companion. The pairs are not crossed.
+
+    ``block_length`` is passed to both existing MCS calls. ``None`` keeps
+    the cube-root default.
+    """
     if losses.shape[1] != len(labels):
         raise ValueError("MCS must receive every supplied model column")
     if losses.shape[1] < 2:
@@ -1068,6 +1080,7 @@ def screen_mcs(
         alpha=MCS_MEMBERSHIP_ALPHA,
         n_boot=n_boot,
         seed=seed,
+        block_length=block_length,
     )
     companion = model_confidence_set(
         losses,
@@ -1075,6 +1088,7 @@ def screen_mcs(
         alpha=MCS_MEMBERSHIP_ALPHA,
         n_boot=n_boot,
         seed=seed,
+        block_length=block_length,
     )
     return {
         "primary": _mcs_payload(primary, labels),
