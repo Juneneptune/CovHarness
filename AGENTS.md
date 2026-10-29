@@ -37,8 +37,6 @@ Before substantial work, read these repository documents in this order.
 
 Do not silently alter methodological choices. If implementation requirements conflict with the design, explain the conflict before changing the methodology.
 
-ChatGPT continuation handoffs and chat-log lists are for other assistants. They are not a Cursor source of truth. Recover state from the repository documents above.
-
 ---
 
 ## Document roles
