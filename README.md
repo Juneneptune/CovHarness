@@ -311,7 +311,7 @@ Primary QLIKE MCS $`(T_R,e_R)`$ at $\alpha=0.10$ retains EWMA and HARQ-DRD. LSTM
 
 LSTM19 seeds 0 through 4 all completed. Seed mean QLIKE values are $-31.258560$, $-31.289213$, $-31.211141$, $-31.351885$, and $-31.286159$. The range is $[-31.351885,-31.211141]$ and the sample standard deviation is $0.051210$. The ensemble mean QLIKE is $-31.408752$, lower than every seed mean because the reported column averages covariance matrices before scoring. Seeds are repeated training draws of one configuration, not five independent markets.
 
-Recorded family forecasting times in the selection summary sum to about 4968 seconds and are dominated by LSTM-BEKK at 4919.511 seconds. A later resume that wrote SPA, MCS, and reporting tables took 2.977 seconds. That resume is not total selection-period runtime. Fitting time is not prediction latency. An unavailable single end-to-end wall-clock figure should not be replaced by the resume time.
+Recorded family forecasting times in the selection summary sum to about 4968 seconds and are dominated by LSTM-BEKK at 4919.511 seconds. A later resumed run that wrote SPA, MCS, and reporting tables took 2.977 seconds. That resume is not total selection-period runtime. Fitting time is not prediction latency. An unavailable single end-to-end wall-clock figure should not be replaced by the resume time.
 
 The figures below are selection-period cumulative loss differentials, not cumulative portfolio returns. The sign convention is HARQ minus the comparator. Negative values favour HARQ. The saved image files retain the internal `SCREEN` label in their filenames.
 
@@ -375,8 +375,7 @@ covharness/
 │   ├── OPEN_DATA_FEASIBILITY.md
 │   ├── BINANCE_OPEN_DATA_MEASUREMENT_SPEC.md
 │   ├── BINANCE_OPEN_DATA_PANEL.md
-│   ├── BINANCE_OPEN_DATA_PROTOCOL.md
-│   └── project_ledger.md
+│   └── BINANCE_OPEN_DATA_PROTOCOL.md
 ├── src/covharness/
 │   ├── data/
 │   ├── realized/
