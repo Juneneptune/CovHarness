@@ -167,7 +167,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A1-addendum | A1 Wald check | completed | `0187bb1a5921bba53152f2610343cb0c8b4aaeb0` | `e0447f94ebbaa2e6b35799b8ae6660398e83f5ba` |
 | A2 | 3 | completed | `75240e13873322df8d93f4dfb3bb4a76626a3bb4` | `80f03b0acc0231a660ae72e13ab1957133fef31f` |
 | A3 | 4-5 | completed | `c30b27a5739d803458006853c2d8bbc80c80d32b` | `af3d14a2dca15cdf589586151bb8414e0ed13ee1` |
-| A4 | 6 | planned |  |  |
+| A4 | 6 | specified |  |  |
 | B1 | 14 | planned |  |  |
 | B2 | 15 | planned |  |  |
 | C1 | 8 | planned |  |  |
@@ -352,3 +352,27 @@ Daily close-to-close skewness is negative for BTC, ETH, BNB, and LTC, and positi
 Five-minute mean \(\mathrm{RS}^{+}-\mathrm{RS}^{-}\) is negative for every asset. The automatic HAC lag is 7. The 95 percent interval excludes 0 for BNB and LTC and includes 0 for BTC, ETH, and ADA. Semivariances partition the squared returns exactly at the element level.
 
 Outputs are under `results/post_screen/A3/`. Result commit `af3d14a2dca15cdf589586151bb8414e0ed13ee1`. Report `results/post_screen/A3/REPORT.md`.
+
+### Task A4 spec. Leverage asymmetry in SCREEN variance and in LSTM-BEKK
+
+Spec date 2026-10-28. This entry is written before any A4 empirical number is computed. The exercise is descriptive. It does not change a model. It does not assume that crypto has the equity leverage sign. CONFIRM is not read.
+
+Sample. SCREEN target dates 2023-11-30 through 2025-04-12. Predictors may use HISTORY_B rows, which begin 2023-03-25. They may not use a date after the target's origin, a VALIDATION date, or the halt. The 22-day HAR lag from the first SCREEN target stays inside HISTORY_B. Production-panel rows after 2025-04-12 are not copied.
+
+Equation, for each asset \(i\).
+
+\[
+\log \mathrm{RV}_{i,t+1} = a + b_d \log \mathrm{RV}_{i,t} + b_w \log \mathrm{RV}_{i,t}^{(w)} + b_m \log \mathrm{RV}_{i,t}^{(m)} + g_{\mathrm{pos}} r_{i,t}^{+} + g_{\mathrm{neg}} r_{i,t}^{-} + e_{i,t+1}
+\]
+
+HAR blocks match HAR-DRD. At response index \(k\), the daily lag is observation \(k-1\), the weekly block is the mean of the four variances \([k-5, k-1)\), and the monthly block is the mean of the seventeen variances \([k-22, k-5)\). The blocks do not overlap. Averages are taken on the variance scale, then logged. \(r^{+}=\max(r,0)\) and \(r^{-}=\min(r,0)\) use the origin-day UTC log return. A nonpositive variance or forecast diagonal raises. No repair and no epsilon floor.
+
+Three dependent variables, same regressors. Data uses \(\log \mathrm{RV}_{i,t+1}\). LSTM19 uses \(\log H_{ii,t+1\mid t}\) from the stored five-seed ensemble. The control uses \(\log H_{ii,t+1\mid t}\) from HARQDRD01. HARQ-DRD fallback targets 2024-12-10 and 2025-03-03 stay in every regression and are flagged.
+
+Leverage, as a label rather than an assumption, means \(|g_{\mathrm{neg}}| > g_{\mathrm{pos}}\) and \(g_{\mathrm{neg}}<0\). The reported gap is \(g_{\mathrm{pos}}+g_{\mathrm{neg}}\), with a HAC 95 percent interval. Primary fits are per asset. A pooled fit with common coefficients is secondary. Its daily score sums the asset scores before HAC, so the day remains the sampling unit.
+
+Inference. OLS. Bartlett HAC of the daily score reuses `hac_long_run_covariance` from the Mincer–Zarnowitz module, with the same \((X'X)^{-1}(T\hat\Omega)(X'X)^{-1}\) scaling. The lag is the automatic Newey–West 1994 lag. It is not chosen from this sample. The critical value is 1.96. A rank-deficient design raises. No ridge.
+
+Implementation. The regression helper lives in `covharness.inference`. The entry script is `scripts/post_screen_leverage.py`. Outputs go under `results/post_screen/A4/`.
+
+Tests, before the empirical run. On a synthetic series with a planted negative \(g_{\mathrm{neg}}\) larger in magnitude than \(g_{\mathrm{pos}}\), the fit recovers that sign pattern and a negative gap. A planted positive \(g_{\mathrm{neg}}\) is not flipped.
