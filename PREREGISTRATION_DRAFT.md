@@ -167,7 +167,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A1-addendum | A1 Wald check | completed | `0187bb1a5921bba53152f2610343cb0c8b4aaeb0` | `e0447f94ebbaa2e6b35799b8ae6660398e83f5ba` |
 | A2 | 3 | completed | `75240e13873322df8d93f4dfb3bb4a76626a3bb4` | `80f03b0acc0231a660ae72e13ab1957133fef31f` |
 | A3 | 4-5 | completed | `c30b27a5739d803458006853c2d8bbc80c80d32b` | `af3d14a2dca15cdf589586151bb8414e0ed13ee1` |
-| A4 | 6 | specified |  |  |
+| A4 | 6 | completed | `d0d3f70547038bee845b2984c1ffdb2349f61650` |  |
 | B1 | 14 | planned |  |  |
 | B2 | 15 | planned |  |  |
 | C1 | 8 | planned |  |  |
@@ -376,3 +376,17 @@ Inference. OLS. Bartlett HAC of the daily score reuses `hac_long_run_covariance`
 Implementation. The regression helper lives in `covharness.inference`. The entry script is `scripts/post_screen_leverage.py`. Outputs go under `results/post_screen/A4/`.
 
 Tests, before the empirical run. On a synthetic series with a planted negative \(g_{\mathrm{neg}}\) larger in magnitude than \(g_{\mathrm{pos}}\), the fit recovers that sign pattern and a negative gap. A planted positive \(g_{\mathrm{neg}}\) is not flipped.
+
+### Task A4 results. Leverage asymmetry in SCREEN variance and in LSTM-BEKK
+
+Result date 2026-10-28. Spec commit `d0d3f70547038bee845b2984c1ffdb2349f61650`. Tests `tests/unit/test_post_screen_a4.py` 3 passed before the SCREEN fit. Entry script `scripts/post_screen_leverage.py` exited 0. The lag sample is 2023-03-25 through 2025-04-12. SCREEN responses are the 500 targets beginning 2023-11-30. The halt is absent. CONFIRM rows copied are 0. Forecast diagonals were strictly positive. Models were not changed. HARQ fallback dates remain in the sample.
+
+The leverage label is the spec boolean \(g_{\mathrm{neg}}<0\) and \(|g_{\mathrm{neg}}|>g_{\mathrm{pos}}\). It is not a finding by itself when \(g_{\mathrm{pos}}\) is negative. HAC lag is 5. Intervals are 95 percent.
+
+Data, per asset. Every name has \(g_{\mathrm{neg}}<0\) and \(|g_{\mathrm{neg}}|>g_{\mathrm{pos}}\). The gap interval excludes 0 for BTC, ETH, BNB, and ADA. LTC's interval includes 0. The pooled data gap is \(-4.24\) with interval \([-6.87,-1.61]\).
+
+LSTM19. Point estimates have \(g_{\mathrm{neg}}<0\) for every name. The magnitude condition fails for ETH, where \(g_{\mathrm{pos}}=3.77\) and \(g_{\mathrm{neg}}=-3.39\). Every per-asset gap interval includes 0. The pooled gap is \(-0.26\) with interval \([-1.00,0.48]\). The ensemble's signed-return slopes are much smaller than the data slopes. That is a description of the stored forecasts. It is not a refit.
+
+HARQDRD01. This control was expected to show little residual sign slope beyond the variance lags. It does not do so uniformly. BTC's gap interval excludes 0, at \([-2.98,-0.49]\). ETH, BNB, and ADA intervals include 0. LTC has \(g_{\mathrm{neg}}>0\). The pooled HARQ \(g_{\mathrm{pos}}\) is negative, so the mechanical label is not a large downside coefficient. The control is reported as estimated.
+
+Outputs are under `results/post_screen/A4/`. The result-commit cell is filled once that commit exists.
