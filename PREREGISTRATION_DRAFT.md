@@ -166,7 +166,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A1 | 1-2 | completed | `80612248ae6f772262c4eadc8b48c6a12a9887c0` | `084e3915656be4d326ac242fc8bc709d86e335b3` |
 | A1-addendum | A1 Wald check | completed | `0187bb1a5921bba53152f2610343cb0c8b4aaeb0` | `e0447f94ebbaa2e6b35799b8ae6660398e83f5ba` |
 | A2 | 3 | completed | `75240e13873322df8d93f4dfb3bb4a76626a3bb4` | `80f03b0acc0231a660ae72e13ab1957133fef31f` |
-| A3 | 4-5 | specified |  |  |
+| A3 | 4-5 | completed | `c30b27a5739d803458006853c2d8bbc80c80d32b` |  |
 | A4 | 6 | planned |  |  |
 | B1 | 14 | planned |  |  |
 | B2 | 15 | planned |  |  |
@@ -340,3 +340,15 @@ Semivariance. On the five-minute returns, for each asset and day, \(\mathrm{RS}^
 Implementation. Add the interval parameter on the existing path in `covharness.data.binance_calendar` and `covharness.realized.binance_panel`. Semivariance identity lives next to `realized_covariance`. The entry script is `scripts/post_screen_measurement.py`. Outputs go under `results/post_screen/A3/`.
 
 Tests, before the empirical run. Interval 5 endpoints equal the frozen tuple. Return counts per day equal \(1440/\mathrm{interval}\). Semivariances sum to realized variance. Five-minute realized covariance on these dates is bitwise equal to the production panel. The frozen proxy and the production panel file are not modified.
+
+### Task A3 results. Signature plot and return-sign asymmetry before CONFIRM
+
+Result date 2026-10-28. Spec commit `c30b27a5739d803458006853c2d8bbc80c80d32b`. The interval parameter was added on the existing measurement path. `grid_log_returns` is the only log-difference implementation. The five-minute wrapper calls it. `tests/unit/test_post_screen_a3.py` and `tests/unit/test_binance_measurement.py`, excluding the production-panel parity test, 19 passed. The parity test then passed in 20.22 seconds. The entry script `scripts/post_screen_measurement.py` exited 0. Five-minute realized covariance on 2021-11-09 through 2025-04-12 is bitwise equal to the production panel. \(T=1250\). The halt is not a row. CONFIRM rows copied are 0. The production panel file was not rewritten. The frozen five-minute proxy was not changed.
+
+Mean pairwise realized correlation rises with the interval. It is 0.654 at 1 minute, 0.708 at 5 minutes, 0.722 at 15 minutes, and 0.725 at 30 minutes. \(M/N\) is 288, 57.6, 19.2, and 9.6. Mean realized variance changes little across these grids. That is the Epps pattern on this panel. It does not select a new proxy.
+
+Daily close-to-close skewness is negative for BTC, ETH, BNB, and LTC, and positive for ADA. Per-asset binomial tests of daily exceedance counts do not reject equal up and down counts at 5 percent at either frozen percentile. The pooled daily 95th-percentile test has \(p=0.054\). Five-minute skewness is negative for every name. At the 95th percentile of absolute five-minute returns, down counts exceed up counts, and the binomial test rejects at 5 percent for ETH, BNB, LTC, and ADA. BTC does not reject. At the 99th percentile only BNB rejects. These tests are descriptive. No multiplicity adjustment was applied.
+
+Five-minute mean \(\mathrm{RS}^{+}-\mathrm{RS}^{-}\) is negative for every asset. The automatic HAC lag is 7. The 95 percent interval excludes 0 for BNB and LTC and includes 0 for BTC, ETH, and ADA. Semivariances partition the squared returns exactly at the element level.
+
+Outputs are under `results/post_screen/A3/`. The result-commit cell is filled once that commit exists.

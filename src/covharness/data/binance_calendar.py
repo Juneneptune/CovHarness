@@ -46,6 +46,14 @@ EXPECTED_PRODUCTION_DATES = 1750
 # Five-minute interval endpoints as minute-of-day. 00:04, 00:09, ..., 23:59.
 FIVE_MINUTE_END_MINUTES: tuple[int, ...] = tuple(range(4, 1440, 5))
 
+# Segments that a pre-CONFIRM measurement may use. CONFIRM is absent.
+PRECONFIRM_SEGMENT_NAMES: tuple[str, ...] = (
+    "HISTORY_A",
+    "VALIDATION",
+    "HISTORY_B",
+    "SCREEN",
+)
+
 
 class InvalidBinanceCalendarError(ValueError):
     """A frozen Binance calendar identity failed an exact-count check."""
@@ -150,3 +158,49 @@ def segment_dates() -> Mapping[str, tuple[dt.date, ...]]:
 def previous_calendar_date(day: dt.date) -> dt.date:
     """Return the previous UTC calendar date, including the halt when required."""
     return day - dt.timedelta(days=1)
+
+
+def interval_end_minutes(interval_minutes: int) -> tuple[int, ...]:
+    """Minute-of-day closes for a uniform grid that divides 1440.
+
+    The endpoint of each interval is its last minute. Five minutes returns
+    the frozen ``FIVE_MINUTE_END_MINUTES`` tuple, not a recomputed copy.
+    """
+    interval = int(interval_minutes)
+    if interval < 1 or 1440 % interval != 0:
+        raise InvalidBinanceCalendarError(
+            "interval_minutes must be a positive divisor of 1440; "
+            f"got {interval_minutes}"
+        )
+    # Keep the frozen five-minute object so the production grid cannot drift.
+    if interval == 5:
+        return FIVE_MINUTE_END_MINUTES
+    return tuple(range(interval - 1, 1440, interval))
+
+
+def dates_through_screen() -> tuple[dt.date, ...]:
+    """Retained dates from HISTORY_A through SCREEN.
+
+    The halt is omitted. CONFIRM is omitted. The length is the sum of the
+    four frozen segment counts.
+    """
+    verify_frozen_segment_counts()
+    expected = sum(EXPECTED_SEGMENT_COUNTS[name] for name in PRECONFIRM_SEGMENT_NAMES)
+    dates: list[dt.date] = []
+    for name in PRECONFIRM_SEGMENT_NAMES:
+        start, end = SEGMENT_BOUNDS[name]
+        dates.extend(utc_dates_inclusive(start, end))
+    if len(dates) != expected:
+        raise InvalidBinanceCalendarError(
+            f"pre-CONFIRM length {len(dates)} != {expected}"
+        )
+    if HALT_DATE in dates:
+        raise InvalidBinanceCalendarError("halt date leaked into the pre-CONFIRM set")
+    confirm_start = SEGMENT_BOUNDS["CONFIRM"][0]
+    if any(day >= confirm_start for day in dates):
+        raise InvalidBinanceCalendarError("a CONFIRM date entered the pre-CONFIRM set")
+    if dates[0] != SEGMENT_BOUNDS["HISTORY_A"][0]:
+        raise InvalidBinanceCalendarError("pre-CONFIRM set does not start at HISTORY_A")
+    if dates[-1] != SEGMENT_BOUNDS["SCREEN"][1]:
+        raise InvalidBinanceCalendarError("pre-CONFIRM set does not end on the last SCREEN date")
+    return tuple(dates)

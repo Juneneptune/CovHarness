@@ -25,6 +25,9 @@ from covharness.data.binance_calendar import (
     FIVE_MINUTE_END_MINUTES,
     HALT_DATE,
     SAMPLE_END,
+    SEGMENT_BOUNDS,
+    dates_through_screen,
+    interval_end_minutes,
     production_dates,
     segment_label,
     verify_frozen_segment_counts,
@@ -42,10 +45,44 @@ N_ASSETS = len(BINANCE_ASSETS)
 N_INTERVALS = 288
 RQ_SCALE = N_INTERVALS / 3.0
 MINUTE_23_59 = 1439
+SIGNATURE_INTERVALS: tuple[int, ...] = (1, 5, 15, 30)
 
 
 class InvalidBinanceMeasurementError(ValueError):
     """A required Binance close or derived matrix failed the frozen contract."""
+
+
+def grid_log_returns(
+    endpoint_closes: NDArray[np.floating],
+    prior_anchor_close: NDArray[np.floating],
+) -> NDArray[np.floating]:
+    """Log returns from one anchor close and ``M`` later grid closes.
+
+    ``endpoint_closes`` has shape ``(M, N)``. ``prior_anchor_close`` has shape
+    ``(N,)``. Row 0 is ``log(endpoint_0) - log(anchor)``. Missing endpoints
+    are rejected rather than filled. This is the only log-difference
+    implementation used by the five-minute production path and by other
+    intervals.
+    """
+    endpoints = np.asarray(endpoint_closes, dtype=float)
+    prior = np.asarray(prior_anchor_close, dtype=float)
+    if endpoints.ndim != 2 or endpoints.shape[0] < 1:
+        raise InvalidBinanceMeasurementError(
+            f"endpoint_closes must have shape (M, N) with M>=1; got {endpoints.shape}"
+        )
+    n_assets = int(endpoints.shape[1])
+    if prior.shape != (n_assets,):
+        raise InvalidBinanceMeasurementError(
+            f"prior anchor must have shape ({n_assets},); got {prior.shape}"
+        )
+    # Reject missing or non-positive required closes. Do not forward-fill.
+    stacked = np.vstack([prior, endpoints])
+    if not np.isfinite(stacked).all():
+        raise InvalidBinanceMeasurementError("required grid closes must be finite")
+    if np.any(stacked <= 0.0):
+        raise InvalidBinanceMeasurementError("required grid closes must be strictly positive")
+    # Log-price differences on the supplied grid.
+    return np.diff(np.log(stacked), axis=0)
 
 
 def five_minute_log_returns(
@@ -59,24 +96,12 @@ def five_minute_log_returns(
     Missing endpoints are rejected rather than filled.
     """
     endpoints = np.asarray(endpoint_closes, dtype=float)
-    prior = np.asarray(prior_close_2359, dtype=float)
     if endpoints.ndim != 2 or endpoints.shape[0] != N_INTERVALS:
         raise InvalidBinanceMeasurementError(
             f"endpoint_closes must have shape ({N_INTERVALS}, N); got {endpoints.shape}"
         )
-    n_assets = int(endpoints.shape[1])
-    if prior.shape != (n_assets,):
-        raise InvalidBinanceMeasurementError(
-            f"prior_close_2359 must have shape ({n_assets},); got {prior.shape}"
-        )
-    # Reject missing or non-positive required closes. Do not forward-fill.
-    stacked = np.vstack([prior, endpoints])
-    if not np.isfinite(stacked).all():
-        raise InvalidBinanceMeasurementError("required five-minute closes must be finite")
-    if np.any(stacked <= 0.0):
-        raise InvalidBinanceMeasurementError("required five-minute closes must be strictly positive")
-    # Log-price differences on the frozen 288-interval grid.
-    return np.diff(np.log(stacked), axis=0)
+    # Delegate to the shared grid implementation. Do not reimplement the diff.
+    return grid_log_returns(endpoints, prior_close_2359)
 
 
 def realized_quarticity(five_minute_returns: NDArray[np.floating]) -> NDArray[np.floating]:
@@ -175,8 +200,14 @@ def _extract_day_endpoints(
     cube: NDArray[np.floating],
     start: dt.date,
     day: dt.date,
+    end_minutes: tuple[int, ...] | None = None,
 ) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
-    """Return prior 23:59 closes ``(N,)`` and 288 endpoint closes ``(288, N)``."""
+    """Return prior 23:59 closes ``(N,)`` and grid endpoint closes ``(M, N)``.
+
+    ``end_minutes`` defaults to the frozen five-minute tuple. The anchor is
+    always the prior calendar day's 23:59 close. There is no forward fill.
+    """
+    minutes = FIVE_MINUTE_END_MINUTES if end_minutes is None else tuple(end_minutes)
     prior = day - dt.timedelta(days=1)
     if prior < start:
         raise InvalidBinanceMeasurementError(
@@ -185,14 +216,16 @@ def _extract_day_endpoints(
     prior_i = _day_index(prior, start)
     day_i = _day_index(day, start)
     prior_close = cube[:, prior_i, MINUTE_23_59].copy()
-    endpoints = cube[:, day_i, list(FIVE_MINUTE_END_MINUTES)].T.copy()
+    # Take the requested minute-of-day closes on the statistical day only.
+    endpoints = cube[:, day_i, list(minutes)].T.copy()
     if not np.isfinite(prior_close).all() or np.any(prior_close <= 0.0):
         raise InvalidBinanceMeasurementError(
             f"missing or invalid 23:59 anchor on {prior.isoformat()} for {day.isoformat()}"
         )
     if not np.isfinite(endpoints).all() or np.any(endpoints <= 0.0):
+        label = "five-minute" if end_minutes is None else "grid"
         raise InvalidBinanceMeasurementError(
-            f"missing or invalid five-minute endpoint on {day.isoformat()}"
+            f"missing or invalid {label} endpoint on {day.isoformat()}"
         )
     return prior_close, endpoints
 
@@ -401,3 +434,149 @@ def panel_summary(panel: BinanceProductionPanel) -> dict[str, object]:
         > max(d for d, s in zip(panel.dates, panel.segments) if s == "SCREEN"),
         "n_archive_checksums": len(panel.archive_checksums),
     }
+
+
+@dataclass(frozen=True)
+class IntervalMeasurement:
+    """One pre-CONFIRM sampling interval. Raw minute bars are not stored.
+
+    ``returns`` has shape ``(T, M, N)``. ``rcov`` has shape ``(T, N, N)``.
+    ``daily_returns`` has shape ``(T, N)`` and uses the UTC 23:59 close on
+    every interval, so it does not depend on the grid.
+    """
+
+    dates: tuple[dt.date, ...]
+    assets: tuple[str, ...]
+    interval_minutes: int
+    n_intervals: int
+    returns: NDArray[np.floating]
+    rcov: NDArray[np.floating]
+    daily_returns: NDArray[np.floating]
+
+
+def measure_day_on_interval(
+    cube: NDArray[np.floating],
+    start: dt.date,
+    day: dt.date,
+    interval_minutes: int,
+) -> tuple[NDArray[np.floating], NDArray[np.floating], NDArray[np.floating]]:
+    """One statistical day on a uniform grid.
+
+    Returns ``(M, N)`` log returns, ``(N, N)`` realized covariance, and the
+    ``(N,)`` UTC daily log return. ``M`` is ``1440 / interval_minutes``.
+    """
+    minutes = interval_end_minutes(interval_minutes)
+    expected = 1440 // int(interval_minutes)
+    if len(minutes) != expected:
+        raise InvalidBinanceMeasurementError(
+            f"interval {interval_minutes} produced {len(minutes)} endpoints; expected {expected}"
+        )
+    prior_close, endpoints = _extract_day_endpoints(
+        cube, start, day, end_minutes=minutes
+    )
+    returns = grid_log_returns(endpoints, prior_close)
+    if returns.shape != (expected, prior_close.shape[0]):
+        raise InvalidBinanceMeasurementError(
+            f"{day.isoformat()} return shape {returns.shape} != {(expected, prior_close.shape[0])}"
+        )
+    matrix = realized_covariance(returns)
+    daily = daily_log_return(endpoints[-1], prior_close)
+    return returns, matrix, daily
+
+
+def build_preconfirm_interval_measurements(
+    cache_root: Path,
+    intervals: tuple[int, ...] = SIGNATURE_INTERVALS,
+) -> tuple[IntervalMeasurement, ...]:
+    """RCov on HISTORY_A through SCREEN. CONFIRM months are not the end date.
+
+    The cube ends on the last SCREEN date. The halt remains in the cube only
+    as the 23:59 anchor for the next statistical day. It is not a row.
+    """
+    dates = dates_through_screen()
+    end = dates[-1]
+    if end != SEGMENT_BOUNDS["SCREEN"][1]:
+        raise InvalidBinanceMeasurementError("pre-CONFIRM end is not the last SCREEN date")
+    if any(day > end or day == HALT_DATE for day in dates):
+        raise InvalidBinanceMeasurementError("pre-CONFIRM dates include the halt or a later day")
+    cube, cube_days, _checksums = _load_close_cube(
+        Path(cache_root), start=ANCHOR_DATE, end=end
+    )
+    if cube_days[0] != ANCHOR_DATE or cube_days[-1] != end:
+        raise InvalidBinanceMeasurementError("close cube does not stop on the last SCREEN date")
+
+    # Allocate every requested grid before the day loop so a bad interval fails first.
+    grids = tuple(interval_end_minutes(interval) for interval in intervals)
+    t = len(dates)
+    daily = np.empty((t, N_ASSETS), dtype=np.float64)
+    returns_out = [
+        np.empty((t, len(minutes), N_ASSETS), dtype=np.float64) for minutes in grids
+    ]
+    rcov_out = [
+        np.empty((t, N_ASSETS, N_ASSETS), dtype=np.float64) for _minutes in grids
+    ]
+
+    # Measure each retained day on every grid from the same minute cube.
+    for time_index, day in enumerate(dates):
+        if day == HALT_DATE or day > end:
+            raise InvalidBinanceMeasurementError(
+                f"{day.isoformat()} is outside the pre-CONFIRM measurement set"
+            )
+        for slot, interval in enumerate(intervals):
+            returns, matrix, day_return = measure_day_on_interval(
+                cube, ANCHOR_DATE, day, interval
+            )
+            returns_out[slot][time_index] = returns
+            rcov_out[slot][time_index] = matrix
+            if slot == 0:
+                daily[time_index] = day_return
+            elif not np.array_equal(daily[time_index], day_return):
+                raise InvalidBinanceMeasurementError(
+                    f"{day.isoformat()} daily return depends on the sampling interval"
+                )
+
+    if HALT_DATE in dates:
+        raise InvalidBinanceMeasurementError("halt date is a measured row")
+    return tuple(
+        IntervalMeasurement(
+            dates=dates,
+            assets=BINANCE_ASSETS,
+            interval_minutes=int(interval),
+            n_intervals=1440 // int(interval),
+            returns=returns_out[slot],
+            rcov=rcov_out[slot],
+            daily_returns=daily.copy(),
+        )
+        for slot, interval in enumerate(intervals)
+    )
+
+
+def production_rcov_through_screen(
+    panel_path: Path,
+    dates: tuple[dt.date, ...],
+) -> NDArray[np.floating]:
+    """Copy production RCov rows through the last requested date, then stop.
+
+    Later rows, including CONFIRM, are not copied.
+    """
+    blob = np.load(panel_path, mmap_mode="r")
+    stored_dates = np.asarray(blob["dates"])
+    end_text = dates[-1].isoformat()
+    keep: list[int] = []
+    # Stop at the first date after the requested end. Do not index past it.
+    for index, label in enumerate(stored_dates):
+        text = str(label)
+        if text > end_text:
+            break
+        keep.append(index)
+    if len(keep) != len(dates):
+        raise InvalidBinanceMeasurementError(
+            f"production panel kept {len(keep)} dates; measurement has {len(dates)}"
+        )
+    selected = tuple(str(stored_dates[index]) for index in keep)
+    expected = tuple(day.isoformat() for day in dates)
+    if selected != expected:
+        raise InvalidBinanceMeasurementError("production panel dates do not match the measurement")
+    if any(text > end_text for text in selected):
+        raise InvalidBinanceMeasurementError("a copied production date is after the requested end")
+    return np.asarray(blob["rcov_5min"][np.asarray(keep, dtype=int)], dtype=float)
