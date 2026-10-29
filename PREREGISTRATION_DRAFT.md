@@ -166,7 +166,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A1 | 1-2 | completed | `80612248ae6f772262c4eadc8b48c6a12a9887c0` | `084e3915656be4d326ac242fc8bc709d86e335b3` |
 | A1-addendum | A1 Wald check | completed | `0187bb1a5921bba53152f2610343cb0c8b4aaeb0` | `e0447f94ebbaa2e6b35799b8ae6660398e83f5ba` |
 | A2 | 3 | completed | `75240e13873322df8d93f4dfb3bb4a76626a3bb4` | `80f03b0acc0231a660ae72e13ab1957133fef31f` |
-| A3 | 4-5 | planned |  |  |
+| A3 | 4-5 | specified |  |  |
 | A4 | 6 | planned |  |  |
 | B1 | 14 | planned |  |  |
 | B2 | 15 | planned |  |  |
@@ -322,3 +322,21 @@ Diagonal-only and off-diagonal-only coefficients are in `results/post_screen/A2/
 SCREEN ratios from this task do not set any recalibration constant. Task C3, if later run, fits such a constant on past data only. Log and square-root transforms were not used.
 
 Report `results/post_screen/A2/REPORT.md`. The result commit is `80f03b0acc0231a660ae72e13ab1957133fef31f`. That commit left the result-commit cell blank because the hash did not exist until the commit was created. The cell above records that hash. The report commit does not replace it.
+
+### Task A3 spec. Signature plot and return-sign asymmetry before CONFIRM
+
+Spec date 2026-10-28. This entry is written before any A3 empirical number is computed. The exercise is descriptive. It documents the noise-versus-Epps trade-off behind the frozen five-minute proxy and describes return-sign asymmetry. The five-minute proxy is not changed because of the plot. The production panel file is not rewritten. CONFIRM is not read into an output row.
+
+Dates. Inclusive HISTORY_A through SCREEN, 2021-11-09 through 2025-04-12. The halt 2023-03-24 is excluded as a statistical day. Its 23:59 close remains the calendar anchor for 2023-03-25, as in the frozen measurement specification. Expected length is 1250. CONFIRM dates 2025-04-13 through 2026-08-25 are not measured. The April 2025 monthly archive is opened because SCREEN occupies 2025-04-01 through 2025-04-12. Timestamps after 2025-04-12 23:59 UTC are skipped by the loader end bound and are not stored.
+
+Signature grids. Intervals are 1, 5, 15, and 30 minutes. Each divides 1440. Endpoints are the minute-of-day closes `interval-1, 2*interval-1, ..., 1439`. The anchor on every grid is the prior calendar day's 23:59 one-minute close. No forward fill. A missing or nonpositive required close raises. Log returns are first differences of log closes on that grid, using one implementation shared with the frozen five-minute function. Realized covariance is the existing `realized_covariance`. Interval 5 returns the frozen `FIVE_MINUTE_END_MINUTES` tuple rather than a recomputed copy. \(M=1440/\mathrm{interval}\) and \(N=5\). Report \(M\) and \(M/N\).
+
+Signature summaries. For each asset and interval, the mean over days of realized variance \(S_{ii}\). For each interval, the mean over days of the average strict-upper-triangle realized correlation. The plot shows both against the interval. Days are not dropped. No repair.
+
+Asymmetry series. Daily UTC close-to-close log returns, and the 288 five-minute log returns. Primary tables are per asset. A pooled-across-assets table is secondary and does not replace the per-asset table. Within each series, the thresholds are the 95th and 99th percentiles of \(|r|\), using NumPy's linear quantile. Those two probabilities are fixed here and are not chosen after seeing counts. An exceedance is strict, \(r>c\) or \(r<-c\). Mean size on a side is the mean of \(|r|\) among exceedances on that side. A two-sided binomial test compares up and down counts under null probability \(1/2\). No multiplicity adjustment is applied. The tests are descriptive. Skewness is the bias-corrected Fisher–Pearson moment, `scipy.stats.skew` with `bias=False`.
+
+Semivariance. On the five-minute returns, for each asset and day, \(\mathrm{RS}^{+}\) is the sum of squares of strictly positive returns and \(\mathrm{RS}^{-}\) is the sum of squares of strictly negative returns. Zeros contribute to neither. Their sum equals realized variance. Report the mean of each and a Bartlett HAC 95 percent interval for the mean of \(\mathrm{RS}^{+}-\mathrm{RS}^{-}\), using `hac_long_run_variance` at its automatic Newey–West 1994 lag. The lag is not chosen from this sample's autocorrelation. The normal critical value is 1.96.
+
+Implementation. Add the interval parameter on the existing path in `covharness.data.binance_calendar` and `covharness.realized.binance_panel`. Semivariance identity lives next to `realized_covariance`. The entry script is `scripts/post_screen_measurement.py`. Outputs go under `results/post_screen/A3/`.
+
+Tests, before the empirical run. Interval 5 endpoints equal the frozen tuple. Return counts per day equal \(1440/\mathrm{interval}\). Semivariances sum to realized variance. Five-minute realized covariance on these dates is bitwise equal to the production panel. The frozen proxy and the production panel file are not modified.
