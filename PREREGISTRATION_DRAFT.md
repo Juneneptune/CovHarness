@@ -166,7 +166,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A1 | 1-2 | completed | `80612248ae6f772262c4eadc8b48c6a12a9887c0` | `084e3915656be4d326ac242fc8bc709d86e335b3` |
 | A1-addendum | A1 Wald check | completed | `0187bb1a5921bba53152f2610343cb0c8b4aaeb0` | `e0447f94ebbaa2e6b35799b8ae6660398e83f5ba` |
 | A2 | 3 | completed | `75240e13873322df8d93f4dfb3bb4a76626a3bb4` | `80f03b0acc0231a660ae72e13ab1957133fef31f` |
-| A3 | 4-5 | completed | `c30b27a5739d803458006853c2d8bbc80c80d32b` |  |
+| A3 | 4-5 | completed | `c30b27a5739d803458006853c2d8bbc80c80d32b` | `af3d14a2dca15cdf589586151bb8414e0ed13ee1` |
 | A4 | 6 | planned |  |  |
 | B1 | 14 | planned |  |  |
 | B2 | 15 | planned |  |  |
@@ -351,4 +351,4 @@ Daily close-to-close skewness is negative for BTC, ETH, BNB, and LTC, and positi
 
 Five-minute mean \(\mathrm{RS}^{+}-\mathrm{RS}^{-}\) is negative for every asset. The automatic HAC lag is 7. The 95 percent interval excludes 0 for BNB and LTC and includes 0 for BTC, ETH, and ADA. Semivariances partition the squared returns exactly at the element level.
 
-Outputs are under `results/post_screen/A3/`. The result-commit cell is filled once that commit exists.
+Outputs are under `results/post_screen/A3/`. Result commit `af3d14a2dca15cdf589586151bb8414e0ed13ee1`. Report `results/post_screen/A3/REPORT.md`.
