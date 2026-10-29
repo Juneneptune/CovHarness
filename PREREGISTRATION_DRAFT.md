@@ -165,7 +165,7 @@ Status values start as planned except for task 0, which is this documentation re
 | 0 | 0 | completed |  |  |
 | A1 | 1-2 | completed | `80612248ae6f772262c4eadc8b48c6a12a9887c0` | `084e3915656be4d326ac242fc8bc709d86e335b3` |
 | A1-addendum | A1 Wald check | completed | `0187bb1a5921bba53152f2610343cb0c8b4aaeb0` | `e0447f94ebbaa2e6b35799b8ae6660398e83f5ba` |
-| A2 | 3 | completed | `75240e13873322df8d93f4dfb3bb4a76626a3bb4` |  |
+| A2 | 3 | completed | `75240e13873322df8d93f4dfb3bb4a76626a3bb4` | `80f03b0acc0231a660ae72e13ab1957133fef31f` |
 | A3 | 4-5 | planned |  |  |
 | A4 | 6 | planned |  |  |
 | B1 | 14 | planned |  |  |
@@ -320,3 +320,5 @@ XGBoost-DRD rejects OLS $(0,1)$ at lag $5$ ($p=0.00694$) and does not reject app
 Diagonal-only and off-diagonal-only coefficients are in `results/post_screen/A2/a2_sensitivity.csv`. They are descriptive.
 
 SCREEN ratios from this task do not set any recalibration constant. Task C3, if later run, fits such a constant on past data only. Log and square-root transforms were not used.
+
+Report `results/post_screen/A2/REPORT.md`. The result commit is `80f03b0acc0231a660ae72e13ab1957133fef31f`. That commit left the result-commit cell blank because the hash did not exist until the commit was created. The cell above records that hash. The report commit does not replace it.
