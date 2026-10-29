@@ -169,7 +169,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A3 | 4-5 | completed | `c30b27a5739d803458006853c2d8bbc80c80d32b` | `af3d14a2dca15cdf589586151bb8414e0ed13ee1` |
 | A4 | 6 | completed | `d0d3f70547038bee845b2984c1ffdb2349f61650` | `71bdbc200c41224545116adfc0aef24ee0936690` |
 | B1 | 14 | planned |  |  |
-| B2 | 15 | planned |  |  |
+| B2 | 15 | specified |  |  |
 | C1 | 8 | planned |  |  |
 | C2 | 7 | planned |  |  |
 | C3 | 12 | planned |  |  |
@@ -390,3 +390,17 @@ LSTM19. Point estimates have \(g_{\mathrm{neg}}<0\) for every name. The magnitud
 HARQDRD01. This control was expected to show little residual sign slope beyond the variance lags. It does not do so uniformly. BTC's gap interval excludes 0, at \([-2.98,-0.49]\). ETH, BNB, and ADA intervals include 0. LTC has \(g_{\mathrm{neg}}>0\). The pooled HARQ \(g_{\mathrm{pos}}\) is negative, so the mechanical label is not a large downside coefficient. The control is reported as estimated.
 
 Outputs are under `results/post_screen/A4/`. Result commit `71bdbc200c41224545116adfc0aef24ee0936690`. Report `results/post_screen/A4/REPORT.md`.
+
+### Task B2 spec. SCREEN SPA and MCS at longer bootstrap blocks
+
+Spec date 2026-10-28. This entry is written before any B2 empirical number is computed. The exercise is a sensitivity. It does not replace the frozen 2026-09-21 SPA or MCS files. It does not change the finalist rule. The finalist rule uses sub-block ranks, not MCS.
+
+Universe. The nine complete SCREEN columns in `complete_labels`. DCC and DCC-NL are excluded because they have no forecasts. Both stored losses are used, reduced QLIKE and squared Frobenius, separately. They are not averaged.
+
+Procedures. SPA benchmark is HAR-DRD. Consistent recentering is primary. Lower and upper recenterings are reported. RIDGE01 keeps the existing exact-benchmark-tie exclusion from the SPA statistic. MCS primary is \((T_R, e_R)\). Companion is \((T_{\max}, e_{\max})\). The pairs are not crossed. \(B=5000\). Seed \(20260913\). Mean block lengths are 7, 14, and 30. At length 7 the saved p-values must be reproduced exactly, because 7 is the cube-root default at \(T=500\).
+
+Implementation. Pass `block_length` through the existing `screen_spa` and `screen_mcs` wrappers into `superior_predictive_ability` and `model_confidence_set`. No new bootstrap and no new statistic. The entry script is `scripts/post_screen_block_sensitivity.py`. Outputs go under `results/post_screen/B2/`. The 2026-09-21 JSON files are read and not rewritten.
+
+CONFIRM block length. It is not chosen here. It is not chosen by which of 7, 14, or 30 gives smaller p-values. The rule is decided at G1 and tied to B1's frozen bandwidth. G1 is not run in this task. B1 is not run in this task.
+
+Tests, before the empirical run. A wrapper call with an explicit block length records that length. The length-7 SCREEN run is compared with the saved SPA and MCS JSON after the script starts, and a mismatch stops the task.
