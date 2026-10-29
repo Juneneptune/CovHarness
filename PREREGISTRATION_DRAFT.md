@@ -175,7 +175,7 @@ Status values start as planned except for task 0, which is this documentation re
 | C3 | 12 | planned |  |  |
 | D1 | 13 | planned |  |  |
 | D2 | 9 | planned |  |  |
-| D3a | 10 | planned |  |  |
+| D3a | 10 | specified |  |  |
 | D3b | 10 | planned |  |  |
 | D4 | 11 | planned |  |  |
 | E1 | 16 | planned |  |  |
@@ -416,3 +416,21 @@ QLIKE range MCS at \(\alpha=0.10\) contains EWMA and HARQ-DRD at every length. T
 The CONFIRM block length is not chosen. It remains a G1 decision tied to B1. The finalist rule is unchanged.
 
 Outputs are under `results/post_screen/B2/`. Result commit `f9c6b58a79941bcc72392f6d95943d54b336a9dd`. Report `results/post_screen/B2/REPORT.md`.
+
+### Task D3a spec. Shifted-day panels for training augmentation
+
+Spec date 2026-10-28. This entry is written before any D3a phase panel is built. The panels are training material. Evaluation targets remain UTC-day realized covariance. No model is trained. CONFIRM-period phase days are not built.
+
+Label convention. The existing phase 00 is the production UTC day. Row \(d\) is the interval \([00{:}00\) on \(d,\ 24{:}00\) on \(d)\), anchored on the prior 23:59 close. That is the object the bitwise test names. The seven shifted phases use the stated window. For \(h\in\{3,6,9,12,15,18,21\}\), the phase-\(h\) day labeled \(d\) is \([h{:}00\) on \(d-1,\ h{:}00\) on \(d)\).
+
+Measurement. Five-minute grid, 288 returns, anchored on the previous one-minute close at the phase boundary, no forward fill. Realized covariance, realized quarticity, and the log return are taken over that same window. The log-return and realized-covariance functions are the ones already used for the production day. A missing close raises. No repair.
+
+Dates. Labels run from HISTORY_A through SCREEN, 2021-11-09 through 2025-04-12. A phase day is dropped when its half-open window intersects 2023-03-24. Under the label convention, phase 00 keeps 2023-03-25, because the production day does. Every shifted phase drops the label 2023-03-25, because that window includes hours on the halt date. Dropped labels are stored. Successive kept rows are not treated as adjacent for lags when a label between them was dropped. There is no packing across the halt.
+
+Eligibility. A phase day labeled \(d\) ends at or before 24:00 on \(d\), so it is first usable at origin \(d\) and not at origin \(d-1\). The build checks that no kept row ends after 24:00 on its label. CONFIRM labels are not built. The April 2025 archive is read only through 2025-04-12 23:59.
+
+Overlap. Phase offsets three hours apart share 21 hours. Same-phase successive days share only the boundary. The samples are correlated. They do not multiply the effective sample size. No effective-sample-size number is computed in this task.
+
+Implementation. The phase window is added beside the interval parameter in `covharness.realized.binance_panel`. The entry script is `scripts/post_screen_phase_panels.py`. Outputs go under `results/post_screen/D3a/`.
+
+Tests, before the panels are accepted. Phase 00 matches the production realized-covariance panel bitwise on the pre-CONFIRM dates. The halt exclusion matches the rule above. No kept phase day ends after its label date.
