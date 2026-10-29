@@ -1,0 +1,113 @@
+{
+  "task": "D3a",
+  "spec_commit": "d45a5bce027b50be38bc5aaf722ddbd183392d10",
+  "phase00_matches_production": true,
+  "panel_sha256": "2b7358107a10f77c3879524e1d9b1389c2c66db4a444af89c2cdf59aa186640a",
+  "confirm_rows": 0,
+  "overlap_hours_at_three_hour_offset": 21,
+  "overlap_note": "Phase offsets three hours apart share 21 hours. Same-phase successive days share only the boundary. The samples are correlated and do not multiply the effective sample size.",
+  "phases": [
+    {
+      "hour": 0,
+      "n_rows": 1250,
+      "n_dropped": 0,
+      "dropped_dates": [],
+      "date_start": "2021-11-09",
+      "date_end": "2025-04-12",
+      "n_lag_breaks": 2,
+      "path": "results/post_screen/D3a/phase_00.npz",
+      "sha256": "b81caf31c40fe1f12ad462db535160ca5d05fcaa39df911eef5b1c99b10bbbc3"
+    },
+    {
+      "hour": 3,
+      "n_rows": 1249,
+      "n_dropped": 1,
+      "dropped_dates": [
+        "2023-03-25"
+      ],
+      "date_start": "2021-11-09",
+      "date_end": "2025-04-12",
+      "n_lag_breaks": 2,
+      "path": "results/post_screen/D3a/phase_03.npz",
+      "sha256": "f7bbfd5ce4ace7430546e270e80a17aaca312e16862784f4e6439fabaa8ad68f"
+    },
+    {
+      "hour": 6,
+      "n_rows": 1249,
+      "n_dropped": 1,
+      "dropped_dates": [
+        "2023-03-25"
+      ],
+      "date_start": "2021-11-09",
+      "date_end": "2025-04-12",
+      "n_lag_breaks": 2,
+      "path": "results/post_screen/D3a/phase_06.npz",
+      "sha256": "64cd60a218d0ac5c7498bba4d13256658d620a78858c2e1ce30787f03b22bf5d"
+    },
+    {
+      "hour": 9,
+      "n_rows": 1249,
+      "n_dropped": 1,
+      "dropped_dates": [
+        "2023-03-25"
+      ],
+      "date_start": "2021-11-09",
+      "date_end": "2025-04-12",
+      "n_lag_breaks": 2,
+      "path": "results/post_screen/D3a/phase_09.npz",
+      "sha256": "80cceb383cb8dc16431c53b0fbfb6ae5d2f7b8627b8b8dbc102a1d98e84b5e5b"
+    },
+    {
+      "hour": 12,
+      "n_rows": 1249,
+      "n_dropped": 1,
+      "dropped_dates": [
+        "2023-03-25"
+      ],
+      "date_start": "2021-11-09",
+      "date_end": "2025-04-12",
+      "n_lag_breaks": 2,
+      "path": "results/post_screen/D3a/phase_12.npz",
+      "sha256": "1075f9061b20ecdbed0816382babebf11f22a6958a4735beeb24cee446f4ecf3"
+    },
+    {
+      "hour": 15,
+      "n_rows": 1249,
+      "n_dropped": 1,
+      "dropped_dates": [
+        "2023-03-25"
+      ],
+      "date_start": "2021-11-09",
+      "date_end": "2025-04-12",
+      "n_lag_breaks": 2,
+      "path": "results/post_screen/D3a/phase_15.npz",
+      "sha256": "f6b8f655ef818f90b6ab08b9fc7c674695cce11cb74c489a5737c4abb7a5fc5f"
+    },
+    {
+      "hour": 18,
+      "n_rows": 1249,
+      "n_dropped": 1,
+      "dropped_dates": [
+        "2023-03-25"
+      ],
+      "date_start": "2021-11-09",
+      "date_end": "2025-04-12",
+      "n_lag_breaks": 2,
+      "path": "results/post_screen/D3a/phase_18.npz",
+      "sha256": "94a8475832d67cc0ed6ab5ce70c505f311c261c4bfdc350ee05150ba6798771a"
+    },
+    {
+      "hour": 21,
+      "n_rows": 1249,
+      "n_dropped": 1,
+      "dropped_dates": [
+        "2023-03-25"
+      ],
+      "date_start": "2021-11-09",
+      "date_end": "2025-04-12",
+      "n_lag_breaks": 2,
+      "path": "results/post_screen/D3a/phase_21.npz",
+      "sha256": "18706e47788a6e9183d7778278a0f07940cc5a58f8e5bdcef21d4927016ace1e"
+    }
+  ]
+}

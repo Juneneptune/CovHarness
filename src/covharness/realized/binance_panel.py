@@ -580,3 +580,238 @@ def production_rcov_through_screen(
     if any(text > end_text for text in selected):
         raise InvalidBinanceMeasurementError("a copied production date is after the requested end")
     return np.asarray(blob["rcov_5min"][np.asarray(keep, dtype=int)], dtype=float)
+
+
+PHASE_HOURS: tuple[int, ...] = (0, 3, 6, 9, 12, 15, 18, 21)
+SHIFTED_PHASE_HOURS: tuple[int, ...] = (3, 6, 9, 12, 15, 18, 21)
+
+
+def phase_window(day: dt.date, hour: int) -> tuple[pd.Timestamp, pd.Timestamp]:
+    """Half-open window of the phase day labeled ``day``.
+
+    Hour 0 is the production UTC day ``[00:00 on day, 24:00 on day)``.
+    A shifted hour ``h`` is ``[h:00 on day-1, h:00 on day)``.
+    """
+    if hour not in PHASE_HOURS:
+        raise InvalidBinanceMeasurementError(f"phase hour {hour} is not in {PHASE_HOURS}")
+    label_midnight = pd.Timestamp(day, tz="UTC")
+    if hour == 0:
+        return label_midnight, label_midnight + pd.Timedelta(days=1)
+    end = label_midnight + pd.Timedelta(hours=int(hour))
+    return end - pd.Timedelta(days=1), end
+
+
+def phase_touches_halt(day: dt.date, hour: int) -> bool:
+    """True when the half-open phase window intersects 2023-03-24."""
+    start, end = phase_window(day, hour)
+    halt_start = pd.Timestamp(HALT_DATE, tz="UTC")
+    halt_end = halt_start + pd.Timedelta(days=1)
+    return bool(start < halt_end and halt_start < end)
+
+
+def phase_ends_by_label_close(day: dt.date, hour: int) -> bool:
+    """True when the phase day ends at or before 24:00 on its label."""
+    _start, end = phase_window(day, hour)
+    label_close = pd.Timestamp(day, tz="UTC") + pd.Timedelta(days=1)
+    return bool(end <= label_close)
+
+
+def phase_usable_at_origin(day: dt.date, hour: int, origin: dt.date) -> bool:
+    """True when the phase day has ended by 24:00 on ``origin``."""
+    _start, end = phase_window(day, hour)
+    origin_close = pd.Timestamp(origin, tz="UTC") + pd.Timedelta(days=1)
+    return bool(end <= origin_close)
+
+
+def _shifted_phase_minutes(hour: int) -> tuple[tuple[int, ...], tuple[int, ...]]:
+    """Five-minute endpoints on the start day and on the label day.
+
+    The boundary is ``h:00``. The first endpoint is four minutes later, and
+    the last endpoint is one minute before the next boundary. The two pieces
+    together are the 288 production intervals.
+    """
+    if hour not in SHIFTED_PHASE_HOURS:
+        raise InvalidBinanceMeasurementError(f"shifted phase hour {hour} is not supported")
+    boundary = int(hour) * 60
+    start_day = tuple(range(boundary + 4, 1440, 5))
+    label_day = tuple(range(4, boundary, 5))
+    if len(start_day) + len(label_day) != N_INTERVALS:
+        raise InvalidBinanceMeasurementError(
+            f"phase {hour} has {len(start_day) + len(label_day)} endpoints; expected {N_INTERVALS}"
+        )
+    return start_day, label_day
+
+
+def _extract_shifted_phase_endpoints(
+    cube: NDArray[np.floating],
+    start: dt.date,
+    day: dt.date,
+    hour: int,
+) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
+    """Anchor at the minute before ``h:00`` and stack the two calendar days.
+
+    Returns the anchor close ``(N,)`` and endpoint closes ``(288, N)``.
+    There is no forward fill.
+    """
+    start_minutes, label_minutes = _shifted_phase_minutes(hour)
+    prior = day - dt.timedelta(days=1)
+    if prior < start or day < start:
+        raise InvalidBinanceMeasurementError(
+            f"{day.isoformat()} phase {hour} is outside the loaded cube"
+        )
+    prior_i = _day_index(prior, start)
+    day_i = _day_index(day, start)
+    n_days = int(cube.shape[1])
+    if prior_i < 0 or day_i >= n_days:
+        raise InvalidBinanceMeasurementError(
+            f"{day.isoformat()} phase {hour} is outside the loaded cube"
+        )
+    anchor_minute = int(hour) * 60 - 1
+    prior_close = cube[:, prior_i, anchor_minute].copy()
+    # Endpoints before midnight stay on the start day. Endpoints after midnight are on the label.
+    left = cube[:, prior_i, list(start_minutes)].T
+    right = cube[:, day_i, list(label_minutes)].T
+    endpoints = np.vstack([left, right])
+    if not np.isfinite(prior_close).all() or np.any(prior_close <= 0.0):
+        raise InvalidBinanceMeasurementError(
+            f"missing or invalid phase anchor on {prior.isoformat()} for {day.isoformat()}"
+        )
+    if endpoints.shape != (N_INTERVALS, prior_close.shape[0]):
+        raise InvalidBinanceMeasurementError(
+            f"{day.isoformat()} phase {hour} endpoint shape {endpoints.shape}"
+        )
+    if not np.isfinite(endpoints).all() or np.any(endpoints <= 0.0):
+        raise InvalidBinanceMeasurementError(
+            f"missing or invalid phase endpoint on {day.isoformat()} hour {hour}"
+        )
+    return prior_close, endpoints
+
+
+def measure_phase_day(
+    cube: NDArray[np.floating],
+    start: dt.date,
+    day: dt.date,
+    hour: int,
+) -> tuple[NDArray[np.floating], NDArray[np.floating], NDArray[np.floating], NDArray[np.floating]]:
+    """One phase day as returns, realized covariance, quarticity, and the window return.
+
+    Hour 0 calls the production five-minute measurement. A shifted hour uses
+    the same log-return and Gram-matrix functions on the phase grid.
+    """
+    if hour == 0:
+        returns, matrix, day_return = measure_day_on_interval(cube, start, day, 5)
+    else:
+        prior_close, endpoints = _extract_shifted_phase_endpoints(cube, start, day, hour)
+        # Same log differences and Gram matrix as the production day.
+        returns = grid_log_returns(endpoints, prior_close)
+        matrix = realized_covariance(returns)
+        day_return = daily_log_return(endpoints[-1], prior_close)
+    if returns.shape != (N_INTERVALS, N_ASSETS):
+        raise InvalidBinanceMeasurementError(
+            f"{day.isoformat()} phase {hour} return shape {returns.shape}"
+        )
+    quarticity = realized_quarticity(returns)
+    return returns, matrix, quarticity, day_return
+
+
+@dataclass(frozen=True)
+class PhasePanel:
+    """Training panel for one UTC phase. Raw minute bars are not stored.
+
+    ``rcov`` has shape ``(T, N, N)``. ``rq`` and ``daily_returns`` have shape
+    ``(T, N)``. ``contiguous_with_previous[0]`` is false. A later entry is
+    true only when this window starts at the previous kept window's end.
+    """
+
+    hour: int
+    dates: tuple[dt.date, ...]
+    dropped_dates: tuple[dt.date, ...]
+    assets: tuple[str, ...]
+    rcov: NDArray[np.floating]
+    rq: NDArray[np.floating]
+    daily_returns: NDArray[np.floating]
+    contiguous_with_previous: NDArray[np.bool_]
+
+
+def _contiguous_with_previous(dates: tuple[dt.date, ...], hour: int) -> NDArray[np.bool_]:
+    flags = np.zeros(len(dates), dtype=bool)
+    for index in range(1, len(dates)):
+        _previous_start, previous_end = phase_window(dates[index - 1], hour)
+        start, _end = phase_window(dates[index], hour)
+        flags[index] = bool(start == previous_end)
+    return flags
+
+
+def build_preconfirm_phase_panels(
+    cache_root: Path,
+    hours: tuple[int, ...] = PHASE_HOURS,
+) -> tuple[PhasePanel, ...]:
+    """Phase panels from HISTORY_A through SCREEN. CONFIRM labels are not built.
+
+    A row whose window intersects 2023-03-24 is dropped and recorded. The
+    cube ends on the last SCREEN date.
+    """
+    requested = tuple(int(hour) for hour in hours)
+    if any(hour not in PHASE_HOURS for hour in requested):
+        raise InvalidBinanceMeasurementError(f"phase hours {requested} leave the registered set")
+    labels = dates_through_screen()
+    end = labels[-1]
+    if end != SEGMENT_BOUNDS["SCREEN"][1]:
+        raise InvalidBinanceMeasurementError("pre-CONFIRM end is not the last SCREEN date")
+    confirm_start = SEGMENT_BOUNDS["CONFIRM"][0]
+    if any(day >= confirm_start or day == HALT_DATE for day in labels):
+        raise InvalidBinanceMeasurementError("pre-CONFIRM labels include the halt or CONFIRM")
+    cube, cube_days, _checksums = _load_close_cube(
+        Path(cache_root), start=ANCHOR_DATE, end=end
+    )
+    if cube_days[0] != ANCHOR_DATE or cube_days[-1] != end:
+        raise InvalidBinanceMeasurementError("close cube does not stop on the last SCREEN date")
+
+    panels: list[PhasePanel] = []
+    for hour in requested:
+        kept: list[dt.date] = []
+        dropped: list[dt.date] = []
+        # Drop a label before measuring it when the window meets the halt.
+        for day in labels:
+            if day >= confirm_start:
+                raise InvalidBinanceMeasurementError(
+                    f"{day.isoformat()} is a CONFIRM label"
+                )
+            if phase_touches_halt(day, hour):
+                dropped.append(day)
+                continue
+            if not phase_ends_by_label_close(day, hour):
+                raise InvalidBinanceMeasurementError(
+                    f"{day.isoformat()} phase {hour} ends after its label close"
+                )
+            if phase_usable_at_origin(day, hour, day - dt.timedelta(days=1)):
+                raise InvalidBinanceMeasurementError(
+                    f"{day.isoformat()} phase {hour} is usable before its label date"
+                )
+            kept.append(day)
+        if HALT_DATE in kept or any(day >= confirm_start for day in kept):
+            raise InvalidBinanceMeasurementError("a kept phase row is the halt or CONFIRM")
+        t = len(kept)
+        rcov = np.empty((t, N_ASSETS, N_ASSETS), dtype=np.float64)
+        rq = np.empty((t, N_ASSETS), dtype=np.float64)
+        daily = np.empty((t, N_ASSETS), dtype=np.float64)
+        for index, day in enumerate(kept):
+            _returns, matrix, quarticity, day_return = measure_phase_day(
+                cube, ANCHOR_DATE, day, hour
+            )
+            rcov[index] = matrix
+            rq[index] = quarticity
+            daily[index] = day_return
+        panels.append(
+            PhasePanel(
+                hour=hour,
+                dates=tuple(kept),
+                dropped_dates=tuple(dropped),
+                assets=BINANCE_ASSETS,
+                rcov=rcov,
+                rq=rq,
+                daily_returns=daily,
+                contiguous_with_previous=_contiguous_with_previous(tuple(kept), hour),
+            )
+        )
+    return tuple(panels)

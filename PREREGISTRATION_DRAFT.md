@@ -175,7 +175,7 @@ Status values start as planned except for task 0, which is this documentation re
 | C3 | 12 | planned |  |  |
 | D1 | 13 | planned |  |  |
 | D2 | 9 | planned |  |  |
-| D3a | 10 | specified |  |  |
+| D3a | 10 | completed | `d45a5bce027b50be38bc5aaf722ddbd183392d10` |  |
 | D3b | 10 | planned |  |  |
 | D4 | 11 | planned |  |  |
 | E1 | 16 | planned |  |  |
@@ -434,3 +434,9 @@ Overlap. Phase offsets three hours apart share 21 hours. Same-phase successive d
 Implementation. The phase window is added beside the interval parameter in `covharness.realized.binance_panel`. The entry script is `scripts/post_screen_phase_panels.py`. Outputs go under `results/post_screen/D3a/`.
 
 Tests, before the panels are accepted. Phase 00 matches the production realized-covariance panel bitwise on the pre-CONFIRM dates. The halt exclusion matches the rule above. No kept phase day ends after its label date.
+
+### Task D3a results. Shifted-day panels through SCREEN
+
+The build kept the registered label convention. Phase 00 has 1250 rows and matches the production realized-covariance panel bitwise. Each shifted phase has 1249 rows. The only dropped label is 2023-03-25. Phase 00 keeps that date. No phase contains 2023-03-24 or a date on or after 2025-04-13. Every kept row ends by 24:00 on its label and is not usable at the previous origin. The halt leaves one lag break in every phase, plus the first row, which has no predecessor. Phase offsets three hours apart share 21 hours. The samples are correlated and do not multiply the effective sample size. No model was trained. The production panel hash is unchanged.
+
+Outputs are under `results/post_screen/D3a/`. The result-commit cell is filled once that commit exists.
