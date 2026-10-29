@@ -169,7 +169,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A3 | 4-5 | completed | `c30b27a5739d803458006853c2d8bbc80c80d32b` | `af3d14a2dca15cdf589586151bb8414e0ed13ee1` |
 | A4 | 6 | completed | `d0d3f70547038bee845b2984c1ffdb2349f61650` | `71bdbc200c41224545116adfc0aef24ee0936690` |
 | B1 | 14 | planned |  |  |
-| B2 | 15 | completed | `8d0cbfb7184290f7db819e56c45e0da3548c831c` |  |
+| B2 | 15 | completed | `8d0cbfb7184290f7db819e56c45e0da3548c831c` | `f9c6b58a79941bcc72392f6d95943d54b336a9dd` |
 | C1 | 8 | planned |  |  |
 | C2 | 7 | planned |  |  |
 | C3 | 12 | planned |  |  |
@@ -415,4 +415,4 @@ QLIKE range MCS at \(\alpha=0.10\) contains EWMA and HARQ-DRD at every length. T
 
 The CONFIRM block length is not chosen. It remains a G1 decision tied to B1. The finalist rule is unchanged.
 
-Outputs are under `results/post_screen/B2/`. The result-commit cell is filled once that commit exists.
+Outputs are under `results/post_screen/B2/`. Result commit `f9c6b58a79941bcc72392f6d95943d54b336a9dd`. Report `results/post_screen/B2/REPORT.md`.
