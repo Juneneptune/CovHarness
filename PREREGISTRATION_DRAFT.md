@@ -167,7 +167,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A1-addendum | A1 Wald check | completed | `0187bb1a5921bba53152f2610343cb0c8b4aaeb0` | `e0447f94ebbaa2e6b35799b8ae6660398e83f5ba` |
 | A2 | 3 | completed | `75240e13873322df8d93f4dfb3bb4a76626a3bb4` | `80f03b0acc0231a660ae72e13ab1957133fef31f` |
 | A3 | 4-5 | completed | `c30b27a5739d803458006853c2d8bbc80c80d32b` | `af3d14a2dca15cdf589586151bb8414e0ed13ee1` |
-| A4 | 6 | completed | `d0d3f70547038bee845b2984c1ffdb2349f61650` |  |
+| A4 | 6 | completed | `d0d3f70547038bee845b2984c1ffdb2349f61650` | `71bdbc200c41224545116adfc0aef24ee0936690` |
 | B1 | 14 | planned |  |  |
 | B2 | 15 | planned |  |  |
 | C1 | 8 | planned |  |  |
@@ -389,4 +389,4 @@ LSTM19. Point estimates have \(g_{\mathrm{neg}}<0\) for every name. The magnitud
 
 HARQDRD01. This control was expected to show little residual sign slope beyond the variance lags. It does not do so uniformly. BTC's gap interval excludes 0, at \([-2.98,-0.49]\). ETH, BNB, and ADA intervals include 0. LTC has \(g_{\mathrm{neg}}>0\). The pooled HARQ \(g_{\mathrm{pos}}\) is negative, so the mechanical label is not a large downside coefficient. The control is reported as estimated.
 
-Outputs are under `results/post_screen/A4/`. The result-commit cell is filled once that commit exists.
+Outputs are under `results/post_screen/A4/`. Result commit `71bdbc200c41224545116adfc0aef24ee0936690`. Report `results/post_screen/A4/REPORT.md`.
