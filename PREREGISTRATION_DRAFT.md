@@ -182,7 +182,7 @@ Status values start as planned except for task 0, which is this documentation re
 | G1 |  | planned |  |  |
 | F1 | 17 | planned |  |  |
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |
-| R2 | amendment R-2026-10-30 | completed |  |  |
+| R2 | amendment R-2026-10-30 | completed | `9d50128d0a01a80396929381314aac9fc4b01125` | `9d50128d0a01a80396929381314aac9fc4b01125` |
 | B1b | P5 size-adjusted cutoffs | planned |  |  |
 | C4 | A4 follow-up | planned |  |  |
 
