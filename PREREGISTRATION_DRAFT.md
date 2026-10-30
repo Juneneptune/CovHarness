@@ -184,7 +184,7 @@ Status values start as planned except for task 0, which is this documentation re
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |
 | R2 | amendment R-2026-10-30 | completed | `9d50128d0a01a80396929381314aac9fc4b01125` | `9d50128d0a01a80396929381314aac9fc4b01125` |
 | B1b | P5 size-adjusted cutoffs | completed | `e4f01c0301320d5f92e0041e09069abc85ab2ba4` | `7145b67ab24c0ed36956ad82535cba188f242765` |
-| C4 | A4 follow-up | planned |  |  |
+| C4 | A4 follow-up | specified |  |  |
 
 G1 is the CONFIRM authorization gate. It has no numbered TODO item in the source list. Recording the gate in this table does not unlock CONFIRM.
 
@@ -564,3 +564,13 @@ The entry script is `scripts/p5_size_adjusted_cutoffs.py`. Outputs go under `res
 Freeze date 2026-10-30. This paragraph is written after the simulation and before any application of the cutoffs. At \(T=500\), \(\nu=25\), and the ordinary two-sided Student-\(t\) critical value is 2.0595385527532972. The size-adjusted values are \(c_7=2.4728093597276533\) with bootstrap standard error 0.024786494686054643, and \(c_{29}=2.4226501420943998\) with bootstrap standard error 0.02011665228045664. The calibration seed is 20260916. Null seeds are 1018646849 at block 7 and 925551463 at block 29. Check seeds are 192526076 and 1684267205. Fresh 5000-replication rejection rates are 0.0516 and 0.0472, both within two Monte Carlo standard errors of 0.05. These values are frozen and are not recomputed on CONFIRM. A confirmatory claim requires rejection at the ordinary P5 cutoff and at both \(c_7\) and \(c_{29}\).
 
 Commit `7145b67ab24c0ed36956ad82535cba188f242765` records the values.
+
+### Task C4 spec. Semivariance panel and SHAR-DRD
+
+Spec date 2026-10-30. This entry is written before any C4 fit. CONFIRM stays locked. No SPA, MCS, or finalist reselection is run.
+
+Semivariances use the same 288 five-minute returns as production realized covariance. For asset \(i\) on day \(t\), \(\mathrm{RS}^+_{i,t}\) is the sum of squared five-minute returns that are strictly positive, and \(\mathrm{RS}^-_{i,t}\) is the sum of squared five-minute returns that are strictly negative. A zero return contributes to neither side. In exact arithmetic the two sums equal realized variance. The panel is built for HISTORY_A through SCREEN and stored as a separate local array. The production panel file is not modified. CONFIRM dates are not built.
+
+SHAR-DRD has one fixed specification, SHARDRD01. There is no grid. The variance equation is the HAR-DRD equation with the daily lag replaced by \(\mathrm{RS}^+\) and \(\mathrm{RS}^-\), each with its own shared slope. The weekly lag of four observations and the monthly lag of seventeen observations are unchanged. Intercepts remain asset-specific. The correlation equation is the HAR-DRD equation. Reconstruction, the validity filter, the estimation-window-mean fallback, the 21-origin refit, and the daily window update are those of HAR-DRD. SHAR-DRD joins the econometric eligible pool at G1.
+
+The entry script is `scripts/post_screen_shar.py`. Outputs go under `results/post_screen/C4/`.

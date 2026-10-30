@@ -39,7 +39,7 @@ from covharness.data.binance_klines import (
 )
 from covharness.diagnostics.epps import matrix_eigen_diagnostics
 from covharness.losses.contracts import PSD_ATOL, SYMMETRY_ATOL
-from covharness.realized.rcov import realized_covariance
+from covharness.realized.rcov import realized_covariance, realized_semivariances
 
 N_ASSETS = len(BINANCE_ASSETS)
 N_INTERVALS = 288
@@ -549,6 +549,38 @@ def build_preconfirm_interval_measurements(
         )
         for slot, interval in enumerate(intervals)
     )
+
+
+def build_preconfirm_semivariances(
+    cache_root: Path,
+) -> tuple[tuple[dt.date, ...], NDArray[np.floating], NDArray[np.floating], NDArray[np.floating]]:
+    """Positive and negative semivariances from HISTORY_A through SCREEN.
+
+    Each day uses the production five-minute grid. CONFIRM dates are not
+    rows. The returned variance is the diagonal of the realized covariance
+    from those same returns.
+    """
+    dates = dates_through_screen()
+    end = dates[-1]
+    cube, cube_days, _checksums = _load_close_cube(Path(cache_root), start=ANCHOR_DATE, end=end)
+    if cube_days[0] != ANCHOR_DATE or cube_days[-1] != end:
+        raise InvalidBinanceMeasurementError("close cube does not stop on the last SCREEN date")
+    t = len(dates)
+    positive = np.empty((t, N_ASSETS), dtype=np.float64)
+    negative = np.empty((t, N_ASSETS), dtype=np.float64)
+    variance = np.empty((t, N_ASSETS), dtype=np.float64)
+    # Measure each retained day on the production five-minute grid.
+    for time_index, day in enumerate(dates):
+        if day == HALT_DATE or day > end:
+            raise InvalidBinanceMeasurementError(f"{day.isoformat()} is outside the pre-CONFIRM set")
+        returns, matrix, _daily = measure_day_on_interval(cube, ANCHOR_DATE, day, 5)
+        rs_pos, rs_neg = realized_semivariances(returns)
+        positive[time_index] = rs_pos
+        negative[time_index] = rs_neg
+        variance[time_index] = np.diag(matrix)
+    if HALT_DATE in dates:
+        raise InvalidBinanceMeasurementError("halt date is a measured semivariance row")
+    return dates, positive, negative, variance
 
 
 def production_rcov_through_screen(

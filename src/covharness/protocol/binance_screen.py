@@ -484,6 +484,8 @@ def run_scheduled_screen_forecasts(
     schedule,
     view: ScreenView,
     on_origin: Callable[[dt.date, bool, object], None] | None = None,
+    semivariance_positive: NDArray[np.floating] | None = None,
+    semivariance_negative: NDArray[np.floating] | None = None,
 ) -> tuple[list[RollingForecastRecord], NDArray[np.bool_], int, dict[str, object]]:
     """Advance one SCREEN representative. Windows cannot enter CONFIRM."""
     records: list[RollingForecastRecord] = []
@@ -502,6 +504,8 @@ def run_scheduled_screen_forecasts(
             daily_returns=view.daily_returns,
             realized_covariances=view.rcov,
             realized_quarticity=view.rq,
+            semivariance_positive=semivariance_positive,
+            semivariance_negative=semivariance_negative,
         )
         try:
             action = _fit_at_origin(model, payload) if step.refit else _advance_at_origin(model, payload)
@@ -751,6 +755,8 @@ def run_one_screen_configuration(
     checkpoint_dir: Path,
     model_factory: Callable[..., object] | None = None,
     on_origin: Callable[[dt.date, bool, object], None] | None = None,
+    semivariance_positive: NDArray[np.floating] | None = None,
+    semivariance_negative: NDArray[np.floating] | None = None,
 ) -> CandidateRunResult:
     config_id = str(row["id"])
     required_targets = [step.target.date() for step in schedule.steps]
@@ -770,7 +776,12 @@ def run_one_screen_configuration(
     try:
         model = factory(family, row, seed)
         records, repaired, fit_failures, extras = run_scheduled_screen_forecasts(
-            model=model, schedule=schedule, view=view, on_origin=on_origin
+            model=model,
+            schedule=schedule,
+            view=view,
+            on_origin=on_origin,
+            semivariance_positive=semivariance_positive,
+            semivariance_negative=semivariance_negative,
         )
         result = evaluate_screen_records(
             family,

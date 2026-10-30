@@ -41,6 +41,7 @@ from covharness.models.exceptions import (
 )
 from covharness.models.har_drd import HARDRDRealizedCovariance
 from covharness.models.harq_drd import HARQDRDRealizedCovariance
+from covharness.models.shar_drd import SHARDRDRealizedCovariance
 from covharness.models.ridge_drd import RidgeDRDRealizedCovariance, RidgeDRDFitState
 from covharness.models.xgboost_drd import (
     XGBoostDRDFitState,
@@ -70,6 +71,7 @@ __all__ = [
     "ForecastDiagnostics",
     "HARDRDRealizedCovariance",
     "HARQDRDRealizedCovariance",
+    "SHARDRDRealizedCovariance",
     "RidgeDRDFitState",
     "RidgeDRDRealizedCovariance",
     "XGBoostDRDFitState",

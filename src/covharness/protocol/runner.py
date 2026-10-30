@@ -62,6 +62,8 @@ class OriginPayload:
     current_rcov: NDArray[np.floating] | None = None
     rq_window: NDArray[np.floating] | None = None
     current_rq: NDArray[np.floating] | None = None
+    rs_positive_window: NDArray[np.floating] | None = None
+    rs_negative_window: NDArray[np.floating] | None = None
 
 
 @dataclass(frozen=True)
@@ -159,6 +161,8 @@ def build_origin_payload(
     daily_returns: NDArray[np.floating] | None = None,
     realized_covariances: NDArray[np.floating] | None = None,
     realized_quarticity: NDArray[np.floating] | None = None,
+    semivariance_positive: NDArray[np.floating] | None = None,
+    semivariance_negative: NDArray[np.floating] | None = None,
 ) -> OriginPayload:
     """Slice origin-t arrays from aligned calendar panels."""
     _reject_leaking_step(step, calendar)
@@ -175,6 +179,12 @@ def build_origin_payload(
         current_rcov=_slice_current(realized_covariances, step, "realized_covariances"),
         rq_window=_slice_window(realized_quarticity, step, "realized_quarticity"),
         current_rq=_slice_current(realized_quarticity, step, "realized_quarticity"),
+        rs_positive_window=_slice_window(
+            semivariance_positive, step, "semivariance_positive"
+        ),
+        rs_negative_window=_slice_window(
+            semivariance_negative, step, "semivariance_negative"
+        ),
     )
 
 
@@ -187,6 +197,12 @@ def _fit_at_origin(model: CovarianceModel, payload: OriginPayload) -> RollingAct
         model.fit(
             _require_field(payload.rcov_window, "rcov_window", payload),
             _require_field(payload.rq_window, "rq_window", payload),
+        )
+    elif caps.fit_input is FitInput.REALIZED_COVARIANCE_AND_SEMIVARIANCE:
+        model.fit(
+            _require_field(payload.rcov_window, "rcov_window", payload),
+            _require_field(payload.rs_positive_window, "rs_positive_window", payload),
+            _require_field(payload.rs_negative_window, "rs_negative_window", payload),
         )
     elif caps.fit_input is FitInput.DAILY_RETURN:
         model.fit(_require_field(payload.return_window, "return_window", payload))
@@ -212,6 +228,12 @@ def _advance_at_origin(model: CovarianceModel, payload: OriginPayload) -> Rollin
             model.update_window(
                 rcov_window,
                 _require_field(payload.rq_window, "rq_window", payload),
+            )
+        elif caps.update_observable is UpdateObservable.REALIZED_COVARIANCE_AND_SEMIVARIANCE_WINDOW:
+            model.update_window(
+                rcov_window,
+                _require_field(payload.rs_positive_window, "rs_positive_window", payload),
+                _require_field(payload.rs_negative_window, "rs_negative_window", payload),
             )
         else:
             model.update_window(rcov_window)
