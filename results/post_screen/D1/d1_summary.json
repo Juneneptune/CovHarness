@@ -1,0 +1,273 @@
+{
+  "task": "D1",
+  "spec_commit": "e4f8328eacdf6088eb8765bae026f17e97c1464b",
+  "ewma_baseline_qlike": -32.73154867789014,
+  "lstm_baseline_ensemble_qlike": -32.285398774051586,
+  "ewma": [
+    {
+      "config_id": "EWMA21",
+      "decay": 0.6,
+      "mean_qlike": -32.80979204322684,
+      "mean_frobenius": 3.7878686791988296e-05,
+      "complete_support": true,
+      "runtime_seconds": 0.001876426162198186,
+      "repair_count": 0,
+      "failure_reason": null
+    },
+    {
+      "config_id": "EWMA22",
+      "decay": 0.65,
+      "mean_qlike": -32.808820432758786,
+      "mean_frobenius": 3.8811097178475585e-05,
+      "complete_support": true,
+      "runtime_seconds": 0.0017111529596149921,
+      "repair_count": 0,
+      "failure_reason": null
+    },
+    {
+      "config_id": "EWMA23",
+      "decay": 0.7,
+      "mean_qlike": -32.798170315475,
+      "mean_frobenius": 3.988512075908269e-05,
+      "complete_support": true,
+      "runtime_seconds": 0.0016767890192568302,
+      "repair_count": 0,
+      "failure_reason": null
+    },
+    {
+      "config_id": "EWMA24",
+      "decay": 0.75,
+      "mean_qlike": -32.77434222699851,
+      "mean_frobenius": 4.113808530131449e-05,
+      "complete_support": true,
+      "runtime_seconds": 0.001668834127485752,
+      "repair_count": 0,
+      "failure_reason": null
+    },
+    {
+      "config_id": "EWMA25",
+      "decay": 0.55,
+      "mean_qlike": -32.802974611667906,
+      "mean_frobenius": 3.706375963610118e-05,
+      "complete_support": true,
+      "runtime_seconds": 0.23464906704612076,
+      "repair_count": 0,
+      "failure_reason": null
+    }
+  ],
+  "lstm": [
+    {
+      "config_id": "LSTM21",
+      "axis": "depth",
+      "num_layers": 6,
+      "dropout": 0.2,
+      "max_epochs": 75,
+      "learning_rate": 0.001,
+      "seed_mean_qlike": [
+        -32.17411624696323,
+        -32.038026376605366,
+        -32.031985805372194,
+        -31.903144936008598,
+        -32.00454473556131
+      ],
+      "seed_mean": -32.030363620102136,
+      "seed_sd": 0.09692442343543634,
+      "ensemble_mean_qlike": -32.10265153155585,
+      "ensemble_mean_frobenius": 4.651748273876522e-05,
+      "complete_support": true,
+      "runtime_seconds": 2776.6097318469547,
+      "repair_count": 0,
+      "failure_reason": null
+    },
+    {
+      "config_id": "LSTM22",
+      "axis": "depth",
+      "num_layers": 7,
+      "dropout": 0.2,
+      "max_epochs": 75,
+      "learning_rate": 0.001,
+      "seed_mean_qlike": [
+        -32.24944562745497,
+        -32.10585462528226,
+        -32.24039665537117,
+        -32.07058333321574,
+        -32.33708871682952
+      ],
+      "seed_mean": -32.200673791630734,
+      "seed_sd": 0.1100906800869639,
+      "ensemble_mean_qlike": -32.32299592231881,
+      "ensemble_mean_frobenius": 4.6281485933701446e-05,
+      "complete_support": true,
+      "runtime_seconds": 3096.5890349890105,
+      "repair_count": 0,
+      "failure_reason": null
+    },
+    {
+      "config_id": "LSTM23",
+      "axis": "dropout",
+      "num_layers": 5,
+      "dropout": 0.3,
+      "max_epochs": 75,
+      "learning_rate": 0.001,
+      "seed_mean_qlike": [
+        -32.105667051042204,
+        -32.16499626424657,
+        -32.19589755062347,
+        -32.165119306755834,
+        -32.24308615849783
+      ],
+      "seed_mean": -32.17495326623318,
+      "seed_sd": 0.05019258491057657,
+      "ensemble_mean_qlike": -32.276087173138,
+      "ensemble_mean_frobenius": 4.6360861880489134e-05,
+      "complete_support": true,
+      "runtime_seconds": 2451.6848635450006,
+      "repair_count": 0,
+      "failure_reason": null
+    },
+    {
+      "config_id": "LSTM24",
+      "axis": "dropout",
+      "num_layers": 5,
+      "dropout": 0.4,
+      "max_epochs": 75,
+      "learning_rate": 0.001,
+      "seed_mean_qlike": [
+        -32.12711197115464,
+        -32.12438690723786,
+        -32.18813873285751,
+        -32.14522871413643,
+        -32.249910065312164
+      ],
+      "seed_mean": -32.166955278139724,
+      "seed_sd": 0.05291935932326811,
+      "ensemble_mean_qlike": -32.26078058459364,
+      "ensemble_mean_frobenius": 4.641490109719575e-05,
+      "complete_support": true,
+      "runtime_seconds": 2437.143137323903,
+      "repair_count": 0,
+      "failure_reason": null
+    },
+    {
+      "config_id": "LSTM25",
+      "axis": "epochs",
+      "num_layers": 5,
+      "dropout": 0.2,
+      "max_epochs": 100,
+      "learning_rate": 0.001,
+      "seed_mean_qlike": [
+        -32.07208005704911,
+        -32.0588767962002,
+        -32.22276368018585,
+        -32.06555864373174,
+        -32.30729812790553
+      ],
+      "seed_mean": -32.145315461014484,
+      "seed_sd": 0.1133940343425007,
+      "ensemble_mean_qlike": -32.279143906548505,
+      "ensemble_mean_frobenius": 4.580936294354174e-05,
+      "complete_support": true,
+      "runtime_seconds": 3260.0408122120425,
+      "repair_count": 0,
+      "failure_reason": null
+    },
+    {
+      "config_id": "LSTM26",
+      "axis": "epochs",
+      "num_layers": 5,
+      "dropout": 0.2,
+      "max_epochs": 150,
+      "learning_rate": 0.001,
+      "seed_mean_qlike": [
+        -32.17673440795945,
+        -31.953798910250466,
+        -32.114206105988494,
+        -31.98869901861187,
+        -32.276605144886226
+      ],
+      "seed_mean": -32.1020087175393,
+      "seed_sd": 0.13324962700105095,
+      "ensemble_mean_qlike": -32.27839483348032,
+      "ensemble_mean_frobenius": 4.5316821805761894e-05,
+      "complete_support": true,
+      "runtime_seconds": 4865.644675260177,
+      "repair_count": 0,
+      "failure_reason": null
+    },
+    {
+      "config_id": "LSTM27",
+      "axis": "learning_rate",
+      "num_layers": 5,
+      "dropout": 0.2,
+      "max_epochs": 75,
+      "learning_rate": 0.002,
+      "seed_mean_qlike": [
+        -32.175159480141716,
+        -31.851058682582973,
+        -32.16644320735458,
+        -31.930531950926298,
+        -32.315874732373764
+      ],
+      "seed_mean": -32.087813610675866,
+      "seed_sd": 0.19145117268285153,
+      "ensemble_mean_qlike": -32.271196777054556,
+      "ensemble_mean_frobenius": 4.50635400014648e-05,
+      "complete_support": true,
+      "runtime_seconds": 2446.28295474709,
+      "repair_count": 0,
+      "failure_reason": null
+    },
+    {
+      "config_id": "LSTM28",
+      "axis": "depth",
+      "num_layers": 8,
+      "dropout": 0.2,
+      "max_epochs": 75,
+      "learning_rate": 0.001,
+      "seed_mean_qlike": [
+        -32.064515037565215,
+        -32.06003955425116,
+        -32.30344223162281,
+        -32.11858927964113,
+        -32.25027925922207
+      ],
+      "seed_mean": -32.15937307246047,
+      "seed_sd": 0.11129731554943016,
+      "ensemble_mean_qlike": -32.25990692703606,
+      "ensemble_mean_frobenius": 4.634817528658914e-05,
+      "complete_support": true,
+      "runtime_seconds": 3436.867663623998,
+      "repair_count": 0,
+      "failure_reason": null
+    }
+  ],
+  "ewma_winner": "EWMA21",
+  "lstm_winner": "LSTM22",
+  "extra_configurations": [
+    "EWMA25",
+    "LSTM28"
+  ],
+  "open_question": null,
+  "ewma_interior": false,
+  "lstm_interior": false,
+  "screen": {
+    "EWMA": {
+      "config_id": "EWMA21",
+      "mean_qlike": -31.784158469766275,
+      "mean_frobenius": 8.0324745775932e-05,
+      "complete_support": true,
+      "runtime_seconds": 0.3760917710606009
+    },
+    "LSTM-BEKK": {
+      "config_id": "LSTM22",
+      "mean_qlike": -31.297631878381985,
+      "mean_frobenius": 8.369782563743557e-05,
+      "complete_support": true,
+      "runtime_seconds": 6194.703971649986
+    }
+  },
+  "searched_totals": {
+    "EWMA": 25,
+    "LSTM-BEKK": 28
+  }
+}
