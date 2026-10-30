@@ -171,7 +171,7 @@ Status values start as planned except for task 0, which is this documentation re
 | B1 | 14 | completed | `3ccffdbd84398a82879cd16d7da8d41c6ba8c5b6` | `9169b92ad442ffa95d4f7a317aff55484d520463` |
 | B2 | 15 | completed | `8d0cbfb7184290f7db819e56c45e0da3548c831c` | `f9c6b58a79941bcc72392f6d95943d54b336a9dd` |
 | C1 | 8 | completed | `ed7d2a4761fa5702e7c18e55c48eb2d7cc0c50b7` | `7555cc91925967b531d6e3bba33c8e1bf47e73a2` |
-| C2 | 7 | planned |  |  |
+| C2 | 7 | specified |  |  |
 | C3 | 12 | planned |  |  |
 | D1 | 13 | completed | `e4f8328eacdf6088eb8765bae026f17e97c1464b` | `afb951a005b6ad22e1b12097eb579ef01aef852f` |
 | D2 | 9 | specified | `60b240bae32577e0159df8cc494019b3db4935d4` |  |
@@ -586,3 +586,15 @@ Spec date 2026-10-30. This entry is written before any D2 fit. Amendment R-2026-
 V00 is LSTM22 itself, already scored in D1, and is not refit. V10 appends origin-day features to the LSTM input. Those features are the internal return, log positive semivariance, log negative semivariance, the realized-correlation vech, and log realized quarticity. The semivariances come from the C4 array and replace log realized variance. A nonpositive semivariance is an input failure and is not floored. Realized features are standardized with a scaler fit on the estimation window only. The return block keeps the paper centering and percent scale, because the BEKK shock is that return. V01 keeps the return-only input and trains on reduced QLIKE against realized covariance in the same \(10^{4}\) internal units. The forecast remains \(H_{t+1\mid t}\). V11 uses both changes. V01 and V11 keep LSTM22's learning rate and epoch count. That absence of retuning is a limitation.
 
 The headline descriptive contrast is V11 against V00. All four variants are reported. Claims are judged on CONFIRM only. Each fit writes under `results/post_screen/D2/<variant>/seed_<s>/`. The entry script is `scripts/post_screen_d2_job.py`.
+
+### Task C2 spec. BEKK family and the zero-intercept ablation
+
+Spec date 2026-10-30. This entry is written before any C2 fit. CONFIRM stays locked. No SPA, MCS, or reselection is run.
+
+The family is BEKK(1,1), estimated by Gaussian QMLE with L-BFGS-B, at most 100 iterations. The internal percent scaling, \(H_0\) rule, and Gaussian NLL are the LSTM-BEKK helpers. The scalar step calls the imported recursion with a zero dynamic intercept. The six primary configurations are scalar, diagonal, and full, each with and without covariance targeting. Identifiers are BEKKS01, BEKKS02, BEKKD01, BEKKD02, BEKKF01, and BEKKF02. Full BEKK at \(N=5\) has 65 parameters on a 250-day window. That estimate is expected to be noisy and is reported, not dropped. The family configuration is the VALIDATION mean-QLIKE minimum among completed primary fits. All six are reported.
+
+Carry-forward is the primary failure policy. The interior-map robustness fit uses the existing softmax persistence helper. For the scalar form it maps one \((a,b)\) pair. For the diagonal form it maps one pair per asset. It is run only for the selected configuration, and it is not headline-eligible. A full-matrix winner has no scalar pair to which that helper applies. In that case the interior identifier is blocked rather than given a new shrinkage rule.
+
+LSTMBEKK-noC forces the dynamic intercept to zero and keeps the LSTM22 training settings and seeds 0 through 4. It is an ablation, not an eligible family. The BEKK family joins the econometric eligible pool at G1.
+
+The entry script is `scripts/post_screen_bekk.py`. Outputs go under `results/post_screen/C2/`.

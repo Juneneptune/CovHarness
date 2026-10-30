@@ -191,6 +191,7 @@ class LSTMBEKKCovariance(CovarianceModel):
         self._max_epochs = _require_max_epochs(max_epochs)
         self._network: LSTMBEKKNetwork | None = None
         self._fit: LSTMBEKKFitState | None = None
+        self._zero_dynamic_c = False
 
     @property
     def identity(self) -> ModelIdentity:
@@ -256,7 +257,11 @@ class LSTMBEKKCovariance(CovarianceModel):
         network.eval()
         with torch.no_grad():
             initial_nll_tensor = sequence_training_nll(
-                network, x_tensor, h0_tensor, input_builder=input_builder
+                network,
+                x_tensor,
+                h0_tensor,
+                input_builder=input_builder,
+                zero_dynamic_c=self._zero_dynamic_c,
             )
         _require_finite_training_nll(initial_nll_tensor)
         initial_nll = float(initial_nll_tensor.cpu().item())
@@ -266,7 +271,11 @@ class LSTMBEKKCovariance(CovarianceModel):
         for _epoch in range(self._max_epochs):
             optimizer.zero_grad(set_to_none=True)
             nll = sequence_training_nll(
-                network, x_tensor, h0_tensor, input_builder=input_builder
+                network,
+                x_tensor,
+                h0_tensor,
+                input_builder=input_builder,
+                zero_dynamic_c=self._zero_dynamic_c,
             )
             _require_finite_training_nll(nll)
             nll.backward()
@@ -279,7 +288,11 @@ class LSTMBEKKCovariance(CovarianceModel):
         network.eval()
         with torch.no_grad():
             replay = run_bekk_sequence(
-                network, x_tensor, h0_tensor, input_builder=input_builder
+                network,
+                x_tensor,
+                h0_tensor,
+                input_builder=input_builder,
+                zero_dynamic_c=self._zero_dynamic_c,
             )
             final_nll_tensor = replay.nll
         _require_finite_training_nll(final_nll_tensor)
@@ -361,6 +374,7 @@ class LSTMBEKKCovariance(CovarianceModel):
                 cell,
                 h_current,
                 input_builder=self.build_lstm_input,
+                zero_dynamic_c=self._zero_dynamic_c,
             )
         forecast_internal = _numpy_matrix(next_state.forecast_internal)
         _reject_invalid_forecast(forecast_internal, self.model_name)
@@ -649,10 +663,15 @@ def sequence_training_nll(
     internal_returns: Tensor,
     h0: Tensor,
     input_builder: Callable[[Tensor], Tensor] | None = None,
+    zero_dynamic_c: bool = False,
 ) -> Tensor:
     """Sum Gaussian NLL over all T observations. The forecast step is excluded."""
     path = run_bekk_sequence(
-        network, internal_returns, h0, input_builder=input_builder
+        network,
+        internal_returns,
+        h0,
+        input_builder=input_builder,
+        zero_dynamic_c=zero_dynamic_c,
     )
     return path.nll
 
@@ -662,6 +681,7 @@ def run_bekk_sequence(
     internal_returns: Tensor,
     h0: Tensor,
     input_builder: Callable[[Tensor], Tensor] | None = None,
+    zero_dynamic_c: bool = False,
 ) -> SequencePath:
     """Score ``x_0`` under ``H_0``, then recurse through the window and form ``H_T``."""
     builder = input_builder if input_builder is not None else lstm_step_input
@@ -677,12 +697,16 @@ def run_bekk_sequence(
     for time_index in range(n_observations - 1):
         shock = builder(internal_returns[time_index])
         hidden, cell, dynamic_c = _lstm_dynamic_c(network, shock, hidden, cell)
+        if zero_dynamic_c:
+            dynamic_c = torch.zeros_like(dynamic_c)
         current_h = bekk_recursion_torch(static_c, dynamic_c, bekk_a, bekk_b, shock, current_h)
         nll = nll + gaussian_nll_cholesky_torch(current_h, internal_returns[time_index + 1])
         scored.append(current_h)
     # Process the last observed return to form the one-step forecast, not the NLL.
     last_shock = builder(internal_returns[-1])
     hidden, cell, forecast_c = _lstm_dynamic_c(network, last_shock, hidden, cell)
+    if zero_dynamic_c:
+        forecast_c = torch.zeros_like(forecast_c)
     forecast_h = bekk_recursion_torch(static_c, forecast_c, bekk_a, bekk_b, last_shock, current_h)
     return SequencePath(
         nll=nll,
@@ -700,6 +724,7 @@ def advance_one_observation(
     cell: Tensor,
     current_forecast: Tensor,
     input_builder: Callable[[Tensor], Tensor] | None = None,
+    zero_dynamic_c: bool = False,
 ) -> SequencePath:
     """Consume one new internal residual and form the next one-step covariance."""
     builder = input_builder if input_builder is not None else lstm_step_input
@@ -708,6 +733,8 @@ def advance_one_observation(
     del _w
     shock = builder(internal_return)
     hidden, cell, dynamic_c = _lstm_dynamic_c(network, shock, hidden, cell)
+    if zero_dynamic_c:
+        dynamic_c = torch.zeros_like(dynamic_c)
     next_h = bekk_recursion_torch(static_c, dynamic_c, bekk_a, bekk_b, shock, current_forecast)
     return SequencePath(
         nll=current_forecast.new_zeros(()),
