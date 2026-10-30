@@ -232,6 +232,19 @@ def test_num_layers_outside_range_is_rejected() -> None:
         _tiny_model(num_layers=6)
 
 
+def test_post_screen_d1_range_admits_declared_edges() -> None:
+    model = _tiny_model(num_layers=8, dropout=0.5, architecture_range="post_screen_d1")
+    assert model._num_layers == 8
+    assert model._dropout == 0.5
+    assert model.identity.configuration["architecture_range"] == "post_screen_d1"
+    with pytest.raises(InvalidModelConfigurationError, match="num_layers"):
+        _tiny_model(num_layers=9, architecture_range="post_screen_d1")
+    with pytest.raises(InvalidModelConfigurationError, match="dropout"):
+        _tiny_model(dropout=0.51, architecture_range="post_screen_d1")
+    with pytest.raises(InvalidModelConfigurationError, match="architecture_range"):
+        _tiny_model(architecture_range="other")
+
+
 def test_dropout_outside_interval_is_rejected() -> None:
     with pytest.raises(InvalidModelConfigurationError, match="dropout"):
         _tiny_model(dropout=-0.01)

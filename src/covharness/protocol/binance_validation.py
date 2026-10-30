@@ -394,6 +394,7 @@ def build_model(family: str, row: Mapping[str, object], seed: int | None = None)
             learning_rate=float(row["learning_rate"]),
             gradient_clip_norm=float(row["gradient_clip_norm"]),
             max_epochs=int(row["max_epochs"]),
+            architecture_range=str(row.get("architecture_range", "paper")),
         )
     raise ValueError(f"unknown family {family}")
 

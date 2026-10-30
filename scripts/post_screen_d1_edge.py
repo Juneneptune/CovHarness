@@ -122,7 +122,7 @@ def _run_lstm(view, schedule, rows: list[dict], proxies) -> list[dict]:
         ensemble = lstm_ensemble_result(seed_results, proxies)
         finite = [score for score in seed_scores if score is not None]
         mean = float(sum(finite) / len(finite)) if finite else float("nan")
-        variance = float(sum((score - mean) ** 2 for score in finite) / len(finite)) if len(finite) > 1 else float("nan")
+        variance = float(sum((score - mean) ** 2 for score in finite) / (len(finite) - 1)) if len(finite) > 1 else float("nan")
         summaries.append(
             {
                 "config_id": row["id"],
@@ -241,9 +241,10 @@ def main() -> None:
                 break
     screen = {}
     if ewma_winner != "EWMA01":
-        row = next(item for item in document["ewma"] if item["id"] == ewma_winner)
         if ewma_winner == extension["ewma"]["next_id"]:
             row = {"id": ewma_winner, "decay": extension["ewma"]["decay"]}
+        else:
+            row = next(item for item in document["ewma"] if item["id"] == ewma_winner)
         screen_view = load_screen_view(PANEL, CORE, SCREEN_CONFIG, protocol)
         screen["EWMA"] = _screen_one(screen_view, request_screen_schedule(protocol), "EWMA", row)
     if lstm_winner != "LSTM19":

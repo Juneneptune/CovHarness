@@ -53,6 +53,10 @@ MIN_NUM_LAYERS = 3
 MAX_NUM_LAYERS = 5
 MIN_DROPOUT = 0.0
 MAX_DROPOUT = 0.2
+ARCHITECTURE_RANGE_PAPER = "paper"
+ARCHITECTURE_RANGE_POST_SCREEN_D1 = "post_screen_d1"
+POST_SCREEN_D1_MAX_NUM_LAYERS = 8
+POST_SCREEN_D1_MAX_DROPOUT = 0.5
 OUTPUT_HEAD_BIAS = True
 RMSPROP_ALPHA = 0.99
 RMSPROP_EPS = 1e-8
@@ -165,10 +169,14 @@ class LSTMBEKKCovariance(CovarianceModel):
         learning_rate: float,
         gradient_clip_norm: float,
         max_epochs: int,
+        architecture_range: str = ARCHITECTURE_RANGE_PAPER,
     ) -> None:
         self._seed = _require_seed(seed)
-        self._num_layers = _require_num_layers(num_layers)
-        self._dropout = _require_dropout(dropout)
+        # Keep the paper depth and dropout bounds unless the caller names the D1 extension.
+        self._architecture_range = _require_architecture_range(architecture_range)
+        max_layers, max_dropout = _architecture_limits(self._architecture_range)
+        self._num_layers = _require_num_layers(num_layers, max_layers)
+        self._dropout = _require_dropout(dropout, max_dropout)
         self._learning_rate = _require_positive_float(learning_rate, "learning_rate")
         self._gradient_clip_norm = _require_positive_float(
             gradient_clip_norm, "gradient_clip_norm"
@@ -196,6 +204,8 @@ class LSTMBEKKCovariance(CovarianceModel):
             "device": DEVICE_NAME,
             "output_head_bias": OUTPUT_HEAD_BIAS,
         }
+        if self._architecture_range != ARCHITECTURE_RANGE_PAPER:
+            configuration["architecture_range"] = self._architecture_range
         if self._fit is not None:
             configuration.update(
                 {
@@ -745,23 +755,41 @@ def _require_seed(seed: int) -> int:
     return int(seed)
 
 
-def _require_num_layers(num_layers: int) -> int:
-    """Require stacked LSTM depth in the paper range 3 to 5."""
+def _require_architecture_range(architecture_range: str) -> str:
+    """Keep the paper range as the default and admit only the named D1 extension."""
+    if architecture_range == ARCHITECTURE_RANGE_PAPER:
+        return ARCHITECTURE_RANGE_PAPER
+    if architecture_range == ARCHITECTURE_RANGE_POST_SCREEN_D1:
+        return ARCHITECTURE_RANGE_POST_SCREEN_D1
+    raise InvalidModelConfigurationError(
+        f"LSTM-BEKK architecture_range must be {ARCHITECTURE_RANGE_PAPER} or {ARCHITECTURE_RANGE_POST_SCREEN_D1}"
+    )
+
+
+def _architecture_limits(architecture_range: str) -> tuple[int, float]:
+    """Return the depth cap and dropout cap for one named range."""
+    if architecture_range == ARCHITECTURE_RANGE_POST_SCREEN_D1:
+        return POST_SCREEN_D1_MAX_NUM_LAYERS, POST_SCREEN_D1_MAX_DROPOUT
+    return MAX_NUM_LAYERS, MAX_DROPOUT
+
+
+def _require_num_layers(num_layers: int, max_layers: int = MAX_NUM_LAYERS) -> int:
+    """Require stacked LSTM depth inside the selected range. The default is 3 to 5."""
     if isinstance(num_layers, bool) or not isinstance(num_layers, int):
         raise InvalidModelConfigurationError("LSTM-BEKK num_layers must be an int")
-    if num_layers < MIN_NUM_LAYERS or num_layers > MAX_NUM_LAYERS:
+    if num_layers < MIN_NUM_LAYERS or num_layers > max_layers:
         raise InvalidModelConfigurationError(
-            f"LSTM-BEKK num_layers must be in [{MIN_NUM_LAYERS}, {MAX_NUM_LAYERS}]; got {num_layers}"
+            f"LSTM-BEKK num_layers must be in [{MIN_NUM_LAYERS}, {max_layers}]; got {num_layers}"
         )
     return num_layers
 
 
-def _require_dropout(dropout: float) -> float:
-    """Require dropout in [0, 0.2]. Zero is the no-dropout stacked-LSTM setting."""
+def _require_dropout(dropout: float, max_dropout: float = MAX_DROPOUT) -> float:
+    """Require dropout inside the selected range. The default is [0, 0.2]."""
     value = float(dropout)
-    if not np.isfinite(value) or value < MIN_DROPOUT or value > MAX_DROPOUT:
+    if not np.isfinite(value) or value < MIN_DROPOUT or value > max_dropout:
         raise InvalidModelConfigurationError(
-            f"LSTM-BEKK dropout must be in [{MIN_DROPOUT}, {MAX_DROPOUT}]; got {dropout}"
+            f"LSTM-BEKK dropout must be in [{MIN_DROPOUT}, {max_dropout}]; got {dropout}"
         )
     return value
 

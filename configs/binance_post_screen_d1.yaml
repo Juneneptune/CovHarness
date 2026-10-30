@@ -16,6 +16,7 @@ ewma:
 lstm:
   - id: LSTM21
     axis: depth
+    architecture_range: post_screen_d1
     num_layers: 6
     dropout: 0.2
     max_epochs: 75
@@ -23,6 +24,7 @@ lstm:
     gradient_clip_norm: 1.0
   - id: LSTM22
     axis: depth
+    architecture_range: post_screen_d1
     num_layers: 7
     dropout: 0.2
     max_epochs: 75
@@ -30,6 +32,7 @@ lstm:
     gradient_clip_norm: 1.0
   - id: LSTM23
     axis: dropout
+    architecture_range: post_screen_d1
     num_layers: 5
     dropout: 0.3
     max_epochs: 75
@@ -37,6 +40,7 @@ lstm:
     gradient_clip_norm: 1.0
   - id: LSTM24
     axis: dropout
+    architecture_range: post_screen_d1
     num_layers: 5
     dropout: 0.4
     max_epochs: 75
@@ -67,6 +71,7 @@ edge_extension:
   depth:
     edge_id: LSTM22
     next_id: LSTM28
+    architecture_range: post_screen_d1
     num_layers: 8
     dropout: 0.2
     max_epochs: 75
@@ -75,6 +80,7 @@ edge_extension:
   dropout:
     edge_id: LSTM24
     next_id: LSTM29
+    architecture_range: post_screen_d1
     num_layers: 5
     dropout: 0.5
     max_epochs: 75
