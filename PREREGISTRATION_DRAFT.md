@@ -170,7 +170,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A4 | 6 | completed | `d0d3f70547038bee845b2984c1ffdb2349f61650` | `71bdbc200c41224545116adfc0aef24ee0936690` |
 | B1 | 14 | planned |  |  |
 | B2 | 15 | completed | `8d0cbfb7184290f7db819e56c45e0da3548c831c` | `f9c6b58a79941bcc72392f6d95943d54b336a9dd` |
-| C1 | 8 | executed | `ed7d2a4761fa5702e7c18e55c48eb2d7cc0c50b7` |  |
+| C1 | 8 | completed | `ed7d2a4761fa5702e7c18e55c48eb2d7cc0c50b7` | `7555cc91925967b531d6e3bba33c8e1bf47e73a2` |
 | C2 | 7 | planned |  |  |
 | C3 | 12 | planned |  |  |
 | D1 | 13 | planned |  |  |
@@ -494,3 +494,5 @@ Identifiers. DCC02 and DCCNL02 are CF and are eligible at a later G1. DCC03 and 
 Implementation. The shared map and the carry-forward log live where C2 and D4 can import them. `dcc.py` keeps the existing reject path as the default, so DCC01 mathematics are unchanged. The entry script is `scripts/post_screen_dcc_failure_policy.py`. VALIDATION runs before SCREEN. Outputs go under `results/post_screen/C1/`. Both losses are scored. SCREEN output is labeled selection.
 
 Tests, before the empirical run. A synthetic GARCH path that drives QMLE to the boundary triggers CF. Carried parameters stay constant while states move. A first-refit failure still fails under CF. IM never returns \(a+b\ge 1\) and counts near-boundary fits. No forecast is repaired.
+
+Commit `7555cc91925967b531d6e3bba33c8e1bf47e73a2` records the execution. Report `results/post_screen/C1/REPORT.md`.
