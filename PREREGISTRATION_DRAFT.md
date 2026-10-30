@@ -168,7 +168,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A2 | 3 | completed | `75240e13873322df8d93f4dfb3bb4a76626a3bb4` | `80f03b0acc0231a660ae72e13ab1957133fef31f` |
 | A3 | 4-5 | completed | `c30b27a5739d803458006853c2d8bbc80c80d32b` | `af3d14a2dca15cdf589586151bb8414e0ed13ee1` |
 | A4 | 6 | completed | `d0d3f70547038bee845b2984c1ffdb2349f61650` | `71bdbc200c41224545116adfc0aef24ee0936690` |
-| B1 | 14 | planned |  |  |
+| B1 | 14 | specified |  |  |
 | B2 | 15 | completed | `8d0cbfb7184290f7db819e56c45e0da3548c831c` | `f9c6b58a79941bcc72392f6d95943d54b336a9dd` |
 | C1 | 8 | completed | `ed7d2a4761fa5702e7c18e55c48eb2d7cc0c50b7` | `7555cc91925967b531d6e3bba33c8e1bf47e73a2` |
 | C2 | 7 | planned |  |  |
@@ -496,3 +496,17 @@ Implementation. The shared map and the carry-forward log live where C2 and D4 ca
 Tests, before the empirical run. A synthetic GARCH path that drives QMLE to the boundary triggers CF. Carried parameters stay constant while states move. A first-refit failure still fails under CF. IM never returns \(a+b\ge 1\) and counts near-boundary fits. No forecast is repaired.
 
 Commit `7555cc91925967b531d6e3bba33c8e1bf47e73a2` records the execution. Report `results/post_screen/C1/REPORT.md`.
+
+### Task B1 spec. Confirmatory pairwise procedure
+
+Spec date 2026-10-29. This entry is written before any B1 simulation. The persistence requirement is the frozen value \(\rho_\star=0.6\) from amendment R-2026-10-29. Cells 0.8 and 0.9 are reported and do not set the requirement. The choice is made on simulated data. It is not made by which procedure favours a model. CONFIRM stays locked. Default HAC and DM behaviour is unchanged unless this entry's later freeze says so. New behaviour is reached by a new keyword.
+
+Candidates. P1 is Bartlett, Newey-West 1994 automatic lag, and N(0,1) critical values. P2 is Bartlett, four times that automatic lag, and N(0,1). P3 is Bartlett, lag \(\lfloor 1.3\sqrt{T}\rfloor\), and Kiefer-Vogelsang (2005) fixed-\(b\) critical values, the Lazarus, Lewis, Stock, and Watson (2018) recommendation. P4 is Bartlett with the Andrews (1991) AR(1) plug-in lag and the same fixed-\(b\) critical values. P5 is the equal-weighted cosine estimator with \(\nu=\lfloor 0.4 T^{2/3}\rfloor\) and \(t_\nu\) critical values, equation (10) of Lazarus, Lewis, Stock, and Watson (2018). P6 is the recentered stationary-bootstrap mean test. Its block length equals the P3 lag. Its inner bootstrap count is the existing pairwise constant 5000.
+
+Fixed-\(b\). The bandwidth fraction is \(b=(L+1)/T\). The critical-value function is linear interpolation of Kiefer and Vogelsang (2005) Table I, which that paper states may be interpolated between the tabulated \(b\) grid. The two-sided 5 percent column is the tabulated 97.5 percent right-tail value. The \(b=1\) entries are the analytical Abadir and Paruolo values, including 3.764 at 95 percent and 4.771 at 97.5 percent. No coefficient is invented.
+
+Designs. \(T\in\{500,250\}\). \(\rho\in\{0,0.3,0.6,0.8,0.9\}\). D1 is a Gaussian AR(1) null. D2 is a Student-\(t(5)\) AR(1) null. D3 resamples the demeaned SCREEN HARQDRD01 minus LSTM19 QLIKE gap by the stationary bootstrap at block lengths 7 and 29. D3 uses SCREEN only. Replications are 5000. The seed is the existing calibration seed 20260916 in `size.py`, split by a fixed seed sequence so cells are independent. Monte Carlo standard errors are reported. Power, for D1 and D2, uses a mean shift of 0.2 long-run standard deviations.
+
+Selection rule. A procedure qualifies when its two-sided 5 percent rejection rate lies in \([0.03,0.075]\) at \(T=500\) for every \(\rho\le 0.6\) under D1 and D2, and under D3. Among qualifiers, the highest average power is selected. Ties go to the simpler procedure, in the order P1 through P6. If none qualifies, the smallest maximum absolute distortion from 0.05 is selected and recorded as a limitation.
+
+The entry script is `scripts/dm_procedure_calibration.py`. Outputs go under `results/post_screen/B1/`. The frozen choice is written here before the SCREEN demonstration on the four A1 pairs. That demonstration is descriptive. It does not rerun SPA, MCS, or finalist selection.
