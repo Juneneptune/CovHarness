@@ -23,7 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from dm_procedure_calibration import _cell_seed, _d3_paths  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SPEC_COMMIT = "PENDING"
+SPEC_COMMIT = "e4f01c0301320d5f92e0041e09069abc85ab2ba4"
 OUTPUT = REPO_ROOT / "results" / "post_screen" / "B1b"
 N_NULL = 20000
 N_CHECK = 5000
