@@ -50,6 +50,16 @@ from covharness.models.capabilities import (
     UpdateObservable,
 )
 from covharness.models.exceptions import InvalidModelForecastError, InvalidModelInputError
+from covharness.models.stationarity import (
+    POLICY_CARRY_FORWARD,
+    POLICY_INTERIOR_MAP,
+    POLICY_REJECT,
+    POLICIES,
+    is_near_boundary,
+    is_strictly_stationary,
+    logits_from_persistence,
+    softmax_persistence,
+)
 
 DCC_MODEL_NAME = "dcc"
 DCC_NL_MODEL_NAME = "dcc_nl"
@@ -144,8 +154,13 @@ class _EngleDCCBase(CovarianceModel):
         update_observable=UpdateObservable.DAILY_RETURN,
     )
 
-    def __init__(self) -> None:
+    def __init__(self, failure_policy: str = POLICY_REJECT) -> None:
+        if failure_policy not in POLICIES:
+            raise InvalidModelInputError(f"unknown DCC failure policy {failure_policy}")
+        self.failure_policy = failure_policy
         self._fit: DCCFitState | None = None
+        self.policy_events: list[dict[str, object]] = []
+        self.near_boundary_count = 0
 
     @property
     def identity(self) -> ModelIdentity:
@@ -161,6 +176,8 @@ class _EngleDCCBase(CovarianceModel):
             "target_type": self.target_type,
             "target_divisor": TARGET_DIVISOR,
         }
+        if self.failure_policy != POLICY_REJECT:
+            configuration["failure_policy"] = self.failure_policy
         if self._fit is not None:
             configuration.update(_identity_from_fit(self._fit))
         return ModelIdentity(name=self.model_name, configuration=configuration)
@@ -173,6 +190,21 @@ class _EngleDCCBase(CovarianceModel):
     def fit(self, returns: ArrayLike) -> _EngleDCCBase:
         """Estimate GARCH and DCC parameters on the supplied window."""
         history = _dcc_return_window(returns)
+        if self.failure_policy == POLICY_INTERIOR_MAP:
+            return self._fit_interior(history)
+        try:
+            return self._fit_reject(history)
+        except InvalidModelForecastError as exc:
+            if self.failure_policy != POLICY_CARRY_FORWARD or not _is_stationarity_failure(exc):
+                raise
+            if self._fit is None:
+                raise
+            # Keep the last accepted parameters and rebuild the filter state.
+            self._carry_parameters(history, exc)
+            return self
+
+    def _fit_reject(self, history: NDArray[np.floating]) -> _EngleDCCBase:
+        """Existing constrained estimator. A boundary fit raises."""
         stage_one = fit_stage_one_garch(history)
         # Replay GARCH with frozen parameters so targeting and the filter share s_t.
         variances = garch_variance_paths(
@@ -185,6 +217,136 @@ class _EngleDCCBase(CovarianceModel):
         standardized = standardized_residuals(stage_one.residuals, variances)
         target = self._build_target(standardized)
         dcc_alpha, dcc_beta, opt_audit = estimate_dcc_parameters(target, standardized)
+        self._store_fit(
+            stage_one,
+            variances,
+            standardized,
+            target,
+            dcc_alpha,
+            dcc_beta,
+            opt_audit,
+            OPTIMIZER_NAME,
+        )
+        return self
+
+    def _fit_interior(self, history: NDArray[np.floating]) -> _EngleDCCBase:
+        """Softmax QMLE. Persistence stays below 1 on every accepted fit."""
+        stage_one = fit_stage_one_garch_interior(history)
+        variances = stage_one.variances
+        standardized = stage_one.standardized
+        self._count_near_boundary(stage_one.garch_alpha, stage_one.garch_beta, "garch")
+        target = self._build_target(standardized)
+        dcc_alpha, dcc_beta, opt_audit = estimate_dcc_parameters_interior(
+            target, standardized
+        )
+        self._count_near_boundary(
+            np.array([dcc_alpha]),
+            np.array([dcc_beta]),
+            "dcc",
+        )
+        self._store_fit(
+            stage_one,
+            variances,
+            standardized,
+            target,
+            dcc_alpha,
+            dcc_beta,
+            opt_audit,
+            "L-BFGS-B",
+        )
+        return self
+
+    def _carry_parameters(
+        self,
+        history: NDArray[np.floating],
+        exc: InvalidModelForecastError,
+    ) -> None:
+        """Replay the current window with the last accepted parameter vector."""
+        state = _require_dcc_fit(self._fit, self.model_name)
+        carried_omega = state.omega.copy()
+        carried_alpha = state.garch_alpha.copy()
+        carried_beta = state.garch_beta.copy()
+        carried_dcc_alpha = float(state.dcc_alpha)
+        carried_dcc_beta = float(state.dcc_beta)
+        carried_target = np.array(state.target_c, dtype=float, copy=True)
+        residuals = history - state.fit_mean
+        backcast = np.mean(residuals * residuals, axis=0)
+        if np.any(backcast <= 0.0) or not np.isfinite(backcast).all():
+            raise InvalidModelForecastError(
+                "carry-forward backcast is not finite and strictly positive"
+            ) from exc
+        variances = garch_variance_paths(
+            residuals,
+            carried_omega,
+            carried_alpha,
+            carried_beta,
+            backcast,
+        )
+        standardized = standardized_residuals(residuals, variances)
+        observed_q = dcc_observed_q_path(
+            carried_target,
+            carried_dcc_alpha,
+            carried_dcc_beta,
+            standardized,
+        )[-1]
+        self._fit = replace(
+            state,
+            n_observations=int(history.shape[0]),
+            garch_backcast=backcast.copy(),
+            current_variance=variances[-1].copy(),
+            current_residual=residuals[-1].copy(),
+            current_standardized=standardized[-1].copy(),
+            current_q=np.array(observed_q, dtype=float, copy=True),
+            omega=carried_omega,
+            garch_alpha=carried_alpha,
+            garch_beta=carried_beta,
+            dcc_alpha=carried_dcc_alpha,
+            dcc_beta=carried_dcc_beta,
+            target_c=carried_target,
+        )
+        self.policy_events.append(
+            {
+                "policy": POLICY_CARRY_FORWARD,
+                "stage": _failure_stage(exc),
+                "asset": _failure_asset(exc),
+                "message": str(exc),
+            }
+        )
+
+    def _count_near_boundary(
+        self,
+        alpha: NDArray[np.floating],
+        beta: NDArray[np.floating],
+        stage: str,
+    ) -> None:
+        """Record each interior-map fit that sits above the near-boundary cut."""
+        for asset, (alpha_i, beta_i) in enumerate(zip(alpha, beta, strict=True)):
+            if not is_near_boundary(float(alpha_i), float(beta_i)):
+                continue
+            self.near_boundary_count += 1
+            self.policy_events.append(
+                {
+                    "policy": POLICY_INTERIOR_MAP,
+                    "stage": stage,
+                    "asset": None if stage == "dcc" else int(asset),
+                    "alpha": float(alpha_i),
+                    "beta": float(beta_i),
+                    "near_boundary": True,
+                }
+            )
+
+    def _store_fit(
+        self,
+        stage_one: StageOneGARCHFit,
+        variances: NDArray[np.floating],
+        standardized: NDArray[np.floating],
+        target: NDArray[np.floating],
+        dcc_alpha: float,
+        dcc_beta: float,
+        opt_audit: dict[str, object],
+        optimizer_name: str,
+    ) -> None:
+        """Store one accepted origin-window state. No matrix repair."""
         observed_q = dcc_observed_q_path(target, dcc_alpha, dcc_beta, standardized)[-1]
         self._fit = DCCFitState(
             n_observations=stage_one.n_observations,
@@ -211,7 +373,7 @@ class _EngleDCCBase(CovarianceModel):
             target_divisor=TARGET_DIVISOR,
             pair_likelihood_type=PAIR_LIKELIHOOD,
             pair_ordering=PAIR_ORDERING,
-            optimizer=OPTIMIZER_NAME,
+            optimizer=optimizer_name,
             optimizer_start=(DCC_ALPHA0, DCC_BETA0),
             optimizer_success=bool(opt_audit["success"]),
             optimizer_status=int(opt_audit["status"]),
@@ -224,7 +386,6 @@ class _EngleDCCBase(CovarianceModel):
             nonlinear_reference_version=self._nl_version(),
             nonlinear_k=self._nl_k(),
         )
-        return self
 
     def forecast(self) -> CovarianceForecast:
         """Return ``H_{t+1|t}`` from the current observed-origin state.
@@ -675,6 +836,168 @@ def estimate_dcc_parameters(
             f"success={result.success}, message={result.message}"
         )
     return alpha, beta, audit
+
+
+def fit_stage_one_garch_interior(returns: NDArray[np.floating]) -> StageOneGARCHFit:
+    """Demean the window and fit each asset by a softmax Gaussian QMLE.
+
+    The map forces ``a >= 0``, ``b >= 0``, and ``a + b <= 1 - epsilon``.
+    A failed optimization raises. The variance path is not repaired.
+    """
+    n_observations, n_assets = returns.shape
+    fit_mean = returns.mean(axis=0)
+    residuals = returns - fit_mean
+    backcast = np.mean(residuals * residuals, axis=0)
+    if np.any(backcast <= 0.0) or not np.isfinite(backcast).all():
+        raise InvalidModelInputError(
+            "GARCH backcast h_i,0 = mean(epsilon^2) must be finite and strictly positive"
+        )
+    omega = np.empty(n_assets, dtype=float)
+    garch_alpha = np.empty(n_assets, dtype=float)
+    garch_beta = np.empty(n_assets, dtype=float)
+    success = np.empty(n_assets, dtype=bool)
+    nfev = np.empty(n_assets, dtype=int)
+    # Optimize each asset on the interior map. Do not clip a rejected fit.
+    for asset in range(n_assets):
+        series = residuals[:, asset]
+        start = np.concatenate(
+            [
+                np.array([np.log(max(float(backcast[asset]) * 0.05, 1e-12))]),
+                logits_from_persistence(0.05, 0.90),
+            ]
+        )
+
+        def objective(theta: NDArray[np.floating], series=series, backcast_i=float(backcast[asset])) -> float:
+            mapped = softmax_persistence(np.asarray(theta[1:4], dtype=float))
+            return _garch_gaussian_nll(
+                series,
+                float(np.exp(theta[0])),
+                mapped.alpha,
+                mapped.beta,
+                backcast_i,
+            )
+
+        result = minimize(objective, start, method="L-BFGS-B", options={"maxiter": 80})
+        mapped = softmax_persistence(np.asarray(result.x[1:4], dtype=float))
+        omega_i = float(np.exp(result.x[0]))
+        if (
+            not bool(result.success)
+            or not np.isfinite(result.fun)
+            or not is_strictly_stationary(mapped.alpha, mapped.beta)
+            or not np.isfinite(omega_i)
+            or omega_i <= 0.0
+        ):
+            raise InvalidModelForecastError(
+                "interior-map GARCH failed the stationarity domain "
+                f"for asset {asset}; a={mapped.alpha}, b={mapped.beta}, success={result.success}"
+            )
+        omega[asset] = omega_i
+        garch_alpha[asset] = mapped.alpha
+        garch_beta[asset] = mapped.beta
+        success[asset] = True
+        nfev[asset] = int(getattr(result, "nfev", 0))
+    variances = garch_variance_paths(residuals, omega, garch_alpha, garch_beta, backcast)
+    standardized = standardized_residuals(residuals, variances)
+    return StageOneGARCHFit(
+        fit_mean=fit_mean,
+        omega=omega,
+        garch_alpha=garch_alpha,
+        garch_beta=garch_beta,
+        garch_backcast=backcast,
+        residuals=residuals,
+        variances=variances,
+        standardized=standardized,
+        garch_success=success,
+        garch_nfev=nfev,
+        n_observations=n_observations,
+        n_assets=n_assets,
+        arch_version=metadata.version(ARCH_PACKAGE),
+    )
+
+
+def estimate_dcc_parameters_interior(
+    target: NDArray[np.floating],
+    standardized: NDArray[np.floating],
+) -> tuple[float, float, dict[str, object]]:
+    """Estimate ``(alpha, beta)`` on the softmax map. The sum cannot reach 1."""
+
+    def objective(logits: NDArray[np.floating]) -> float:
+        mapped = softmax_persistence(np.asarray(logits, dtype=float))
+        return all_pairs_composite_nll(mapped.alpha, mapped.beta, target, standardized)
+
+    start = logits_from_persistence(DCC_ALPHA0, DCC_BETA0)
+    result = minimize(objective, start, method="L-BFGS-B", options={"maxiter": 80})
+    mapped = softmax_persistence(np.asarray(result.x, dtype=float))
+    audit = {
+        "success": bool(result.success),
+        "status": int(getattr(result, "status", -1)),
+        "message": str(getattr(result, "message", "")),
+        "objective": float(result.fun) if np.isscalar(result.fun) else float("nan"),
+        "nfev": int(getattr(result, "nfev", 0)),
+    }
+    accepted = (
+        bool(result.success)
+        and np.isfinite(audit["objective"])
+        and is_strictly_stationary(mapped.alpha, mapped.beta)
+    )
+    if not accepted:
+        raise InvalidModelForecastError(
+            "interior-map DCC failed the accepted stationarity domain "
+            f"alpha>=0, beta>=0, alpha+beta<1; got alpha={mapped.alpha}, "
+            f"beta={mapped.beta}, success={result.success}"
+        )
+    return mapped.alpha, mapped.beta, audit
+
+
+def _garch_gaussian_nll(
+    residual: NDArray[np.floating],
+    omega: float,
+    alpha: float,
+    beta: float,
+    backcast: float,
+) -> float:
+    """Gaussian GARCH(1,1) negative log-likelihood for one asset."""
+    n_observations = residual.shape[0]
+    variances = np.empty(n_observations, dtype=float)
+    variances[0] = omega + (alpha + beta) * backcast
+    for time_index in range(1, n_observations):
+        lagged = float(residual[time_index - 1])
+        variances[time_index] = omega + alpha * lagged * lagged + beta * variances[time_index - 1]
+    if np.any(variances <= 0.0) or not np.isfinite(variances).all():
+        return float("inf")
+    return float(0.5 * np.sum(np.log(variances) + residual * residual / variances))
+
+
+def _is_stationarity_failure(exc: InvalidModelForecastError) -> bool:
+    """True only for the project's strict ``a+b<1`` rejection."""
+    text = str(exc)
+    return "a+b<1" in text or "alpha+beta<1" in text
+
+
+def _failure_stage(exc: InvalidModelForecastError) -> str:
+    """Name the stage that rejected the parameter vector."""
+    text = str(exc)
+    if "GARCH" in text:
+        return "garch"
+    return "dcc"
+
+
+def _failure_asset(exc: InvalidModelForecastError) -> int | None:
+    """Read the asset index from a stage-one message. Stage two has none."""
+    text = str(exc)
+    marker = "asset "
+    if marker not in text:
+        return None
+    tail = text.split(marker, 1)[1]
+    digits = []
+    for character in tail:
+        if character.isdigit():
+            digits.append(character)
+        else:
+            break
+    if not digits:
+        return None
+    return int("".join(digits))
 
 
 def next_conditional_states(

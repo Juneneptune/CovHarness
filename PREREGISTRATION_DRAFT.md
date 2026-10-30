@@ -170,7 +170,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A4 | 6 | completed | `d0d3f70547038bee845b2984c1ffdb2349f61650` | `71bdbc200c41224545116adfc0aef24ee0936690` |
 | B1 | 14 | planned |  |  |
 | B2 | 15 | completed | `8d0cbfb7184290f7db819e56c45e0da3548c831c` | `f9c6b58a79941bcc72392f6d95943d54b336a9dd` |
-| C1 | 8 | specified |  |  |
+| C1 | 8 | executed | `ed7d2a4761fa5702e7c18e55c48eb2d7cc0c50b7` |  |
 | C2 | 7 | planned |  |  |
 | C3 | 12 | planned |  |  |
 | D1 | 13 | planned |  |  |

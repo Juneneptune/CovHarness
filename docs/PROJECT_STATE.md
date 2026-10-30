@@ -1164,7 +1164,7 @@ Binance SCREEN descriptive interpretation on 2026-09-21. No refit. No SPA or MCS
 
 ## Next recommended task
 
-The next tasks are C1, then B1, then D1, then C4. Amendment R-2026-10-29 is the binding pre-holdout record for those tasks. Task C1 is specified and has not been fit. CONFIRM remains locked.
+The next tasks are B1, then D1, then C4. Task C1 has been executed on VALIDATION and SCREEN for DCC02, DCCNL02, DCC03, and DCCNL03. DCC01 and DCCNL01 remain the failed selection columns. CONFIRM remains locked.
 
 Post-SCREEN work is specified in the amendment register at the end of `PREREGISTRATION_DRAFT.md`. Task 0 is the inventory record. Task A1 is the SCREEN loss-differential persistence and refit-cycle description. Spec commit `80612248ae6f772262c4eadc8b48c6a12a9887c0`. Helpers are in `covharness.inference.diagnostics`. Entry script `scripts/post_screen_loss_dependence.py`. Outputs `results/post_screen/A1/`. Tests `tests/unit/test_inference_diagnostics_a1.py` plus `tests/unit/test_inference.py` 27 passed, 1 existing HAC overflow warning. No Diebold–Mariano lag or bootstrap block length was chosen. Diebold–Mariano, SPA, and MCS were not run. CONFIRM remained locked.
 

@@ -411,6 +411,7 @@ def run_scheduled_forecasts(
     model,
     schedule,
     view: ValidationView,
+    on_origin: Callable[[dt.date, bool, object], None] | None = None,
 ) -> tuple[list[RollingForecastRecord], NDArray[np.bool_], int, dict[str, object]]:
     """Advance one model on VALIDATION. Fit windows cannot pass 2023-03-22."""
     records: list[RollingForecastRecord] = []
@@ -452,6 +453,8 @@ def run_scheduled_forecasts(
                 covariance=np.array(forecast.matrix, dtype=float, copy=True),
             )
         )
+        if on_origin is not None:
+            on_origin(step.origin.date(), bool(step.refit), model)
     extras = {
         "actions": tuple(actions),
         "min_eigenvalues": np.array(min_eigs, dtype=float),
@@ -680,6 +683,7 @@ def run_one_configuration(
     schedule,
     checkpoint_dir: Path,
     model_factory: Callable[..., object] | None = None,
+    on_origin: Callable[[dt.date, bool, object], None] | None = None,
 ) -> CandidateRunResult:
     """Fit one configuration or LSTM seed, or reuse a verified checkpoint."""
     config_id = str(row["id"])
@@ -700,7 +704,7 @@ def run_one_configuration(
     try:
         model = factory(family, row, seed)
         records, repaired, fit_failures, extras = run_scheduled_forecasts(
-            model=model, schedule=schedule, view=view
+            model=model, schedule=schedule, view=view, on_origin=on_origin
         )
         result = evaluate_records(
             family,

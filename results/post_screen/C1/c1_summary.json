@@ -1,0 +1,732 @@
+{
+  "artifact_sha256": {
+    "results/post_screen/C1/screen_checkpoints/DCC-NL_DCCNL02.npz": "639efa910780d40e402fcc29b99b8bfc66252cf94ebdb43b7b3101c1362d6b40",
+    "results/post_screen/C1/screen_checkpoints/DCC-NL_DCCNL03.npz": "a1bb285f4b65b26e5df54e8c856a720491fdffa5b3e908e86c00b2bb2ba18d98",
+    "results/post_screen/C1/screen_checkpoints/DCC_DCC02.npz": "00c97f65b1f614d72041918e3e8ea08ec98b3bec055b544b1324029371bdd7c1",
+    "results/post_screen/C1/screen_checkpoints/DCC_DCC03.npz": "f507c599543406c5cbd8b5a43e369f4f909c0bbfd166858f86f687f6f40259a0",
+    "results/post_screen/C1/validation_checkpoints/DCC-NL_DCCNL02.npz": "a656e6c32ff7d6f84f88bd0cc4de1af10234a8080e24f34e74ae051289fa8db7",
+    "results/post_screen/C1/validation_checkpoints/DCC-NL_DCCNL03.npz": "11c4b20a96a48c5c930d91fa5832a3036cf290800d7ae9aeab184ca82b93913f",
+    "results/post_screen/C1/validation_checkpoints/DCC_DCC02.npz": "4c3db6a6443f4cb9a851053c23e152a958c109935c9842a1329a3c15711a9deb",
+    "results/post_screen/C1/validation_checkpoints/DCC_DCC03.npz": "d12024086406d0baf9fa2b4ba2a3c5ab4882a59582f0673d2d280d9a8714d413"
+  },
+  "confirm_locked": true,
+  "existing_screen_columns": [
+    {
+      "config_id": "RW01",
+      "mean_frobenius": 0.00010781932629814412,
+      "mean_qlike": -31.270725513873614,
+      "source": "results/binance_screen_diagnostics.json",
+      "status": "complete"
+    },
+    {
+      "config_id": "EWMA01",
+      "mean_frobenius": 7.800251041053444e-05,
+      "mean_qlike": -31.776804256929157,
+      "source": "results/binance_screen_diagnostics.json",
+      "status": "complete"
+    },
+    {
+      "config_id": "HARDRD01",
+      "mean_frobenius": 7.489333409048754e-05,
+      "mean_qlike": -31.759430985603913,
+      "source": "results/binance_screen_diagnostics.json",
+      "status": "complete"
+    },
+    {
+      "config_id": "HARQDRD01",
+      "mean_frobenius": 7.48776260585042e-05,
+      "mean_qlike": -31.862062800706465,
+      "source": "results/binance_screen_diagnostics.json",
+      "status": "complete"
+    },
+    {
+      "config_id": "LWLIN01",
+      "mean_frobenius": 9.262341039526676e-05,
+      "mean_qlike": -30.235151560818647,
+      "source": "results/binance_screen_diagnostics.json",
+      "status": "complete"
+    },
+    {
+      "config_id": "LWNL01",
+      "mean_frobenius": 9.202238395666718e-05,
+      "mean_qlike": -30.16220763900416,
+      "source": "results/binance_screen_diagnostics.json",
+      "status": "complete"
+    },
+    {
+      "config_id": "DCC01",
+      "mean_frobenius": null,
+      "mean_qlike": null,
+      "source": "results/binance_screen_diagnostics.json",
+      "status": "failed"
+    },
+    {
+      "config_id": "DCCNL01",
+      "mean_frobenius": null,
+      "mean_qlike": null,
+      "source": "results/binance_screen_diagnostics.json",
+      "status": "failed"
+    },
+    {
+      "config_id": "RIDGE01",
+      "mean_frobenius": 7.489333409048754e-05,
+      "mean_qlike": -31.759430985603913,
+      "source": "results/binance_screen_diagnostics.json",
+      "status": "complete"
+    },
+    {
+      "config_id": "XGB08",
+      "mean_frobenius": 7.85603711558442e-05,
+      "mean_qlike": -31.71153150409633,
+      "source": "results/binance_screen_diagnostics.json",
+      "status": "complete"
+    },
+    {
+      "config_id": "LSTM19",
+      "mean_frobenius": 8.269241063292736e-05,
+      "mean_qlike": -31.408752391639815,
+      "source": "results/binance_screen_diagnostics.json",
+      "status": "complete"
+    }
+  ],
+  "label": "robustness/selection",
+  "near_boundary_sum": 0.999,
+  "screen": [
+    {
+      "carry_forward_count": 9,
+      "complete_support": true,
+      "config_id": "DCC02",
+      "failure_policy": "carry_forward",
+      "failure_reason": null,
+      "family": "DCC",
+      "fit_failures": 0,
+      "frobenius_failures": 0,
+      "headline_eligible": true,
+      "mean_frobenius": 8.292025836857435e-05,
+      "mean_qlike": -30.87876975480985,
+      "n_targets": 500,
+      "near_boundary_count": 0,
+      "policy_events": [
+        {
+          "asset": 1,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 1; got omega=4.966346473336044e-12, a=0.0, b=1.0",
+          "model_id": "DCC02",
+          "origin": "2023-12-20",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        },
+        {
+          "asset": 1,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 1; got omega=1.2020644820990618e-06, a=0.007347244473926289, b=0.9926527555261193",
+          "model_id": "DCC02",
+          "origin": "2024-01-10",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        },
+        {
+          "asset": null,
+          "message": "DCC SLSQP failed the accepted stationarity domain alpha>=0, beta>=0, alpha+beta<1; got alpha=0.043864501291226654, beta=0.9561354987085816, success=False, message=Singular matrix E in LSQ subproblem",
+          "model_id": "DCC02",
+          "origin": "2024-01-31",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "dcc"
+        },
+        {
+          "asset": null,
+          "message": "DCC SLSQP failed the accepted stationarity domain alpha>=0, beta>=0, alpha+beta<1; got alpha=0.050900062004015145, beta=0.9490999364524221, success=False, message=Singular matrix E in LSQ subproblem",
+          "model_id": "DCC02",
+          "origin": "2024-02-21",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "dcc"
+        },
+        {
+          "asset": 1,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 1; got omega=5.131083366620941e-07, a=0.0, b=1.0",
+          "model_id": "DCC02",
+          "origin": "2024-03-13",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        },
+        {
+          "asset": 1,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 1; got omega=3.3520428303073577e-06, a=0.017451889067997845, b=0.9825481109320252",
+          "model_id": "DCC02",
+          "origin": "2024-04-03",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        },
+        {
+          "asset": 4,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 4; got omega=2.19546004858675e-05, a=0.10585871469440898, b=0.8941412853129297",
+          "model_id": "DCC02",
+          "origin": "2024-04-24",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        },
+        {
+          "asset": 3,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 3; got omega=1.5235870603004069e-05, a=0.0751822086636127, b=0.9248177913364112",
+          "model_id": "DCC02",
+          "origin": "2025-03-05",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        },
+        {
+          "asset": 4,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 4; got omega=0.00023572914840106588, a=0.19334557254453374, b=0.8066544274554668",
+          "model_id": "DCC02",
+          "origin": "2025-03-26",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        }
+      ],
+      "qlike_failures": 0,
+      "repair_count": 0,
+      "runtime_seconds": 7.291751061100513
+    },
+    {
+      "carry_forward_count": 9,
+      "complete_support": true,
+      "config_id": "DCCNL02",
+      "failure_policy": "carry_forward",
+      "failure_reason": null,
+      "family": "DCC-NL",
+      "fit_failures": 0,
+      "frobenius_failures": 0,
+      "headline_eligible": true,
+      "mean_frobenius": 8.292460724261286e-05,
+      "mean_qlike": -30.907994561233394,
+      "n_targets": 500,
+      "near_boundary_count": 0,
+      "policy_events": [
+        {
+          "asset": 1,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 1; got omega=4.966346473336044e-12, a=0.0, b=1.0",
+          "model_id": "DCCNL02",
+          "origin": "2023-12-20",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        },
+        {
+          "asset": 1,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 1; got omega=1.2020644820990618e-06, a=0.007347244473926289, b=0.9926527555261193",
+          "model_id": "DCCNL02",
+          "origin": "2024-01-10",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        },
+        {
+          "asset": null,
+          "message": "DCC SLSQP failed the accepted stationarity domain alpha>=0, beta>=0, alpha+beta<1; got alpha=0.044167490253440495, beta=0.9558325097463598, success=False, message=Singular matrix E in LSQ subproblem",
+          "model_id": "DCCNL02",
+          "origin": "2024-01-31",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "dcc"
+        },
+        {
+          "asset": null,
+          "message": "DCC SLSQP failed the accepted stationarity domain alpha>=0, beta>=0, alpha+beta<1; got alpha=0.04835605999178961, beta=0.951643930557786, success=False, message=Singular matrix E in LSQ subproblem",
+          "model_id": "DCCNL02",
+          "origin": "2024-02-21",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "dcc"
+        },
+        {
+          "asset": 1,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 1; got omega=5.131083366620941e-07, a=0.0, b=1.0",
+          "model_id": "DCCNL02",
+          "origin": "2024-03-13",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        },
+        {
+          "asset": 1,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 1; got omega=3.3520428303073577e-06, a=0.017451889067997845, b=0.9825481109320252",
+          "model_id": "DCCNL02",
+          "origin": "2024-04-03",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        },
+        {
+          "asset": 4,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 4; got omega=2.19546004858675e-05, a=0.10585871469440898, b=0.8941412853129297",
+          "model_id": "DCCNL02",
+          "origin": "2024-04-24",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        },
+        {
+          "asset": 3,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 3; got omega=1.5235870603004069e-05, a=0.0751822086636127, b=0.9248177913364112",
+          "model_id": "DCCNL02",
+          "origin": "2025-03-05",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        },
+        {
+          "asset": 4,
+          "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 4; got omega=0.00023572914840106588, a=0.19334557254453374, b=0.8066544274554668",
+          "model_id": "DCCNL02",
+          "origin": "2025-03-26",
+          "period": "SCREEN",
+          "policy": "carry_forward",
+          "stage": "garch"
+        }
+      ],
+      "qlike_failures": 0,
+      "repair_count": 0,
+      "runtime_seconds": 6.89438961003907
+    },
+    {
+      "carry_forward_count": 0,
+      "complete_support": true,
+      "config_id": "DCC03",
+      "failure_policy": "interior_map",
+      "failure_reason": null,
+      "family": "DCC",
+      "fit_failures": 0,
+      "frobenius_failures": 0,
+      "headline_eligible": false,
+      "mean_frobenius": 8.653168394429344e-05,
+      "mean_qlike": -30.862024738956112,
+      "n_targets": 500,
+      "near_boundary_count": 14,
+      "policy_events": [
+        {
+          "alpha": 0.08192275364939508,
+          "asset": 4,
+          "beta": 0.9180724346630932,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2023-12-20",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 3.651224064777791e-09,
+          "asset": 0,
+          "beta": 0.9999989768443659,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2024-01-10",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.007373974772825606,
+          "asset": 1,
+          "beta": 0.9926250153378701,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2024-01-10",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.051145446635477834,
+          "asset": null,
+          "beta": 0.9488434108364819,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2024-02-21",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "dcc"
+        },
+        {
+          "alpha": 6.280125438794535e-11,
+          "asset": 1,
+          "beta": 0.9999986005183605,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2024-03-13",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.20609862371738777,
+          "asset": 2,
+          "beta": 0.7939003284745021,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2024-03-13",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.0675996767904348,
+          "asset": null,
+          "beta": 0.9323993053450484,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2024-03-13",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "dcc"
+        },
+        {
+          "alpha": 0.017499789632002515,
+          "asset": 1,
+          "beta": 0.9824990509189345,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2024-04-03",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.30154355589850546,
+          "asset": 4,
+          "beta": 0.6984549356860772,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2024-04-03",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.07277771908135694,
+          "asset": null,
+          "beta": 0.9272207529723758,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2024-04-03",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "dcc"
+        },
+        {
+          "alpha": 0.10582030560375051,
+          "asset": 4,
+          "beta": 0.8941785482629372,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2024-04-24",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.07518759892680216,
+          "asset": 3,
+          "beta": 0.9248113180033408,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2025-03-05",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.11899059657771827,
+          "asset": 4,
+          "beta": 0.8810083658915097,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2025-03-05",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.19337028697950565,
+          "asset": 4,
+          "beta": 0.8066272578703596,
+          "model_id": "DCC03",
+          "near_boundary": true,
+          "origin": "2025-03-26",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        }
+      ],
+      "qlike_failures": 0,
+      "repair_count": 0,
+      "runtime_seconds": 17.54625802207738
+    },
+    {
+      "carry_forward_count": 0,
+      "complete_support": true,
+      "config_id": "DCCNL03",
+      "failure_policy": "interior_map",
+      "failure_reason": null,
+      "family": "DCC-NL",
+      "fit_failures": 0,
+      "frobenius_failures": 0,
+      "headline_eligible": false,
+      "mean_frobenius": 8.654361573709356e-05,
+      "mean_qlike": -30.877973749306715,
+      "n_targets": 500,
+      "near_boundary_count": 14,
+      "policy_events": [
+        {
+          "alpha": 0.08192275364939508,
+          "asset": 4,
+          "beta": 0.9180724346630932,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2023-12-20",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 3.651224064777791e-09,
+          "asset": 0,
+          "beta": 0.9999989768443659,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2024-01-10",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.007373974772825606,
+          "asset": 1,
+          "beta": 0.9926250153378701,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2024-01-10",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.05123417611784218,
+          "asset": null,
+          "beta": 0.948710731303537,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2024-02-21",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "dcc"
+        },
+        {
+          "alpha": 6.280125438794535e-11,
+          "asset": 1,
+          "beta": 0.9999986005183605,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2024-03-13",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.20609862371738777,
+          "asset": 2,
+          "beta": 0.7939003284745021,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2024-03-13",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.0679022763755413,
+          "asset": null,
+          "beta": 0.9320967052860485,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2024-03-13",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "dcc"
+        },
+        {
+          "alpha": 0.017499789632002515,
+          "asset": 1,
+          "beta": 0.9824990509189345,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2024-04-03",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.30154355589850546,
+          "asset": 4,
+          "beta": 0.6984549356860772,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2024-04-03",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.07319311114308565,
+          "asset": null,
+          "beta": 0.9268058372164599,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2024-04-03",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "dcc"
+        },
+        {
+          "alpha": 0.10582030560375051,
+          "asset": 4,
+          "beta": 0.8941785482629372,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2024-04-24",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.07518759892680216,
+          "asset": 3,
+          "beta": 0.9248113180033408,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2025-03-05",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.11899059657771827,
+          "asset": 4,
+          "beta": 0.8810083658915097,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2025-03-05",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        },
+        {
+          "alpha": 0.19337028697950565,
+          "asset": 4,
+          "beta": 0.8066272578703596,
+          "model_id": "DCCNL03",
+          "near_boundary": true,
+          "origin": "2025-03-26",
+          "period": "SCREEN",
+          "policy": "interior_map",
+          "stage": "garch"
+        }
+      ],
+      "qlike_failures": 0,
+      "repair_count": 0,
+      "runtime_seconds": 17.363525280961767
+    }
+  ],
+  "spec_commit": "ed7d2a4761fa5702e7c18e55c48eb2d7cc0c50b7",
+  "stationarity_epsilon": 1e-06,
+  "task": "C1",
+  "untouched": [
+    "results/binance_screen_failures.json",
+    "results/binance_screen_diagnostics.json",
+    "configs/binance_open_data_core.yaml"
+  ],
+  "validation": [
+    {
+      "carry_forward_count": 0,
+      "complete_support": true,
+      "config_id": "DCC02",
+      "failure_policy": "carry_forward",
+      "failure_reason": null,
+      "family": "DCC",
+      "fit_failures": 0,
+      "frobenius_failures": 0,
+      "headline_eligible": true,
+      "mean_frobenius": 4.5900634219941976e-05,
+      "mean_qlike": -32.182909212053225,
+      "n_targets": 250,
+      "near_boundary_count": 0,
+      "policy_events": [],
+      "qlike_failures": 0,
+      "repair_count": 0,
+      "runtime_seconds": 5.7178301070816815
+    },
+    {
+      "carry_forward_count": 0,
+      "complete_support": true,
+      "config_id": "DCCNL02",
+      "failure_policy": "carry_forward",
+      "failure_reason": null,
+      "family": "DCC-NL",
+      "fit_failures": 0,
+      "frobenius_failures": 0,
+      "headline_eligible": true,
+      "mean_frobenius": 4.586238902378492e-05,
+      "mean_qlike": -32.1971689344779,
+      "n_targets": 250,
+      "near_boundary_count": 0,
+      "policy_events": [],
+      "qlike_failures": 0,
+      "repair_count": 0,
+      "runtime_seconds": 4.951727374922484
+    },
+    {
+      "carry_forward_count": 0,
+      "complete_support": true,
+      "config_id": "DCC03",
+      "failure_policy": "interior_map",
+      "failure_reason": null,
+      "family": "DCC",
+      "fit_failures": 0,
+      "frobenius_failures": 0,
+      "headline_eligible": false,
+      "mean_frobenius": 4.59646984918466e-05,
+      "mean_qlike": -32.18114168211192,
+      "n_targets": 250,
+      "near_boundary_count": 0,
+      "policy_events": [],
+      "qlike_failures": 0,
+      "repair_count": 0,
+      "runtime_seconds": 7.140395634109154
+    },
+    {
+      "carry_forward_count": 0,
+      "complete_support": true,
+      "config_id": "DCCNL03",
+      "failure_policy": "interior_map",
+      "failure_reason": null,
+      "family": "DCC-NL",
+      "fit_failures": 0,
+      "frobenius_failures": 0,
+      "headline_eligible": false,
+      "mean_frobenius": 4.59261797032669e-05,
+      "mean_qlike": -32.195790123715256,
+      "n_targets": 250,
+      "near_boundary_count": 0,
+      "policy_events": [],
+      "qlike_failures": 0,
+      "repair_count": 0,
+      "runtime_seconds": 7.673197941854596
+    }
+  ]
+}

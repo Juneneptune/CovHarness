@@ -483,6 +483,7 @@ def run_scheduled_screen_forecasts(
     model,
     schedule,
     view: ScreenView,
+    on_origin: Callable[[dt.date, bool, object], None] | None = None,
 ) -> tuple[list[RollingForecastRecord], NDArray[np.bool_], int, dict[str, object]]:
     """Advance one SCREEN representative. Windows cannot enter CONFIRM."""
     records: list[RollingForecastRecord] = []
@@ -525,6 +526,8 @@ def run_scheduled_screen_forecasts(
                 covariance=np.array(forecast.matrix, dtype=float, copy=True),
             )
         )
+        if on_origin is not None:
+            on_origin(step.origin.date(), bool(step.refit), model)
     extras = {
         "actions": tuple(actions),
         "min_eigenvalues": np.array(min_eigs, dtype=float),
@@ -747,6 +750,7 @@ def run_one_screen_configuration(
     schedule,
     checkpoint_dir: Path,
     model_factory: Callable[..., object] | None = None,
+    on_origin: Callable[[dt.date, bool, object], None] | None = None,
 ) -> CandidateRunResult:
     config_id = str(row["id"])
     required_targets = [step.target.date() for step in schedule.steps]
@@ -766,7 +770,7 @@ def run_one_screen_configuration(
     try:
         model = factory(family, row, seed)
         records, repaired, fit_failures, extras = run_scheduled_screen_forecasts(
-            model=model, schedule=schedule, view=view
+            model=model, schedule=schedule, view=view, on_origin=on_origin
         )
         result = evaluate_screen_records(
             family,
