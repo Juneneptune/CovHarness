@@ -1,0 +1,13 @@
+# Overnight summary 3
+
+Date 2026-10-30. Branch `main`. No push. CONFIRM stayed locked. `nproc` was 48. D2 ran at most 44 jobs at once, and all 15 ran together. `.ntfy_topic` was absent, so no notification was sent.
+
+R2 completed. Spec and result `9d50128d0a01a80396929381314aac9fc4b01125`. Report `e87b8117514a478e9422d6905d8c1864330e108e`. Documentation only. `results/post_screen/R2/REPORT.md`.
+
+B1b completed. Spec `e4f01c0301320d5f92e0041e09069abc85ab2ba4`. Result `7145b67ab24c0ed36956ad82535cba188f242765`. Report `5d7591a101843bd1e14e38c10a76a4e74164194d`. Runtime 30.120 seconds. `results/post_screen/B1b/REPORT.md`.
+
+C4 completed. Spec `16144a6497600c1f8e427c8cdf23752bf23abc1a`. Result `c6de3e5cbc98d161be3f57afdbb01de56d48e6db`. Report `85346d547f733b59c210b8d6434a5a23fee18528`. VALIDATION 4.394 seconds, SCREEN 8.797 seconds. `results/post_screen/C4/REPORT.md`.
+
+D2 completed. Spec `60b240bae32577e0159df8cc494019b3db4935d4`. Result `453174f0eee09275533c149da89e010ff9d8d98d`. Report `7a4a228c8e3c596f638884a33c7a254f7e2ba125`. Wall clock 1923 seconds. `nproc` 48, cap 44. `results/post_screen/D2/REPORT.md`.
+
+C2 completed. Spec `23e728a5ebb8c2c3481a19637b9b8e0e8659b3c5`. Result `689fd0ccaa7d909fbf49d191df1bfd9a3da97d07`. Report `5112e00280137fe2ef56c7f92a92206759af4b7f`. Wall clock 9069 seconds. `results/post_screen/C2/REPORT.md`.
