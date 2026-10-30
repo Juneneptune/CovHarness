@@ -26,7 +26,7 @@ from covharness.protocol.binance_validation import (
 from covharness.realized.binance_panel import build_preconfirm_semivariances
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SPEC_COMMIT = "PENDING"
+SPEC_COMMIT = "16144a6497600c1f8e427c8cdf23752bf23abc1a"
 PANEL = REPO_ROOT / "data/processed/binance_five_asset_panel.npz"
 CORE = REPO_ROOT / "configs/binance_open_data_core.yaml"
 SCREEN_CONFIG = REPO_ROOT / "configs/binance_open_data_screen.yaml"
