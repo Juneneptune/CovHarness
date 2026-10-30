@@ -142,7 +142,11 @@ def run_cell(payload: dict[str, object]) -> dict[str, object]:
     return summary
 
 
-def _d3_paths(block_length: int) -> np.ndarray:
+def _d3_paths(
+    block_length: int,
+    n_reps: int = CALIBRATION_N_REPS,
+    seed_key: str | None = None,
+) -> np.ndarray:
     digest = hashlib.sha256(QLIKE_PATH.read_bytes()).hexdigest()
     if digest != QLIKE_SHA256:
         raise RuntimeError("SCREEN QLIKE loss hash drifted")
@@ -151,10 +155,12 @@ def _d3_paths(block_length: int) -> np.ndarray:
     losses = np.asarray(blob["losses"], dtype=float)
     gap = losses[:, labels.index("HARQ-DRD")] - losses[:, labels.index("LSTM-BEKK")]
     centered = gap - float(gap.mean())
-    seed = _cell_seed(f"D3-source-{block_length}")
+    # Keep the B1 draw unless the caller names a new seed key and replication count.
+    key = f"D3-source-{block_length}" if seed_key is None else seed_key
+    seed = _cell_seed(key)
     indices = stationary_bootstrap_indices(
         centered.shape[0],
-        CALIBRATION_N_REPS,
+        n_reps,
         block_length=block_length,
         seed=seed,
     )

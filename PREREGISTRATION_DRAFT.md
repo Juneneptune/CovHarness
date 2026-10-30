@@ -183,7 +183,7 @@ Status values start as planned except for task 0, which is this documentation re
 | F1 | 17 | planned |  |  |
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |
 | R2 | amendment R-2026-10-30 | completed | `9d50128d0a01a80396929381314aac9fc4b01125` | `9d50128d0a01a80396929381314aac9fc4b01125` |
-| B1b | P5 size-adjusted cutoffs | planned |  |  |
+| B1b | P5 size-adjusted cutoffs | specified |  |  |
 | C4 | A4 follow-up | planned |  |  |
 
 G1 is the CONFIRM authorization gate. It has no numbered TODO item in the source list. Recording the gate in this table does not unlock CONFIRM.
@@ -550,3 +550,11 @@ DCC carry-forward caveat. DCC02 and DCCNL02 each held parameters at 9 of 24 SCRE
 Deferral. D3b, the phase-shifted augmentation, and D4, the HEAVY matched pairs, are deferred until after CONFIRM. They are excluded from the confirmatory roster. A later run is a post-holdout extension and cannot be confirmatory on this holdout. D3a's phase arrays are kept.
 
 D2 configuration. D2's variants use LSTM22's configuration. V00 is LSTM22 itself, already scored in D1, and is not refit.
+
+### Task B1b spec. Size-adjusted critical values for P5
+
+Spec date 2026-10-30. This entry is written before any B1b simulation. The null is the B1 design D3. The SCREEN HARQ-DRD minus LSTM-BEKK QLIKE gap is demeaned and resampled by the existing stationary bootstrap at \(T=500\) and block lengths 7 and 29. The script calls the existing path builder and `diebold_mariano(..., reference="ewc")`. It does not reimplement either. CONFIRM stays locked. The cutoffs are not applied to any model comparison in this task.
+
+For each block length, 20000 null replications are drawn. The size-adjusted two-sided critical value is the 0.95 quantile of the absolute P5 statistic, using NumPy's linear quantile. The ordinary P5 critical value is the existing Student-\(t\) cutoff at \(\nu=\lfloor 0.4 T^{2/3}\rfloor\). The quantile standard error is the sample standard deviation of that same quantile across 1000 bootstrap resamples of the 20000 absolute statistics. The seed is the existing calibration seed 20260916. The null keys are `B1b-null-7` and `B1b-null-29`. The quantile-standard-error keys are `B1b-se-7` and `B1b-se-29`. A fresh check uses 5000 replications at keys `B1b-check-7` and `B1b-check-29`. The check passes when the rejection rate at the frozen cutoff lies within two Monte Carlo standard errors of 0.05, using \(\sqrt{0.05\times 0.95/5000}\). The values are frozen after this run and are not recomputed on CONFIRM. A confirmatory claim still requires rejection at the ordinary P5 cutoff and at both size-adjusted values, as stated in amendment R-2026-10-30.
+
+The entry script is `scripts/p5_size_adjusted_cutoffs.py`. Outputs go under `results/post_screen/B1b/`.
