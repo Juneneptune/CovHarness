@@ -183,6 +183,37 @@ def stationary_ar1_paths(
     return _stationary_ar1(rng, n_reps=int(n_reps), n_obs=int(n_obs), rho=float(rho))
 
 
+def student_t_ar1_paths(
+    *,
+    n_reps: int,
+    n_obs: int,
+    rho: float,
+    seed: int,
+    degrees_of_freedom: float = 5.0,
+) -> np.ndarray:
+    """Draw mean-zero AR(1) paths with variance-1 Student-t innovations.
+
+    The scale ``sqrt((df-2)/df)`` gives innovation variance 1, so the
+    Gaussian long-run variance formula remains the simulation truth.
+    """
+    if degrees_of_freedom <= 2.0:
+        raise ValueError("Student-t innovations need more than 2 degrees of freedom")
+    rng = np.random.default_rng(int(seed))
+    scale = np.sqrt((degrees_of_freedom - 2.0) / degrees_of_freedom)
+    innovations = scale * rng.standard_t(degrees_of_freedom, size=(int(n_reps), int(n_obs)))
+    persistence = float(rho)
+    if abs(persistence) >= 1.0:
+        raise ValueError(f"AR(1) persistence must satisfy |rho| < 1; got {persistence}")
+    paths = np.empty_like(innovations)
+    # Exact stationary start. The first draw is scaled by the AR(1) standard deviation.
+    state = innovations[:, 0] / np.sqrt(1.0 - persistence * persistence)
+    paths[:, 0] = state
+    for time_index in range(1, int(n_obs)):
+        state = persistence * state + innovations[:, time_index]
+        paths[:, time_index] = state
+    return paths
+
+
 def ar1_true_long_run_variance(rho: float) -> float:
     """Return the AR(1) long-run variance ``1 / (1 - rho)^2``.
 

@@ -221,7 +221,7 @@ $C$ and $C_t$ are lower triangular, so $CC^{\top}$ and $C_tC_t^{\top}$ are Gram 
 
 ## Statistical evaluation
 
-A lower average loss is not enough to establish superiority. Loss differentials can be serially dependent, so a long streak of wins is not independent evidence. Several procedures are implemented and synthetically tested. Only SPA and MCS were executed on the Binance selection period. Pairwise Diebold–Mariano, Giacomini–White, Mincer–Zarnowitz, and Giacomini–Rossi tests were not run on that sample. Confirmatory pairwise inference remains unresolved. Implementation contracts are in [`docs/INFERENCE_METHODS.md`](docs/INFERENCE_METHODS.md).
+A lower average loss is not enough to establish superiority. Loss differentials can be serially dependent, so a long streak of wins is not independent evidence. Several procedures are implemented and synthetically tested. Only SPA and MCS were executed on the Binance selection period. Pairwise Diebold–Mariano, Giacomini–White, Mincer–Zarnowitz, and Giacomini–Rossi tests were not run on that sample. The confirmatory pairwise procedure is frozen and has not been applied to the final holdout. Implementation contracts are in [`docs/INFERENCE_METHODS.md`](docs/INFERENCE_METHODS.md).
 
 ### Pairwise comparison
 
@@ -232,7 +232,7 @@ d_t = L_{A,t} - L_{B,t},\qquad
 \mathrm{DM}=\frac{\bar d}{\widehat{\mathrm{se}}_{\mathrm{HAC}}(\bar d)}.
 ```
 
-The current baseline uses Bartlett / Newey–West HAC standard errors and an $N(0,1)$ reference. It is a forecast-comparison statement, not a proof that one population model is true. A candidate recentered stationary-bootstrap mean test is implemented and remains under synthetic calibration. It has not been adopted for confirmatory reporting. Clark–West is restricted to nested scalar squared-error forecasts. A later descriptive SCREEN exercise measures ACF, two $T_{\mathrm{eff}}$ approximations, Bartlett long-run variance at frozen lags, and mean loss gaps by days since the last 21-origin refit. Those quantities are in [`results/post_screen/A1/`](results/post_screen/A1/). They remain selection-period diagnostics. They do not choose a confirmatory lag or block length.
+The current baseline uses Bartlett / Newey–West HAC standard errors and an $N(0,1)$ reference. It is a forecast-comparison statement, not a proof that one population model is true. The confirmatory procedure frozen by task B1 is the equal-weighted cosine test with \(\nu=\lfloor 0.4 T^{2/3}\rfloor\) and Student-\(t\) critical values. No simulated candidate stayed inside the pre-registered size band on every required cell, so the rule selected the smallest maximum distortion and records that as a limitation. The default automatic-lag function is unchanged. A candidate recentered stationary-bootstrap mean test remains implemented and was not adopted. Clark–West is restricted to nested scalar squared-error forecasts. A later descriptive SCREEN exercise measures ACF, two $T_{\mathrm{eff}}$ approximations, Bartlett long-run variance at frozen lags, and mean loss gaps by days since the last 21-origin refit. Those quantities are in [`results/post_screen/A1/`](results/post_screen/A1/). They remain selection-period diagnostics. They do not choose a confirmatory lag or block length.
 
 ### Multiple-model screening
 

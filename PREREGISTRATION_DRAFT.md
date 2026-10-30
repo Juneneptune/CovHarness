@@ -168,7 +168,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A2 | 3 | completed | `75240e13873322df8d93f4dfb3bb4a76626a3bb4` | `80f03b0acc0231a660ae72e13ab1957133fef31f` |
 | A3 | 4-5 | completed | `c30b27a5739d803458006853c2d8bbc80c80d32b` | `af3d14a2dca15cdf589586151bb8414e0ed13ee1` |
 | A4 | 6 | completed | `d0d3f70547038bee845b2984c1ffdb2349f61650` | `71bdbc200c41224545116adfc0aef24ee0936690` |
-| B1 | 14 | specified |  |  |
+| B1 | 14 | frozen | `3ccffdbd84398a82879cd16d7da8d41c6ba8c5b6` |  |
 | B2 | 15 | completed | `8d0cbfb7184290f7db819e56c45e0da3548c831c` | `f9c6b58a79941bcc72392f6d95943d54b336a9dd` |
 | C1 | 8 | completed | `ed7d2a4761fa5702e7c18e55c48eb2d7cc0c50b7` | `7555cc91925967b531d6e3bba33c8e1bf47e73a2` |
 | C2 | 7 | planned |  |  |
@@ -510,3 +510,7 @@ Designs. \(T\in\{500,250\}\). \(\rho\in\{0,0.3,0.6,0.8,0.9\}\). D1 is a Gaussian
 Selection rule. A procedure qualifies when its two-sided 5 percent rejection rate lies in \([0.03,0.075]\) at \(T=500\) for every \(\rho\le 0.6\) under D1 and D2, and under D3. Among qualifiers, the highest average power is selected. Ties go to the simpler procedure, in the order P1 through P6. If none qualifies, the smallest maximum absolute distortion from 0.05 is selected and recorded as a limitation.
 
 The entry script is `scripts/dm_procedure_calibration.py`. Outputs go under `results/post_screen/B1/`. The frozen choice is written here before the SCREEN demonstration on the four A1 pairs. That demonstration is descriptive. It does not rerun SPA, MCS, or finalist selection.
+
+### Task B1 freeze. Confirmatory pairwise procedure
+
+Freeze date 2026-10-29. This paragraph is written after the calibration and before the SCREEN demonstration. No procedure qualified. Under D1 and D2 at \(T=500\) and \(\rho\le 0.6\), several candidates were inside \([0.03,0.075]\), but every candidate exceeded 0.075 on at least one D3 resample of the SCREEN HARQ-DRD minus LSTM-BEKK QLIKE gap. The selection rule therefore takes the smallest maximum absolute distortion from 0.05. That procedure is P5, the equal-weighted cosine estimator with \(\nu=\lfloor 0.4 T^{2/3}\rfloor\) and \(t_\nu\) critical values. Its maximum distortion on the required cells is 0.0334. This is a limitation. CONFIRM will call P5 through the new keyword. The default automatic-lag \(N(0,1)\) test is unchanged. P6 is not adopted.
