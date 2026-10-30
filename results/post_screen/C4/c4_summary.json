@@ -1,0 +1,26 @@
+{
+  "task": "C4",
+  "spec_commit": "16144a6497600c1f8e427c8cdf23752bf23abc1a",
+  "semivariance_sha256": "7366a2b60673d95bf0b0ca58d507ee2bbb86f1c2488ab06c31773d1fe53299cb",
+  "bitwise_same_return_rv": false,
+  "bitwise_production_rv": false,
+  "max_abs_versus_production_rv": 2.7755575615628914e-17,
+  "validation": {
+    "mean_qlike": -32.81890778474039,
+    "mean_frobenius": 3.0483989769165684e-05,
+    "complete_support": true,
+    "repair_count": 0,
+    "n_targets": 250,
+    "runtime_seconds": 4.393846806837246,
+    "failure_reason": null
+  },
+  "screen": {
+    "mean_qlike": -31.733461479979443,
+    "mean_frobenius": 7.610898276914674e-05,
+    "complete_support": true,
+    "repair_count": 0,
+    "n_targets": 500,
+    "runtime_seconds": 8.797134392894804,
+    "failure_reason": null
+  }
+}
