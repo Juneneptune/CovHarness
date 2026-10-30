@@ -29,7 +29,7 @@ from covharness.protocol.binance_validation import (
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SPEC_COMMIT = "PENDING"
+SPEC_COMMIT = "23e728a5ebb8c2c3481a19637b9b8e0e8659b3c5"
 PANEL = REPO_ROOT / "data/processed/binance_five_asset_panel.npz"
 CORE = REPO_ROOT / "configs/binance_open_data_core.yaml"
 SCREEN_CONFIG = REPO_ROOT / "configs/binance_open_data_screen.yaml"
