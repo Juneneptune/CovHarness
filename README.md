@@ -191,7 +191,7 @@ A zero complete-support count means that family did not supply an admissible com
 
 ### Realized-measure models
 
-Random walk maps $H_{t+1\mid t}=S_t$. EWMA recurses on the realized-covariance sequence with frozen decay $\lambda$. The Binance development period selected $\lambda=0.8000$.
+Random walk maps $H_{t+1\mid t}=S_t$. EWMA recurses on the realized-covariance sequence with frozen decay $\lambda$. The Binance development period selected $\lambda=0.8000$ from the original 20-point grid. Task D1 later scored decays 0.55, 0.60, 0.65, 0.70, and 0.75 on that same development period. The validation rule selected EWMA21, decay 0.60, and that identifier was scored on the selection period.
 
 HAR-DRD splits each realized covariance into variances and correlations, then forecasts both with Zhang-style non-overlapping daily, weekly (four observations), and monthly (seventeen observations) lags. Variances have asset-specific intercepts and three shared slopes. Correlations have pair-specific intercepts and three shared slopes. Between coefficient refits, origin $1/4/17$ features are rebuilt from the current 250-day window. If the raw reconstruction fails an explicit validity filter, the headline forecast is the arithmetic mean of that current origin window. Evaluation itself performs no repair.
 
@@ -215,7 +215,7 @@ LSTM-BEKK is a daily-return model. In internal percent units the recursion is sc
 H_t = CC^{\top} + C_t C_t^{\top} + a x_{t-1}x_{t-1}^{\top} + b H_{t-1}.
 ```
 
-$C$ and $C_t$ are lower triangular, so $CC^{\top}$ and $C_tC_t^{\top}$ are Gram matrices. With $a,b\ge 0$, every term is positive semidefinite. Strict positive definiteness is anchored by a strictly positive diagonal on static $C$. This is not a generic black-box LSTM mapped onto a covariance matrix, and it is not full Engle–Kroner matrix $A,B$. The model does not consume realized covariance or RQ. Hidden and $H$ states update daily between 21-origin retraining. The selection period scores the equal-weight mean of five seed covariance matrices. Rolling estimation at $N=100$ or $N=200$ with $T=250$ remains a computing limitation. LSTM-BEKK-RC is unimplemented.
+$C$ and $C_t$ are lower triangular, so $CC^{\top}$ and $C_tC_t^{\top}$ are Gram matrices. With $a,b\ge 0$, every term is positive semidefinite. Strict positive definiteness is anchored by a strictly positive diagonal on static $C$. This is not a generic black-box LSTM mapped onto a covariance matrix, and it is not full Engle–Kroner matrix $A,B$. The model does not consume realized covariance or RQ. Hidden and $H$ states update daily between 21-origin retraining. The selection period scores the equal-weight mean of five seed covariance matrices. Rolling estimation at $N=100$ or $N=200$ with $T=250$ remains a computing limitation. LSTM-BEKK-RC is unimplemented. Task D1 later moved one factor at a time around LSTM19 on the development period. The validation rule selected LSTM22, depth 7, with dropout 0.2, 75 epochs, learning rate 0.001, and gradient clip 1. LSTM22 was scored on the selection period. LSTM19 remains the deep-learning representative until a later roster decision. The default constructor still uses the paper range of depth 3 to 5 and dropout at most 0.2. The D1 cells that leave that range pass `architecture_range` `post_screen_d1`, which admits depth through 8 and dropout through 0.5.
 
 ---
 

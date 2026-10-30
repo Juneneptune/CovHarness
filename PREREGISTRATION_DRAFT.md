@@ -173,7 +173,7 @@ Status values start as planned except for task 0, which is this documentation re
 | C1 | 8 | completed | `ed7d2a4761fa5702e7c18e55c48eb2d7cc0c50b7` | `7555cc91925967b531d6e3bba33c8e1bf47e73a2` |
 | C2 | 7 | planned |  |  |
 | C3 | 12 | planned |  |  |
-| D1 | 13 | specified |  |  |
+| D1 | 13 | completed | `e4f8328eacdf6088eb8765bae026f17e97c1464b` | `afb951a005b6ad22e1b12097eb579ef01aef852f` |
 | D2 | 9 | planned |  |  |
 | D3a | 10 | completed | `d45a5bce027b50be38bc5aaf722ddbd183392d10` | `b3cc780d971ec76844b6bf1f77a899a6632616e1` |
 | D3b | 10 | planned |  |  |
@@ -528,3 +528,7 @@ Selection uses the stored VALIDATION rule. The score is ensemble mean QLIKE, and
 Ridge is not extended. A penalty of 0 is ordinary least squares, not a point on a longer shrinkage path. XGB08 is not extended. Its depth and learning rate sit between other points of the frozen grid. The searched LSTM-BEKK count is 20 plus the number of new configurations actually fit. The searched EWMA count is 20 plus the number of new decays actually fit.
 
 If the selected identifier changes, that identifier is run on SCREEN under its new identifier. Outputs go under `results/post_screen/D1/`.
+
+### Task D1 result. Interior search around LSTM19 and EWMA01
+
+Result date 2026-10-30. VALIDATION selected EWMA21, decay 0.60, and LSTM22, depth 7 with the other LSTM19 settings held fixed. The declared outward steps EWMA25, decay 0.55, and LSTM28, depth 8, were fit and lost. After those steps the winners sit between searched neighbors on the moved factor. The searched totals are EWMA 25 and LSTM-BEKK 28. Both new identifiers were scored on SCREEN. LSTM19 remains the deep-learning representative. Commit `afb951a005b6ad22e1b12097eb579ef01aef852f` records the scores. Report `results/post_screen/D1/REPORT.md`.
