@@ -168,7 +168,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A2 | 3 | completed | `75240e13873322df8d93f4dfb3bb4a76626a3bb4` | `80f03b0acc0231a660ae72e13ab1957133fef31f` |
 | A3 | 4-5 | completed | `c30b27a5739d803458006853c2d8bbc80c80d32b` | `af3d14a2dca15cdf589586151bb8414e0ed13ee1` |
 | A4 | 6 | completed | `d0d3f70547038bee845b2984c1ffdb2349f61650` | `71bdbc200c41224545116adfc0aef24ee0936690` |
-| B1 | 14 | frozen | `3ccffdbd84398a82879cd16d7da8d41c6ba8c5b6` |  |
+| B1 | 14 | completed | `3ccffdbd84398a82879cd16d7da8d41c6ba8c5b6` | `9169b92ad442ffa95d4f7a317aff55484d520463` |
 | B2 | 15 | completed | `8d0cbfb7184290f7db819e56c45e0da3548c831c` | `f9c6b58a79941bcc72392f6d95943d54b336a9dd` |
 | C1 | 8 | completed | `ed7d2a4761fa5702e7c18e55c48eb2d7cc0c50b7` | `7555cc91925967b531d6e3bba33c8e1bf47e73a2` |
 | C2 | 7 | planned |  |  |
@@ -514,3 +514,5 @@ The entry script is `scripts/dm_procedure_calibration.py`. Outputs go under `res
 ### Task B1 freeze. Confirmatory pairwise procedure
 
 Freeze date 2026-10-29. This paragraph is written after the calibration and before the SCREEN demonstration. No procedure qualified. Under D1 and D2 at \(T=500\) and \(\rho\le 0.6\), several candidates were inside \([0.03,0.075]\), but every candidate exceeded 0.075 on at least one D3 resample of the SCREEN HARQ-DRD minus LSTM-BEKK QLIKE gap. The selection rule therefore takes the smallest maximum absolute distortion from 0.05. That procedure is P5, the equal-weighted cosine estimator with \(\nu=\lfloor 0.4 T^{2/3}\rfloor\) and \(t_\nu\) critical values. Its maximum distortion on the required cells is 0.0334. This is a limitation. CONFIRM will call P5 through the new keyword. The default automatic-lag \(N(0,1)\) test is unchanged. P6 is not adopted.
+
+Commit `2aae89c62d7c5e5113e4c34e62fefcf8100c3c7f` freezes this choice. Commit `9169b92ad442ffa95d4f7a317aff55484d520463` records the SCREEN demonstration. Report `results/post_screen/B1/REPORT.md`.
