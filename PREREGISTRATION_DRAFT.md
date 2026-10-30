@@ -455,7 +455,7 @@ SHAR-DRD. The econometric side gains SHAR-DRD before D2 is fully specified. It i
 
 D2 variant V10. The information-rich LSTM input includes those same origin-dated per-asset semivariances. Target-day semivariances are excluded. D2 does not run until the rest of the V10 input list is written in its own spec. The faithful daily-return LSTM-BEKK is unchanged.
 
-C3 recalibration. Two versions are pre-declared. Both are fit on past forecasts only, by primary reduced QLIKE, with the adjusted date excluded from the fit. Version 1 is \(H^{*}=cH\) with \(c>0\). Version 2 is
+C3 recalibration. Two versions are pre-declared. The diagnostic basis is the A2 pooled Mincer–Zarnowitz slope, not a model ranking. LSTM19 has OLS slope \(0.764\). A scalar multiplier rescales that slope and leaves the intercept unchanged. Version 2 is declared beside it. Both are fit on past forecasts only, by primary reduced QLIKE, with the adjusted date excluded from the fit. Version 1 is \(H^{*}=cH\) with \(c>0\). Version 2 is
 
 \[
 H^{*}=c\left[\lambda H+(1-\lambda)\bar H\right]
