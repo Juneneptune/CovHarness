@@ -184,7 +184,7 @@ Status values start as planned except for task 0, which is this documentation re
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |
 | R2 | amendment R-2026-10-30 | completed | `9d50128d0a01a80396929381314aac9fc4b01125` | `9d50128d0a01a80396929381314aac9fc4b01125` |
 | B1b | P5 size-adjusted cutoffs | completed | `e4f01c0301320d5f92e0041e09069abc85ab2ba4` | `7145b67ab24c0ed36956ad82535cba188f242765` |
-| C4 | A4 follow-up | specified |  |  |
+| C4 | A4 follow-up | completed | `16144a6497600c1f8e427c8cdf23752bf23abc1a` | `c6de3e5cbc98d161be3f57afdbb01de56d48e6db` |
 
 G1 is the CONFIRM authorization gate. It has no numbered TODO item in the source list. Recording the gate in this table does not unlock CONFIRM.
 
@@ -574,3 +574,7 @@ Semivariances use the same 288 five-minute returns as production realized covari
 SHAR-DRD has one fixed specification, SHARDRD01. There is no grid. The variance equation is the HAR-DRD equation with the daily lag replaced by \(\mathrm{RS}^+\) and \(\mathrm{RS}^-\), each with its own shared slope. The weekly lag of four observations and the monthly lag of seventeen observations are unchanged. Intercepts remain asset-specific. The correlation equation is the HAR-DRD equation. Reconstruction, the validity filter, the estimation-window-mean fallback, the 21-origin refit, and the daily window update are those of HAR-DRD. SHAR-DRD joins the econometric eligible pool at G1.
 
 The entry script is `scripts/post_screen_shar.py`. Outputs go under `results/post_screen/C4/`.
+
+### Task C4 result. Semivariance panel and SHAR-DRD
+
+Result date 2026-10-30. SHARDRD01 completed VALIDATION and SCREEN with repair count 0. VALIDATION mean QLIKE is −32.81890778474039. SCREEN mean QLIKE is −31.733461479979443. On the pre-CONFIRM panel, RS+ plus RS− differs from the stored five-minute realized-variance diagonal by at most \(2.7755575615628914\times 10^{-17}\). That gap is a float64 summation residual. The exactly representable test case is bitwise. Commit `c6de3e5cbc98d161be3f57afdbb01de56d48e6db` records the scores. SHAR-DRD joins the econometric eligible pool at G1.
