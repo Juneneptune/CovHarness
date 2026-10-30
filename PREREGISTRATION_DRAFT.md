@@ -150,7 +150,7 @@ Every variant tried is reported, including failures. Stochastic methods use seed
 
 Equal treatment is required. The rolling window remains $m=250$. Parameters are refit every 21 origins. Daily state updates, the same targets, and the same losses are reused. A search budget above 20 configurations for any family is recorded with the true total, and parity extensions are applied where the same edge problem exists.
 
-One estimation-failure policy applies to all likelihood-estimated models. That policy is fixed in task C1 and reused by later tasks.
+One estimation-failure policy applies to all likelihood-estimated models. The policy is carry-forward of the last admissible parameter vector, as recorded on 2026-10-29. Task C1 implements that policy. Later tasks reuse it.
 
 SCREEN-based outputs are labeled descriptive or selection, never confirmatory. Recursive state and statistical lags must not pack across the 2023-03-24 halt.
 
@@ -440,3 +440,25 @@ Tests, before the panels are accepted. Phase 00 matches the production realized-
 The build kept the registered label convention. Phase 00 has 1250 rows and matches the production realized-covariance panel bitwise. Each shifted phase has 1249 rows. The only dropped label is 2023-03-25. Phase 00 keeps that date. No phase contains 2023-03-24 or a date on or after 2025-04-13. Every kept row ends by 24:00 on its label and is not usable at the previous origin. The halt leaves one lag break in every phase, plus the first row, which has no predecessor. Phase offsets three hours apart share 21 hours. The samples are correlated and do not multiply the effective sample size. No model was trained. The production panel hash is unchanged.
 
 Outputs are under `results/post_screen/D3a/`. The phase arrays are local `results/**/*.npz` files and are not tracked. Their SHA-256 values are in `d3a_summary.json`. Result commit `b3cc780d971ec76844b6bf1f77a899a6632616e1`. Report `results/post_screen/D3a/REPORT.md`.
+
+### Decisions recorded on 2026-10-29
+
+These choices are fixed before tasks B1, C1, C3, and D2 run. No empirical run was performed for this entry. CONFIRM stays locked. The 2026-09-21 artifacts are unchanged. B1, C1, C3, and D2 remain planned until each task writes its own spec.
+
+B1 design autocorrelation. The design persistence is an AR(1) coefficient of 0.6. The value 0.3 is closed. The stored synthetic calibration at \(T=500\) has automatic-lag rejection 0.0690 at 0.3 and 0.1104 at 0.6, so the bandwidth study is aimed at the stronger of those two documented cells. B1 has not been run. Gate G1 still ties the CONFIRM block length to the bandwidth B1 freezes under this coefficient. That length is not chosen from SCREEN p-values.
+
+C1 estimation failure. A failed or inadmissible likelihood fit carries forward the last admissible parameter vector for that model, records the failure, and forms the forecast from those parameters and the current admissible data. An interior constraint map is closed. If no admissible vector exists yet, the origin is a recorded failure and no substitute forecast is created. The policy applies from C1 onward. The stored DCC and DCC-NL selection failure remains the report that was already published.
+
+Robustness proxy. The primary proxy remains the unscaled five-minute realized covariance. The robustness proxy is the unscaled 15-minute realized covariance from the same measurement path, at interval 15, with the same anchor rule and no forward fill. Task A3 is the descriptive basis. On the pre-holdout sample the mean pairwise correlation is 0.708 at five minutes and 0.722 at fifteen minutes, and \(M/N\) at fifteen minutes is 19.2. No model forecast has been scored on the 15-minute proxy. Fifteen-minute results do not select representatives and do not replace primary confirmatory claims. CONFIRM-dated 15-minute rows are not built before G1.
+
+SHAR-DRD. The econometric side gains SHAR-DRD before D2 is fully specified. It is HAR-DRD in levels. The correlation equation is the HAR-DRD equation. The daily variance lag is replaced by the two same-day semivariances \(\mathrm{RS}^{+}\) and \(\mathrm{RS}^{-}\) from the primary five-minute returns. Weekly and monthly variance lags remain the HAR-DRD averages of realized variance. The four variance slopes are shared. Intercepts stay asset-specific. The estimator, window, cadence, pair order, and estimation-window-mean fallback remain those of HAR-DRD. A zero return is in neither semivariance. The model receives a new ID when it is implemented. It is not implemented in this entry.
+
+D2 variant V10. The information-rich LSTM input includes those same origin-dated per-asset semivariances. Target-day semivariances are excluded. D2 does not run until the rest of the V10 input list is written in its own spec. The faithful daily-return LSTM-BEKK is unchanged.
+
+C3 recalibration. Two versions are pre-declared. Both are fit on past forecasts only, by primary reduced QLIKE, with the adjusted date excluded from the fit. Version 1 is \(H^{*}=cH\) with \(c>0\). Version 2 is
+
+\[
+H^{*}=c\left[\lambda H+(1-\lambda)\bar H\right]
+\]
+
+with \(c>0\) and \(\lambda\in[0,1]\). \(\bar H\) is the equal-weight mean of that model's own one-day-ahead forecasts on the preceding 250 origins whose targets fall on or before the current origin. An origin with fewer than 250 such forecasts has no version-2 forecast, and the gap is reported. Both versions are reported. The version is not chosen after seeing which one scores better. No recalibration was fit in this entry.

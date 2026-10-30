@@ -67,6 +67,8 @@ The exchange halt on 2023-03-24 is excluded from the statistical calendar. An av
 
 Shifted UTC phases at 03, 06, 09, 12, 15, 18, and 21 are extra training panels built from the same five-minute functions. A phase day labeled \(d\) at hour \(h\) is \([h{:}00\) on \(d-1,\ h{:}00\) on \(d)\). Phase 00 remains the production UTC day. Any phase window that intersects 2023-03-24 is dropped, and no phase day is usable before the close of its label date. These panels stop at the last selection date. They do not replace the evaluation target. Offsets three hours apart share 21 hours, so the added rows are correlated and do not multiply the effective sample size.
 
+The primary evaluation proxy remains this five-minute realized covariance. A 15-minute realized covariance from the same measurement path is the declared robustness proxy. No model has been scored on it. It does not select representatives.
+
 The production panel has $T=1750$ dates from 2021-11-09 through 2026-08-25, with $N=5$. The local NPZ is gitignored. Measurement definitions are in [`docs/BINANCE_OPEN_DATA_MEASUREMENT_SPEC.md`](docs/BINANCE_OPEN_DATA_MEASUREMENT_SPEC.md). Built-panel checks are in [`docs/BINANCE_OPEN_DATA_PANEL.md`](docs/BINANCE_OPEN_DATA_PANEL.md). The first-stage schedule is in [`docs/BINANCE_OPEN_DATA_PROTOCOL.md`](docs/BINANCE_OPEN_DATA_PROTOCOL.md).
 
 Final-holdout dates were constructed as part of that production panel. Locking the holdout means no confirmatory forecasting or inference has been executed. It does not mean those measurements were never written. The Binance first-stage uses official public kline archives. Public accessibility of klines does not imply a right to redistribute raw files.
@@ -329,7 +331,7 @@ This experiment did not complete the conventional frontier, the deep-learning fr
 
 The first-stage Binance core is $N=5$ and one unscaled five-minute realized-covariance proxy. [`INITIAL_CORE_BENCHMARK_PLAN.md`](INITIAL_CORE_BENCHMARK_PLAN.md) still records a broader TIER 1 design with $N=30$ and two equity proxies. Those documents disagree. The executed first-stage does not replace the broader plan, and the plan does not rewrite what was actually run.
 
-Unresolved or unimplemented work includes LSTM-BEKK-RC, GHAR as a structured graph / econometric baseline, a genuinely neural graph covariance model, Binance proxy robustness, the confirmatory inference decision, and full economic evaluation. Realized kernels, cDCC, and daily-moving-window Ledoit–Wolf are unimplemented.
+Unresolved or unimplemented work includes LSTM-BEKK-RC, SHAR-DRD, GHAR as a structured graph / econometric baseline, a genuinely neural graph covariance model, scoring on the declared 15-minute robustness proxy, the two declared recalibration maps, the confirmatory inference decision, and full economic evaluation. Realized kernels, cDCC, and daily-moving-window Ledoit–Wolf are unimplemented.
 
 The long-panel U.S.-equity experiment remains pending because production TAQ access has not yet been established. A passing unit-test suite supports the tested behaviours. It does not prove the absence of leakage, certify the repository as bug-free, or complete the paper. Software completion is not paper completion. Model selection is not final confirmation. Covariance-loss rankings are not economic value.
 
