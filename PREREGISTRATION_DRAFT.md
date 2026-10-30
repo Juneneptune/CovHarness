@@ -173,7 +173,7 @@ Status values start as planned except for task 0, which is this documentation re
 | C1 | 8 | completed | `ed7d2a4761fa5702e7c18e55c48eb2d7cc0c50b7` | `7555cc91925967b531d6e3bba33c8e1bf47e73a2` |
 | C2 | 7 | planned |  |  |
 | C3 | 12 | planned |  |  |
-| D1 | 13 | planned |  |  |
+| D1 | 13 | specified |  |  |
 | D2 | 9 | planned |  |  |
 | D3a | 10 | completed | `d45a5bce027b50be38bc5aaf722ddbd183392d10` | `b3cc780d971ec76844b6bf1f77a899a6632616e1` |
 | D3b | 10 | planned |  |  |
@@ -516,3 +516,15 @@ The entry script is `scripts/dm_procedure_calibration.py`. Outputs go under `res
 Freeze date 2026-10-29. This paragraph is written after the calibration and before the SCREEN demonstration. No procedure qualified. Under D1 and D2 at \(T=500\) and \(\rho\le 0.6\), several candidates were inside \([0.03,0.075]\), but every candidate exceeded 0.075 on at least one D3 resample of the SCREEN HARQ-DRD minus LSTM-BEKK QLIKE gap. The selection rule therefore takes the smallest maximum absolute distortion from 0.05. That procedure is P5, the equal-weighted cosine estimator with \(\nu=\lfloor 0.4 T^{2/3}\rfloor\) and \(t_\nu\) critical values. Its maximum distortion on the required cells is 0.0334. This is a limitation. CONFIRM will call P5 through the new keyword. The default automatic-lag \(N(0,1)\) test is unchanged. P6 is not adopted.
 
 Commit `2aae89c62d7c5e5113e4c34e62fefcf8100c3c7f` freezes this choice. Commit `9169b92ad442ffa95d4f7a317aff55484d520463` records the SCREEN demonstration. Report `results/post_screen/B1/REPORT.md`.
+
+### Task D1 spec. Interior search around LSTM19 and EWMA01
+
+Spec date 2026-10-29. This entry is written before any D1 fit. The frozen core YAML is not edited. New identifiers live in `configs/binance_post_screen_d1.yaml`. VALIDATION is the only selection sample. CONFIRM stays locked. No SPA, MCS, or finalist reselection is run. The deep-learning representative is not re-decided here.
+
+LSTM19 is held fixed at 5 layers, dropout 0.2, 75 epochs, learning rate 0.001, and gradient clip 1. One factor moves at a time. The seven configurations are LSTM21 and LSTM22 for depth 6 and 7, LSTM23 and LSTM24 for dropout 0.3 and 0.4, LSTM25 and LSTM26 for 100 and 150 epochs, and LSTM27 for learning rate 0.002. Each uses seeds 0 through 4 and an equal-weight ensemble. EWMA21 through EWMA24 use decay 0.60, 0.65, 0.70, and 0.75. EWMA runs before the LSTM configurations. A checkpoint is written after each configuration-seed pair.
+
+Selection uses the stored VALIDATION rule. The score is ensemble mean QLIKE, and an exact tie uses the lexicographically smaller identifier. LSTM19 and EWMA01 enter that comparison through their stored VALIDATION scores. They are not refit. If the winner is the outward edge of an axis whose step is fixed by this grid, at most one further configuration is fit on that axis. Depth 7 may be followed by depth 8, dropout 0.4 by 0.5, 150 epochs by 200, and EWMA decay 0.60 by 0.55. The learning-rate axis has a single new point, so a further rate is not defined. If LSTM27 wins, the extra step is not invented. The search stops and the edge is reported. If the baseline identifier still wins, no further outward step is fit.
+
+Ridge is not extended. A penalty of 0 is ordinary least squares, not a point on a longer shrinkage path. XGB08 is not extended. Its depth and learning rate sit between other points of the frozen grid. The searched LSTM-BEKK count is 20 plus the number of new configurations actually fit. The searched EWMA count is 20 plus the number of new decays actually fit.
+
+If the selected identifier changes, that identifier is run on SCREEN under its new identifier. Outputs go under `results/post_screen/D1/`.

@@ -1,0 +1,97 @@
+# Post-SCREEN task D1. This file does not replace the frozen core configuration.
+branch: binance_post_screen_d1
+version: '2026-10-29'
+held_fixed_from: LSTM19
+gradient_clip_norm: 1.0
+seeds: [0, 1, 2, 3, 4]
+ewma:
+  - id: EWMA21
+    decay: 0.60
+  - id: EWMA22
+    decay: 0.65
+  - id: EWMA23
+    decay: 0.70
+  - id: EWMA24
+    decay: 0.75
+lstm:
+  - id: LSTM21
+    axis: depth
+    num_layers: 6
+    dropout: 0.2
+    max_epochs: 75
+    learning_rate: 0.001
+    gradient_clip_norm: 1.0
+  - id: LSTM22
+    axis: depth
+    num_layers: 7
+    dropout: 0.2
+    max_epochs: 75
+    learning_rate: 0.001
+    gradient_clip_norm: 1.0
+  - id: LSTM23
+    axis: dropout
+    num_layers: 5
+    dropout: 0.3
+    max_epochs: 75
+    learning_rate: 0.001
+    gradient_clip_norm: 1.0
+  - id: LSTM24
+    axis: dropout
+    num_layers: 5
+    dropout: 0.4
+    max_epochs: 75
+    learning_rate: 0.001
+    gradient_clip_norm: 1.0
+  - id: LSTM25
+    axis: epochs
+    num_layers: 5
+    dropout: 0.2
+    max_epochs: 100
+    learning_rate: 0.001
+    gradient_clip_norm: 1.0
+  - id: LSTM26
+    axis: epochs
+    num_layers: 5
+    dropout: 0.2
+    max_epochs: 150
+    learning_rate: 0.001
+    gradient_clip_norm: 1.0
+  - id: LSTM27
+    axis: learning_rate
+    num_layers: 5
+    dropout: 0.2
+    max_epochs: 75
+    learning_rate: 0.002
+    gradient_clip_norm: 1.0
+edge_extension:
+  depth:
+    edge_id: LSTM22
+    next_id: LSTM28
+    num_layers: 8
+    dropout: 0.2
+    max_epochs: 75
+    learning_rate: 0.001
+    gradient_clip_norm: 1.0
+  dropout:
+    edge_id: LSTM24
+    next_id: LSTM29
+    num_layers: 5
+    dropout: 0.5
+    max_epochs: 75
+    learning_rate: 0.001
+    gradient_clip_norm: 1.0
+  epochs:
+    edge_id: LSTM26
+    next_id: LSTM30
+    num_layers: 5
+    dropout: 0.2
+    max_epochs: 200
+    learning_rate: 0.001
+    gradient_clip_norm: 1.0
+  learning_rate:
+    edge_id: LSTM27
+    next_id: null
+  ewma:
+    edge_id: EWMA21
+    next_id: EWMA25
+    decay: 0.55
