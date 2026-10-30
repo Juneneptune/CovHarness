@@ -176,12 +176,14 @@ Status values start as planned except for task 0, which is this documentation re
 | D1 | 13 | completed | `e4f8328eacdf6088eb8765bae026f17e97c1464b` | `afb951a005b6ad22e1b12097eb579ef01aef852f` |
 | D2 | 9 | planned |  |  |
 | D3a | 10 | completed | `d45a5bce027b50be38bc5aaf722ddbd183392d10` | `b3cc780d971ec76844b6bf1f77a899a6632616e1` |
-| D3b | 10 | planned |  |  |
-| D4 | 11 | planned |  |  |
+| D3b | 10 | deferred |  |  |
+| D4 | 11 | deferred |  |  |
 | E1 | 16 | planned |  |  |
 | G1 |  | planned |  |  |
 | F1 | 17 | planned |  |  |
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |
+| R2 | amendment R-2026-10-30 | completed |  |  |
+| B1b | P5 size-adjusted cutoffs | planned |  |  |
 | C4 | A4 follow-up | planned |  |  |
 
 G1 is the CONFIRM authorization gate. It has no numbered TODO item in the source list. Recording the gate in this table does not unlock CONFIRM.
@@ -532,3 +534,19 @@ If the selected identifier changes, that identifier is run on SCREEN under its n
 ### Task D1 result. Interior search around LSTM19 and EWMA01
 
 Result date 2026-10-30. VALIDATION selected EWMA21, decay 0.60, and LSTM22, depth 7 with the other LSTM19 settings held fixed. The declared outward steps EWMA25, decay 0.55, and LSTM28, depth 8, were fit and lost. After those steps the winners sit between searched neighbors on the moved factor. The searched totals are EWMA 25 and LSTM-BEKK 28. Both new identifiers were scored on SCREEN. LSTM19 remains the deep-learning representative. Commit `afb951a005b6ad22e1b12097eb579ef01aef852f` records the scores. Report `results/post_screen/D1/REPORT.md`.
+
+### Amendment R-2026-10-30
+
+Amendment date 2026-10-30. The items below were fixed after reviewing the completed tasks R1, C1, B1, and D1. None uses the locked holdout. CONFIRM stays locked. Earlier register entries are unchanged.
+
+Family configurations. Under the VALIDATION rule, the LSTM-BEKK family configuration is LSTM22, depth 7, with the other LSTM19 settings held fixed. The EWMA family configuration is EWMA21, decay 0.60. D1 selected both on VALIDATION. The outward steps, depth 8 and decay 0.55, were fit and lost, so both winners are interior on the extended one-factor grids. LSTM19 and EWMA01 stay in all tables as the original-grid comparisons. The switch follows the VALIDATION rule. On SCREEN, LSTM22 mean QLIKE is −31.298 against LSTM19 at −31.409, and EWMA21 is −31.784158 against EWMA01 at −31.776804. That VALIDATION-to-SCREEN reversal for LSTM is a finding about the reliability of 250-day configuration selection. G1 re-runs the frozen finalist rule with these configurations and accepts the outcome.
+
+Departure from the LSTM-BEKK paper. Depth 7 lies outside the source paper's architecture range of 3 to 5. It is admitted only through the named opt-in `architecture_range` `post_screen_d1`. This is a declared departure.
+
+Pairwise test. P5, the equal-weighted cosine estimator, is the primary confirmatory pairwise procedure. The frozen fallback rule selected it because no candidate qualified. Under the resampled SCREEN headline-gap null at \(T=500\), P5 rejects 0.0834 at block length 7 and 0.0774 at block length 29, against a nominal size of 0.05. Under Student-\(t(5)\) at \(\rho\le 0.6\) it stays inside \([0.03, 0.075]\). A size-adjusted companion is frozen in task B1b. A confirmatory pairwise claim requires rejection at the ordinary P5 critical value and at both size-adjusted critical values. The win rate, subperiod signs, and cumulative-loss plot are always reported beside the test.
+
+DCC carry-forward caveat. DCC02 and DCCNL02 each held parameters at 9 of 24 SCREEN refits and at no VALIDATION refit. Every DCC02 and DCCNL02 result is reported with that count, beside the interior-map variants DCC03 and DCCNL03.
+
+Deferral. D3b, the phase-shifted augmentation, and D4, the HEAVY matched pairs, are deferred until after CONFIRM. They are excluded from the confirmatory roster. A later run is a post-holdout extension and cannot be confirmatory on this holdout. D3a's phase arrays are kept.
+
+D2 configuration. D2's variants use LSTM22's configuration. V00 is LSTM22 itself, already scored in D1, and is not refit.

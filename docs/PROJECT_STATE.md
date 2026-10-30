@@ -1164,7 +1164,7 @@ Binance SCREEN descriptive interpretation on 2026-09-21. No refit. No SPA or MCS
 
 ## Next recommended task
 
-The next planned task is C4. It has not been started. Task D1 selected EWMA21 and LSTM22 on VALIDATION and scored both on SCREEN. LSTM19 remains the deep-learning representative. The searched totals are EWMA 25 and LSTM-BEKK 28. Task B1 froze procedure P5. CONFIRM remains locked. Task C1 has been executed on VALIDATION and SCREEN for DCC02, DCCNL02, DCC03, and DCCNL03. DCC01 and DCCNL01 remain the failed selection columns.
+The next planned tasks are C3, E1, and G1. Amendment R-2026-10-30 sets the LSTM-BEKK family configuration to LSTM22 and the EWMA family configuration to EWMA21. LSTM19 and EWMA01 remain the original-grid comparisons. P5 remains the primary pairwise procedure, with measured resampled-null rejection 0.0834 at block length 7 and 0.0774 at block length 29. D3b and D4 are deferred until after CONFIRM. CONFIRM remains locked.
 
 Post-SCREEN work is specified in the amendment register at the end of `PREREGISTRATION_DRAFT.md`. Task 0 is the inventory record. Task A1 is the SCREEN loss-differential persistence and refit-cycle description. Spec commit `80612248ae6f772262c4eadc8b48c6a12a9887c0`. Helpers are in `covharness.inference.diagnostics`. Entry script `scripts/post_screen_loss_dependence.py`. Outputs `results/post_screen/A1/`. Tests `tests/unit/test_inference_diagnostics_a1.py` plus `tests/unit/test_inference.py` 27 passed, 1 existing HAC overflow warning. No Diebold–Mariano lag or bootstrap block length was chosen. Diebold–Mariano, SPA, and MCS were not run. CONFIRM remained locked.
 
