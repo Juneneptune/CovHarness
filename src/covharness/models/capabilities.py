@@ -29,6 +29,7 @@ class FitInput(str, Enum):
     REALIZED_COVARIANCE_AND_RQ = "realized_covariance_and_rq"
     REALIZED_COVARIANCE_AND_SEMIVARIANCE = "realized_covariance_and_semivariance"
     DAILY_RETURN = "daily_return"
+    DAILY_RETURN_REALIZED_CONTEXT = "daily_return_realized_context"
 
 
 class UpdateObservable(str, Enum):
@@ -40,6 +41,7 @@ class UpdateObservable(str, Enum):
     REALIZED_COVARIANCE_AND_RQ_WINDOW = "realized_covariance_and_rq_window"
     REALIZED_COVARIANCE_AND_SEMIVARIANCE_WINDOW = "realized_covariance_and_semivariance_window"
     DAILY_RETURN = "daily_return"
+    DAILY_RETURN_AND_FEATURES = "daily_return_and_features"
 
 
 @dataclass(frozen=True)

@@ -486,6 +486,8 @@ def run_scheduled_screen_forecasts(
     on_origin: Callable[[dt.date, bool, object], None] | None = None,
     semivariance_positive: NDArray[np.floating] | None = None,
     semivariance_negative: NDArray[np.floating] | None = None,
+    feature_panel: NDArray[np.floating] | None = None,
+    proxy_panel: NDArray[np.floating] | None = None,
 ) -> tuple[list[RollingForecastRecord], NDArray[np.bool_], int, dict[str, object]]:
     """Advance one SCREEN representative. Windows cannot enter CONFIRM."""
     records: list[RollingForecastRecord] = []
@@ -506,6 +508,8 @@ def run_scheduled_screen_forecasts(
             realized_quarticity=view.rq,
             semivariance_positive=semivariance_positive,
             semivariance_negative=semivariance_negative,
+            feature_panel=feature_panel,
+            proxy_panel=proxy_panel,
         )
         try:
             action = _fit_at_origin(model, payload) if step.refit else _advance_at_origin(model, payload)
@@ -757,6 +761,8 @@ def run_one_screen_configuration(
     on_origin: Callable[[dt.date, bool, object], None] | None = None,
     semivariance_positive: NDArray[np.floating] | None = None,
     semivariance_negative: NDArray[np.floating] | None = None,
+    feature_panel: NDArray[np.floating] | None = None,
+    proxy_panel: NDArray[np.floating] | None = None,
 ) -> CandidateRunResult:
     config_id = str(row["id"])
     required_targets = [step.target.date() for step in schedule.steps]
@@ -782,6 +788,8 @@ def run_one_screen_configuration(
             on_origin=on_origin,
             semivariance_positive=semivariance_positive,
             semivariance_negative=semivariance_negative,
+            feature_panel=feature_panel,
+            proxy_panel=proxy_panel,
         )
         result = evaluate_screen_records(
             family,

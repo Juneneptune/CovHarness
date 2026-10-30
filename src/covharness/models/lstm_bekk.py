@@ -120,14 +120,21 @@ class LSTMBEKKFitState:
 class LSTMBEKKNetwork(nn.Module):
     """Stacked LSTM, triangular head, static C, and stationarity logits."""
 
-    def __init__(self, n_assets: int, num_layers: int, dropout: float) -> None:
+    def __init__(
+        self,
+        n_assets: int,
+        num_layers: int,
+        dropout: float,
+        input_size: int | None = None,
+    ) -> None:
         super().__init__()
         n_triangle = triangle_parameter_count(n_assets)
         self.n_assets = n_assets
         self.n_triangle = n_triangle
         # Stacked LSTM. Hidden width equals the asset count.
+        self.input_size = n_assets if input_size is None else int(input_size)
         self.lstm = nn.LSTM(
-            input_size=n_assets,
+            input_size=self.input_size,
             hidden_size=n_assets,
             num_layers=num_layers,
             dropout=dropout,
@@ -718,7 +725,8 @@ def _lstm_dynamic_c(
     cell: Tensor,
 ) -> tuple[Tensor, Tensor, Tensor]:
     """Advance the stacked LSTM one step and map the hidden state to ``C_t``."""
-    lstm_input = shock.view(1, 1, network.n_assets)
+    # Width is N for the faithful model and wider when a variant appends features.
+    lstm_input = shock.view(1, 1, int(shock.shape[0]))
     output, (hidden, cell) = network.lstm(lstm_input, (hidden, cell))
     hidden_vector = output.reshape(network.n_assets)
     raw_triangle = network.triangle_head(hidden_vector)

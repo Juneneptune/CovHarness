@@ -64,6 +64,9 @@ class OriginPayload:
     current_rq: NDArray[np.floating] | None = None
     rs_positive_window: NDArray[np.floating] | None = None
     rs_negative_window: NDArray[np.floating] | None = None
+    feature_window: NDArray[np.floating] | None = None
+    current_feature: NDArray[np.floating] | None = None
+    proxy_window: NDArray[np.floating] | None = None
 
 
 @dataclass(frozen=True)
@@ -163,6 +166,8 @@ def build_origin_payload(
     realized_quarticity: NDArray[np.floating] | None = None,
     semivariance_positive: NDArray[np.floating] | None = None,
     semivariance_negative: NDArray[np.floating] | None = None,
+    feature_panel: NDArray[np.floating] | None = None,
+    proxy_panel: NDArray[np.floating] | None = None,
 ) -> OriginPayload:
     """Slice origin-t arrays from aligned calendar panels."""
     _reject_leaking_step(step, calendar)
@@ -185,6 +190,9 @@ def build_origin_payload(
         rs_negative_window=_slice_window(
             semivariance_negative, step, "semivariance_negative"
         ),
+        feature_window=_slice_window(feature_panel, step, "feature_panel"),
+        current_feature=_slice_current(feature_panel, step, "feature_panel"),
+        proxy_window=_slice_window(proxy_panel, step, "proxy_panel"),
     )
 
 
@@ -206,6 +214,12 @@ def _fit_at_origin(model: CovarianceModel, payload: OriginPayload) -> RollingAct
         )
     elif caps.fit_input is FitInput.DAILY_RETURN:
         model.fit(_require_field(payload.return_window, "return_window", payload))
+    elif caps.fit_input is FitInput.DAILY_RETURN_REALIZED_CONTEXT:
+        model.fit(
+            _require_field(payload.return_window, "return_window", payload),
+            _require_field(payload.feature_window, "feature_window", payload),
+            _require_field(payload.proxy_window, "proxy_window", payload),
+        )
     else:
         raise InvalidModelInputError(
             f"unsupported fit input {caps.fit_input} at origin {payload.origin.date()}"
@@ -244,6 +258,11 @@ def _advance_at_origin(model: CovarianceModel, payload: OriginPayload) -> Rollin
         elif caps.update_observable is UpdateObservable.DAILY_RETURN:
             model.update(
                 _require_field(payload.current_return, "current_return", payload)
+            )
+        elif caps.update_observable is UpdateObservable.DAILY_RETURN_AND_FEATURES:
+            model.update(
+                _require_field(payload.current_return, "current_return", payload),
+                _require_field(payload.current_feature, "current_feature", payload),
             )
         else:
             raise InvalidModelInputError(

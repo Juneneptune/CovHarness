@@ -174,7 +174,7 @@ Status values start as planned except for task 0, which is this documentation re
 | C2 | 7 | planned |  |  |
 | C3 | 12 | planned |  |  |
 | D1 | 13 | completed | `e4f8328eacdf6088eb8765bae026f17e97c1464b` | `afb951a005b6ad22e1b12097eb579ef01aef852f` |
-| D2 | 9 | planned |  |  |
+| D2 | 9 | specified |  |  |
 | D3a | 10 | completed | `d45a5bce027b50be38bc5aaf722ddbd183392d10` | `b3cc780d971ec76844b6bf1f77a899a6632616e1` |
 | D3b | 10 | deferred |  |  |
 | D4 | 11 | deferred |  |  |
@@ -578,3 +578,11 @@ The entry script is `scripts/post_screen_shar.py`. Outputs go under `results/pos
 ### Task C4 result. Semivariance panel and SHAR-DRD
 
 Result date 2026-10-30. SHARDRD01 completed VALIDATION and SCREEN with repair count 0. VALIDATION mean QLIKE is −32.81890778474039. SCREEN mean QLIKE is −31.733461479979443. On the pre-CONFIRM panel, RS+ plus RS− differs from the stored five-minute realized-variance diagonal by at most \(2.7755575615628914\times 10^{-17}\). That gap is a float64 summation residual. The exactly representable test case is bitwise. Commit `c6de3e5cbc98d161be3f57afdbb01de56d48e6db` records the scores. SHAR-DRD joins the econometric eligible pool at G1.
+
+### Task D2 spec. Information-matched LSTM-BEKK
+
+Spec date 2026-10-30. This entry is written before any D2 fit. Amendment R-2026-10-30 fixes the configuration at LSTM22, with the named opt-in `architecture_range=post_screen_d1`. There is no further search. Seeds are 0 through 4. The reported forecast is the equal-weight covariance ensemble. CONFIRM stays locked. VALIDATION and SCREEN are diagnostics. No SPA, MCS, or reselection is run.
+
+V00 is LSTM22 itself, already scored in D1, and is not refit. V10 appends origin-day features to the LSTM input. Those features are the internal return, log positive semivariance, log negative semivariance, the realized-correlation vech, and log realized quarticity. The semivariances come from the C4 array and replace log realized variance. A nonpositive semivariance is an input failure and is not floored. Realized features are standardized with a scaler fit on the estimation window only. The return block keeps the paper centering and percent scale, because the BEKK shock is that return. V01 keeps the return-only input and trains on reduced QLIKE against realized covariance in the same \(10^{4}\) internal units. The forecast remains \(H_{t+1\mid t}\). V11 uses both changes. V01 and V11 keep LSTM22's learning rate and epoch count. That absence of retuning is a limitation.
+
+The headline descriptive contrast is V11 against V00. All four variants are reported. Claims are judged on CONFIRM only. Each fit writes under `results/post_screen/D2/<variant>/seed_<s>/`. The entry script is `scripts/post_screen_d2_job.py`.
