@@ -181,6 +181,8 @@ Status values start as planned except for task 0, which is this documentation re
 | E1 | 16 | planned |  |  |
 | G1 |  | planned |  |  |
 | F1 | 17 | planned |  |  |
+| R1 | amendment R-2026-10-29 | completed |  |  |
+| C4 | A4 follow-up | planned |  |  |
 
 G1 is the CONFIRM authorization gate. It has no numbered TODO item in the source list. Recording the gate in this table does not unlock CONFIRM.
 
@@ -462,3 +464,19 @@ H^{*}=c\left[\lambda H+(1-\lambda)\bar H\right]
 \]
 
 with \(c>0\) and \(\lambda\in[0,1]\). \(\bar H\) is the equal-weight mean of that model's own one-day-ahead forecasts on the preceding 250 origins whose targets fall on or before the current origin. An origin with fewer than 250 such forecasts has no version-2 forecast, and the gap is reported. Both versions are reported. The version is not chosen after seeing which one scores better. No recalibration was fit in this entry.
+
+### Amendment R-2026-10-29
+
+Amendment date 2026-10-29. This entry is written before tasks C1, B1, D1, and C4 run. Every decision below rests on pre-holdout diagnostics from A1, A2, A3, and A4. None rests on a model ranking. CONFIRM stays locked. The 15-minute panel and the semivariance model are not built in this amendment. Task T1 remains the unmerged editorial branch `docs/editorial-pass` and is outside this register.
+
+Pairwise test persistence. Task B1 uses \(\rho_{\star}=0.6\). The largest lag-1 autocorrelation among the eight pre-specified A1 gaps is 0.513, on HARDRD01 versus XGB08 under squared Frobenius. The value 0.6 is the smallest calibration cell at or above that estimate. At \(T=500\) the current automatic-lag Diebold–Mariano test rejects at 0.069 when \(\rho=0.3\) and at 0.110 when \(\rho=0.6\). Cells 0.8 and 0.9 are reported and do not set the requirement.
+
+Estimation-failure policy. Carry-forward of the last accepted parameters is the primary rule for every likelihood-estimated model, including DCC, DCC-NL, BEKK, and HEAVY. An interior softmax map with \(\varepsilon=10^{-6}\) runs as a labeled robustness variant. Primary identifiers are eligible for a later headline. Robustness identifiers are not. DCC01 and DCCNL01 remain the failed selection columns.
+
+Secondary evaluation proxy. Fifteen-minute realized covariance, built by the frozen measurement path with the interval parameter from A3, is a CONFIRM robustness proxy. Five-minute realized covariance stays primary. A3 reports mean pairwise correlation 0.708 at 5 minutes, 0.722 at 15 minutes, and 0.725 at 30 minutes, with realized variance nearly flat. Ranking and inference are reported separately for each proxy and are never pooled. A conclusion is described as proxy-robust only when it holds under both.
+
+Sign asymmetry. The basis is A4. SHAR-DRD, identifier SHARDRD01, enters the econometric eligible pool under task C4. The D2 variant V10 replaces log realized variance in the LSTM input with \(\log\mathrm{RS}^{+}\) and \(\log\mathrm{RS}^{-}\) from the same five-minute returns, so both sides receive the same semivariance information.
+
+Recalibration. Task C3 reports two out-of-sample versions for every model. Recalibration R1 is the scalar map. Recalibration R2 shrinks the forecast toward the trailing proxy mean. Both are fit on past out-of-sample pairs only. The basis is A2. LSTM-BEKK has mean whitened ratio 1.066 and Mincer–Zarnowitz slope 0.764. The headline forecast stays raw unless this register adopts one version for every model before G1.
+
+Completed rows already in the planned-entry table keep the hashes from `results/post_screen/OVERNIGHT_SUMMARY.md` and the A1 reports. A1 spec `80612248ae6f772262c4eadc8b48c6a12a9887c0`, result `084e3915656be4d326ac242fc8bc709d86e335b3`. A1-addendum spec `0187bb1a5921bba53152f2610343cb0c8b4aaeb0`, result `e0447f94ebbaa2e6b35799b8ae6660398e83f5ba`. A2 spec `75240e13873322df8d93f4dfb3bb4a76626a3bb4`, result `80f03b0acc0231a660ae72e13ab1957133fef31f`. A3 spec `c30b27a5739d803458006853c2d8bbc80c80d32b`, result `af3d14a2dca15cdf589586151bb8414e0ed13ee1`. A4 spec `d0d3f70547038bee845b2984c1ffdb2349f61650`, result `71bdbc200c41224545116adfc0aef24ee0936690`. B2 spec `8d0cbfb7184290f7db819e56c45e0da3548c831c`, result `f9c6b58a79941bcc72392f6d95943d54b336a9dd`. D3a spec `d45a5bce027b50be38bc5aaf722ddbd183392d10`, result `b3cc780d971ec76844b6bf1f77a899a6632616e1`. The result cell for this amendment is filled once its commit exists.

@@ -1164,6 +1164,8 @@ Binance SCREEN descriptive interpretation on 2026-09-21. No refit. No SPA or MCS
 
 ## Next recommended task
 
+The next tasks are C1, then B1, then D1, then C4. Amendment R-2026-10-29 is the binding pre-holdout record for those tasks. CONFIRM remains locked.
+
 Post-SCREEN work is specified in the amendment register at the end of `PREREGISTRATION_DRAFT.md`. Task 0 is the inventory record. Task A1 is the SCREEN loss-differential persistence and refit-cycle description. Spec commit `80612248ae6f772262c4eadc8b48c6a12a9887c0`. Helpers are in `covharness.inference.diagnostics`. Entry script `scripts/post_screen_loss_dependence.py`. Outputs `results/post_screen/A1/`. Tests `tests/unit/test_inference_diagnostics_a1.py` plus `tests/unit/test_inference.py` 27 passed, 1 existing HAC overflow warning. No Diebold–Mariano lag or bootstrap block length was chosen. Diebold–Mariano, SPA, and MCS were not run. CONFIRM remained locked.
 
 Task A1-addendum checked the SCREEN refit-phase Wald. Spec commit `0187bb1a5921bba53152f2610343cb0c8b4aaeb0`. Tests `tests/unit/test_inference_a1_addendum.py` with the A1 diagnostic tests, 10 passed. A1 committed files were not rewritten. Time-rolled placebos show that reduced-QLIKE equal-mean rejections are not locked to the true refit calendar. One-df fresh-refit and linear-$k$ contrasts are null except HARQ versus EWMA QLIKE on $1\{k=0\}$. Dropping ten large $|d_t|$ dates is a sensitivity only. No lag was chosen. Diebold–Mariano was not run. CONFIRM remained locked.
