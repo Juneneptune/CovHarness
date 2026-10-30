@@ -170,7 +170,7 @@ Status values start as planned except for task 0, which is this documentation re
 | A4 | 6 | completed | `d0d3f70547038bee845b2984c1ffdb2349f61650` | `71bdbc200c41224545116adfc0aef24ee0936690` |
 | B1 | 14 | planned |  |  |
 | B2 | 15 | completed | `8d0cbfb7184290f7db819e56c45e0da3548c831c` | `f9c6b58a79941bcc72392f6d95943d54b336a9dd` |
-| C1 | 8 | planned |  |  |
+| C1 | 8 | specified |  |  |
 | C2 | 7 | planned |  |  |
 | C3 | 12 | planned |  |  |
 | D1 | 13 | planned |  |  |
@@ -480,3 +480,17 @@ Sign asymmetry. The basis is A4. SHAR-DRD, identifier SHARDRD01, enters the econ
 Recalibration. Task C3 reports two out-of-sample versions for every model. Recalibration R1 is the scalar map. Recalibration R2 shrinks the forecast toward the trailing proxy mean. Both are fit on past out-of-sample pairs only. The basis is A2. LSTM-BEKK has mean whitened ratio 1.066 and Mincer–Zarnowitz slope 0.764. The headline forecast stays raw unless this register adopts one version for every model before G1.
 
 Completed rows already in the planned-entry table keep the hashes from `results/post_screen/OVERNIGHT_SUMMARY.md` and the A1 reports. A1 spec `80612248ae6f772262c4eadc8b48c6a12a9887c0`, result `084e3915656be4d326ac242fc8bc709d86e335b3`. A1-addendum spec `0187bb1a5921bba53152f2610343cb0c8b4aaeb0`, result `e0447f94ebbaa2e6b35799b8ae6660398e83f5ba`. A2 spec `75240e13873322df8d93f4dfb3bb4a76626a3bb4`, result `80f03b0acc0231a660ae72e13ab1957133fef31f`. A3 spec `c30b27a5739d803458006853c2d8bbc80c80d32b`, result `af3d14a2dca15cdf589586151bb8414e0ed13ee1`. A4 spec `d0d3f70547038bee845b2984c1ffdb2349f61650`, result `71bdbc200c41224545116adfc0aef24ee0936690`. B2 spec `8d0cbfb7184290f7db819e56c45e0da3548c831c`, result `f9c6b58a79941bcc72392f6d95943d54b336a9dd`. D3a spec `d45a5bce027b50be38bc5aaf722ddbd183392d10`, result `b3cc780d971ec76844b6bf1f77a899a6632616e1`. Commit `a7f8e4e21cbfc8145261756e9b030126948ebc86` records this amendment. Report `results/post_screen/R1/REPORT.md`.
+
+### Task C1 spec. Estimation-failure policy for DCC and DCC-NL
+
+Spec date 2026-10-29. This entry is written before any C1 fit. It follows amendment R-2026-10-29. DCC01 and DCCNL01 stay failed. No SPA, MCS, or finalist selection is run. CONFIRM stays locked. The 2026-09-21 artifacts are not rewritten.
+
+Primary policy CF. At a refit where any stage fails \(a+b<1\), the model keeps the last accepted parameters for every stage and keeps updating states on the current data. A failure at a period's first refit, with nothing to carry, is a model failure. Each carry-forward is logged with origin, asset, and stage. Forecasts are not repaired.
+
+Robustness policy IM. Parameters are estimated through an unconstrained softmax-type map so \(a+b<1\) holds by construction. The recorded gap is \(\varepsilon=10^{-6}\). A fit with \(a+b>1-\varepsilon\) or \(a+b>0.999\) is counted and reported as near-boundary. IM identifiers are not headline-eligible.
+
+Identifiers. DCC02 and DCCNL02 are CF and are eligible at a later G1. DCC03 and DCCNL03 are IM and are not eligible for the headline. Later likelihood models, including BEKK and HEAVY, inherit CF as primary and IM as robustness.
+
+Implementation. The shared map and the carry-forward log live where C2 and D4 can import them. `dcc.py` keeps the existing reject path as the default, so DCC01 mathematics are unchanged. The entry script is `scripts/post_screen_dcc_failure_policy.py`. VALIDATION runs before SCREEN. Outputs go under `results/post_screen/C1/`. Both losses are scored. SCREEN output is labeled selection.
+
+Tests, before the empirical run. A synthetic GARCH path that drives QMLE to the boundary triggers CF. Carried parameters stay constant while states move. A first-refit failure still fails under CF. IM never returns \(a+b\ge 1\) and counts near-boundary fits. No forecast is repaired.
