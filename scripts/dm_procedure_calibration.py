@@ -249,6 +249,77 @@ def _select(rows: list[dict[str, object]]) -> dict[str, object]:
     return {"rule": rule, "chosen": chosen["procedure"], "limitation": limitation, "ranking": ranking}
 
 
+PAIRS = (
+    ("headline", "HARQ-DRD", "LSTM-BEKK"),
+    ("quarticity", "HARQ-DRD", "HAR-DRD"),
+    ("nonlinear", "HAR-DRD", "XGBoost-DRD"),
+    ("qlike_mcs", "HARQ-DRD", "EWMA"),
+)
+LOSS_FILES = {
+    "reduced_qlike": (
+        REPO_ROOT / "results" / "binance_screen_losses_qlike.npz",
+        QLIKE_SHA256,
+    ),
+    "squared_frobenius": (
+        REPO_ROOT / "results" / "binance_screen_losses_frobenius.npz",
+        "63a4de10db499b5527e5f1c276c17460481d85a7c3699a7a6226a97819729713",
+    ),
+}
+ROLLING_WINDOW = 21
+
+
+def demonstrate() -> None:
+    """Apply frozen P5 to the four A1 pairs. The choice is not recomputed."""
+    decision = json.loads((OUTPUT / "b1_calibration.json").read_text(encoding="utf-8"))
+    chosen = decision["decision"]["chosen"]
+    if chosen != "P5":
+        raise RuntimeError(f"demonstration expected frozen P5, found {chosen}")
+    rows = []
+    for loss_name, (path, expected) in LOSS_FILES.items():
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        if digest != expected:
+            raise RuntimeError(f"hash mismatch for {path}")
+        blob = np.load(path)
+        labels = [str(value) for value in blob["labels"].tolist()]
+        dates = [str(value) for value in blob["dates"].tolist()]
+        losses = np.asarray(blob["losses"], dtype=float)
+        for pair_id, left, right in PAIRS:
+            differential = losses[:, labels.index(left)] - losses[:, labels.index(right)]
+            result = diebold_mariano(differential, reference="ewc")
+            cumulative = np.cumsum(differential) / np.arange(1, differential.shape[0] + 1)
+            rolling = np.full(differential.shape[0], np.nan)
+            # Rolling mean uses the frozen 21-origin refit cadence as the window.
+            for index in range(ROLLING_WINDOW - 1, differential.shape[0]):
+                rolling[index] = float(np.mean(differential[index - ROLLING_WINDOW + 1 : index + 1]))
+            wins = int(np.sum(differential < 0.0))
+            ties = int(np.sum(differential == 0.0))
+            rows.append(
+                {
+                    "loss": loss_name,
+                    "pair_id": pair_id,
+                    "left": left,
+                    "right": right,
+                    "procedure": "P5",
+                    "statistic": result.statistic,
+                    "critical_value": result.critical_value,
+                    "reject_5pct": abs(result.statistic) > float(result.critical_value),
+                    "p_value": result.p_value,
+                    "nu": result.hac_maxlags,
+                    "cumulative_mean_end": float(cumulative[-1]),
+                    "rolling_mean_end": float(rolling[-1]),
+                    "rolling_window": ROLLING_WINDOW,
+                    "win_rate": wins / differential.shape[0],
+                    "tie_count": ties,
+                    "n_observations": int(differential.shape[0]),
+                    "date_start": dates[0],
+                    "date_end": dates[-1],
+                }
+            )
+            _log(f"B1 SCREEN demonstration {loss_name} {pair_id} {left}-{right}")
+    (OUTPUT / "b1_demonstration.json").write_text(json.dumps(rows, indent=2) + "\n", encoding="utf-8")
+    print("demonstration", len(rows), flush=True)
+
+
 def main() -> None:
     OUTPUT.mkdir(parents=True, exist_ok=True)
     cell_dir = OUTPUT / "cells"
@@ -291,4 +362,9 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+
+    if "--demonstrate" in sys.argv:
+        demonstrate()
+    else:
+        main()
