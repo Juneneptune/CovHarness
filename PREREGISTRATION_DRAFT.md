@@ -174,7 +174,7 @@ Status values start as planned except for task 0, which is this documentation re
 | C2 | 7 | specified | `23e728a5ebb8c2c3481a19637b9b8e0e8659b3c5` |  |
 | C3 | 12 | planned |  |  |
 | D1 | 13 | completed | `e4f8328eacdf6088eb8765bae026f17e97c1464b` | `afb951a005b6ad22e1b12097eb579ef01aef852f` |
-| D2 | 9 | specified | `60b240bae32577e0159df8cc494019b3db4935d4` |  |
+| D2 | 9 | completed | `60b240bae32577e0159df8cc494019b3db4935d4` | `453174f0eee09275533c149da89e010ff9d8d98d` |
 | D3a | 10 | completed | `d45a5bce027b50be38bc5aaf722ddbd183392d10` | `b3cc780d971ec76844b6bf1f77a899a6632616e1` |
 | D3b | 10 | deferred |  |  |
 | D4 | 11 | deferred |  |  |
@@ -586,6 +586,10 @@ Spec date 2026-10-30. This entry is written before any D2 fit. Amendment R-2026-
 V00 is LSTM22 itself, already scored in D1, and is not refit. V10 appends origin-day features to the LSTM input. Those features are the internal return, log positive semivariance, log negative semivariance, the realized-correlation vech, and log realized quarticity. The semivariances come from the C4 array and replace log realized variance. A nonpositive semivariance is an input failure and is not floored. Realized features are standardized with a scaler fit on the estimation window only. The return block keeps the paper centering and percent scale, because the BEKK shock is that return. V01 keeps the return-only input and trains on reduced QLIKE against realized covariance in the same \(10^{4}\) internal units. The forecast remains \(H_{t+1\mid t}\). V11 uses both changes. V01 and V11 keep LSTM22's learning rate and epoch count. That absence of retuning is a limitation.
 
 The headline descriptive contrast is V11 against V00. All four variants are reported. Claims are judged on CONFIRM only. Each fit writes under `results/post_screen/D2/<variant>/seed_<s>/`. The entry script is `scripts/post_screen_d2_job.py`.
+
+### Task D2 result. Information-matched LSTM-BEKK
+
+Result date 2026-10-30. All fifteen fits completed. No seed failed, so each ensemble uses five seeds. On SCREEN the V11 ensemble mean QLIKE is −31.46887138827727 and the stored V00 ensemble mean is −31.297631878381985. The descriptive gap V11 minus V00 is −0.1712395098952868. The stored HARQ-DRD SCREEN mean is −31.862062800706465, so HARQ-DRD minus V11 is −0.393191412429195. These gaps are descriptive. Commit `453174f0eee09275533c149da89e010ff9d8d98d` records the scores. The machine reported 48 processors. At most 44 jobs ran at once, and all 15 ran together.
 
 ### Task C2 spec. BEKK family and the zero-intercept ablation
 
