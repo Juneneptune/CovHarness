@@ -1,0 +1,24 @@
+{
+  "task": "D2",
+  "variant": "V11",
+  "seed": 1,
+  "spec_commit": "60b240bae32577e0159df8cc494019b3db4935d4",
+  "validation": {
+    "mean_qlike": -32.35681143154755,
+    "mean_frobenius": 4.721212425101905e-05,
+    "complete_support": true,
+    "repair_count": 0,
+    "n_targets": 250,
+    "runtime_seconds": 638.1079727129545,
+    "failure_reason": null
+  },
+  "screen": {
+    "mean_qlike": -31.409129075119157,
+    "mean_frobenius": 8.095951042959901e-05,
+    "complete_support": true,
+    "repair_count": 0,
+    "n_targets": 500,
+    "runtime_seconds": 1276.9604412210174,
+    "failure_reason": null
+  }
+}
