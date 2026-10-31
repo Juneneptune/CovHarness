@@ -178,7 +178,7 @@ Status values start as planned except for task 0, which is this documentation re
 | D3a | 10 | completed | `d45a5bce027b50be38bc5aaf722ddbd183392d10` | `b3cc780d971ec76844b6bf1f77a899a6632616e1` |
 | D3b | 10 | deferred |  |  |
 | D4 | 11 | deferred |  |  |
-| E1 | 16 | planned |  |  |
+| E1 | 16 | specified |  |  |
 | G1 |  | planned |  |  |
 | F1 | 17 | planned |  |  |
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |
@@ -626,3 +626,17 @@ The entry script is `scripts/post_screen_recalibration.py`. Outputs go under `re
 ### Task C3 result. Out-of-sample recalibration
 
 Result date 2026-10-30. The maps were applied to saved SCREEN forecasts. No model was refit. VALIDATION pairs were not used, because the halt separates that segment from SCREEN. Every scored column has 21 identity origins and zero proxy-mean failures. QLIKE and squared-Frobenius failures are zero on raw, R1, and R2. DCC01 and DCCNL01 have no SCREEN forecasts. After R2 the pooled-vech slope is 0.8332883426958895 for LSTM19, 0.7829200718545408 for LSTM22, and 0.8375116875703978 for V11. The stored A2 raw LSTM-BEKK slope is 0.764. The headline remains the raw forecast. Commit `cd7fa2630fe5488c3c4f59d3f14572bcf60aa67b` records the scores.
+
+### Task E1 spec. Global-minimum-variance evaluation
+
+Spec date 2026-10-30. Status. specified. SCREEN results are descriptive. This is the construction CONFIRM will use. No model is refit. CONFIRM dates are not scored.
+
+Weights, turnover, and costs live in `src/covharness/portfolio/gmv.py`. At origin t the unconstrained weights are H inverse times the one vector, divided by the sum of that vector. The solve uses the Cholesky factor. The weights are held over the target day and reset at the next UTC close. The primary outcome is the portfolio simple return. Simple returns are exp(r) minus 1, where r is the panel daily log return on the target date. The reported risk figures are the annualized sample standard deviation of that return, with the Bessel correction and 365 days, and the mean of the squared return. The secondary figure is the proxy quadratic form w transpose S w, using the five-minute realized covariance, and it is labeled proxy-based.
+
+Turnover is the L1 distance between the new weights and the previous weights after they drift with the intervening simple returns. The book opens in the first origin's weights, so the first turnover is zero. Costs of 5 and 10 basis points per unit turnover are subtracted from the portfolio return and are not subtracted from variance. Gross and net annualized standard deviations, mean turnover, and net Sharpe ratios are reported. Sharpe uses a zero risk-free rate and is completeness only. Global minimum variance is a risk target, not a return strategy.
+
+The descriptive SCREEN inference is the frozen P5 test on the unconstrained raw squared-return gap. The pairs are HARQDRD01 minus LSTM22, V11, EWMA21, and HARDRD01. Rejection is recorded at the ordinary critical value and at both B1b cutoffs. The win rate is the share of days on which the HARQDRD01 squared return is smaller. The cumulative sum of the gap is plotted. The same four pairs are also scored on the long-only raw book and on the unconstrained R1 and R2 books, as descriptive robustness, not as a confirmatory claim.
+
+Robustness declared here is long-only global minimum variance, the equal-weight anchor, and the raw, R1, and R2 forecast cubes from C3. Long-only weights solve the quadratic program with weights nonnegative and summing to one. The solver is SciPy SLSQP. A failed solve is logged and that origin is omitted from the long-only moments. It is not repaired.
+
+The entry script is `scripts/post_screen_gmv.py`. Outputs go under `results/post_screen/E1/`. DCC01 and DCCNL01 have no forecasts. BEKKS01 is in the main table and the other five BEKK configurations are an appendix.
