@@ -179,7 +179,8 @@ Status values start as planned except for task 0, which is this documentation re
 | D3b | 10 | deferred |  |  |
 | D4 | 11 | deferred |  |  |
 | E1 | 16 | completed | `56bb3bf2fc84764b5f39687cbe647c5827531710` | `251172c9528514b07e7ab7ca107f78abcacb4420` |
-| G1 |  | planned |  |  |
+| G1 |  | specified |  |  |
+| R-2026-10-30b | amendment | specified |  |  |
 | F1 | 17 | planned |  |  |
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |
 | R2 | amendment R-2026-10-30 | completed | `9d50128d0a01a80396929381314aac9fc4b01125` | `9d50128d0a01a80396929381314aac9fc4b01125` |
@@ -646,3 +647,19 @@ The entry script is `scripts/post_screen_gmv.py`. Outputs go under `results/post
 ### Task E1 result. Global-minimum-variance evaluation
 
 Result date 2026-10-30. Saved SCREEN forecasts were turned into daily global-minimum-variance books. No model was refit. Solver failures are zero and every book uses 500 SCREEN targets. The forecast-file proxy matches the panel realized covariance with maximum absolute gap 0. On the unconstrained raw book, the P5 statistics for HARQDRD01 minus LSTM22, V11, EWMA21, and HARDRD01 are −1.6837853064044193, −1.3583087950363657, −1.1144755058725615, and 0.19103258229680717. None exceeds the ordinary critical value 2.0595385527532972 or either size-adjusted cutoff. A positive forecast scale does not change the unconstrained weights, so R1 reproduces the raw book up to a long-only solver gap of at most \(6.630208460034481\times 10^{-8}\) in annualized standard deviation. Global minimum variance is a risk target, not a return strategy. Commit `251172c9528514b07e7ab7ca107f78abcacb4420` records the scores. CONFIRM was not evaluated.
+
+### Amendment R-2026-10-30b
+
+Amendment date 2026-10-30. Status. specified. This entry freezes the CONFIRM gate. It does not unlock CONFIRM. Earlier register entries are unchanged.
+
+Deep finalist. The deep finalist is the winner of the existing econometric finalist rule applied to LSTM22, V10, V01, and V11. The channel is primary reduced QLIKE only. The 500 SCREEN targets are four chronological blocks of 125. Lower mean loss receives a better rank, and exact block-mean ties receive average ranks. The winner is the lowest median block rank, then the lowest mean block rank, then the lexicographically smaller identifier. LSTM19 stays outside the tournament as the original-grid comparison. The decision to hold this tournament was adopted after the D2 full-period SCREEN means were seen. The block ranks had not been computed when it was adopted. On CONFIRM the headline pair is the econometric finalist against the deep tournament winner. V01 minus V00 and V11 minus V00 are secondary contrasts, including when one of them is the winner. V00 is LSTM22.
+
+Econometric finalist. The same rule is applied to the headline-eligible pool RW01, EWMA21, HARDRD01, HARQDRD01, SHARDRD01, LWLIN01, LWNL01, DCC02, DCCNL02, and BEKKS01. RIDGE01 and XGB08 remain machine-learning controls. DCC03 and DCCNL03 remain robustness fits. LSTMBEKK-noC remains an ablation. EWMA01 remains the original-grid comparison. None of those five enters the headline slot. The outcome is accepted whatever it is.
+
+Economic comparison. The Fleming–Kirby–Ostdiek performance fee is adopted at gamma in {1, 5, 10} and at costs of 5 and 10 basis points. All six cells are reported. The fee is computed from the E1 global-minimum-variance simple returns after those turnover costs. No return forecast is added. The fee does not replace the E1 risk comparison. That comparison remains the squared-return gap of portfolio A minus portfolio B under the frozen P5 test. The fee is not a substitute chosen after the SCREEN risk tests failed to reject. Neither gamma nor the cost level is selected later.
+
+Graph-neural slot. The graph-neural model is deferred past this Binance CONFIRM and is out of the confirmatory roster. The Binance preregistration does not wait on it. GHAR stays an unimplemented later baseline and is not put in its place.
+
+CONFIRM inference. SPA and MCS on CONFIRM use mean block length 29, which is floor(1.3 times the square root of 500), matched to the B1 calibration bandwidth and to the B1b resampling block. Block length 7 is reported as a sensitivity. Both use 5000 bootstrap draws and seed 20260913. The two secondary contrasts use the same P5 rule and all three cutoffs. Holm is the step-down correction on their two ordinary two-sided EWC p-values at familywise level 0.05. The smaller p-value is compared with 0.025 and the larger with 0.05. A secondary claim also requires the absolute statistic to exceed both size-adjusted cutoffs. Giacomini–White uses the two frozen instrument sets, the market-state set and the measurement-stress set, with a Bonferroni family of size 2. Pooled Mincer–Zarnowitz is reported for ordinary least squares and for the approximate Patton–Sheppard weighting. Giacomini–Rossi fluctuation uses mu equal to 0.30. Those three procedures are run for the headline pair only and are labeled secondary diagnostics. They cannot overturn or create the headline claim. The holdout is one authorized run. There is no tuning and no roster or rule change after the unlock. A later departure is recorded as a deviation and is never edited into the preregistration.
+
+SCREEN description attached to this gate. SPA, with benchmark HARDRD01 and consistent recentering, and MCS, with the range statistic as primary and the max statistic as companion at alpha 0.10, are rerun on the stored raw SCREEN losses. The universe is every model with a finite raw loss on all 500 SCREEN targets. The block lengths are 7 and 29. The bootstrap size is 5000 and the seed is 20260913. Both losses are reported. This description does not change the finalists. DCC01 and DCCNL01 have no SCREEN forecasts and are absent.
