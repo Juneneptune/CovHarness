@@ -6,7 +6,7 @@ Task R1. Read-only with respect to data and models. Amendment R-2026-10-29 is in
 
 ## 2. Starting state
 
-Branch `main` at `56e3c0e`. The working tree was clean. Branch `docs/editorial-pass` was left unmerged. Documents read were the register, `docs/PROJECT_STATE.md`, and `results/post_screen/OVERNIGHT_SUMMARY.md`.
+Branch `main` at `56e3c0e`. The working tree was clean. Branch `docs/editorial-pass` was left unmerged. Documents read were the register, `docs/PROJECT_STATE.md`, and `results/post_screen/run_log/2026-10-28_queue1.md`.
 
 ## 3. Spec commit
 

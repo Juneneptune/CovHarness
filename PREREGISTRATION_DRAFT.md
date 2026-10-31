@@ -186,6 +186,8 @@ Status values start as planned except for task 0, which is this documentation re
 | B1b | P5 size-adjusted cutoffs | completed | `e4f01c0301320d5f92e0041e09069abc85ab2ba4` | `7145b67ab24c0ed36956ad82535cba188f242765` |
 | C4 | A4 follow-up | completed | `16144a6497600c1f8e427c8cdf23752bf23abc1a` | `c6de3e5cbc98d161be3f57afdbb01de56d48e6db` |
 
+Execution summaries for each batch are in results/post_screen/run_log/.
+
 G1 is the CONFIRM authorization gate. It has no numbered TODO item in the source list. Recording the gate in this table does not unlock CONFIRM.
 
 ### Task 0 artifact inventory
@@ -481,7 +483,7 @@ Sign asymmetry. The basis is A4. SHAR-DRD, identifier SHARDRD01, enters the econ
 
 Recalibration. Task C3 reports two out-of-sample versions for every model. Recalibration R1 is the scalar map. Recalibration R2 shrinks the forecast toward the trailing proxy mean. Both are fit on past out-of-sample pairs only. The basis is A2. LSTM-BEKK has mean whitened ratio 1.066 and Mincer–Zarnowitz slope 0.764. The headline forecast stays raw unless this register adopts one version for every model before G1.
 
-Completed rows already in the planned-entry table keep the hashes from `results/post_screen/OVERNIGHT_SUMMARY.md` and the A1 reports. A1 spec `80612248ae6f772262c4eadc8b48c6a12a9887c0`, result `084e3915656be4d326ac242fc8bc709d86e335b3`. A1-addendum spec `0187bb1a5921bba53152f2610343cb0c8b4aaeb0`, result `e0447f94ebbaa2e6b35799b8ae6660398e83f5ba`. A2 spec `75240e13873322df8d93f4dfb3bb4a76626a3bb4`, result `80f03b0acc0231a660ae72e13ab1957133fef31f`. A3 spec `c30b27a5739d803458006853c2d8bbc80c80d32b`, result `af3d14a2dca15cdf589586151bb8414e0ed13ee1`. A4 spec `d0d3f70547038bee845b2984c1ffdb2349f61650`, result `71bdbc200c41224545116adfc0aef24ee0936690`. B2 spec `8d0cbfb7184290f7db819e56c45e0da3548c831c`, result `f9c6b58a79941bcc72392f6d95943d54b336a9dd`. D3a spec `d45a5bce027b50be38bc5aaf722ddbd183392d10`, result `b3cc780d971ec76844b6bf1f77a899a6632616e1`. Commit `a7f8e4e21cbfc8145261756e9b030126948ebc86` records this amendment. Report `results/post_screen/R1/REPORT.md`.
+Completed rows already in the planned-entry table keep the hashes from `results/post_screen/run_log/2026-10-28_queue1.md` and the A1 reports. A1 spec `80612248ae6f772262c4eadc8b48c6a12a9887c0`, result `084e3915656be4d326ac242fc8bc709d86e335b3`. A1-addendum spec `0187bb1a5921bba53152f2610343cb0c8b4aaeb0`, result `e0447f94ebbaa2e6b35799b8ae6660398e83f5ba`. A2 spec `75240e13873322df8d93f4dfb3bb4a76626a3bb4`, result `80f03b0acc0231a660ae72e13ab1957133fef31f`. A3 spec `c30b27a5739d803458006853c2d8bbc80c80d32b`, result `af3d14a2dca15cdf589586151bb8414e0ed13ee1`. A4 spec `d0d3f70547038bee845b2984c1ffdb2349f61650`, result `71bdbc200c41224545116adfc0aef24ee0936690`. B2 spec `8d0cbfb7184290f7db819e56c45e0da3548c831c`, result `f9c6b58a79941bcc72392f6d95943d54b336a9dd`. D3a spec `d45a5bce027b50be38bc5aaf722ddbd183392d10`, result `b3cc780d971ec76844b6bf1f77a899a6632616e1`. Commit `a7f8e4e21cbfc8145261756e9b030126948ebc86` records this amendment. Report `results/post_screen/R1/REPORT.md`.
 
 ### Task C1 spec. Estimation-failure policy for DCC and DCC-NL
 
