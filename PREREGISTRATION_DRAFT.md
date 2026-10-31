@@ -179,9 +179,9 @@ Status values start as planned except for task 0, which is this documentation re
 | D3b | 10 | deferred |  |  |
 | D4 | 11 | deferred |  |  |
 | E1 | 16 | completed | `56bb3bf2fc84764b5f39687cbe647c5827531710` | `251172c9528514b07e7ab7ca107f78abcacb4420` |
-| G1 |  | specified | `cd68fd556add3eb03df9f933e736c11bce4580b8` |  |
-| R-2026-10-30b | amendment | specified | `cd68fd556add3eb03df9f933e736c11bce4580b8` |  |
-| R-2026-10-30c | amendment | specified |  |  |
+| G1 |  | completed | `cd68fd556add3eb03df9f933e736c11bce4580b8` | `0d7f8beb0473078cc41c1c4b1ab20b640033bcda` |
+| R-2026-10-30b | amendment | completed | `cd68fd556add3eb03df9f933e736c11bce4580b8` | `0d7f8beb0473078cc41c1c4b1ab20b640033bcda` |
+| R-2026-10-30c | amendment | completed | `2186809e3e80bba7686b6bb2467dfff1d2b35a4b` | `2186809e3e80bba7686b6bb2467dfff1d2b35a4b` |
 | F1 | 17 | planned |  |  |
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |
 | R2 | amendment R-2026-10-30 | completed | `9d50128d0a01a80396929381314aac9fc4b01125` | `9d50128d0a01a80396929381314aac9fc4b01125` |
@@ -690,3 +690,5 @@ HARQ fallback sensitivity. The headline pair is also reported with HARQ fallback
 CONFIRM forecast roster. Every model below is forecast once so the tables are complete. The identifiers are RW01, EWMA01, EWMA21, HARDRD01, HARQDRD01, SHARDRD01, LWLIN01, LWNL01, RIDGE01, XGB08, DCC02, DCCNL02, DCC03, DCCNL03, BEKKS01, LSTMBEKK-noC, LSTM19, LSTM22, V10, V01, and V11. Stochastic models use seeds 0 through 4 and the equal-weight ensemble of the seed matrices. The refit schedule is unchanged. The first CONFIRM target is a refit. The estimation history is the last 250 SCREEN dates.
 
 Deferred and excluded. D3b, D4, the graph-neural slot, GHAR, and F1 stay out of this confirmatory roster.
+
+Result date 2026-10-30. The candidate protocol is `PREREGISTRATION_CANDIDATE.md` in commit `804404065b330eb649ffcc1de8801da46a4fb2dd`. CONFIRM was not unlocked. No CONFIRM-dated panel was built.
