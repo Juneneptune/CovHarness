@@ -259,6 +259,10 @@ The headline comparison remains one deep-learning representative versus one econ
 
 Primary reduced QLIKE is the only headline selection channel. The 500 selection-period targets are partitioned into four chronological 125-day subperiods. Complete econometric models are ranked within each subperiod. Lower mean QLIKE receives a better rank. Exact subperiod-mean ties receive average ranks. The rule selects the lowest median of the four subperiod ranks, then the lowest mean of those ranks, then the lexicographically smaller family ID. Full-period mean QLIKE is a robustness leader only. Squared Frobenius does not select. MCS membership annotated the selected representatives. It did not restrict the econometric pool to MCS survivors.
 
+### Out-of-sample recalibration
+
+Saved forecasts can be rescaled at the origin from earlier out-of-sample pairs in the same calendar segment. R1 multiplies the forecast by the mean whitened trace ratio. R2 shrinks the forecast toward the trailing proxy mean on a fixed grid and then applies the same closed-form scale. Coefficients are held between 21-origin refits and stay at the identity until 21 pairs exist. The maps are a diagnostic layer. The headline forecast remains the raw matrix. SCREEN results are in [`results/post_screen/C3/`](results/post_screen/C3/).
+
 ---
 
 ## Planned economic evaluation
@@ -333,7 +337,7 @@ This experiment did not complete the conventional frontier, the deep-learning fr
 
 The first-stage Binance core is $N=5$ and one unscaled five-minute realized-covariance proxy. [`INITIAL_CORE_BENCHMARK_PLAN.md`](INITIAL_CORE_BENCHMARK_PLAN.md) still records a broader TIER 1 design with $N=30$ and two equity proxies. Those documents disagree. The executed first-stage does not replace the broader plan, and the plan does not rewrite what was actually run.
 
-SHAR-DRD has been scored and joins the econometric pool when G1 is run. Information-matched LSTM-BEKK diagnostics have been scored and are not confirmatory. Unresolved or unimplemented work includes GHAR as a structured graph / econometric baseline, a genuinely neural graph covariance model, scoring on the declared 15-minute robustness proxy, the two declared recalibration maps, the confirmatory inference decision, and full economic evaluation. Realized kernels, cDCC, and daily-moving-window Ledoit–Wolf are unimplemented.
+SHAR-DRD has been scored and joins the econometric pool when G1 is run. Information-matched LSTM-BEKK diagnostics have been scored and are not confirmatory. The two recalibration maps have been scored on SCREEN as a diagnostic, and the headline forecast remains raw. Unresolved or unimplemented work includes GHAR as a structured graph / econometric baseline, a genuinely neural graph covariance model, scoring on the declared 15-minute robustness proxy, the confirmatory inference decision, and full economic evaluation. Realized kernels, cDCC, and daily-moving-window Ledoit–Wolf are unimplemented.
 
 The long-panel U.S.-equity experiment remains pending because production TAQ access has not yet been established. A passing unit-test suite supports the tested behaviours. It does not prove the absence of leakage, certify the repository as bug-free, or complete the paper. Software completion is not paper completion. Model selection is not final confirmation. Covariance-loss rankings are not economic value.
 
