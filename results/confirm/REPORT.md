@@ -45,7 +45,7 @@ The range MCS on frobenius_15min at block length 7 and alpha 0.10 contains RW01,
 
 Giacomini-White, pooled Mincer-Zarnowitz, and Giacomini-Rossi are headline-pair diagnostics. They do not change the headline decision.
 The market-state Giacomini-White statistic is 109.750235 with Bonferroni p-value 2.484e-23. The measurement-stress statistic is 60.581537 with Bonferroni p-value 8.831e-13. The per-test cutoff is 0.025. Both adjusted p-values are below 0.025.
-Pooled Mincer-Zarnowitz mz_HARQDRD01_ols has intercept 0.000792, slope 0.227907, and p-value 0.000000.
+Pooled Mincer-Zarnowitz mz_HARQDRD01_ols has intercept 0.000792, slope 0.227907, and p-value 1.494e-27.
 Pooled Mincer-Zarnowitz mz_V01_ols has intercept 0.000480, slope 0.613886, and p-value 0.004613.
 Pooled Mincer-Zarnowitz mz_HARQDRD01_approximate_ps21 has intercept 0.000060, slope 0.901943, and p-value 0.120075.
 Pooled Mincer-Zarnowitz mz_V01_approximate_ps21 has intercept -0.000099, slope 1.180570, and p-value 0.059176.
