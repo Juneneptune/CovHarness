@@ -22,7 +22,7 @@ from covharness.protocol.binance_validation import (
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SPEC_COMMIT = "PENDING"
+SPEC_COMMIT = "4b69ed387c2057abd7917dd77ae2a053109976dd"
 SCREEN_NPZ = REPO_ROOT / "results/binance_screen_forecasts.npz"
 OUTPUT = REPO_ROOT / "results/post_screen/C3"
 MZ_MODELS = ("LSTM19", "LSTM22", "V11")

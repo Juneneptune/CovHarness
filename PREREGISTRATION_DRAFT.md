@@ -172,7 +172,7 @@ Status values start as planned except for task 0, which is this documentation re
 | B2 | 15 | completed | `8d0cbfb7184290f7db819e56c45e0da3548c831c` | `f9c6b58a79941bcc72392f6d95943d54b336a9dd` |
 | C1 | 8 | completed | `ed7d2a4761fa5702e7c18e55c48eb2d7cc0c50b7` | `7555cc91925967b531d6e3bba33c8e1bf47e73a2` |
 | C2 | 7 | completed | `23e728a5ebb8c2c3481a19637b9b8e0e8659b3c5` | `689fd0ccaa7d909fbf49d191df1bfd9a3da97d07` |
-| C3 | 12 | specified |  |  |
+| C3 | 12 | specified | `4b69ed387c2057abd7917dd77ae2a053109976dd` |  |
 | D1 | 13 | completed | `e4f8328eacdf6088eb8765bae026f17e97c1464b` | `afb951a005b6ad22e1b12097eb579ef01aef852f` |
 | D2 | 9 | completed | `60b240bae32577e0159df8cc494019b3db4935d4` | `453174f0eee09275533c149da89e010ff9d8d98d` |
 | D3a | 10 | completed | `d45a5bce027b50be38bc5aaf722ddbd183392d10` | `b3cc780d971ec76844b6bf1f77a899a6632616e1` |
