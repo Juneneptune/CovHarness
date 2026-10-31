@@ -178,7 +178,7 @@ Status values start as planned except for task 0, which is this documentation re
 | D3a | 10 | completed | `d45a5bce027b50be38bc5aaf722ddbd183392d10` | `b3cc780d971ec76844b6bf1f77a899a6632616e1` |
 | D3b | 10 | deferred |  |  |
 | D4 | 11 | deferred |  |  |
-| E1 | 16 | specified |  |  |
+| E1 | 16 | specified | `56bb3bf2fc84764b5f39687cbe647c5827531710` |  |
 | G1 |  | planned |  |  |
 | F1 | 17 | planned |  |  |
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |

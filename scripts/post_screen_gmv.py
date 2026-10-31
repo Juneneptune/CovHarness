@@ -26,7 +26,7 @@ from covharness.portfolio.gmv import (
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SPEC_COMMIT = "PENDING"
+SPEC_COMMIT = "56bb3bf2fc84764b5f39687cbe647c5827531710"
 PANEL = REPO_ROOT / "data/processed/binance_five_asset_panel.npz"
 FORECASTS = REPO_ROOT / "results/post_screen/C3/recalibrated_forecasts.npz"
 C3_SUMMARY = REPO_ROOT / "results/post_screen/C3/c3_summary.json"
