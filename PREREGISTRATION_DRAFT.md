@@ -172,7 +172,7 @@ Status values start as planned except for task 0, which is this documentation re
 | B2 | 15 | completed | `8d0cbfb7184290f7db819e56c45e0da3548c831c` | `f9c6b58a79941bcc72392f6d95943d54b336a9dd` |
 | C1 | 8 | completed | `ed7d2a4761fa5702e7c18e55c48eb2d7cc0c50b7` | `7555cc91925967b531d6e3bba33c8e1bf47e73a2` |
 | C2 | 7 | completed | `23e728a5ebb8c2c3481a19637b9b8e0e8659b3c5` | `689fd0ccaa7d909fbf49d191df1bfd9a3da97d07` |
-| C3 | 12 | planned |  |  |
+| C3 | 12 | specified |  |  |
 | D1 | 13 | completed | `e4f8328eacdf6088eb8765bae026f17e97c1464b` | `afb951a005b6ad22e1b12097eb579ef01aef852f` |
 | D2 | 9 | completed | `60b240bae32577e0159df8cc494019b3db4935d4` | `453174f0eee09275533c149da89e010ff9d8d98d` |
 | D3a | 10 | completed | `d45a5bce027b50be38bc5aaf722ddbd183392d10` | `b3cc780d971ec76844b6bf1f77a899a6632616e1` |
@@ -606,3 +606,19 @@ The entry script is `scripts/post_screen_bekk.py`. Outputs go under `results/pos
 ### Task C2 result. BEKK family and the zero-intercept ablation
 
 Result date 2026-10-30. All six primary configurations completed VALIDATION and SCREEN. Carry-forward count was 0 and repair count was 0. VALIDATION mean QLIKE selected BEKKS01, scalar BEKK without covariance targeting, at −32.15179656645496. Its SCREEN mean QLIKE is −31.189796533774512. On SCREEN, BEKKS02 is lower, at −31.217194257539095. The selection stays the VALIDATION result. Full BEKK is noisier. BEKKF01 SCREEN mean QLIKE is −30.17584518926345. The interior-map robustness fit is BEKKS01-INT and is not headline-eligible. Its SCREEN mean QLIKE is −31.190288897050966. The ablation ensemble is identical across seeds because a zero dynamic intercept removes the LSTM from the fitted recursion. VALIDATION ensemble QLIKE is −32.226839847948916 and SCREEN ensemble QLIKE is −31.27704390063792. Commit `689fd0ccaa7d909fbf49d191df1bfd9a3da97d07` records the scores. The BEKK family joins the econometric eligible pool at G1. The ablation does not.
+
+### Task C3 spec. Out-of-sample recalibration
+
+Spec date 2026-10-30. Status. specified. This is a diagnostic layer. The headline forecast stays the raw matrix.
+
+The map lives in `src/covharness/evaluation/recalibration.py`. It transforms a forecast sequence with origin-time indexing. It is not a loss and it does not refit any model.
+
+The fitting set at origin t contains only out-of-sample pairs whose target date is on or before that origin and whose target lies in the same named calendar segment as the target being forecast. The window is the trailing minimum of the available count and 250. Coefficients are estimated only at a refit origin and then held. On SCREEN the refit origins are every 21st position, the stored cadence. Before 21 pairs exist the map is the identity. In-window fitted values are never used. VALIDATION and SCREEN are different segments because the halt on 2023-03-24 lies between them, so a SCREEN origin does not use VALIDATION pairs. SCREEN therefore starts from the identity.
+
+R1 sets H star equal to c times H. The scalar c is the mean of tr(H inverse S) divided by N on the fitting set, the mean whitened trace ratio.
+
+R2 sets H star equal to c times lambda H plus (1 minus lambda) times H bar. H bar is the mean of the proxy on the same fitting set. That mean must be strictly positive definite by Cholesky. A failure uses the identity at that origin and is logged. Lambda is the grid 0, 0.05, through 1. For each lambda, c is the same closed form applied to the shrunk fitting-set forecasts, and the pair with the lowest mean reduced QLIKE on the fitting set is kept. Lambda equal to 1 nests R1. Between refit origins the last successful coefficients, including H bar, are held.
+
+SCREEN reporting covers raw, R1, and R2 mean reduced QLIKE and squared Frobenius for every model with a complete SCREEN column, the paths of c and lambda, and each model's gap against HARQDRD01 under each version. The pooled-vech Mincer–Zarnowitz slope after R2 is reported for LSTM19, LSTM22, and V11. DCC01 and DCCNL01 have no SCREEN forecasts and are recorded as such. LSTM columns are the equal-weight mean of the five seed matrices, then recalibrated. BEKKS01 is in the main table. The other five BEKK configurations are an appendix.
+
+The entry script is `scripts/post_screen_recalibration.py`. Outputs go under `results/post_screen/C3/`.

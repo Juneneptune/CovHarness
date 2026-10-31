@@ -25,8 +25,18 @@ from covharness.evaluation.score import (
     summarize_loss_panel,
     target_covariance_panel,
 )
+from covharness.evaluation.recalibration import (
+    LAMBDA_GRID,
+    MAX_RECALIBRATION_PAIRS,
+    MIN_RECALIBRATION_PAIRS,
+    RecalibrationResult,
+    recalibrate_forecast_sequence,
+)
 
 __all__ = [
+    "LAMBDA_GRID",
+    "MAX_RECALIBRATION_PAIRS",
+    "MIN_RECALIBRATION_PAIRS",
     "DEFAULT_LOSSES",
     "LOSS_REDUCED_QLIKE",
     "LOSS_SQUARED_FROBENIUS",
@@ -37,12 +47,14 @@ __all__ = [
     "EvaluationLoss",
     "LossPanel",
     "LossRecord",
+    "RecalibrationResult",
     "ModelLossSummary",
     "TargetCovariancePanel",
     "align_forecast_records",
     "build_loss_panel",
     "loss_differential_from_panel",
     "score_aligned_pairs",
+    "recalibrate_forecast_sequence",
     "score_forecast_records",
     "summarize_loss_panel",
     "target_covariance_panel",
