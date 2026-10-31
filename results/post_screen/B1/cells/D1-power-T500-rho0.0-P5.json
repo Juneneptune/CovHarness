@@ -1,0 +1,1 @@
+{"replications": 5000, "valid_replications": 5000, "failures": 0, "rejection_rate": 0.9896, "mcse": 0.001434701362653564, "design": "D1", "kind": "power", "procedure": "P5", "T": 500, "rho": 0.0, "block_length": null, "seed": 1746387570, "key": "D1-power-T500-rho0.0-P5"}

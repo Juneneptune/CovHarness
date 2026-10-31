@@ -98,6 +98,8 @@ results/**/*_checkpoints/
 results/**/runs/
 results/**/wandb/
 results/**/lightning_logs/
+results/**/pid
+results/**/*.pid
 
 # LaTeX build debris
 paper/**/*.aux

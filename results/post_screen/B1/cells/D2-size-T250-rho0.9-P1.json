@@ -1,0 +1,1 @@
+{"replications": 5000, "valid_replications": 5000, "failures": 0, "rejection_rate": 0.37, "mcse": 0.006827884006044625, "design": "D2", "kind": "size", "procedure": "P1", "T": 250, "rho": 0.9, "block_length": null, "seed": 2073973263, "key": "D2-size-T250-rho0.9-P1"}

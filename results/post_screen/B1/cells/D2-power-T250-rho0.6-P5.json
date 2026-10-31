@@ -1,0 +1,1 @@
+{"replications": 5000, "valid_replications": 5000, "failures": 0, "rejection_rate": 0.845, "mcse": 0.005118105118107678, "design": "D2", "kind": "power", "procedure": "P5", "T": 250, "rho": 0.6, "block_length": null, "seed": 522340353, "key": "D2-power-T250-rho0.6-P5"}
