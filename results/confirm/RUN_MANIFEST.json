@@ -1,0 +1,23 @@
+{
+  "task": "CONFIRM",
+  "preflight": "passed",
+  "branch": "main",
+  "head": "a198de6258319211cb536f8e888714c37e5a1a31",
+  "utc_start": "2026-10-31T01:22:44Z",
+  "git_status_clean": true,
+  "preregistration_diff_against_811b7e8_candidate": "title and first paragraph only",
+  "python": "3.11.16",
+  "numpy": "2.4.6",
+  "torch": "2.13.0+cpu",
+  "arch": "x86_64",
+  "xgboost": "3.2.0",
+  "nproc": 48,
+  "confirm_locked": true,
+  "sha256": {
+    "data/processed/binance_five_asset_panel.npz": "2b7358107a10f77c3879524e1d9b1389c2c66db4a444af89c2cdf59aa186640a",
+    "configs/binance_open_data_core.yaml": "8d63eacacf13a876651f9c4eb5399a8527d8458278974ff069dd0701dd5cbf07",
+    "configs/binance_open_data_screen.yaml": "b07011a798c36fc25e117b69d71f6c8eb5eb1ed756e97c39c19e29542af6203c",
+    "configs/binance_post_screen_d1.yaml": "f6dc7b7118d8e2f89357e6cba32b6adf302d17e9028ae2b6abfa23f1c0af6e41",
+    "results/post_screen/B1b/b1b_cutoffs.json": "26b68025d4186654759f2e2fc85d3f26eedcbda9868848fdbc7865c38a510715"
+  }
+}
