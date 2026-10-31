@@ -181,6 +181,7 @@ Status values start as planned except for task 0, which is this documentation re
 | E1 | 16 | completed | `56bb3bf2fc84764b5f39687cbe647c5827531710` | `251172c9528514b07e7ab7ca107f78abcacb4420` |
 | G1 |  | specified | `cd68fd556add3eb03df9f933e736c11bce4580b8` |  |
 | R-2026-10-30b | amendment | specified | `cd68fd556add3eb03df9f933e736c11bce4580b8` |  |
+| R-2026-10-30c | amendment | specified |  |  |
 | F1 | 17 | planned |  |  |
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |
 | R2 | amendment R-2026-10-30 | completed | `9d50128d0a01a80396929381314aac9fc4b01125` | `9d50128d0a01a80396929381314aac9fc4b01125` |
@@ -663,3 +664,29 @@ Graph-neural slot. The graph-neural model is deferred past this Binance CONFIRM 
 CONFIRM inference. SPA and MCS on CONFIRM use mean block length 29, which is floor(1.3 times the square root of 500), matched to the B1 calibration bandwidth and to the B1b resampling block. Block length 7 is reported as a sensitivity. Both use 5000 bootstrap draws and seed 20260913. The two secondary contrasts use the same P5 rule and all three cutoffs. Holm is the step-down correction on their two ordinary two-sided EWC p-values at familywise level 0.05. The smaller p-value is compared with 0.025 and the larger with 0.05. A secondary claim also requires the absolute statistic to exceed both size-adjusted cutoffs. Giacomini–White uses the two frozen instrument sets, the market-state set and the measurement-stress set, with a Bonferroni family of size 2. Pooled Mincer–Zarnowitz is reported for ordinary least squares and for the approximate Patton–Sheppard weighting. Giacomini–Rossi fluctuation uses mu equal to 0.30. Those three procedures are run for the headline pair only and are labeled secondary diagnostics. They cannot overturn or create the headline claim. The holdout is one authorized run. There is no tuning and no roster or rule change after the unlock. A later departure is recorded as a deviation and is never edited into the preregistration.
 
 SCREEN description attached to this gate. SPA, with benchmark HARDRD01 and consistent recentering, and MCS, with the range statistic as primary and the max statistic as companion at alpha 0.10, are rerun on the stored raw SCREEN losses. The universe is every model with a finite raw loss on all 500 SCREEN targets. The block lengths are 7 and 29. The bootstrap size is 5000 and the seed is 20260913. Both losses are reported. This description does not change the finalists. DCC01 and DCCNL01 have no SCREEN forecasts and are absent.
+
+### Amendment R-2026-10-30c
+
+Amendment date 2026-10-30. Status. specified. This entry records the freeze list after the SCREEN selection in commit `0d7f8beb0473078cc41c1c4b1ab20b640033bcda`. It does not unlock CONFIRM. Earlier register entries are unchanged.
+
+Headline pair. The econometric finalist is HARQDRD01. EWMA21, HARDRD01, HARQDRD01, and SHARDRD01 share median block rank 2.5. HARQDRD01 has mean block rank 2.25 and the other three have mean block rank 2.75, so the mean-rank tie-break selects HARQDRD01. The deep tournament winner is V01, with median block rank 1.0 and mean block rank 1.25. The headline pair on CONFIRM is HARQDRD01 against V01. The outcome is accepted. LSTM19 remains outside the tournament. Its full-period SCREEN mean reduced QLIKE is −31.408752391639815 and it has no tournament rank.
+
+Secondary contrasts. V01 minus V00 and V11 minus V00 are both reported. V00 is LSTM22. V01 is the deep winner, and the V01 contrast remains a secondary contrast.
+
+Pairwise test. The confirmatory pairwise procedure is P5. The statistic is the equal-weighted cosine long-run variance test with bandwidth nu equal to floor of 0.4 times T to the power 2/3. At T equal to 500, nu is 25. The ordinary two-sided cutoff is 2.0595385527532972. The B1b size-adjusted cutoffs are 2.4728093597276533 at block length 7 and 2.4226501420943998 at block length 29. A confirmatory pairwise claim requires the absolute statistic to exceed all three. The win rate, the four subperiod signs, and the cumulative-loss plot are always reported.
+
+Losses. Reduced QLIKE is primary. Squared Frobenius is secondary. The two losses are reported separately and are never pooled.
+
+Proxies. Five-minute realized covariance is the primary proxy. Fifteen-minute realized covariance is the robustness proxy under amendment R-2026-10-29 and is reported separately. A conclusion is called proxy-robust only when it holds under both proxies.
+
+Estimation failure. Carry-forward of the last admissible parameters is the primary policy. The interior parameter map is the robustness policy.
+
+Recalibration. The headline uses the raw forecasts. The C3 maps R1 and R2 are diagnostics only.
+
+Economic channel. The E1 specification is reported. Unconstrained global-minimum-variance is primary. Long-only and equal weight are robustness books. Turnover costs are 5 and 10 basis points. The six Fleming–Kirby–Ostdiek cells from amendment R-2026-10-30b are reported in addition. The fee does not replace the squared-return gap under P5.
+
+HARQ fallback sensitivity. The headline pair is also reported with HARQ fallback targets removed, if any such targets occur.
+
+CONFIRM forecast roster. Every model below is forecast once so the tables are complete. The identifiers are RW01, EWMA01, EWMA21, HARDRD01, HARQDRD01, SHARDRD01, LWLIN01, LWNL01, RIDGE01, XGB08, DCC02, DCCNL02, DCC03, DCCNL03, BEKKS01, LSTMBEKK-noC, LSTM19, LSTM22, V10, V01, and V11. Stochastic models use seeds 0 through 4 and the equal-weight ensemble of the seed matrices. The refit schedule is unchanged. The first CONFIRM target is a refit. The estimation history is the last 250 SCREEN dates.
+
+Deferred and excluded. D3b, D4, the graph-neural slot, GHAR, and F1 stay out of this confirmatory roster.
