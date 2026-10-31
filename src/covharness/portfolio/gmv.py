@@ -88,6 +88,56 @@ def turnover(weights: ArrayLike, drifted: ArrayLike) -> float:
     return float(np.abs(np.asarray(weights) - np.asarray(drifted)).sum())
 
 
+def fleming_kirby_ostdiek_fee(
+    simple_returns_a: ArrayLike,
+    simple_returns_b: ArrayLike,
+    gamma: float,
+) -> float:
+    """Daily Fleming–Kirby–Ostdiek fee on gross returns.
+
+    ``simple_returns_a`` and ``simple_returns_b`` are net-of-cost simple
+    returns with shape ``(T,)``. The gross return is ``R = 1 + r``, and the
+    fee is subtracted from ``R_A``. Means and variances in the root rule use
+    the ``1/T`` divisor, matching the average utility. The returned root is
+    the one closer to ``(mean_A - mean_B) - (gamma / 2) (var_A - var_B)``.
+    """
+    returns_a = np.asarray(simple_returns_a, dtype=float).reshape(-1)
+    returns_b = np.asarray(simple_returns_b, dtype=float).reshape(-1)
+    if returns_a.shape != returns_b.shape or returns_a.size == 0:
+        raise ValueError("fee returns must be nonempty and aligned")
+    if not np.isfinite(returns_a).all() or not np.isfinite(returns_b).all():
+        raise ValueError("fee returns must be finite")
+    risk_aversion = float(gamma)
+    if not np.isfinite(risk_aversion) or risk_aversion <= 0.0:
+        raise ValueError("gamma must be positive and finite")
+    # Convert the net simple returns to gross wealth relatives.
+    gross_a = 1.0 + returns_a
+    gross_b = 1.0 + returns_b
+    theta = risk_aversion / (2.0 * (1.0 + risk_aversion))
+    mean_a = float(gross_a.mean())
+    mean_b = float(gross_b.mean())
+    second_a = float(np.mean(gross_a**2))
+    second_b = float(np.mean(gross_b**2))
+    # Solve the quadratic average-utility equality for the daily fee.
+    quadratic = np.roots(
+        [
+            theta,
+            1.0 - 2.0 * theta * mean_a,
+            mean_b - theta * second_b - mean_a + theta * second_a,
+        ]
+    )
+    real_roots = np.real(quadratic[np.isclose(quadratic.imag, 0.0)])
+    if real_roots.size == 0:
+        raise ValueError("the performance-fee quadratic has no real root")
+    # Keep the root nearer the mean-variance approximation.
+    variance_a = float(returns_a.var(ddof=0))
+    variance_b = float(returns_b.var(ddof=0))
+    anchor = (float(returns_a.mean()) - float(returns_b.mean())) - (
+        risk_aversion / 2.0
+    ) * (variance_a - variance_b)
+    return float(real_roots[np.argmin(np.abs(real_roots - anchor))])
+
+
 def subtract_turnover_cost(
     portfolio_return: ArrayLike,
     turnover_series: ArrayLike,

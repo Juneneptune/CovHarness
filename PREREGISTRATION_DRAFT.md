@@ -182,6 +182,7 @@ Status values start as planned except for task 0, which is this documentation re
 | G1 |  | completed | `cd68fd556add3eb03df9f933e736c11bce4580b8` | `0d7f8beb0473078cc41c1c4b1ab20b640033bcda` |
 | R-2026-10-30b | amendment | completed | `cd68fd556add3eb03df9f933e736c11bce4580b8` | `0d7f8beb0473078cc41c1c4b1ab20b640033bcda` |
 | R-2026-10-30c | amendment | completed | `2186809e3e80bba7686b6bb2467dfff1d2b35a4b` | `2186809e3e80bba7686b6bb2467dfff1d2b35a4b` |
+| R-2026-10-30d | amendment | specified |  |  |
 | F1 | 17 | planned |  |  |
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |
 | R2 | amendment R-2026-10-30 | completed | `9d50128d0a01a80396929381314aac9fc4b01125` | `9d50128d0a01a80396929381314aac9fc4b01125` |
@@ -692,3 +693,15 @@ CONFIRM forecast roster. Every model below is forecast once so the tables are co
 Deferred and excluded. D3b, D4, the graph-neural slot, GHAR, and F1 stay out of this confirmatory roster.
 
 Result date 2026-10-30. The candidate protocol is `PREREGISTRATION_CANDIDATE.md` in commit `804404065b330eb649ffcc1de8801da46a4fb2dd`. CONFIRM was not unlocked. No CONFIRM-dated panel was built.
+
+### Amendment R-2026-10-30d
+
+Amendment date 2026-10-30. Status. specified. This entry corrects the candidate protocol before promotion. It does not unlock CONFIRM and it does not create `PREREGISTRATION.md`. Earlier register entries are unchanged.
+
+Fee formula. The candidate had written the Fleming–Kirby–Ostdiek equality on the net simple return. The utility is defined on gross wealth, so each argument is one plus the net-of-cost simple return, and the fee is subtracted from that gross return. With gross returns the average utility is approximately the mean minus gamma over 2 times the variance, which is the root already used to choose between the two quadratic solutions.
+
+Risk comparison. E1 tested the squared simple portfolio return before costs. The candidate had placed the 5 and 10 basis-point costs inside the primary gap. The primary gap remains that no-cost squared-return difference. The costed series are reported variants. Costs enter the economic comparison through the fee.
+
+Headline hierarchy. A rejection on squared Frobenius or on the 15-minute proxy could otherwise be read as a separate headline. The confirmatory headline rests only on reduced QLIKE under the five-minute proxy. The other two results decide whether that claim is called loss-robust and proxy-robust. They cannot create a headline the primary channel does not support.
+
+Cutoff limitation. The size-adjusted cutoffs were calibrated on the five-minute reduced-QLIKE headline gap. Using them for squared Frobenius, the 15-minute proxy, the secondary contrasts, and the portfolio gap is a conservative extension. It is not a separate calibration.

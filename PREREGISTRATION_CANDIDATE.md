@@ -81,6 +81,10 @@ The confirmatory pairwise procedure is P5. The statistic is the Diebold–Marian
 
 A confirmatory pairwise claim on the headline requires the absolute statistic to exceed all three cutoffs. Those cutoffs are 2.0595385527532972, 2.4728093597276533, and 2.4226501420943998. The win rate, the signs of the four chronological 125-day block means, and the cumulative-loss plot are always reported. They do not replace the test.
 
+The confirmatory headline claim rests on reduced QLIKE under the five-minute proxy. Squared Frobenius and the 15-minute proxy determine only whether that claim is described as loss-robust and proxy-robust. They cannot create a headline claim that reduced QLIKE under the five-minute proxy does not support.
+
+The size-adjusted cutoffs were calibrated on the five-minute reduced-QLIKE headline gap. Their use for squared Frobenius, the 15-minute proxy, the secondary contrasts, and the portfolio gap is a conservative extension, not a separate calibration.
+
 The same three-cutoff rule applies to each secondary contrast. Holm is the step-down correction on the two ordinary two-sided equal-weighted-cosine p-values at familywise level 0.05. The smaller p-value is compared with 0.025 and the larger with 0.05. A secondary claim also requires the absolute statistic to exceed both size-adjusted cutoffs. The size-adjusted cutoffs are not themselves Holm-adjusted.
 
 ## Multiple-model description
@@ -103,19 +107,25 @@ Giacomini–Rossi fluctuation uses window fraction mu equal to 0.30. The two-sid
 
 ## Economic channel
 
-The primary economic comparison is the E1 squared-return gap. Portfolio weights are the unconstrained global-minimum-variance weights of the raw covariance forecast. The gap is the squared simple return of HARQDRD01 minus the squared simple return of V01, after turnover costs. Costs of 5 and 10 basis points are both reported. The cost is subtracted from the simple return. The first turnover is zero because the book opens in the first weights. The same gap is reported for each secondary contrast. Long-only and equal-weight books are robustness comparisons. This risk comparison uses P5 and the three cutoffs.
+The primary economic comparison is the E1 squared-return gap on the gross simple portfolio return, with no turnover cost subtracted. Portfolio weights are the unconstrained global-minimum-variance weights of the raw covariance forecast. For the headline,
+
+```math
+d_t = r_{p,A,t}^{2} - r_{p,B,t}^{2},
+```
+
+where \(r_p\) is that no-cost simple return, A is HARQDRD01, and B is V01. This is the gap E1 specified. The same gap at turnover costs of 5 and 10 basis points is reported as a variant. Costs enter the economic comparison through the Fleming–Kirby–Ostdiek fee. The first turnover is zero because the book opens in the first weights. The same primary gap is reported for each secondary contrast. Long-only and equal-weight books are robustness comparisons. This risk comparison uses P5 and the three cutoffs.
 
 The Fleming–Kirby–Ostdiek performance fee is additional. It does not replace the squared-return gap. It is not a substitute chosen because a SCREEN risk test failed to reject. Gamma is reported at 1, 5, and 10. The cost is reported at 5 and 10 basis points. All six cells are reported. Neither gamma nor the cost is selected later.
 
-The fee uses the unconstrained global-minimum-variance simple returns after the stated turnover cost. No return forecast is added. For returns r_A and r_B, the daily fee Delta solves the average-utility equality
+The fee uses the unconstrained global-minimum-variance simple returns after the stated turnover cost. No return forecast is added. The symbol \(r\) denotes that net-of-cost simple return, and the gross return is \(R=1+r\). The daily fee \(\Delta\) is subtracted from \(R_A\) and solves the average-utility equality
 
 ```math
-\frac{1}{T}\sum_t\left[(r_{A,t}-\Delta)-\frac{\gamma}{2(1+\gamma)}(r_{A,t}-\Delta)^2\right]
+\frac{1}{T}\sum_t\left[(R_{A,t}-\Delta)-\frac{\gamma}{2(1+\gamma)}(R_{A,t}-\Delta)^2\right]
 =
-\frac{1}{T}\sum_t\left[r_{B,t}-\frac{\gamma}{2(1+\gamma)}r_{B,t}^2\right].
+\frac{1}{T}\sum_t\left[R_{B,t}-\frac{\gamma}{2(1+\gamma)}R_{B,t}^2\right].
 ```
 
-On the headline, A is HARQDRD01 and B is V01. On a secondary contrast, A is the first named model and B is LSTM22. A positive Delta means the investor would pay that daily amount to hold A rather than B. If the quadratic has two real roots, the reported root is the one closer to the mean-variance expression (mean of A minus mean of B) minus gamma over 2 times (variance of A minus variance of B). The daily fee and the same fee multiplied by 365 are both stored. The year length matches the E1 crypto calendar. The scale is not selected.
+With gross returns the utility is approximately the mean minus \(\gamma/2\) times the variance. That approximation is consistent with the existing root-selection rule. On the headline, A is HARQDRD01 and B is V01. On a secondary contrast, A is the first named model and B is LSTM22. A positive \(\Delta\) means the investor would pay that daily amount to hold A rather than B. If the quadratic has two real roots, the reported root is the one closer to the mean-variance expression (mean of A minus mean of B) minus gamma over 2 times (variance of A minus variance of B). The daily fee and the same fee multiplied by 365 are both stored. The year length matches the E1 crypto calendar. The scale is not selected.
 
 ## Other reporting rules
 
@@ -137,9 +147,9 @@ D3b, D4, the graph-neural slot, GHAR, and F1 are outside this confirmatory roste
 
 The run forecasts the roster, scores both losses on both proxies, and then reports the following. It does not select a new finalist.
 
-The headline P5 tests on raw reduced QLIKE and raw squared Frobenius, under the five-minute proxy, at all three cutoffs, with the win rate, the four block signs, and the cumulative-loss plot.
+The confirmatory headline test is raw reduced QLIKE under the five-minute proxy, at all three cutoffs, with the win rate, the four block signs, and the cumulative-loss plot. Squared Frobenius under that proxy is reported beside it and cannot create the headline claim.
 
-The same headline tests under the 15-minute proxy, reported separately.
+The same two losses under the 15-minute proxy are reported separately and cannot create the headline claim.
 
 The two secondary contrasts under the same pairwise rule, with the Holm correction on the ordinary p-values.
 
