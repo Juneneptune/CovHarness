@@ -178,7 +178,7 @@ Status values start as planned except for task 0, which is this documentation re
 | D3a | 10 | completed | `d45a5bce027b50be38bc5aaf722ddbd183392d10` | `b3cc780d971ec76844b6bf1f77a899a6632616e1` |
 | D3b | 10 | deferred |  |  |
 | D4 | 11 | deferred |  |  |
-| E1 | 16 | specified | `56bb3bf2fc84764b5f39687cbe647c5827531710` |  |
+| E1 | 16 | completed | `56bb3bf2fc84764b5f39687cbe647c5827531710` | `251172c9528514b07e7ab7ca107f78abcacb4420` |
 | G1 |  | planned |  |  |
 | F1 | 17 | planned |  |  |
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |
@@ -640,3 +640,7 @@ The descriptive SCREEN inference is the frozen P5 test on the unconstrained raw 
 Robustness declared here is long-only global minimum variance, the equal-weight anchor, and the raw, R1, and R2 forecast cubes from C3. Long-only weights solve the quadratic program with weights nonnegative and summing to one. The solver is SciPy SLSQP. A failed solve is logged and that origin is omitted from the long-only moments. It is not repaired.
 
 The entry script is `scripts/post_screen_gmv.py`. Outputs go under `results/post_screen/E1/`. DCC01 and DCCNL01 have no forecasts. BEKKS01 is in the main table and the other five BEKK configurations are an appendix.
+
+### Task E1 result. Global-minimum-variance evaluation
+
+Result date 2026-10-30. Saved SCREEN forecasts were turned into daily global-minimum-variance books. No model was refit. Solver failures are zero and every book uses 500 SCREEN targets. The forecast-file proxy matches the panel realized covariance with maximum absolute gap 0. On the unconstrained raw book, the P5 statistics for HARQDRD01 minus LSTM22, V11, EWMA21, and HARDRD01 are −1.6837853064044193, −1.3583087950363657, −1.1144755058725615, and 0.19103258229680717. None exceeds the ordinary critical value 2.0595385527532972 or either size-adjusted cutoff. A positive forecast scale does not change the unconstrained weights, so R1 reproduces the raw book up to a long-only solver gap of at most \(6.630208460034481\times 10^{-8}\) in annualized standard deviation. Global minimum variance is a risk target, not a return strategy. Commit `251172c9528514b07e7ab7ca107f78abcacb4420` records the scores. CONFIRM was not evaluated.

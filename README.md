@@ -265,7 +265,7 @@ Saved forecasts can be rescaled at the origin from earlier out-of-sample pairs i
 
 ---
 
-## Planned economic evaluation
+## Economic evaluation
 
 A statistically more accurate covariance forecast need not produce a lower-risk portfolio. The broader plan therefore includes a separate global-minimum-variance evaluation. For a covariance forecast $\widehat{\Sigma}_t$, the unconstrained GMV weights are
 
@@ -275,7 +275,7 @@ w_t
 {\mathbf{1}^{\top}\widehat{\Sigma}_t^{-1}\mathbf{1}}.
 ```
 
-The planned analysis will compare realized portfolio variance and, in later stages, turnover and transaction costs. Primary economic risk on the equity path will include the overnight outer product. Open-to-close-only GMV remains a robustness channel. This channel is separate from covariance-space forecast loss because portfolio construction depends on the precision matrix $`\widehat{\Sigma}_t^{-1}`$. Covariance-loss selection results are not economic value.
+The SCREEN crypto evaluation uses this weight on the target-day simple return. Turnover is the distance from the previous weights after they drift, and costs of 5 and 10 basis points are subtracted from the return. The results are descriptive. CONFIRM has not been evaluated. Primary economic risk on the equity path will include the overnight outer product. Open-to-close-only GMV remains a robustness channel. This channel is separate from covariance-space forecast loss because portfolio construction depends on the precision matrix $`\widehat{\Sigma}_t^{-1}`$. Covariance-loss selection results are not economic value. SCREEN results are in [`results/post_screen/E1/`](results/post_screen/E1/).
 
 ---
 
@@ -337,7 +337,7 @@ This experiment did not complete the conventional frontier, the deep-learning fr
 
 The first-stage Binance core is $N=5$ and one unscaled five-minute realized-covariance proxy. [`INITIAL_CORE_BENCHMARK_PLAN.md`](INITIAL_CORE_BENCHMARK_PLAN.md) still records a broader TIER 1 design with $N=30$ and two equity proxies. Those documents disagree. The executed first-stage does not replace the broader plan, and the plan does not rewrite what was actually run.
 
-SHAR-DRD has been scored and joins the econometric pool when G1 is run. Information-matched LSTM-BEKK diagnostics have been scored and are not confirmatory. The two recalibration maps have been scored on SCREEN as a diagnostic, and the headline forecast remains raw. Unresolved or unimplemented work includes GHAR as a structured graph / econometric baseline, a genuinely neural graph covariance model, scoring on the declared 15-minute robustness proxy, the confirmatory inference decision, and full economic evaluation. Realized kernels, cDCC, and daily-moving-window Ledoit–Wolf are unimplemented.
+SHAR-DRD has been scored and joins the econometric pool when G1 is run. Information-matched LSTM-BEKK diagnostics have been scored and are not confirmatory. The two recalibration maps have been scored on SCREEN as a diagnostic, and the headline forecast remains raw. Unresolved or unimplemented work includes GHAR as a structured graph / econometric baseline, a genuinely neural graph covariance model, scoring on the declared 15-minute robustness proxy, the confirmatory inference decision, and the CONFIRM economic evaluation. The SCREEN global-minimum-variance evaluation has been run and is descriptive. Realized kernels, cDCC, and daily-moving-window Ledoit–Wolf are unimplemented.
 
 The long-panel U.S.-equity experiment remains pending because production TAQ access has not yet been established. A passing unit-test suite supports the tested behaviours. It does not prove the absence of leakage, certify the repository as bug-free, or complete the paper. Software completion is not paper completion. Model selection is not final confirmation. Covariance-loss rankings are not economic value.
 
