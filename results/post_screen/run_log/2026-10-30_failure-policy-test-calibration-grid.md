@@ -1,4 +1,4 @@
-# Run summary, queue 2
+# Run summary, 2026-10-30, failure policy, test calibration, and grid
 
 Local commits only. Branch `docs/editorial-pass` was left unmerged. CONFIRM stayed locked. No task outside R1, C1, B1, and D1 was started.
 

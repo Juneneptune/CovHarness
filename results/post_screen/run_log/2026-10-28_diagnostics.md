@@ -1,4 +1,4 @@
-# Run summary, queue 1
+# Run summary, 2026-10-28, diagnostics
 
 Local commits only. `docs/editorial-pass` is unmerged and unpushed. CONFIRM stayed locked.
 

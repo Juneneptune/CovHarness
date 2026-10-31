@@ -1,4 +1,4 @@
-# Run summary, queue 4
+# Run summary, 2026-10-30, recalibration and portfolio
 
 Date 2026-10-30. Branch `main`. No push. CONFIRM stayed locked. No task outside C3, E1, and T2 was started.
 

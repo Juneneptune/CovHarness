@@ -1,4 +1,4 @@
-# Run summary, G1
+# Run summary, 2026-10-30, freeze gate
 
 Date 2026-10-30. Branch `main`. No push. CONFIRM stayed locked. No task outside G1 was started. `.ntfy_topic` was absent, so no notification was sent.
 

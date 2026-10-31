@@ -1,4 +1,4 @@
-# Run summary, queue 3
+# Run summary, 2026-10-30, information matching and baselines
 
 Date 2026-10-30. Branch `main`. No push. CONFIRM stayed locked. `nproc` was 48. D2 ran at most 44 jobs at once, and all 15 ran together. `.ntfy_topic` was absent, so no notification was sent.
 
