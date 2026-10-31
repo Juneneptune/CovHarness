@@ -182,7 +182,7 @@ Status values start as planned except for task 0, which is this documentation re
 | G1 |  | completed | `cd68fd556add3eb03df9f933e736c11bce4580b8` | `0d7f8beb0473078cc41c1c4b1ab20b640033bcda` |
 | R-2026-10-30b | amendment | completed | `cd68fd556add3eb03df9f933e736c11bce4580b8` | `0d7f8beb0473078cc41c1c4b1ab20b640033bcda` |
 | R-2026-10-30c | amendment | completed | `2186809e3e80bba7686b6bb2467dfff1d2b35a4b` | `2186809e3e80bba7686b6bb2467dfff1d2b35a4b` |
-| R-2026-10-30d | amendment | specified |  |  |
+| R-2026-10-30d | amendment | completed | `811b7e8aaddd9edeec3c698b673ed08a1a6d6ffd` | `811b7e8aaddd9edeec3c698b673ed08a1a6d6ffd` |
 | F1 | 17 | planned |  |  |
 | R1 | amendment R-2026-10-29 | completed | `a7f8e4e21cbfc8145261756e9b030126948ebc86` | `a7f8e4e21cbfc8145261756e9b030126948ebc86` |
 | R2 | amendment R-2026-10-30 | completed | `9d50128d0a01a80396929381314aac9fc4b01125` | `9d50128d0a01a80396929381314aac9fc4b01125` |
@@ -705,3 +705,5 @@ Risk comparison. E1 tested the squared simple portfolio return before costs. The
 Headline hierarchy. A rejection on squared Frobenius or on the 15-minute proxy could otherwise be read as a separate headline. The confirmatory headline rests only on reduced QLIKE under the five-minute proxy. The other two results decide whether that claim is called loss-robust and proxy-robust. They cannot create a headline the primary channel does not support.
 
 Cutoff limitation. The size-adjusted cutoffs were calibrated on the five-minute reduced-QLIKE headline gap. Using them for squared Frobenius, the 15-minute proxy, the secondary contrasts, and the portfolio gap is a conservative extension. It is not a separate calibration.
+
+PREREGISTRATION.md created on 2026-10-30 from the candidate at 811b7e8.
