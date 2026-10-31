@@ -1,0 +1,15 @@
+{
+  "model_id": "LWNL01",
+  "seed": null,
+  "n_targets": 500,
+  "fit_failures": 0,
+  "qlike_failures": 0,
+  "frobenius_failures": 0,
+  "mean_qlike": -31.780246429221325,
+  "mean_frobenius": 0.0016891217009413805,
+  "repair_count": 0,
+  "repaired_targets": [],
+  "policy_events": [],
+  "runtime_seconds": 0.4934354859869927,
+  "manifest_commit": "965b229b349b5c229abc2e7dc39f67e07a179770"
+}

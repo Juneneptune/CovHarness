@@ -1,0 +1,15 @@
+{
+  "model_id": "LSTMBEKK-noC",
+  "seed": 3,
+  "n_targets": 500,
+  "fit_failures": 0,
+  "qlike_failures": 0,
+  "frobenius_failures": 0,
+  "mean_qlike": -32.67660614500427,
+  "mean_frobenius": 0.0016872900208045024,
+  "repair_count": 0,
+  "repaired_targets": [],
+  "policy_events": [],
+  "runtime_seconds": 594.1436695361044,
+  "manifest_commit": "965b229b349b5c229abc2e7dc39f67e07a179770"
+}

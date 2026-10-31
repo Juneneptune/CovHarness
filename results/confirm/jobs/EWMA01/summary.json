@@ -1,0 +1,15 @@
+{
+  "model_id": "EWMA01",
+  "seed": null,
+  "n_targets": 500,
+  "fit_failures": 0,
+  "qlike_failures": 0,
+  "frobenius_failures": 0,
+  "mean_qlike": -31.805968756992975,
+  "mean_frobenius": 0.0018625722232481403,
+  "repair_count": 0,
+  "repaired_targets": [],
+  "policy_events": [],
+  "runtime_seconds": 0.9858436449430883,
+  "manifest_commit": "965b229b349b5c229abc2e7dc39f67e07a179770"
+}

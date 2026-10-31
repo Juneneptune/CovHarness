@@ -1,0 +1,76 @@
+{
+  "model_id": "DCC03",
+  "seed": null,
+  "n_targets": 500,
+  "fit_failures": 0,
+  "qlike_failures": 0,
+  "frobenius_failures": 0,
+  "mean_qlike": -32.104590321735884,
+  "mean_frobenius": 0.0016872125922326627,
+  "repair_count": 0,
+  "repaired_targets": [],
+  "policy_events": [
+    {
+      "policy": "interior_map",
+      "stage": "garch",
+      "asset": 3,
+      "alpha": 0.0655261935795666,
+      "beta": 0.9342682176697754,
+      "near_boundary": true,
+      "origin": "2025-04-12",
+      "model_id": "DCC03"
+    },
+    {
+      "policy": "interior_map",
+      "stage": "garch",
+      "asset": 1,
+      "alpha": 0.003429411963182217,
+      "beta": 0.9965685821460225,
+      "near_boundary": true,
+      "origin": "2025-05-24",
+      "model_id": "DCC03"
+    },
+    {
+      "policy": "interior_map",
+      "stage": "garch",
+      "asset": 1,
+      "alpha": 9.874385468799793e-67,
+      "beta": 0.999348161325142,
+      "near_boundary": true,
+      "origin": "2025-11-29",
+      "model_id": "DCC03"
+    },
+    {
+      "policy": "interior_map",
+      "stage": "garch",
+      "asset": 4,
+      "alpha": 1.481138359446109e-49,
+      "beta": 0.9999984612046776,
+      "near_boundary": true,
+      "origin": "2025-12-20",
+      "model_id": "DCC03"
+    },
+    {
+      "policy": "interior_map",
+      "stage": "garch",
+      "asset": 4,
+      "alpha": 6.879639785628481e-139,
+      "beta": 0.999998108344884,
+      "near_boundary": true,
+      "origin": "2026-02-21",
+      "model_id": "DCC03"
+    },
+    {
+      "policy": "interior_map",
+      "stage": "garch",
+      "asset": 3,
+      "alpha": 0.45482090259460595,
+      "beta": 0.5451773953258412,
+      "near_boundary": true,
+      "origin": "2026-06-06",
+      "model_id": "DCC03"
+    }
+  ],
+  "runtime_seconds": 24.53051021695137,
+  "manifest_commit": "965b229b349b5c229abc2e7dc39f67e07a179770"
+}

@@ -1,0 +1,30 @@
+{
+  "model_id": "HARDRD01",
+  "seed": null,
+  "n_targets": 500,
+  "fit_failures": 0,
+  "qlike_failures": 0,
+  "frobenius_failures": 0,
+  "mean_qlike": -31.662357717754887,
+  "mean_frobenius": 0.0018648186841258953,
+  "repair_count": 14,
+  "repaired_targets": [
+    "2025-10-19",
+    "2025-10-20",
+    "2025-10-21",
+    "2025-10-22",
+    "2025-10-23",
+    "2025-10-24",
+    "2025-10-25",
+    "2025-10-26",
+    "2025-10-27",
+    "2025-10-28",
+    "2025-10-29",
+    "2025-10-30",
+    "2025-10-31",
+    "2025-11-01"
+  ],
+  "policy_events": [],
+  "runtime_seconds": 15.686012115795165,
+  "manifest_commit": "965b229b349b5c229abc2e7dc39f67e07a179770"
+}

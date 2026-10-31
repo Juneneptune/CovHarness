@@ -1,0 +1,15 @@
+{
+  "model_id": "BEKKS01",
+  "seed": null,
+  "n_targets": 500,
+  "fit_failures": 0,
+  "qlike_failures": 0,
+  "frobenius_failures": 0,
+  "mean_qlike": -32.719974441209075,
+  "mean_frobenius": 0.0016872066540712717,
+  "repair_count": 0,
+  "repaired_targets": [],
+  "policy_events": [],
+  "runtime_seconds": 606.8701627110131,
+  "manifest_commit": "965b229b349b5c229abc2e7dc39f67e07a179770"
+}

@@ -1,0 +1,382 @@
+{
+  "rows": [
+    {
+      "model_id": "RW01",
+      "version": "r1",
+      "mean_qlike": -31.028208535936393,
+      "mean_frobenius": 0.0044782402499326315,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "RW01",
+      "version": "r2",
+      "mean_qlike": -32.05750193433058,
+      "mean_frobenius": 0.0025033967508367575,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "EWMA01",
+      "version": "r1",
+      "mean_qlike": -31.29450787434317,
+      "mean_frobenius": 0.0019514261457183703,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "EWMA01",
+      "version": "r2",
+      "mean_qlike": -31.70462507051541,
+      "mean_frobenius": 0.0017946172316959505,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "EWMA21",
+      "version": "r1",
+      "mean_qlike": -31.404537618104666,
+      "mean_frobenius": 0.0022126764396176325,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "EWMA21",
+      "version": "r2",
+      "mean_qlike": -31.872305855576563,
+      "mean_frobenius": 0.0019419910883187353,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "HARDRD01",
+      "version": "r1",
+      "mean_qlike": -30.483808590845786,
+      "mean_frobenius": 0.0018226953393629397,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "HARDRD01",
+      "version": "r2",
+      "mean_qlike": -30.95907560569886,
+      "mean_frobenius": 0.001782301106674009,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "HARQDRD01",
+      "version": "r1",
+      "mean_qlike": -30.58472058955151,
+      "mean_frobenius": 0.0017514478823388877,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "HARQDRD01",
+      "version": "r2",
+      "mean_qlike": -31.088719335787914,
+      "mean_frobenius": 0.0017101312564128939,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "SHARDRD01",
+      "version": "r1",
+      "mean_qlike": -30.517351773097424,
+      "mean_frobenius": 0.0020590976849708055,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "SHARDRD01",
+      "version": "r2",
+      "mean_qlike": -30.954872519071284,
+      "mean_frobenius": 0.0020199707951303,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "LWLIN01",
+      "version": "r1",
+      "mean_qlike": -30.51604251167004,
+      "mean_frobenius": 0.0016992129663624081,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "LWLIN01",
+      "version": "r2",
+      "mean_qlike": -31.36448427214456,
+      "mean_frobenius": 0.0016986687579723114,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "LWNL01",
+      "version": "r1",
+      "mean_qlike": -30.23110618876269,
+      "mean_frobenius": 0.001702508261551039,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "LWNL01",
+      "version": "r2",
+      "mean_qlike": -31.37626149298456,
+      "mean_frobenius": 0.0016993350446980777,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "RIDGE01",
+      "version": "r1",
+      "mean_qlike": -30.483808590845786,
+      "mean_frobenius": 0.0018226953393629397,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "RIDGE01",
+      "version": "r2",
+      "mean_qlike": -30.95907560569886,
+      "mean_frobenius": 0.001782301106674009,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "XGB08",
+      "version": "r1",
+      "mean_qlike": -30.721966333355535,
+      "mean_frobenius": 0.002029727797708321,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "XGB08",
+      "version": "r2",
+      "mean_qlike": -31.569802479984883,
+      "mean_frobenius": 0.001704955394175779,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "DCC02",
+      "version": "r1",
+      "mean_qlike": -31.399731273976773,
+      "mean_frobenius": 0.0016987137350630084,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "DCC02",
+      "version": "r2",
+      "mean_qlike": -31.762012096943604,
+      "mean_frobenius": 0.00169413651681161,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "DCCNL02",
+      "version": "r1",
+      "mean_qlike": -31.427147473558428,
+      "mean_frobenius": 0.0016983793388799426,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "DCCNL02",
+      "version": "r2",
+      "mean_qlike": -31.763615271522937,
+      "mean_frobenius": 0.001694123671238779,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "DCC03",
+      "version": "r1",
+      "mean_qlike": -31.43697411416173,
+      "mean_frobenius": 0.0017008261870987734,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "DCC03",
+      "version": "r2",
+      "mean_qlike": -31.77953512363008,
+      "mean_frobenius": 0.001694251568855315,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "DCCNL03",
+      "version": "r1",
+      "mean_qlike": -31.458857401792034,
+      "mean_frobenius": 0.0017003226763867617,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "DCCNL03",
+      "version": "r2",
+      "mean_qlike": -31.77890284213632,
+      "mean_frobenius": 0.0016942323032980427,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "BEKKS01",
+      "version": "r1",
+      "mean_qlike": -31.851772111080237,
+      "mean_frobenius": 0.0016984504315098903,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "BEKKS01",
+      "version": "r2",
+      "mean_qlike": -31.814532956923085,
+      "mean_frobenius": 0.0016942725449591817,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "LSTMBEKK-noC",
+      "version": "r1",
+      "mean_qlike": -31.840905158588633,
+      "mean_frobenius": 0.0016979339268942569,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "LSTMBEKK-noC",
+      "version": "r2",
+      "mean_qlike": -31.82540190833644,
+      "mean_frobenius": 0.001694305231134402,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "LSTM19",
+      "version": "r1",
+      "mean_qlike": -31.098990130794917,
+      "mean_frobenius": 0.0017032951844529532,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "LSTM19",
+      "version": "r2",
+      "mean_qlike": -31.70764192750428,
+      "mean_frobenius": 0.0016947276191462278,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "LSTM22",
+      "version": "r1",
+      "mean_qlike": -31.173011703263743,
+      "mean_frobenius": 0.0017037209024281363,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "LSTM22",
+      "version": "r2",
+      "mean_qlike": -31.71225012885726,
+      "mean_frobenius": 0.0016947083432644824,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "V10",
+      "version": "r1",
+      "mean_qlike": -31.065993152244882,
+      "mean_frobenius": 0.001703998528780204,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "V10",
+      "version": "r2",
+      "mean_qlike": -31.712897564923782,
+      "mean_frobenius": 0.0016946456575352093,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "V01",
+      "version": "r1",
+      "mean_qlike": -31.52416054953652,
+      "mean_frobenius": 0.0017131203148287963,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "V01",
+      "version": "r2",
+      "mean_qlike": -31.742072675596024,
+      "mean_frobenius": 0.0016964248076903163,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "V11",
+      "version": "r1",
+      "mean_qlike": -31.166676474083992,
+      "mean_frobenius": 0.0017257886083500672,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    },
+    {
+      "model_id": "V11",
+      "version": "r2",
+      "mean_qlike": -31.678527474972277,
+      "mean_frobenius": 0.0016967103749165053,
+      "qlike_failures": 0,
+      "frobenius_failures": 0,
+      "role": "diagnostic"
+    }
+  ]
+}

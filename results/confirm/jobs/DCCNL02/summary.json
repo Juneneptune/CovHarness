@@ -1,0 +1,32 @@
+{
+  "model_id": "DCCNL02",
+  "seed": null,
+  "n_targets": 500,
+  "fit_failures": 0,
+  "qlike_failures": 0,
+  "frobenius_failures": 0,
+  "mean_qlike": -32.38747349144068,
+  "mean_frobenius": 0.0016860065942123422,
+  "repair_count": 0,
+  "repaired_targets": [],
+  "policy_events": [
+    {
+      "policy": "carry_forward",
+      "stage": "dcc",
+      "asset": null,
+      "message": "DCC SLSQP failed the accepted stationarity domain alpha>=0, beta>=0, alpha+beta<1; got alpha=0.0647310511862723, beta=0.9352689488137267, success=False, message=Inequality constraints incompatible",
+      "origin": "2025-07-05",
+      "model_id": "DCCNL02"
+    },
+    {
+      "policy": "carry_forward",
+      "stage": "garch",
+      "asset": 3,
+      "message": "ZeroMean GARCH(1,1) parameters violate omega>0, a>=0, b>=0, a+b<1 for asset 3; got omega=0.00016425061585972312, a=0.4547148563871057, b=0.5452851627061331",
+      "origin": "2026-06-06",
+      "model_id": "DCCNL02"
+    }
+  ],
+  "runtime_seconds": 21.565700048115104,
+  "manifest_commit": "965b229b349b5c229abc2e7dc39f67e07a179770"
+}

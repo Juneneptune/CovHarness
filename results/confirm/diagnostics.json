@@ -1,0 +1,41 @@
+{
+  "gw": {
+    "market_statistic": 109.75023521483564,
+    "market_p_value": 1.2418994121946403e-23,
+    "market_bonferroni": 2.4837988243892807e-23,
+    "measurement_statistic": 60.5815368023934,
+    "measurement_p_value": 4.4156616054998356e-13,
+    "measurement_bonferroni": 8.831323210999671e-13,
+    "per_test_cutoff": 0.025
+  },
+  "mz_HARQDRD01_ols": {
+    "alpha": 0.0007915940764638056,
+    "beta": 0.2279065050583778,
+    "wald": 123.53651145184227,
+    "p_value": 1.4941265444809318e-27
+  },
+  "mz_V01_ols": {
+    "alpha": 0.00047997574869227625,
+    "beta": 0.6138858363150322,
+    "wald": 10.75787749821903,
+    "p_value": 0.004612714580824984
+  },
+  "mz_HARQDRD01_approximate_ps21": {
+    "alpha": 5.989003289917665e-05,
+    "beta": 0.901943259355425,
+    "wald": 4.239282481625098,
+    "p_value": 0.12007469868641843
+  },
+  "mz_V01_approximate_ps21": {
+    "alpha": -9.940058752794774e-05,
+    "beta": 1.1805695318454286,
+    "wald": 5.654493243064751,
+    "p_value": 0.05917556228646325
+  },
+  "giacomini_rossi": {
+    "max_abs_statistic": 6.304414855946665,
+    "critical_value": 3.012,
+    "reject": true,
+    "window_length": 150
+  }
+}

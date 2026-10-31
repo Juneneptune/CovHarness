@@ -1,0 +1,265 @@
+{
+  "pairs": [
+    {
+      "left": "HARQDRD01",
+      "right": "V01",
+      "complete": true,
+      "gaps": {
+        "gross": {
+          "complete": true,
+          "mean_gap": 3.211885357447323e-05,
+          "statistic": 1.173406058656484,
+          "p_value": 0.25169161671543144,
+          "reject_all_three": false
+        },
+        "cost_5bps": {
+          "complete": true,
+          "mean_gap": 3.181612523073017e-05,
+          "statistic": 1.165850240769641,
+          "p_value": 0.25467762104257147,
+          "reject_all_three": false
+        },
+        "cost_10bps": {
+          "complete": true,
+          "mean_gap": 3.15618210733996e-05,
+          "statistic": 1.1601003884959615,
+          "p_value": 0.2569673768155101,
+          "reject_all_three": false
+        },
+        "long_only_gross": {
+          "complete": true,
+          "mean_gap": 2.8436915145402706e-06,
+          "statistic": 0.2510501867568405,
+          "p_value": 0.8038272942207414,
+          "reject_all_three": false
+        }
+      },
+      "fees": [
+        {
+          "gamma": 1.0,
+          "bps": 5.0,
+          "daily_fee": -0.0002850612924819859,
+          "fee_times_365": -0.10404737175592486
+        },
+        {
+          "gamma": 1.0,
+          "bps": 10.0,
+          "daily_fee": -0.0003567108947750111,
+          "fee_times_365": -0.13019947659287903
+        },
+        {
+          "gamma": 5.0,
+          "bps": 5.0,
+          "daily_fee": -0.00034917648898094333,
+          "fee_times_365": -0.1274494184780443
+        },
+        {
+          "gamma": 5.0,
+          "bps": 10.0,
+          "daily_fee": -0.00042022659504229755,
+          "fee_times_365": -0.15338270719043862
+        },
+        {
+          "gamma": 10.0,
+          "bps": 5.0,
+          "daily_fee": -0.0004297173453991459,
+          "fee_times_365": -0.15684683107068825
+        },
+        {
+          "gamma": 10.0,
+          "bps": 10.0,
+          "daily_fee": -0.0004999630874082305,
+          "fee_times_365": -0.18248652690400413
+        }
+      ],
+      "equal_weight": [
+        {
+          "model_id": "HARQDRD01",
+          "statistic": -5.740807781260011,
+          "p_value": 5.560959725520374e-06,
+          "mean_gap": -0.0004161830295910388
+        },
+        {
+          "model_id": "V01",
+          "statistic": -6.460437894778852,
+          "p_value": 9.141357637761503e-07,
+          "mean_gap": -0.000448301883165512
+        }
+      ]
+    },
+    {
+      "left": "V01",
+      "right": "LSTM22",
+      "complete": true,
+      "gaps": {
+        "gross": {
+          "complete": true,
+          "mean_gap": 8.172473027570414e-07,
+          "statistic": 0.0807578130863629,
+          "p_value": 0.9362775984984277,
+          "reject_all_three": false
+        },
+        "cost_5bps": {
+          "complete": true,
+          "mean_gap": 8.277346987460073e-07,
+          "statistic": 0.08214417687541721,
+          "p_value": 0.9351862149446337,
+          "reject_all_three": false
+        },
+        "cost_10bps": {
+          "complete": true,
+          "mean_gap": 8.261024619683229e-07,
+          "statistic": 0.08231431610001401,
+          "p_value": 0.9350522855445972,
+          "reject_all_three": false
+        },
+        "long_only_gross": {
+          "complete": true,
+          "mean_gap": -6.633659957535942e-06,
+          "statistic": -0.6741778063618848,
+          "p_value": 0.5063848571176263,
+          "reject_all_three": false
+        }
+      },
+      "fees": [
+        {
+          "gamma": 1.0,
+          "bps": 5.0,
+          "daily_fee": 0.00020866132310972695,
+          "fee_times_365": 0.07616138293505034
+        },
+        {
+          "gamma": 1.0,
+          "bps": 10.0,
+          "daily_fee": 0.0002208664685100302,
+          "fee_times_365": 0.08061626100616102
+        },
+        {
+          "gamma": 5.0,
+          "bps": 5.0,
+          "daily_fee": 0.00020726687478924726,
+          "fee_times_365": 0.07565240929807525
+        },
+        {
+          "gamma": 5.0,
+          "bps": 10.0,
+          "daily_fee": 0.00021942410488430523,
+          "fee_times_365": 0.08008979828277141
+        },
+        {
+          "gamma": 10.0,
+          "bps": 5.0,
+          "daily_fee": 0.00020552047202559496,
+          "fee_times_365": 0.07501497228934216
+        },
+        {
+          "gamma": 10.0,
+          "bps": 10.0,
+          "daily_fee": 0.00021761902734167542,
+          "fee_times_365": 0.07943094497971152
+        }
+      ],
+      "equal_weight": [
+        {
+          "model_id": "V01",
+          "statistic": -6.460437894778852,
+          "p_value": 9.141357637761503e-07,
+          "mean_gap": -0.000448301883165512
+        },
+        {
+          "model_id": "LSTM22",
+          "statistic": -6.437662474710127,
+          "p_value": 9.671029573450438e-07,
+          "mean_gap": -0.0004491191304682691
+        }
+      ]
+    },
+    {
+      "left": "V11",
+      "right": "LSTM22",
+      "complete": true,
+      "gaps": {
+        "gross": {
+          "complete": true,
+          "mean_gap": 1.238163151822656e-06,
+          "statistic": 0.10590884715068788,
+          "p_value": 0.9164999151658182,
+          "reject_all_three": false
+        },
+        "cost_5bps": {
+          "complete": true,
+          "mean_gap": 1.2259270183103818e-06,
+          "statistic": 0.10502821218082392,
+          "p_value": 0.9171915592461783,
+          "reject_all_three": false
+        },
+        "cost_10bps": {
+          "complete": true,
+          "mean_gap": 1.2048291769461848e-06,
+          "statistic": 0.10336152714456466,
+          "p_value": 0.9185007427248036,
+          "reject_all_three": false
+        },
+        "long_only_gross": {
+          "complete": true,
+          "mean_gap": -4.362829241043527e-06,
+          "statistic": -0.38822918309231275,
+          "p_value": 0.7011327813280609,
+          "reject_all_three": false
+        }
+      },
+      "fees": [
+        {
+          "gamma": 1.0,
+          "bps": 5.0,
+          "daily_fee": 0.00011500549287973792,
+          "fee_times_365": 0.04197700490110434
+        },
+        {
+          "gamma": 1.0,
+          "bps": 10.0,
+          "daily_fee": 0.00012288991832210943,
+          "fee_times_365": 0.04485482018756994
+        },
+        {
+          "gamma": 5.0,
+          "bps": 5.0,
+          "daily_fee": 0.00011267441304698214,
+          "fee_times_365": 0.04112616076214848
+        },
+        {
+          "gamma": 5.0,
+          "bps": 10.0,
+          "daily_fee": 0.00012057205841171951,
+          "fee_times_365": 0.044008801320277624
+        },
+        {
+          "gamma": 10.0,
+          "bps": 5.0,
+          "daily_fee": 0.00010975492651742522,
+          "fee_times_365": 0.040060548178860206
+        },
+        {
+          "gamma": 10.0,
+          "bps": 10.0,
+          "daily_fee": 0.00011767127608229084,
+          "fee_times_365": 0.042950015770036154
+        }
+      ],
+      "equal_weight": [
+        {
+          "model_id": "V11",
+          "statistic": -6.38071088999478,
+          "p_value": 1.1136548142477546e-06,
+          "mean_gap": -0.00044788096731644645
+        },
+        {
+          "model_id": "LSTM22",
+          "statistic": -6.437662474710127,
+          "p_value": 9.671029573450438e-07,
+          "mean_gap": -0.0004491191304682691
+        }
+      ]
+    }
+  ]
+}

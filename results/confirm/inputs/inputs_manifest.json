@@ -1,0 +1,14 @@
+{
+  "built_utc": "2026-10-31T01:30:41Z",
+  "manifest_commit": "965b229b349b5c229abc2e7dc39f67e07a179770",
+  "panel_sha256": "2b7358107a10f77c3879524e1d9b1389c2c66db4a444af89c2cdf59aa186640a",
+  "file_sha256": "f7471e05ae378b193e3c34a21c43651461858c8344a73b7c00f5cc30b56ad39a",
+  "rcov_15min_sha256": "b6bff1cbf558b43309ac3ab7ec472fe3f6b18dc7938959148beba804600b65ec",
+  "rs_positive_sha256": "6d80be3c74c32e30fe363db4bbebe7a147e746a087e36d47c7d30defbd9e0e0b",
+  "rs_negative_sha256": "879085ad7f5e9bcbe9589fd80608b8c5c3dbacb51f8d8ec6d14ba167056e4678",
+  "origin_returns_5min_sha256": "27d09d07a1b5914b628ce7764309bd4311c7ff4339739b33b260f90767594883",
+  "n_targets": 500,
+  "view_start": "2023-03-25",
+  "view_end": "2026-08-25",
+  "note": "15-minute RCov and five-minute semivariances are CONFIRM target dates. Origin-day five-minute returns are the frozen measurement-stress input."
+}

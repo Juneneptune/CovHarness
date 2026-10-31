@@ -1,0 +1,15 @@
+{
+  "model_id": "V11",
+  "seed": 2,
+  "n_targets": 500,
+  "fit_failures": 0,
+  "qlike_failures": 0,
+  "frobenius_failures": 0,
+  "mean_qlike": -32.06726051289933,
+  "mean_frobenius": 0.0016960259808810694,
+  "repair_count": 0,
+  "repaired_targets": [],
+  "policy_events": [],
+  "runtime_seconds": 1517.7092636479065,
+  "manifest_commit": "965b229b349b5c229abc2e7dc39f67e07a179770"
+}
