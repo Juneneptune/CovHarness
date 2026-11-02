@@ -707,3 +707,9 @@ Headline hierarchy. A rejection on squared Frobenius or on the 15-minute proxy c
 Cutoff limitation. The size-adjusted cutoffs were calibrated on the five-minute reduced-QLIKE headline gap. Using them for squared Frobenius, the 15-minute proxy, the secondary contrasts, and the portfolio gap is a conservative extension. It is not a separate calibration.
 
 PREREGISTRATION.md created on 2026-10-30 from the candidate at 811b7e8.
+
+### Task X3. Crash-day influence on the saved CONFIRM ranking
+
+Status. executed. Exploratory, computed after CONFIRM. This entry does not change the preregistered rule and does not reselect a model.
+
+Spec commit `9aebdef7f80e2bb24d6b7e5b302cf1ffe6943681`. The result commit is the commit that adds this entry. Saved CONFIRM forecast cubes were rescored. No model was refit. The five-minute view has 500 finite targets. HARQDRD01 minus V01 has P5 statistic 2.651948 on that sample and 2.404565 without 2025-10-10. The report is `results/exploratory/X3/REPORT.md`.
