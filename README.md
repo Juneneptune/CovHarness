@@ -61,6 +61,8 @@ The first complete run uses five liquid crypto assets (BTC, ETH, BNB, LTC and AD
 
 An LSTM-BEKK trained on realized covariance beat the preselected econometric benchmark, HARQ-DRD, on the primary loss. That benchmark did poorly on the holdout overall, ranking 15th of 21. Plain scalar BEKK and the LSTM-BEKK with its LSTM removed ranked first and second on the full sample, ahead of the realized-covariance LSTM-BEKK in third, but that ordering comes from the crash day discussed below. Without that day, and by median loss, the realized-covariance LSTM-BEKK ranks fourth and both BEKK variants fall to eighth or lower.
 
+The test statistic is a Diebold–Mariano statistic on the daily QLIKE gaps, using the equal-weighted cosine variance estimator, and positive values favour the LSTM-BEKK. Under textbook theory it follows a t-distribution with 25 degrees of freedom, which gives a 5% critical value of 2.06. On realistic resampled data that cutoff produced false positives about 8% of the time, so before the holdout was opened we also calibrated stricter critical values on the selection period. We shifted its daily loss gaps to have a true mean of zero, resampled them in blocks that keep their streaks and fat tails, and took the value the statistic exceeds only 5% of the time, which is 2.47 with 7-day blocks and 2.42 with 29-day blocks. A result counts as significant only if it clears all three, so 2.47 is the bar that matters. All three values are fixed in [PREREGISTRATION.md](PREREGISTRATION.md).
+
 | HARQ-DRD vs. LSTM-BEKK (realized-covariance target) | Test statistic | Clears the strict bar of 2.47? |
 | --- | ---: | :---: |
 | QLIKE on 5-minute realized covariance (primary, preregistered) | 2.65 | Yes |
