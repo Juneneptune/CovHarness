@@ -182,4 +182,4 @@ Artifacts.
 
 `results/binance_screen_diagnostics.json`
 
-Hashes are recorded in `docs/PROJECT_STATE.md`. CONFIRM remains locked. No confirmatory pairwise test was run.
+CONFIRM remains locked. No confirmatory pairwise test was run.

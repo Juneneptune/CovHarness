@@ -10,7 +10,7 @@ Counts below are labeled exact, catalog-derived, or still unknown. Catalog visib
 
 ### Repository data tree
 
-`data/` contains `.gitkeep` plus a gitignored cache. No raw quotes, trades, bars, daily-return panels, or multi-day realized-covariance cubes are stored under the repository root. Nearby scratch directories `/local/scratch/a/lim316/data` and `/local/scratch/a/lim316/research/data` hold unrelated MNIST and model-weight caches, not equity ticks.
+`data/` contains `.gitkeep` plus a gitignored cache. No raw quotes, trades, bars, daily-return panels, or multi-day realized-covariance cubes are stored under the repository root. Nearby scratch directories a local scratch directory and a local scratch directory hold unrelated MNIST and model-weight caches, not equity ticks.
 
 ### Downloaded and cached one-day TAQ panel
 

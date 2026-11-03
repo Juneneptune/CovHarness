@@ -118,6 +118,12 @@ paper/**/*.vrb
 
 # Local notes (not part of the public tree)
 docs/REPOSITORY_CLEANUP_REPORT.md
+logs/
+
+# Operational run logs, kept on disk
+RUN_LOG*
+**/RUN_LOG*
+results/**/run_log/
 
 # Scratch / local junk
 *.tmp
