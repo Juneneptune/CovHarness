@@ -18,7 +18,7 @@ Covariance forecasts are used in portfolio construction and risk management, and
 Tomorrow's conditional covariance matrix $\Sigma_{t+1\mid t}$ is latent, even after the fact. Forecasts are scored against realized covariance, which is an unbiased but noisy stand-in. That rules out many common losses, because with a noisy target some of them rank a worse forecast first. The harness uses the losses that stay reliable under that noise (Patton, 2011; Laurent, Rombouts and Violante, 2013). The primary one is QLIKE, the multivariate Gaussian likelihood loss,
 
 ```math
-L(S, H) = \log\det H + \operatorname{tr}\left(H^{-1} S\right),
+L(S, H) = \log\det H + \mathrm{tr}(H^{-1} S),
 ```
 
 where $H$ is the forecast and $S$ the realized covariance. Squared Frobenius distance is the secondary loss. Results are recomputed at more than one sampling frequency to check that rankings do not depend on how the target was measured, and subsampled and kernel estimators (Barndorff-Nielsen et al., 2011) are being added.
