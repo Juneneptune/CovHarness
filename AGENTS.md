@@ -14,7 +14,7 @@ A new architecture does not receive a different target, a richer information set
 
 ## Writing and narrative
 
-Public documentation, including `README.md` and `docs/PROJECT_STATE.md`, explains our design choices. It is not a lecture and not a survey of the literature.
+It is not a lecture and not a survey of the literature.
 
 Write in a formal register. Use first-person plural for project decisions. State the constraint, then the choice. For example, the oracle covariance is latent, unlike a fully observed supervised label, and therefore we evaluate against realized covariance under a pre-registered protocol.
 
@@ -22,17 +22,14 @@ Do not use a colon in headings or running text. Introduce lists with a full stop
 
 Avoid hype, motivational prose, recruiter-facing commentary, and claims that experiments have not supported. Label work as implemented, validated, experimental, or planned. Never claim that deep learning outperforms econometrics unless the locked confirmatory evaluation supports that conclusion.
 
-Do not turn `docs/PROJECT_STATE.md` into a transcript or chronological diary.
-
 ---
 
 ## Source of truth
 
 Before substantial work, read these repository documents in this order.
 
-1. `docs/PROJECT_STATE.md` for the current checkpoint, exact tests, unresolved issues, and next task.
-2. `README.md` for the adopted methodological design and how implemented components are defined.
-3. The existing implementation and tests for any component being changed.
+1. `README.md` for the adopted methodological design and how implemented components are defined.
+2. The existing implementation and tests for any component being changed.
 
 Do not silently alter methodological choices. If implementation requirements conflict with the design, explain the conflict before changing the methodology.
 
@@ -40,17 +37,15 @@ Do not silently alter methodological choices. If implementation requirements con
 
 ## Document roles
 
-`AGENTS.md` tells coding agents how to work in this repository. `README.md` is the public methodological specification. `docs/PROJECT_STATE.md` is the detailed internal checkpoint. Later models and evaluation extensions may be added.
+`AGENTS.md` tells coding agents how to work in this repository. `README.md` is the public methodological specification. Later models and evaluation extensions may be added.
 
 Do not treat planned evaluation capabilities as implemented. Do not turn discussed or planned work into completed work.
 
-Every substantive implemented component must be accompanied by an update to the relevant `README.md` section and an exact `docs/PROJECT_STATE.md` checkpoint. The README should describe the adopted definition, the implementation, boundary behaviour, and limitations. Rationale belongs where it changes how a reader should interpret the harness, for example proxy-robust scoring, information-set parity, or where nonlinear shrinkage enters a forecast.
+The README should describe the adopted definition, the implementation, boundary behaviour, and limitations. Rationale belongs where it changes how a reader should interpret the harness, for example proxy-robust scoring, information-set parity, or where nonlinear shrinkage enters a forecast.
 
 ---
 
 ## Persistent project state
-
-`docs/PROJECT_STATE.md` is the persistent working memory for this repository. Read it at the beginning of substantial work. Update it after a meaningful unit of work.
 
 A meaningful unit includes implementing a model, a realized-covariance estimator, a loss or inference procedure, or a data-pipeline stage; making an important methodological decision; fixing a bug that changes research results; completing a milestone; or discovering an unresolved limitation.
 
@@ -112,8 +107,7 @@ For each new method, proceed in this order.
 6. Add synthetic or unit tests.
 7. Run the tests.
 8. Integrate it into the benchmark only after validation.
-9. Update `docs/PROJECT_STATE.md` with what was completed, files changed, tests actually run, and the next task.
-10. Update the relevant `README.md` section if the public definition, implementation, boundary behaviour, or limitation of a component changed.
+9. Update the relevant `README.md` section if the public definition, implementation, boundary behaviour, or limitation of a component changed.
 
 Do not generate large amounts of code before verifying the mathematical specification.
 

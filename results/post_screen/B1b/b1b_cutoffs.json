@@ -1,0 +1,51 @@
+{
+  "task": "B1b",
+  "spec_commit": "e4f01c0301320d5f92e0041e09069abc85ab2ba4",
+  "T": 500,
+  "ewc_nu": 25,
+  "ordinary_critical_value": 2.0595385527532972,
+  "blocks": [
+    {
+      "block_length": 7,
+      "n_null": 20000,
+      "n_check": 5000,
+      "null_seed_key": "B1b-null-7",
+      "null_seed": 1018646849,
+      "se_seed_key": "B1b-se-7",
+      "se_seed": 310480529,
+      "check_seed_key": "B1b-check-7",
+      "check_seed": 192526076,
+      "calibration_seed": 20260916,
+      "quantile": 0.95,
+      "quantile_method": "linear",
+      "size_adjusted_critical_value": 2.4728093597276533,
+      "quantile_bootstrap_se": 0.024786494686054643,
+      "n_bootstrap_se": 1000,
+      "ordinary_critical_value": 2.0595385527532972,
+      "check_rejection_rate": 0.0516,
+      "check_mcse_at_nominal": 0.0030822070014844883,
+      "check_within_two_mcse": true
+    },
+    {
+      "block_length": 29,
+      "n_null": 20000,
+      "n_check": 5000,
+      "null_seed_key": "B1b-null-29",
+      "null_seed": 925551463,
+      "se_seed_key": "B1b-se-29",
+      "se_seed": 698742525,
+      "check_seed_key": "B1b-check-29",
+      "check_seed": 1684267205,
+      "calibration_seed": 20260916,
+      "quantile": 0.95,
+      "quantile_method": "linear",
+      "size_adjusted_critical_value": 2.4226501420943998,
+      "quantile_bootstrap_se": 0.02011665228045664,
+      "n_bootstrap_se": 1000,
+      "ordinary_critical_value": 2.0595385527532972,
+      "check_rejection_rate": 0.0472,
+      "check_mcse_at_nominal": 0.0030822070014844883,
+      "check_within_two_mcse": true
+    }
+  ]
+}
