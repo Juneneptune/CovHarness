@@ -1,6 +1,6 @@
 # Binance CONFIRM report
 
-Model identifiers are defined in [docs/GLOSSARY.md](../../docs/GLOSSARY.md). Every number below is the saved confirmatory value.
+Model identifiers are defined in [docs/GLOSSARY.md](../../docs/GLOSSARY.md). Every number below is the saved confirmatory value. This is a reformatted version of the report produced by the run in commit `df44a11`, with one printed p-value corrected in `4c2a879`.
 
 ## 1 Headline
 
@@ -195,7 +195,7 @@ Mean reduced QLIKE and squared Frobenius are reported under both proxies. Stocha
 
 Seed-level mean five-minute reduced QLIKE values are not the reported forecast. The reported stochastic forecast is the equal-weight covariance ensemble in the table above. Columns follow the saved seed order.
 
-| Model | Seed 1 | Seed 2 | Seed 3 | Seed 4 | Seed 5 |
+| Model | Seed 0 | Seed 1 | Seed 2 | Seed 3 | Seed 4 |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | LSTMBEKK-noC | -32.676606 | -32.676606 | -32.676606 | -32.676606 | -32.676606 |
 | LSTM19 | -32.085752 | -31.872816 | -31.921901 | -32.048242 | -31.979598 |
@@ -204,7 +204,7 @@ Seed-level mean five-minute reduced QLIKE values are not the reported forecast. 
 | V01 | -32.430201 | -32.381897 | -32.816699 | -32.572087 | -32.392766 |
 | V11 | -32.301486 | -32.315830 | -32.067261 | -32.141943 | -32.237493 |
 
-The five forecast cubes are identical.
+The five LSTMBEKK-noC forecast cubes are identical.
 
 Estimation-window-mean fallback counts are HARDRD01 14, HARQDRD01 16, SHARDRD01 14, RIDGE01 14, and XGB08 41. DCC02 and DCCNL02 each carried parameters forward at origins 2025-07-05 and 2026-06-06. DCC03 and DCCNL03 each recorded six near-boundary interior-map events, at origins 2025-04-12, 2025-05-24, 2025-11-29, 2025-12-20, 2026-02-21, and 2026-06-06. BEKKS01 saved no policy-event list and its repair count is 0.
 

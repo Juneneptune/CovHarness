@@ -14,7 +14,7 @@ A new architecture does not receive a different target, a richer information set
 
 ## Writing and narrative
 
-It is not a lecture and not a survey of the literature.
+Public documentation, including `README.md`, explains our design choices. It is not a lecture and not a survey of the literature.
 
 Write in a formal register. Use first-person plural for project decisions. State the constraint, then the choice. For example, the oracle covariance is latent, unlike a fully observed supervised label, and therefore we evaluate against realized covariance under a pre-registered protocol.
 
@@ -49,7 +49,7 @@ The README should describe the adopted definition, the implementation, boundary 
 
 A meaningful unit includes implementing a model, a realized-covariance estimator, a loss or inference procedure, or a data-pipeline stage; making an important methodological decision; fixing a bug that changes research results; completing a milestone; or discovering an unresolved limitation.
 
-Record what was completed, files created or materially changed, tests actually run and their results, methodological decisions, known problems, and the next recommended task. Do not claim that something works unless it was run and verified. Do not invent test counts, dataset entitlements, or extraction results.
+Record what was completed, files created or materially changed, tests actually run and their results, methodological decisions, known problems, and the next recommended task in the commit that finishes the unit. When that unit changes a public definition, implementation, boundary behaviour, or limitation, also record it in `README.md`. Do not claim that something works unless it was run and verified. Do not invent test counts, dataset entitlements, or extraction results.
 
 Do not modify `AGENTS.md` unless the user explicitly asks to change project instructions.
 
