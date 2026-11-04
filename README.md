@@ -70,7 +70,7 @@ The test statistic is a Diebold–Mariano statistic on the daily QLIKE gaps, usi
 | Squared Frobenius loss (secondary) | 1.59 | No |
 | QLIKE on 15-minute realized covariance (robustness) | 2.39 | No |
 
-The result clears the bar but is fragile. One liquidation day carries much of the evidence. HARQ-DRD also fell back to its window-average forecast on 16 holdout days, 15 of them between 2025-10-11 and 2025-11-01, and excluding those days raises the statistic to 2.82. On typical days simple exponential smoothing ranked first of all 21 models, and model rankings shifted between the selection period and the holdout. Portfolios built from the two finalists had statistically indistinguishable realized risk. The full report is in [results/confirm/REPORT.md](results/confirm/REPORT.md), and the crash-day analysis is in [results/exploratory/X3/REPORT.md](results/exploratory/X3/REPORT.md).
+The result clears the bar but is fragile. One liquidation day carries much of the evidence. HARQ-DRD also fell back to its window-average forecast on 16 holdout days, 15 of them between 2025-10-11 and 2025-11-01, and excluding those days raises the statistic to 2.82. On typical days simple exponential smoothing ranked first of all 21 models, and model rankings shifted between the selection period and the holdout. Portfolios built from the two finalists had statistically indistinguishable realized risk, while the HARQ-DRD portfolio traded about twice as much ([turnover](results/exploratory/holdout_turnover/README.md)). The full report is in [results/confirm/REPORT.md](results/confirm/REPORT.md), and the crash-day analysis is in [results/exploratory/X3/REPORT.md](results/exploratory/X3/REPORT.md).
 
 ## Running it
 
